@@ -1,0 +1,79 @@
+{
+  "registryVersion": "0.1",
+  "verifiedAt": "2026-08-05T17:20:00Z",
+  "reviewPolicy": "Gateway capability is an indicator only. Cargo acceptance, dangerous-goods handling, terminal assignment, operating windows, customs readiness, and booking availability require current confirmation.",
+  "sources": [
+    {
+      "sourceId": "MAWANI-JEDDAH-2026",
+      "countryCode": "SA",
+      "gatewayId": "GATEWAY-SA-JEDDAH-PORT",
+      "title": "Saudi Ports Authority - Jeddah Islamic Port",
+      "sourceType": "official_port_authority",
+      "url": "https://www.mawani.gov.sa/ar-sa/SAPorts/Jbeilt/Pages/default.aspx",
+      "supports": ["official_port_identity", "container_services_indicator", "shipping_service_activity"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "CAIRO-AIRPORT-CARGO-2026",
+      "countryCode": "EG",
+      "gatewayId": "GATEWAY-EG-CAI-AIR",
+      "title": "Cairo International Airport - Cargo Handling",
+      "sourceType": "official_airport_operator",
+      "url": "https://www.cairo-airport.com/en-us/Services/Corporate/Services-for-Corporates",
+      "supports": ["cargo_terminal_indicator", "general_and_specific_commodities", "perishable_and_pharma_indicator", "cargo_contact_channel"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "SCZONE-SOKHNA-2026",
+      "countryCode": "EG",
+      "gatewayId": "GATEWAY-EG-SOKHNA-PORT",
+      "title": "Suez Canal Economic Zone - Sokhna",
+      "sourceType": "official_economic_zone_authority",
+      "url": "https://sczone.eg/",
+      "supports": ["official_gateway_area_identity", "port_authority_contact_indicator"],
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-10-05"
+    },
+    {
+      "sourceId": "OMAN-AIRPORTS-MCT-CARGO-2026",
+      "countryCode": "OM",
+      "gatewayId": "GATEWAY-OM-MCT-AIR",
+      "title": "Oman Airports - Cargo Handling",
+      "sourceType": "official_airport_operator",
+      "url": "https://www.omanairports.co.om/en/content/cargo-handling",
+      "supports": ["24_hour_import_export_cargo", "cold_and_freezer_storage", "dangerous_goods_storage", "mail_handling", "road_feeder_service"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "ASYAD-SOHAR-PORT-2026",
+      "countryCode": "OM",
+      "gatewayId": "GATEWAY-OM-SOHAR-PORT",
+      "title": "Asyad Group - Port of Sohar",
+      "sourceType": "official_port_group",
+      "url": "https://www.asyad.om/ports/sohar-port",
+      "supports": ["container_handling", "general_cargo", "liquid_bulk", "free_zone_link", "hinterland_connection_indicator"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "ASYAD-SOHAR-CONTAINER-2026",
+      "countryCode": "OM",
+      "gatewayId": "GATEWAY-OM-SOHAR-PORT",
+      "title": "Asyad Group - Hutchison Ports Sohar",
+      "sourceType": "official_terminal_profile",
+      "url": "https://www.asyad.om/what-we-do/ports-free-zones-thank-you/hutchinson-sohar",
+      "supports": ["container_terminal", "mega_vessel_indicator", "transshipment_indicator", "terminal_capacity_indicator"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    }
+  ]
+}
