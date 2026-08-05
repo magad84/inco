@@ -1,0 +1,72 @@
+{
+  "registryVersion": "0.1",
+  "status": "verified_partial",
+  "sources": [
+    {
+      "sourceId": "GW-US-POLA-CONTAINERS-2026",
+      "gatewayScope": ["GATEWAY-US-POLA"],
+      "sourceType": "official_port_operator",
+      "title": "Port of Los Angeles Container Terminals",
+      "url": "https://portoflosangeles.org/business/terminals/container",
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T18:05:00Z",
+      "reviewBy": "2026-11-05T00:00:00Z",
+      "notes": "Confirms container terminals and intermodal rail capability. Does not confirm live capacity, cut-offs, carrier service or cargo acceptance."
+    },
+    {
+      "sourceId": "GW-US-LAX-CARGO-2026",
+      "gatewayScope": ["GATEWAY-US-LAX"],
+      "sourceType": "official_airport_operator",
+      "title": "Los Angeles International Airport cargo operations indicators",
+      "url": "https://www.flylax.com/en/lax-news?page=8",
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T18:05:00Z",
+      "reviewBy": "2026-10-05T00:00:00Z",
+      "notes": "Confirms active cargo operations at LAX. Airline, handler, terminal and shipment-specific acceptance remain required."
+    },
+    {
+      "sourceId": "GW-AU-PORT-BOTANY-2026",
+      "gatewayScope": ["GATEWAY-AU-PORT-BOTANY"],
+      "sourceType": "official_port_operator",
+      "title": "NSW Ports Port Botany",
+      "url": "https://www.nswports.com.au/port-botany",
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T18:05:00Z",
+      "reviewBy": "2026-11-05T00:00:00Z",
+      "notes": "Confirms three container terminals and dedicated freight-rail connectivity. Terminal operations and live acceptance are external to NSW Ports."
+    },
+    {
+      "sourceId": "GW-AU-SYD-CARGO-2026",
+      "gatewayScope": ["GATEWAY-AU-SYD"],
+      "sourceType": "official_airport_operator",
+      "title": "Sydney Airport freight and ground handling information",
+      "url": "https://www.sydneyairport.com.au/corporate/partner-with-us/services",
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T18:05:00Z",
+      "reviewBy": "2026-10-05T00:00:00Z",
+      "notes": "Confirms cargo and ground-handling contacts and freight operators. Specific cargo acceptance remains with airline and handler."
+    },
+    {
+      "sourceId": "GW-RU-SPB-CARGO-2026",
+      "gatewayScope": ["GATEWAY-RU-SPB-MARINE"],
+      "sourceType": "official_port_operator",
+      "title": "Passenger Port of Saint Petersburg cargo-terminal infrastructure",
+      "url": "https://portspb.ru/en/about/info_about_port/Port_Facilities",
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T18:05:00Z",
+      "reviewBy": "2026-09-05T00:00:00Z",
+      "notes": "Confirms limited cargo and cargo-passenger berth capability. It is not a general container-port acceptance statement. Enhanced transaction-specific compliance screening is mandatory."
+    },
+    {
+      "sourceId": "GW-RU-SVO-CARGO-2026",
+      "gatewayScope": ["GATEWAY-RU-SVO"],
+      "sourceType": "official_terminal_operator",
+      "title": "Moscow Cargo terminal at Sheremetyevo",
+      "url": "https://moscow-cargo.svo.aero/about",
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T18:05:00Z",
+      "reviewBy": "2026-09-05T00:00:00Z",
+      "notes": "Confirms cargo-terminal handling capability. Airline, commodity, route, sanctions and compliance screening remain mandatory."
+    }
+  ]
+}
