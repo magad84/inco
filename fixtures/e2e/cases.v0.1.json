@@ -1,0 +1,139 @@
+{
+  "datasetVersion": "0.1",
+  "policy": "Expected states validate conservative deterministic behavior, not live carrier acceptance or authority approval.",
+  "cases": [
+    {
+      "caseId": "E2E-001",
+      "title": "China to UAE general containerized ocean cargo",
+      "countryRuleFile": "uae.v0.1.json",
+      "input": {
+        "lane": {
+          "originCountry": "CN",
+          "destinationCountry": "AE",
+          "mode": "ocean",
+          "cargoCategories": ["general", "containerized"],
+          "requestedOriginGatewayId": "GATEWAY-CN-SHANGHAI-PORT",
+          "requestedDestinationGatewayId": "GATEWAY-AE-KHALIFA",
+          "transactionDate": "2026-08-05"
+        },
+        "cargo": {
+          "product": {
+            "commercialName": "Finished metal components",
+            "technicalDescription": "Finished solid metal components without batteries, liquids, gases, fuel or chemical mixtures",
+            "compositionKnown": true,
+            "physicalState": "solid",
+            "hazardIndicators": [],
+            "specialCargoIndicators": []
+          },
+          "shipment": {
+            "originCountry": "CN",
+            "destinationCountry": "AE",
+            "mode": "ocean",
+            "plannedShipmentDate": "2026-08-05"
+          }
+        },
+        "destinationFacts": {
+          "transactionRole": "import",
+          "emirate": "Abu Dhabi",
+          "gateway_or_city": "Khalifa Port",
+          "transaction_role": "import",
+          "transport_mode": "ocean"
+        }
+      },
+      "expected": {
+        "decisionState": "confirmation_required",
+        "requiredConfirmationIncludes": ["carrier_schedule", "cargo_acceptance"],
+        "mustHaveSources": true
+      }
+    },
+    {
+      "caseId": "E2E-002",
+      "title": "India to Saudi Arabia reefer ocean cargo",
+      "countryRuleFile": "ksa.v0.1.json",
+      "input": {
+        "lane": {
+          "originCountry": "IN",
+          "destinationCountry": "SA",
+          "mode": "ocean",
+          "cargoCategories": ["reefer"],
+          "requestedOriginGatewayId": "GATEWAY-IN-JNPA",
+          "requestedDestinationGatewayId": "GATEWAY-SA-JEDDAH-PORT",
+          "transactionDate": "2026-08-05"
+        },
+        "cargo": {
+          "product": {
+            "commercialName": "Temperature-controlled food product",
+            "technicalDescription": "Packaged food requiring controlled temperature and reefer handling",
+            "compositionKnown": true,
+            "physicalState": "solid",
+            "hazardIndicators": [],
+            "specialCargoIndicators": ["temperature_controlled", "perishable"]
+          },
+          "shipment": {
+            "originCountry": "IN",
+            "destinationCountry": "SA",
+            "mode": "ocean",
+            "plannedShipmentDate": "2026-08-05"
+          }
+        },
+        "destinationFacts": {
+          "transactionRole": "import",
+          "mode": "ocean",
+          "cargoCategory": "food"
+        }
+      },
+      "expected": {
+        "decisionState": "blocked_information_required",
+        "requiredCargoStatus": "SPECIAL_CARGO_DATA_REQUIRED",
+        "mustHaveMissingInformation": true
+      }
+    },
+    {
+      "caseId": "E2E-003",
+      "title": "Turkey to Egypt possible dangerous goods by air",
+      "countryRuleFile": "egypt.v0.1.json",
+      "input": {
+        "lane": {
+          "originCountry": "TR",
+          "destinationCountry": "EG",
+          "mode": "air_cargo",
+          "cargoCategories": ["dangerous_goods"],
+          "requestedDestinationGatewayId": "GATEWAY-EG-CAI-AIR",
+          "transactionDate": "2026-08-05"
+        },
+        "cargo": {
+          "product": {
+            "commercialName": "Industrial adhesive",
+            "technicalDescription": "Liquid industrial adhesive with incomplete transport classification",
+            "compositionKnown": false,
+            "physicalState": "liquid",
+            "hazardIndicators": ["unknown_chemical_composition", "flammable_liquid"],
+            "specialCargoIndicators": []
+          },
+          "technicalData": {
+            "sdsAvailable": false,
+            "unNumber": null,
+            "properShippingName": null,
+            "classOrDivision": null
+          },
+          "shipment": {
+            "originCountry": "TR",
+            "destinationCountry": "EG",
+            "mode": "air",
+            "plannedShipmentDate": "2026-08-05"
+          }
+        },
+        "destinationFacts": {
+          "transactionRole": "import",
+          "transportMode": "air",
+          "cargoCategory": "chemical"
+        }
+      },
+      "expected": {
+        "decisionState": "blocked_information_required",
+        "requiredCargoStatus": "DANGEROUS_GOODS_DATA_REQUIRED",
+        "requiredConfirmationIncludes": ["classification", "station_capability"]
+      }
+    }
+  ]
+}
