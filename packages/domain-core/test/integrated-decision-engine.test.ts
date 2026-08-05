@@ -3,6 +3,7 @@ import test from "node:test";
 import {
   evaluateIntegratedDecision,
   type DestinationCountryRule,
+  type IntegratedDecisionInput,
   type TradeLaneCorridor,
 } from "../src/index.js";
 
@@ -52,7 +53,7 @@ const countryRule: DestinationCountryRule = {
   },
 };
 
-function baseInput() {
+function baseInput(): IntegratedDecisionInput {
   return {
     lane: {
       originCountry: "CN",
@@ -66,14 +67,14 @@ function baseInput() {
         commercialName: "Metal parts",
         technicalDescription: "Finished non-hazardous metal components",
         compositionKnown: true,
-        physicalState: "solid" as const,
+        physicalState: "solid",
         hazardIndicators: [],
         specialCargoIndicators: [],
       },
       shipment: {
         originCountry: "CN",
         destinationCountry: "AE",
-        mode: "ocean" as const,
+        mode: "ocean",
         plannedShipmentDate: "2026-08-05",
       },
     },
@@ -85,12 +86,7 @@ function baseInput() {
 }
 
 test("integrated engine returns confirmation-required candidate", () => {
-  const result = evaluateIntegratedDecision(
-    baseInput(),
-    [corridor],
-    [countryRule],
-    "2026-08-05T18:30:00Z",
-  );
+  const result = evaluateIntegratedDecision(baseInput(), [corridor], [countryRule], "2026-08-05T18:30:00Z");
   assert.equal(result.decisionState, "confirmation_required");
   assert.ok(result.requiredConfirmations.includes("carrier_booking_confirmation"));
   assert.ok(result.sources.includes("CR-AE-OFFICIAL-SEED"));
@@ -99,12 +95,7 @@ test("integrated engine returns confirmation-required candidate", () => {
 test("cargo data gap blocks route reliance", () => {
   const input = baseInput();
   input.cargo.product.technicalDescription = "";
-  const result = evaluateIntegratedDecision(
-    input,
-    [corridor],
-    [countryRule],
-    "2026-08-05T18:30:00Z",
-  );
+  const result = evaluateIntegratedDecision(input, [corridor], [countryRule], "2026-08-05T18:30:00Z");
   assert.equal(result.decisionState, "blocked_information_required");
   assert.ok(result.missingInformation.includes("technicalDescription"));
 });
@@ -112,12 +103,7 @@ test("cargo data gap blocks route reliance", () => {
 test("enhanced compliance overrides other modules", () => {
   const input = baseInput();
   input.lane.enhancedComplianceTrigger = true;
-  const result = evaluateIntegratedDecision(
-    input,
-    [corridor],
-    [countryRule],
-    "2026-08-05T18:30:00Z",
-  );
+  const result = evaluateIntegratedDecision(input, [corridor], [countryRule], "2026-08-05T18:30:00Z");
   assert.equal(result.decisionState, "enhanced_compliance_required");
   assert.ok(result.requiredConfirmations.includes("counterparty_screening"));
 });
