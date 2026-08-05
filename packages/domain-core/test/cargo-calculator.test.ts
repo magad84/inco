@@ -29,11 +29,17 @@ interface FixtureFile {
   invalid_cases: InvalidFixture[];
 }
 
-const fixturePath = resolve(
-  process.cwd(),
-  "../../fixtures/cargo-calculator/cases.json",
-);
-const fixtures = JSON.parse(readFileSync(fixturePath, "utf8")) as FixtureFile;
+function loadFixtures(fileName: string): FixtureFile {
+  const fixturePath = resolve(
+    process.cwd(),
+    `../../fixtures/cargo-calculator/${fileName}`,
+  );
+  return JSON.parse(readFileSync(fixturePath, "utf8")) as FixtureFile;
+}
+
+const fixtureFiles = ["cases.json", "advanced-cases.json"].map(loadFixtures);
+const validCases = fixtureFiles.flatMap((file) => file.valid_cases);
+const invalidCases = fixtureFiles.flatMap((file) => file.invalid_cases);
 
 function assertApprox(actual: number, expected: number, tolerance = 1e-12): void {
   assert.ok(
@@ -42,7 +48,7 @@ function assertApprox(actual: number, expected: number, tolerance = 1e-12): void
   );
 }
 
-for (const fixture of fixtures.valid_cases) {
+for (const fixture of validCases) {
   test(fixture.case_id, () => {
     const output = calculateCargo(fixture.input);
     const expected = fixture.expected;
@@ -79,6 +85,9 @@ for (const fixture of fixtures.valid_cases) {
     } else if (expected.total_chargeable_weight_kg === null) {
       assert.equal(output.total_chargeable_weight_kg, null);
     }
+    if (typeof expected.calculation_basis === "string") {
+      assert.equal(output.audit.calculation_basis, expected.calculation_basis);
+    }
 
     const first = output.packages[0];
     assert.ok(first);
@@ -105,7 +114,7 @@ for (const fixture of fixtures.valid_cases) {
   });
 }
 
-for (const fixture of fixtures.invalid_cases) {
+for (const fixture of invalidCases) {
   test(fixture.case_id, () => {
     assert.throws(
       () => calculateCargo(fixture.input),
