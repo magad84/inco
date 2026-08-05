@@ -8,7 +8,9 @@ const root = resolve(process.cwd(), "../..");
 const corridors = (JSON.parse(readFileSync(resolve(root, "knowledge/trade-lanes/launch-corridors.v0.1.json"), "utf8")) as { corridors: TradeLaneCorridor[] }).corridors;
 const files: Record<string, string> = { AE: "uae.v0.1.json", SA: "ksa.v0.1.json", EG: "egypt.v0.1.json", OM: "oman.v0.1.json" };
 function rules(country: string): DestinationCountryRule[] {
-  return (JSON.parse(readFileSync(resolve(root, "knowledge/country-rules", files[country]), "utf8")) as { rules: DestinationCountryRule[] }).rules;
+  const file = files[country];
+  if (!file) throw new Error(`Missing country-rule fixture for ${country}`);
+  return (JSON.parse(readFileSync(resolve(root, "knowledge/country-rules", file), "utf8")) as { rules: DestinationCountryRule[] }).rules;
 }
 
 test("damaged battery case remains blocked for specialist and carrier review", () => {
