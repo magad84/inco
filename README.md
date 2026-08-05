@@ -88,7 +88,7 @@ The console calls the real deterministic engine through `/api/evaluate` and disp
 
 INCO is positioned first as an open professional showcase, trust-building platform, and consulting lead-generation asset.
 
-The public core may include:
+The public core includes or may include:
 
 - deterministic logic;
 - schemas;
@@ -97,17 +97,30 @@ The public core may include:
 - architecture and governance documentation;
 - a clearly limited demo.
 
-Protected knowledge operations remain private, including licensed source files, customer data, private rule packs, credentials, expert-reviewed reports, and company-specific deployments.
+Protected knowledge operations remain private, including licensed source files, customer data, private rule packs, credentials, expert-reviewed reports, managed services, and company-specific deployments.
 
 Commercial opportunities are expected primarily from consulting, training, expert-reviewed decision packs, private deployments, white-label implementations, company rule packs, and advanced professional modules.
 
 See `docs/ADR_004_OPEN_CORE_POSITIONING_AND_COMMERCIAL_BOUNDARY.md`.
 
-## Repository and Licensing Status
+## License
 
-This repository is public. A final open-source license has **not yet been selected**. Public visibility alone must not be interpreted as a completed unrestricted-use license decision.
+The INCO public core is licensed under the **Apache License, Version 2.0**.
 
-The license model will be chosen separately after reviewing permissive, copyleft, and source-available options against INCO's commercial strategy.
+You may use, modify, and distribute the licensed public core, including commercially, subject to the terms in `LICENSE` and the attribution information in `NOTICE`.
+
+The public license does not include or grant rights to:
+
+- protected or licensed source files;
+- the controlled source identified as `INTERNAL-TRADE-001`;
+- customer, shipment, or private operational data;
+- credentials and deployment secrets;
+- private company rule packs;
+- expert-reviewed customer reports;
+- managed services or private deployments;
+- the INCO name, visual identity, logos, or Mostafa Gad name as trademarks, endorsements, certifications, or indications of affiliation beyond reasonable attribution.
+
+Copyright 2026 Mostafa Gad.
 
 ## Safety and Professional Boundary
 
@@ -129,8 +142,10 @@ INCO provides professional decision support. It does not replace:
 4. `docs/UAT_CYCLE_003_REPORT_v1.0.md`
 5. `docs/PRODUCTION_READINESS_ARCHITECTURE_SECURITY_GAP_ANALYSIS_v1.0.md`
 6. `docs/ADR_004_OPEN_CORE_POSITIONING_AND_COMMERCIAL_BOUNDARY.md`
-7. `SECURITY.md`
-8. `CONTRIBUTING.md`
+7. `LICENSE`
+8. `NOTICE`
+9. `SECURITY.md`
+10. `CONTRIBUTING.md`
 
 ## Governance
 
