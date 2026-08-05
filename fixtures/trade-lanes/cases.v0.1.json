@@ -1,0 +1,80 @@
+{
+  "fixture_version": "0.1",
+  "cases": [
+    {
+      "case_id": "TL-001",
+      "description": "Standard cartons from China to UAE with ocean and express alternatives",
+      "input": {
+        "origin_country": "CN",
+        "destination_country": "AE",
+        "cargo_profile": {"dangerous_goods_indicator": false, "temperature_controlled": false, "oversized": false},
+        "candidate_modes": ["ocean", "express"]
+      },
+      "expected": {
+        "status": "INSUFFICIENT_INFORMATION",
+        "required_next_fields": ["origin_gateway", "destination_gateway", "carrier_service", "package_dimensions", "gross_weight"],
+        "must_not_claim": ["carrier_acceptance", "final_transit_time", "final_price"]
+      }
+    },
+    {
+      "case_id": "TL-002",
+      "description": "Battery-powered equipment from India to Saudi Arabia",
+      "input": {
+        "origin_country": "IN",
+        "destination_country": "SA",
+        "cargo_profile": {"battery_indicator": true, "dangerous_goods_indicator": "unknown"},
+        "candidate_modes": ["air_cargo", "express"]
+      },
+      "expected": {
+        "status": "CONFIRMATION_REQUIRED",
+        "required_next_fields": ["battery_type", "watt_hour_rating", "packing_configuration", "manufacturer_evidence", "carrier_service"],
+        "required_checks": ["dangerous_goods_prescreen", "carrier_acceptance", "origin_export_check", "destination_import_check"]
+      }
+    },
+    {
+      "case_id": "TL-003",
+      "description": "Russia-linked transaction requiring enhanced compliance",
+      "input": {
+        "origin_country": "RU",
+        "destination_country": "AE",
+        "cargo_profile": {"description": "industrial equipment"},
+        "parties_complete": false,
+        "banking_route_complete": false
+      },
+      "expected": {
+        "status": "ENHANCED_COMPLIANCE_REQUIRED",
+        "required_next_fields": ["seller", "buyer", "beneficial_owner", "banking_route", "end_use", "end_user", "product_classification", "transit_route"],
+        "must_not_claim": ["shipment_permitted", "payment_route_available", "carrier_acceptance"]
+      }
+    },
+    {
+      "case_id": "TL-004",
+      "description": "Oversized machinery from Italy to Oman",
+      "input": {
+        "origin_country": "IT",
+        "destination_country": "OM",
+        "cargo_profile": {"oversized": true, "overweight": true},
+        "candidate_modes": ["ocean", "road"]
+      },
+      "expected": {
+        "status": "CONFIRMATION_REQUIRED",
+        "required_next_fields": ["packed_dimensions", "gross_weight", "center_of_gravity", "lifting_points", "origin_gateway", "destination_gateway", "final_delivery_location"],
+        "required_checks": ["special_equipment", "gateway_capability", "route_study", "abnormal_load_permit", "escort_requirement"]
+      }
+    },
+    {
+      "case_id": "TL-005",
+      "description": "Food product from Australia to Egypt",
+      "input": {
+        "origin_country": "AU",
+        "destination_country": "EG",
+        "cargo_profile": {"food_indicator": true, "temperature_controlled": "unknown"}
+      },
+      "expected": {
+        "status": "INSUFFICIENT_INFORMATION",
+        "required_next_fields": ["product_type", "ingredients", "shelf_life", "temperature_range", "origin_certificates", "destination_registration_requirements"],
+        "required_checks": ["origin_export_control", "biosecurity_or_food_requirement", "destination_import_requirement", "carrier_temperature_capability"]
+      }
+    }
+  ]
+}
