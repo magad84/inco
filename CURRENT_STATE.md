@@ -1,7 +1,7 @@
 # INCO Current State
 
 **Date:** 2026-08-05  
-**Phase:** Deterministic domain contracts and architecture decision preparation  
+**Phase:** Architecture approval gate before deterministic core implementation  
 **Implementation status:** Production coding not started
 
 ## Approved Product Direction
@@ -27,22 +27,26 @@
 
 ### WP-01: MVP Trade-Term Decision Logic
 
-Status: In progress; core matrix, terminology, traceability, and scenarios created.
+Status: In progress; deterministic contracts established.
 
 Completed:
 
 - Initial questionnaire architecture.
-- eleven-term deterministic rule matrix.
+- eleven-term operational rule matrix.
 - named-place, responsibility, risk, cost, alternative, and suitability structures.
-- representative trade-term acceptance scenarios.
+- controlled source-governance note.
+- machine-readable rule schema.
+- structured eleven-term dataset version 0.1.
+- trade-term review input and output schemas.
+- seven representative transaction fixtures.
 - controlled Arabic-English terminology register.
 
-Remaining before implementation:
+Remaining before trade-term implementation:
 
-- Convert matrix into structured rule records.
-- assign source IDs and effective rule version.
-- create trade-term input/output schemas.
-- complete term-level scenario fixtures.
+- Controlled record-by-record source review.
+- final source and rule verification dates.
+- additional term-level fixtures.
+- executable message-key catalog.
 
 ### WP-02: Logistics Knowledge Architecture and Source Registry
 
@@ -64,7 +68,7 @@ Completed:
 
 Remaining:
 
-- Normalize verified source records into executable rules.
+- Normalize verified source records into executable country and carrier rules.
 - fill P0 official-source gaps.
 - create machine-readable DG and country-rule schemas and fixtures.
 - validate later implementation slices.
@@ -95,58 +99,38 @@ Files:
 Important limitation:
 
 - The schemas and fixtures have been authored but not yet executed by CI or a selected runtime.
-- No implementation language or application architecture has been approved.
+- Implementation is intentionally blocked pending ADR-001 approval.
+
+## Architecture Decision Gate
+
+ADR-001 recommends:
+
+- Strict TypeScript deterministic domain core.
+- No web framework, database, authentication, payment, PDF, AI, or network calls in the first package.
+- One small reviewed decimal-arithmetic dependency.
+- JSON Schemas as external contracts.
+- Automated unit tests generated from committed fixtures.
+- Optional Python optimization service deferred until the paid Container Load Planner is benchmarked and justified.
+
+Files and issue:
+
+- `docs/ADR_001_DETERMINISTIC_CORE_ARCHITECTURE.md`
+- GitHub Issue #3: `ADR-001 Decision: Approve TypeScript deterministic core`
+
+Approval authorizes only the first Cargo Calculator domain package and tests. It does not authorize production application architecture, authentication, payment, deployment, AI, or container optimization.
 
 ## Current Document Set
 
-### Governing
+See `docs/README.md` for the full governed index.
 
-- `README.md`
-- `PROJECT_CONTEXT.md`
-- `CURRENT_STATE.md`
-- `AGENTS.md`
-- `.gitignore`
+New machine-readable trade-term artifacts:
 
-### Documentation index
-
-- `docs/README.md`
-
-### Product and rules
-
-- `docs/MVP_PRODUCT_SPEC.md`
-- `docs/TRADE_TERM_RULE_MATRIX.md`
-- `docs/QUESTION_ARCHITECTURE.md`
-- `docs/QUESTION_RULE_TRACEABILITY.md`
-- `docs/ACCEPTANCE_SCENARIOS.md`
-- `docs/BILINGUAL_TERMINOLOGY.md`
-
-### Knowledge and research
-
-- `docs/KNOWLEDGE_ARCHITECTURE.md`
-- `docs/SOURCE_REGISTRY.md`
-- `docs/RESEARCH_BACKLOG.md`
-- `docs/COUNTRY_PACK_SCHEMA.md`
-- `docs/DG_PRESCREEN_SPEC.md`
-
-### Calculators and optimization
-
-- `docs/CARGO_CALCULATORS_SPEC.md`
-- `docs/CARGO_CALCULATOR_RULES.md`
-- `docs/OPEN_SOURCE_EVALUATION.md`
-- `schemas/cargo-calculator-input.schema.json`
-- `schemas/cargo-calculator-output.schema.json`
-- `fixtures/cargo-calculator/cases.json`
-
-### Marketplace
-
-- `docs/BROKER_MARKETPLACE_SPEC.md`
-
-### Country packs
-
-- `docs/country/UAE_SEED_PACK.md`
-- `docs/country/KSA_SEED_PACK.md`
-- `docs/country/EGYPT_SEED_PACK.md`
-- `docs/country/OMAN_SEED_PACK.md`
+- `schemas/trade-term-rule.schema.json`
+- `schemas/trade-term-review-input.schema.json`
+- `schemas/trade-term-review-output.schema.json`
+- `knowledge/trade-terms.v0.1.json`
+- `fixtures/trade-term-review/cases.json`
+- `docs/TRADE_TERM_SOURCE_GOVERNANCE.md`
 
 ## Research Progress
 
@@ -221,39 +205,17 @@ Pricing amounts, payment gateway, credits, subscriptions, and company plans rema
 - live carrier or government APIs.
 - deployment.
 
-## Next Autonomous Work
+## Work That May Continue Without ADR Approval
 
-Work may continue without owner interruption on:
-
-1. Technical architecture proposal for the deterministic domain core.
-2. structured trade-term rule records and schemas.
+1. Controlled review of structured trade-term records.
+2. Additional trade-term fixtures and message keys.
 3. DG and country-rule machine-readable contracts.
-4. source-gap research using official sources.
-5. executable fixture expansion.
+4. Official source-gap research.
+5. Carrier rule normalization.
 
-Owner approval is required before:
+## Work Requiring Immediate Owner Approval
 
-- Starting production code under a selected architecture.
-- pricing values.
-- paid provider or data-license commitments.
-- production hosting commitment.
-- AI model or provider selection.
-- launch-country changes.
-- public broker-marketplace launch.
-- material changes to free versus paid boundaries.
-
-## Current Decision Gate
-
-The next genuine owner decision is the technical architecture for the first deterministic implementation slice.
-
-Recommended direction to document and present:
-
-- TypeScript domain core for calculators, validation, trade-term rules, and the future web application.
-- Exact decimal arithmetic through an approved small dependency or controlled decimal implementation.
-- No database, authentication, payment, or external services in the first package.
-- A replaceable Python optimization service may be added later only for the paid Container Load Planner if benchmark evidence justifies it.
-
-This direction minimizes early complexity while preserving a future optimization boundary.
+Approve or reject ADR-001 before creating `packages/domain-core` and writing executable Cargo Calculator code.
 
 ## Change Log
 
@@ -272,4 +234,6 @@ This direction minimizes early complexity while preserving a future optimization
 - Open-source container-loading candidates reviewed; no dependency adopted.
 - Cargo Calculator input/output schemas, deterministic rules, and fixtures created.
 - Controlled bilingual terminology register created.
+- ADR-001 proposed and GitHub Issue #3 opened.
+- Trade-term rule schema, review schemas, structured dataset, source-governance note, and fixtures created.
 - Governing files and documentation index aligned.
