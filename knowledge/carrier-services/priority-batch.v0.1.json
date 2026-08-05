@@ -1,0 +1,76 @@
+{
+  "datasetVersion": "0.1",
+  "generatedAt": "2026-08-05T18:22:00Z",
+  "services": [
+    {
+      "carrierId": "CARRIER-MAERSK",
+      "serviceId": "SERVICE-MAERSK-ME-GENERAL",
+      "carrierName": {"en": "Maersk", "ar": "ميرسك"},
+      "serviceName": {"en": "Middle East ocean candidate", "ar": "مرشح شحن بحري للشرق الأوسط"},
+      "mode": "ocean",
+      "status": "volatile_confirmation_required",
+      "marketScope": {"originCountries": ["CN", "IN", "TR", "IT", "US", "AU"], "destinationCountries": ["AE", "SA", "OM", "EG"]},
+      "cargoRules": [{"ruleId": "MAERSK-ME-001", "cargoCategory": "general_cargo", "acceptanceStatus": "confirmation_required", "conditions": [{"en": "Operational restrictions and routings are volatile; current booking confirmation is mandatory.", "ar": "القيود التشغيلية والمسارات سريعة التغير، ويلزم تأكيد الحجز الحالي."}], "requiredEvidence": ["current_route", "cargo_details", "booking_confirmation"], "effectiveFrom": "2026-06-16", "effectiveTo": null, "sourceIds": ["MAERSK-ME-UPDATE-36-2026"], "reviewBy": "2026-08-12"}],
+      "commercialRules": {"volumetricWeight": null, "limits": []},
+      "confirmation": {"requiredBeforeBooking": true, "contactChannel": "carrier_booking_channel", "reason": {"en": "Published advisory is volatile and route-specific.", "ar": "التنبيه المنشور متغير ومرتبط بالمسار."}},
+      "sources": ["MAERSK-ME-UPDATE-36-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T18:20:00Z", "nextReviewAt": "2026-08-12T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "No live rate, capacity or acceptance claim."}
+    },
+    {
+      "carrierId": "CARRIER-QATAR-CARGO",
+      "serviceId": "SERVICE-QATAR-CARGO-SEED",
+      "carrierName": {"en": "Qatar Airways Cargo", "ar": "الخطوط الجوية القطرية للشحن"},
+      "serviceName": {"en": "Cargo network seed", "ar": "سجل أولي لشبكة الشحن"},
+      "mode": "air_cargo",
+      "status": "source_unavailable",
+      "marketScope": {"originCountries": ["CN", "IN", "TR", "IT", "US", "AU"], "destinationCountries": ["AE", "SA", "OM", "EG"]},
+      "cargoRules": [{"ruleId": "QATAR-CARGO-001", "cargoCategory": "general_cargo", "acceptanceStatus": "source_unavailable", "conditions": [{"en": "Official cargo presence is confirmed, but current product, route and cargo acceptance evidence is not yet normalized.", "ar": "تم تأكيد وجود نشاط الشحن الرسمي، لكن لم تُستكمل بعد أدلة المنتج والمسار وقبول البضاعة."}], "requiredEvidence": ["official_product_source", "route_confirmation", "booking_confirmation"], "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["QATAR-CARGO-OFFICIAL-PRESENCE-2026"], "reviewBy": "2026-09-05"}],
+      "commercialRules": {"volumetricWeight": null, "limits": []},
+      "confirmation": {"requiredBeforeBooking": true, "contactChannel": "carrier_booking_channel", "reason": {"en": "Product-level source is incomplete.", "ar": "مصدر مستوى المنتج غير مكتمل."}},
+      "sources": ["QATAR-CARGO-OFFICIAL-PRESENCE-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T18:20:00Z", "nextReviewAt": "2026-09-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Must return source_unavailable, not an acceptance recommendation."}
+    },
+    {
+      "carrierId": "CARRIER-SAUDIA-CARGO",
+      "serviceId": "SERVICE-SAUDIA-SPECIALIZED-SEED",
+      "carrierName": {"en": "Saudia Cargo", "ar": "السعودية للشحن"},
+      "serviceName": {"en": "Specialized cargo seed", "ar": "سجل أولي للشحن المتخصص"},
+      "mode": "air_cargo",
+      "status": "verified_partial",
+      "marketScope": {"originCountries": ["CN", "IN", "TR", "IT", "US", "AU"], "destinationCountries": ["SA", "AE", "OM", "EG"]},
+      "cargoRules": [{"ruleId": "SAUDIA-SPECIAL-001", "cargoCategory": "special_cargo", "acceptanceStatus": "confirmation_required", "conditions": [{"en": "Published specialized product information supports candidate selection only.", "ar": "معلومات المنتج المتخصص المنشورة تدعم الترشيح فقط."}], "requiredEvidence": ["cargo_details", "route", "station_confirmation", "booking_confirmation"], "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["SAUDIA-CARGO-OFFICIAL-PRODUCT-SEED-2026"], "reviewBy": "2026-11-05"}],
+      "commercialRules": {"volumetricWeight": null, "limits": []},
+      "confirmation": {"requiredBeforeBooking": true, "contactChannel": "carrier_booking_channel", "reason": {"en": "Station, aircraft, route and commodity acceptance are shipment-specific.", "ar": "قبول المحطة والطائرة والمسار والسلعة مرتبط بكل شحنة."}},
+      "sources": ["SAUDIA-CARGO-OFFICIAL-PRODUCT-SEED-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T18:20:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "No universal acceptance claim."}
+    },
+    {
+      "carrierId": "CARRIER-EGYPTAIR-CARGO",
+      "serviceId": "SERVICE-EGYPTAIR-DG",
+      "carrierName": {"en": "EgyptAir Cargo", "ar": "مصر للطيران للشحن"},
+      "serviceName": {"en": "Dangerous goods capability", "ar": "قدرة مناولة البضائع الخطرة"},
+      "mode": "air_cargo",
+      "status": "verified_partial",
+      "marketScope": {"originCountries": ["CN", "IN", "TR", "IT", "US", "AU"], "destinationCountries": ["EG", "AE", "SA", "OM"]},
+      "cargoRules": [{"ruleId": "EGYPTAIR-DG-001", "cargoCategory": "dangerous_goods", "acceptanceStatus": "pre_approval_required", "conditions": [{"en": "Reservations and pre-arrangements are essential for the entire route.", "ar": "الحجز والترتيبات المسبقة ضرورية للمسار بالكامل."}], "requiredEvidence": ["classification", "packing", "marking", "labeling", "documentation", "route_preapproval"], "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["EGYPTAIR-CARGO-DG-2026"], "reviewBy": "2026-11-05"}],
+      "commercialRules": {"volumetricWeight": null, "limits": []},
+      "confirmation": {"requiredBeforeBooking": true, "contactChannel": "carrier_booking_channel", "reason": {"en": "Published handling capability does not equal route acceptance.", "ar": "قدرة المناولة المنشورة لا تعني قبول المسار."}},
+      "sources": ["EGYPTAIR-CARGO-DG-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T18:20:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Capability indicator only."}
+    },
+    {
+      "carrierId": "CARRIER-OMANAIR-CARGO",
+      "serviceId": "SERVICE-OMANAIR-DG",
+      "carrierName": {"en": "Oman Air Cargo", "ar": "الطيران العماني للشحن"},
+      "serviceName": {"en": "Dangerous goods capability", "ar": "قدرة مناولة البضائع الخطرة"},
+      "mode": "air_cargo",
+      "status": "verified_partial",
+      "marketScope": {"originCountries": ["CN", "IN", "TR", "IT", "RU"], "destinationCountries": ["OM", "EG"]},
+      "cargoRules": [{"ruleId": "OMANAIR-DG-001", "cargoCategory": "dangerous_goods", "acceptanceStatus": "pre_approval_required", "conditions": [{"en": "Muscat hub capability is published, but route, station and shipment approval remain mandatory.", "ar": "قدرة مركز مسقط منشورة، لكن اعتماد المسار والمحطة والشحنة يظل إلزاميًا."}], "requiredEvidence": ["classification", "package_details", "route", "special_cargo_approval"], "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["OMANAIR-CARGO-DG-2026", "OMANAIR-CARGO-NETWORK-2026"], "reviewBy": "2026-11-05"}],
+      "commercialRules": {"volumetricWeight": null, "limits": []},
+      "confirmation": {"requiredBeforeBooking": true, "contactChannel": "special_cargo_approval", "reason": {"en": "Acceptance depends on route, station and shipment details.", "ar": "القبول يعتمد على تفاصيل المسار والمحطة والشحنة."}},
+      "sources": ["OMANAIR-CARGO-DG-2026", "OMANAIR-CARGO-NETWORK-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T18:20:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "No universal acceptance claim."}
+    }
+  ]
+}
