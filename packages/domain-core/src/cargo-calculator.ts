@@ -63,7 +63,7 @@ export interface PackageCalculation {
 export interface CargoCalculatorOutput {
   calculation_id: string;
   status: "SUCCESS";
-  calculator_version: "0.1.0";
+  calculator_version: "0.1.1";
   package_count: number;
   package_type_count: number;
   total_cbm: number;
@@ -75,6 +75,7 @@ export interface CargoCalculatorOutput {
     arithmetic: "decimal.js";
     carrier_rule_source_id: string | null;
     carrier_rule_verification_status: VerificationStatus | null;
+    calculation_basis: "per_piece" | "shipment_total" | null;
   };
   warnings: string[];
 }
@@ -89,6 +90,9 @@ export class CargoCalculatorError extends Error {
     this.name = "CargoCalculatorError";
   }
 }
+
+const DIMENSION_UNITS = new Set<DimensionUnit>(["mm", "cm", "m", "in"]);
+const WEIGHT_UNITS = new Set<WeightUnit>(["kg", "g", "lb"]);
 
 const MM_PER_UNIT: Record<DimensionUnit, Decimal> = {
   mm: new Decimal(1),
@@ -133,6 +137,20 @@ function positiveInteger(value: number, path: string): void {
   }
 }
 
+function enumValue<T extends string>(
+  value: T,
+  allowed: ReadonlySet<T>,
+  path: string,
+): void {
+  if (!allowed.has(value)) {
+    throw new CargoCalculatorError(
+      "VALIDATION_UNSUPPORTED_VALUE",
+      path,
+      `${path} contains an unsupported value`,
+    );
+  }
+}
+
 function toNumber(value: Decimal): number {
   return Number(value.toSignificantDigits(15).toString());
 }
@@ -142,6 +160,15 @@ function roundUp(value: Decimal, increment?: number | null): Decimal {
   positiveNumber(increment, "carrier_rule.rounding_increment_kg");
   const step = new Decimal(increment);
   return value.div(step).ceil().mul(step);
+}
+
+function applyShipmentMinimum(
+  value: Decimal,
+  minimum?: number | null,
+): Decimal {
+  if (minimum === undefined || minimum === null) return value;
+  positiveNumber(minimum, "carrier_rule.minimum_chargeable_weight_kg");
+  return Decimal.max(value, new Decimal(minimum));
 }
 
 function validate(input: CargoCalculatorInput): void {
@@ -160,6 +187,8 @@ function validate(input: CargoCalculatorInput): void {
     required(pkg.package_type_id, `${base}.package_type_id`);
     required(pkg.dimension_unit, `${base}.dimension_unit`);
     required(pkg.weight_unit, `${base}.weight_unit`);
+    enumValue(pkg.dimension_unit, DIMENSION_UNITS, `${base}.dimension_unit`);
+    enumValue(pkg.weight_unit, WEIGHT_UNITS, `${base}.weight_unit`);
     positiveNumber(pkg.length, `${base}.length`);
     positiveNumber(pkg.width, `${base}.width`);
     positiveNumber(pkg.height, `${base}.height`);
@@ -175,7 +204,16 @@ function validate(input: CargoCalculatorInput): void {
       "A stale carrier rule cannot produce a definitive commercial result",
     );
   }
-  if (rule) positiveNumber(rule.divisor_cm3_per_kg, "carrier_rule.divisor_cm3_per_kg");
+  if (rule) {
+    positiveNumber(rule.divisor_cm3_per_kg, "carrier_rule.divisor_cm3_per_kg");
+    if (rule.calculation_basis !== "per_piece" && rule.calculation_basis !== "shipment_total") {
+      throw new CargoCalculatorError(
+        "VALIDATION_UNSUPPORTED_VALUE",
+        "carrier_rule.calculation_basis",
+        "Unsupported carrier calculation basis",
+      );
+    }
+  }
 }
 
 export function calculateCargo(input: CargoCalculatorInput): CargoCalculatorOutput {
@@ -210,19 +248,6 @@ export function calculateCargo(input: CargoCalculatorInput): CargoCalculatorOutp
         pieceChargeable = roundUp(pieceChargeable, rule.rounding_increment_kg);
         chargeablePerPackage = pieceChargeable;
         totalChargeable = pieceChargeable.mul(quantity);
-      } else {
-        const grossTotal = grossKg.mul(quantity);
-        let shipmentChargeable = rule.higher_of_actual_and_volumetric
-          ? Decimal.max(grossTotal, totalVolumetric)
-          : totalVolumetric;
-        shipmentChargeable = roundUp(shipmentChargeable, rule.rounding_increment_kg);
-        totalChargeable = shipmentChargeable;
-        chargeablePerPackage = shipmentChargeable.div(quantity);
-      }
-
-      if (rule.minimum_chargeable_weight_kg !== undefined && rule.minimum_chargeable_weight_kg !== null) {
-        const minimum = new Decimal(rule.minimum_chargeable_weight_kg);
-        totalChargeable = Decimal.max(totalChargeable, minimum);
       }
     }
 
@@ -244,17 +269,39 @@ export function calculateCargo(input: CargoCalculatorInput): CargoCalculatorOutp
     };
   });
 
-  const totalCbm = packageResults.reduce((sum, row) => sum.plus(row.total_cbm), new Decimal(0));
+  const totalCbm = packageResults.reduce(
+    (sum, row) => sum.plus(row.total_cbm),
+    new Decimal(0),
+  );
   const totalGross = input.packages.reduce((sum, pkg) => {
     const kg = new Decimal(pkg.gross_weight_per_package).mul(KG_PER_UNIT[pkg.weight_unit]);
     return sum.plus(kg.mul(pkg.quantity));
   }, new Decimal(0));
   const totalVolumetric = rule
-    ? packageResults.reduce((sum, row) => sum.plus(row.total_volumetric_weight_kg ?? 0), new Decimal(0))
+    ? packageResults.reduce(
+        (sum, row) => sum.plus(row.total_volumetric_weight_kg ?? 0),
+        new Decimal(0),
+      )
     : null;
-  const totalChargeable = rule
-    ? packageResults.reduce((sum, row) => sum.plus(row.total_chargeable_weight_kg ?? 0), new Decimal(0))
-    : null;
+
+  let totalChargeable: Decimal | null = null;
+  if (rule && totalVolumetric) {
+    if (rule.calculation_basis === "shipment_total") {
+      totalChargeable = rule.higher_of_actual_and_volumetric
+        ? Decimal.max(totalGross, totalVolumetric)
+        : totalVolumetric;
+      totalChargeable = roundUp(totalChargeable, rule.rounding_increment_kg);
+    } else {
+      totalChargeable = packageResults.reduce(
+        (sum, row) => sum.plus(row.total_chargeable_weight_kg ?? 0),
+        new Decimal(0),
+      );
+    }
+    totalChargeable = applyShipmentMinimum(
+      totalChargeable,
+      rule.minimum_chargeable_weight_kg,
+    );
+  }
 
   const warnings: string[] = [];
   if (rule?.verification_status === "USER_SUPPLIED_UNVERIFIED") {
@@ -264,7 +311,7 @@ export function calculateCargo(input: CargoCalculatorInput): CargoCalculatorOutp
   return {
     calculation_id: input.calculation_id,
     status: "SUCCESS",
-    calculator_version: "0.1.0",
+    calculator_version: "0.1.1",
     package_count: input.packages.reduce((sum, pkg) => sum + pkg.quantity, 0),
     package_type_count: input.packages.length,
     total_cbm: toNumber(totalCbm),
@@ -276,6 +323,7 @@ export function calculateCargo(input: CargoCalculatorInput): CargoCalculatorOutp
       arithmetic: "decimal.js",
       carrier_rule_source_id: rule?.source_id ?? null,
       carrier_rule_verification_status: rule?.verification_status ?? null,
+      calculation_basis: rule?.calculation_basis ?? null,
     },
     warnings,
   };
