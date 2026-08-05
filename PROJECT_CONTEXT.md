@@ -5,6 +5,30 @@
 **Repository:** `magad84/inco`  
 **Last updated:** 2026-08-05
 
+## 0. Execution Authority and Decision Escalation
+
+The owner authorizes autonomous progression through all already-approved research, knowledge-engineering, schema, deterministic-code, testing, documentation, and GitHub stages.
+
+The execution agent should:
+
+- Continue directly into the next approved work stage without pausing for routine approval.
+- Choose efficient, maintainable, low-risk implementation details.
+- Commit completed work to GitHub with clear messages.
+- Run and review CI before treating executable results as approved.
+- Correct defects discovered by tests or source review without owner interruption.
+- Record material progress in `CURRENT_STATE.md` and the relevant GitHub issue.
+- Return `confirmation_required`, `source_unavailable`, or `stale_review_required` instead of guessing.
+
+Owner escalation is required only for decisions involving:
+
+- Pricing or material changes to free-versus-paid boundaries.
+- Paid software, data, or content licenses.
+- Final production architecture, hosting commitment, or deployment.
+- Authentication, payment, public API, or live carrier-booking integrations.
+- AI model/provider selection.
+- Material legal, sanctions, security, privacy, or public-marketplace risk.
+- A major product-scope change outside approved ADR-001 and ADR-002.
+
 ## 1. Product Definition
 
 INCO is a bilingual, structured international-commerce and logistics decision-support platform.
@@ -31,16 +55,16 @@ INCO must convert user data and verified rules into practical, explainable outpu
 Professionals often make shipment decisions using fragmented information spread across:
 
 - Commercial agreements.
-- origin-country export processes.
-- destination-country import processes.
-- ports, airports, land borders, dry ports, and inland depots.
-- carrier services and local conditions.
-- government permits and operational notices.
-- dangerous-goods requirements.
-- package dimensions and weights.
-- equipment specifications.
-- local road and route restrictions.
-- customs-clearance providers.
+- Origin-country export processes.
+- Destination-country import processes.
+- Ports, airports, land borders, dry ports, and inland depots.
+- Carrier services and local conditions.
+- Government permits and operational notices.
+- Dangerous-goods requirements.
+- Package dimensions and weights.
+- Equipment specifications.
+- Local road and route restrictions.
+- Customs-clearance providers.
 
 INCO organizes these inputs into guided workflows that identify:
 
