@@ -1,0 +1,72 @@
+{
+  "datasetVersion": "0.1",
+  "generatedAt": "2026-08-05T19:15:00Z",
+  "policy": "These sources establish the existence of official land customs points or transit frameworks. They do not prove live truck acceptance, operating hours, route availability, permits, capacity, customs release, or cargo acceptance.",
+  "sources": [
+    {
+      "sourceId": "ZATCA-AL-BATHA-PORT-2026",
+      "authority": "Saudi Zakat, Tax and Customs Authority",
+      "countryCode": "SA",
+      "sourceType": "official_port_presence",
+      "title": "Al Batha customs port official presence",
+      "url": "https://zatca.gov.sa/ar/MediaCenter/Elan/Pages/Investment-Opportunities-Now-Open-at-Al-Batha-Port-13-May-2026.aspx",
+      "verifiedAt": "2026-08-05T19:10:00Z",
+      "reviewBy": "2026-09-05T00:00:00Z",
+      "supports": ["al_batha_land_customs_point_exists"],
+      "doesNotSupport": ["live_truck_acceptance", "operating_hours", "route_capacity", "cargo_acceptance", "customs_release", "permit_approval"],
+      "verificationStatus": "verified_partial"
+    },
+    {
+      "sourceId": "OMAN-CUSTOMS-WADI-AL-JIZZI-2026",
+      "authority": "Directorate General of Customs, Oman",
+      "countryCode": "OM",
+      "sourceType": "official_land_border_directory",
+      "title": "Wadi Al Jizzi land border customs directory",
+      "url": "https://www.customs.gov.om/ar/clearance-companies/wadi-al-jizzi-land-border/",
+      "verifiedAt": "2026-08-05T19:10:00Z",
+      "reviewBy": "2026-09-05T00:00:00Z",
+      "supports": ["wadi_al_jizzi_land_border_exists", "customs_broker_presence"],
+      "doesNotSupport": ["live_truck_acceptance", "operating_hours", "route_capacity", "cargo_acceptance", "customs_release", "permit_approval"],
+      "verificationStatus": "verified_partial"
+    },
+    {
+      "sourceId": "OMAN-CUSTOMS-KHATMAT-MILAHA-2026",
+      "authority": "Directorate General of Customs, Oman",
+      "countryCode": "OM",
+      "sourceType": "official_land_border_directory",
+      "title": "Khatmat Milaha land border customs directory",
+      "url": "https://www.customs.gov.om/ar/clearance-companies/khatmat-millaha-land-border/",
+      "verifiedAt": "2026-08-05T19:10:00Z",
+      "reviewBy": "2026-09-05T00:00:00Z",
+      "supports": ["khatmat_milaha_land_border_exists", "customs_broker_presence"],
+      "doesNotSupport": ["live_truck_acceptance", "operating_hours", "route_capacity", "cargo_acceptance", "customs_release", "permit_approval"],
+      "verificationStatus": "verified_partial"
+    },
+    {
+      "sourceId": "OMAN-CUSTOMS-ALKHATM-2026",
+      "authority": "Directorate General of Customs, Oman",
+      "countryCode": "OM",
+      "sourceType": "official_land_border_directory",
+      "title": "Al Khatm land border customs directory",
+      "url": "https://www.customs.gov.om/ar/clearance-companies/alkhatm-land-border/",
+      "verifiedAt": "2026-08-05T19:10:00Z",
+      "reviewBy": "2026-09-05T00:00:00Z",
+      "supports": ["al_khatm_land_border_exists", "customs_broker_presence"],
+      "doesNotSupport": ["live_truck_acceptance", "operating_hours", "route_capacity", "cargo_acceptance", "customs_release", "permit_approval"],
+      "verificationStatus": "verified_partial"
+    },
+    {
+      "sourceId": "OMAN-CUSTOMS-TIR-2018",
+      "authority": "Directorate General of Customs, Oman",
+      "countryCode": "OM",
+      "sourceType": "official_transit_framework",
+      "title": "TIR customs transit framework",
+      "url": "https://www.customs.gov.om/en/agreement/tir/",
+      "verifiedAt": "2026-08-05T19:10:00Z",
+      "reviewBy": "2027-02-05T00:00:00Z",
+      "supports": ["tir_framework_exists", "sealed_transit_and_guarantee_principles"],
+      "doesNotSupport": ["shipment_eligibility", "route_activation", "guarantee_acceptance", "border_clearance", "carrier_authorization"],
+      "verificationStatus": "verified_partial"
+    }
+  ]
+}
