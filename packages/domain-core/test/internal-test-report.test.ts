@@ -37,6 +37,7 @@ const result: IntegratedDecisionResult = {
     audit: {
       evaluatedAt: "2026-08-05T18:30:00Z",
       evaluatedRuleIds: [],
+      sourceGovernanceFindings: [],
     },
   },
   criticalRisks: ["volatile_carrier_conditions"],
