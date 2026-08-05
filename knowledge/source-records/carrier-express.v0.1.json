@@ -1,0 +1,85 @@
+{
+  "registryVersion": "0.1",
+  "lastVerifiedAt": "2026-08-05T20:51:00+04:00",
+  "reviewPolicy": "Monthly and before any transaction-specific recommendation.",
+  "sources": [
+    {
+      "sourceId": "CARRIER-DHL-AE-EXPRESS-001",
+      "provider": "DHL Express",
+      "market": "AE",
+      "topic": "rate basis and actual-versus-volumetric weight",
+      "url": "https://www.dhl.com/ae-en/home/express.html",
+      "authorityType": "official_carrier",
+      "status": "verified_current_page",
+      "lastVerifiedAt": "2026-08-05T20:51:00+04:00",
+      "nextReviewAt": "2026-09-05T20:51:00+04:00",
+      "ruleImpact": ["commercial_weight_basis"],
+      "notes": "The page confirms that rates depend on origin, destination, service and the greater of actual or volumetric weight. It does not by itself establish a universal divisor or route acceptance."
+    },
+    {
+      "sourceId": "CARRIER-FEDEX-AE-RATES-001",
+      "provider": "FedEx",
+      "market": "AE",
+      "topic": "package and freight dimensional or weight limits and 2026 charges",
+      "url": "https://images.fedex.com/en-ae/shipping/rates.html",
+      "authorityType": "official_carrier",
+      "status": "verified_current_page",
+      "lastVerifiedAt": "2026-08-05T20:51:00+04:00",
+      "nextReviewAt": "2026-09-05T20:51:00+04:00",
+      "ruleImpact": ["package_limits", "freight_limits", "effective_dated_charges"],
+      "notes": "Use only for the UAE market and the service/rate context stated on the page. Route and commodity acceptance still require confirmation."
+    },
+    {
+      "sourceId": "CARRIER-ARAMEX-AE-FAQ-001",
+      "provider": "Aramex",
+      "market": "AE",
+      "topic": "Express limits and volumetric-weight calculation",
+      "url": "https://www.aramex.com/ae/en/shield/frequently-asked-questions?page=2",
+      "authorityType": "official_carrier",
+      "status": "verified_current_page",
+      "lastVerifiedAt": "2026-08-05T20:51:00+04:00",
+      "nextReviewAt": "2026-09-05T20:51:00+04:00",
+      "ruleImpact": ["express_limits", "volumetric_divisor", "higher_of_actual_and_volumetric"],
+      "notes": "The page states a 5000 divisor example and Express qualification limits. Treat as UAE web guidance and confirm service-specific applicability before booking."
+    },
+    {
+      "sourceId": "CARRIER-ARAMEX-AE-TERMS-001",
+      "provider": "Aramex",
+      "market": "AE",
+      "topic": "prohibited and unacceptable materials",
+      "url": "https://www.aramex.com/ae/en/shipping-terms/express",
+      "authorityType": "official_carrier",
+      "status": "verified_current_page",
+      "lastVerifiedAt": "2026-08-05T20:51:00+04:00",
+      "nextReviewAt": "2026-09-05T20:51:00+04:00",
+      "ruleImpact": ["prohibited_cargo", "shipper_responsibility"],
+      "notes": "The page identifies categories not accepted for carriage and places description and compliance responsibility on the customer."
+    },
+    {
+      "sourceId": "CARRIER-UPS-AE-DIMENSIONS-001",
+      "provider": "UPS",
+      "market": "AE",
+      "topic": "parcel limits, dimensional weight and billable-weight rounding",
+      "url": "https://developer.ups.com/ae/en/support/shipping-support/shipping-dimensions-weight",
+      "authorityType": "official_carrier",
+      "status": "verified_current_page",
+      "lastVerifiedAt": "2026-08-05T20:51:00+04:00",
+      "nextReviewAt": "2026-09-05T20:51:00+04:00",
+      "ruleImpact": ["parcel_limits", "volumetric_divisor", "rounding", "billable_weight"],
+      "notes": "The page states UAE parcel limits, a 5000 divisor in cm/kg and rounding up to the next half kilogram."
+    },
+    {
+      "sourceId": "CARRIER-UPS-AE-PROHIBITED-001",
+      "provider": "UPS",
+      "market": "AE",
+      "topic": "prohibited and restricted items",
+      "url": "https://developer.ups.com/ae/en/support/shipping-support/shipping-special-care-regulated-items/prohibited-items",
+      "authorityType": "official_carrier",
+      "status": "verified_current_page",
+      "lastVerifiedAt": "2026-08-05T20:51:00+04:00",
+      "nextReviewAt": "2026-09-05T20:51:00+04:00",
+      "ruleImpact": ["prohibited_cargo", "conditional_cargo", "dangerous_goods"],
+      "notes": "Certain restricted categories may be accepted only contractually. The page states that not all commodities can be shipped to all countries."
+    }
+  ]
+}
