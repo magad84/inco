@@ -1,0 +1,166 @@
+{
+  "datasetVersion": "0.1",
+  "generatedAt": "2026-08-05T17:12:00Z",
+  "services": [
+    {
+      "carrierId": "CARRIER-MSC",
+      "serviceId": "SERVICE-MSC-UAE-GENERAL",
+      "carrierName": {"en": "MSC", "ar": "إم إس سي"},
+      "serviceName": {"en": "UAE ocean service indicator", "ar": "مؤشر خدمة الشحن البحري إلى الإمارات"},
+      "mode": "ocean",
+      "status": "verified_partial",
+      "marketScope": {"originCountries": ["CN", "IN", "TR", "IT", "US", "AU"], "destinationCountries": ["AE"]},
+      "cargoRules": [
+        {
+          "ruleId": "MSC-UAE-DG-001",
+          "cargoCategory": "dangerous_goods",
+          "acceptanceStatus": "pre_approval_required",
+          "conditions": [
+            {"en": "Complete dangerous-goods documentation and compliant placarding are required; current booking status must be reconfirmed.", "ar": "يلزم استكمال مستندات البضائع الخطرة ووضع العلامات المطلوبة، مع إعادة تأكيد حالة الحجز الحالية."}
+          ],
+          "requiredEvidence": ["dangerous_goods_notice", "classification", "packing_and_placarding_evidence"],
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["MSC-UAE-LOCAL-2026", "MSC-ME-BOOKING-SUSPENSION-2026-03-01"],
+          "reviewBy": "2026-08-12"
+        }
+      ],
+      "commercialRules": {"volumetricWeight": null, "limits": []},
+      "confirmation": {
+        "requiredBeforeBooking": true,
+        "contactChannel": "local_carrier_office",
+        "reason": {"en": "Operational advisories are volatile.", "ar": "التنبيهات التشغيلية سريعة التغير."}
+      },
+      "sources": ["MSC-UAE-LOCAL-2026", "MSC-ME-BOOKING-SUSPENSION-2026-03-01"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:10:00Z", "nextReviewAt": "2026-08-12T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Candidate service only; no live schedule or rate claim."}
+    },
+    {
+      "carrierId": "CARRIER-CMA-CGM",
+      "serviceId": "SERVICE-CMA-ME-DG",
+      "carrierName": {"en": "CMA CGM", "ar": "سي إم إيه سي جي إم"},
+      "serviceName": {"en": "Middle East dangerous-goods status", "ar": "حالة حجز البضائع الخطرة للشرق الأوسط"},
+      "mode": "ocean",
+      "status": "temporarily_unavailable",
+      "marketScope": {"originCountries": ["CN", "IN", "TR", "IT", "US", "AU"], "destinationCountries": ["AE", "SA", "OM", "EG"]},
+      "cargoRules": [
+        {
+          "ruleId": "CMA-ME-DG-001",
+          "cargoCategory": "dangerous_goods",
+          "acceptanceStatus": "service_not_supported",
+          "conditions": [
+            {"en": "The cited advisory suspended hazardous bookings until further notice; status must be rechecked before every decision.", "ar": "أوقف التنبيه المشار إليه حجوزات البضائع الخطرة حتى إشعار آخر، ويجب إعادة التحقق قبل كل قرار."}
+          ],
+          "requiredEvidence": ["current_carrier_advisory", "carrier_confirmation"],
+          "effectiveFrom": "2026-03-02",
+          "effectiveTo": null,
+          "sourceIds": ["CMA-ME-DG-SUSPENSION-2026-03-02"],
+          "reviewBy": "2026-08-12"
+        }
+      ],
+      "commercialRules": {"volumetricWeight": null, "limits": []},
+      "confirmation": {
+        "requiredBeforeBooking": true,
+        "contactChannel": "local_carrier_office",
+        "reason": {"en": "Until-further-notice advisory requires current reconfirmation.", "ar": "التنبيه الساري حتى إشعار آخر يحتاج إعادة تأكيد حالي."}
+      },
+      "sources": ["CMA-ME-DG-SUSPENSION-2026-03-02", "CMA-UAE-MPCI-2026-05-18"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:10:00Z", "nextReviewAt": "2026-08-12T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "MPCI requirement is separate from customs filing and applies to inbound/transit maritime cargo where applicable."}
+    },
+    {
+      "carrierId": "CARRIER-ETIHAD-CARGO",
+      "serviceId": "SERVICE-ETIHAD-GENERAL",
+      "carrierName": {"en": "Etihad Cargo", "ar": "الاتحاد للشحن"},
+      "serviceName": {"en": "General Cargo", "ar": "الشحن العام"},
+      "mode": "air_cargo",
+      "status": "verified_partial",
+      "marketScope": {"originCountries": ["CN", "IN", "TR", "IT", "US", "AU"], "destinationCountries": ["AE", "SA", "OM", "EG"]},
+      "cargoRules": [
+        {
+          "ruleId": "ETIHAD-GEN-001",
+          "cargoCategory": "general_cargo",
+          "acceptanceStatus": "accepted_indicator",
+          "conditions": [
+            {"en": "Cargo must not fall within restricted, perishable, or dangerous-goods categories for this general-cargo product.", "ar": "يجب ألا تندرج الشحنة ضمن البضائع المقيدة أو سريعة التلف أو الخطرة لاستخدام منتج الشحن العام."}
+          ],
+          "requiredEvidence": ["cargo_description", "restriction_and_dg_prescreen"],
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["ETIHAD-GENERAL-CARGO-2026"],
+          "reviewBy": "2026-11-05"
+        }
+      ],
+      "commercialRules": {"volumetricWeight": null, "limits": []},
+      "confirmation": {
+        "requiredBeforeBooking": true,
+        "contactChannel": "carrier_booking_channel",
+        "reason": {"en": "Route, capacity, dimensions, and final acceptance remain booking-specific.", "ar": "المسار والسعة والأبعاد والقبول النهائي عوامل مرتبطة بالحجز المحدد."}
+      },
+      "sources": ["ETIHAD-GENERAL-CARGO-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:10:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "No inferred dangerous-goods acceptance."}
+    },
+    {
+      "carrierId": "CARRIER-TURKISH-CARGO",
+      "serviceId": "SERVICE-TURKISH-TK-CARE",
+      "carrierName": {"en": "Turkish Cargo", "ar": "الخطوط التركية للشحن"},
+      "serviceName": {"en": "TK CARE", "ar": "TK CARE"},
+      "mode": "air_cargo",
+      "status": "verified_partial",
+      "marketScope": {"originCountries": ["TR"], "destinationCountries": ["AE", "SA", "OM", "EG"]},
+      "cargoRules": [
+        {
+          "ruleId": "TK-CARE-DG-001",
+          "cargoCategory": "dangerous_goods",
+          "acceptanceStatus": "pre_approval_required",
+          "conditions": [
+            {"en": "Published capability does not replace shipment-level classification, station capability, documentation, and booking approval.", "ar": "القدرة المنشورة لا تستبدل تصنيف الشحنة وقدرة المحطة والمستندات وموافقة الحجز لكل شحنة."}
+          ],
+          "requiredEvidence": ["un_number", "proper_shipping_name", "class_and_packing_group", "shipper_declaration", "station_confirmation"],
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["TURKISH-TK-CARE-2026"],
+          "reviewBy": "2026-11-05"
+        }
+      ],
+      "commercialRules": {"volumetricWeight": null, "limits": []},
+      "confirmation": {
+        "requiredBeforeBooking": true,
+        "contactChannel": "carrier_booking_channel",
+        "reason": {"en": "Acceptance depends on cargo details, stations, aircraft, and current restrictions.", "ar": "القبول يعتمد على تفاصيل البضاعة والمحطات والطائرة والقيود الحالية."}
+      },
+      "sources": ["TURKISH-TK-CARE-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:10:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Capability indicator only."}
+    },
+    {
+      "carrierId": "CARRIER-EMIRATES-SKYCARGO",
+      "serviceId": "SERVICE-EMIRATES-NETWORK-SEED",
+      "carrierName": {"en": "Emirates SkyCargo", "ar": "الإمارات للشحن الجوي"},
+      "serviceName": {"en": "Network candidate", "ar": "مرشح شبكة الشحن"},
+      "mode": "air_cargo",
+      "status": "research_seed",
+      "marketScope": {"originCountries": ["CN", "IN", "TR", "IT", "US", "AU"], "destinationCountries": ["AE", "SA", "OM", "EG"], "destinationGateways": ["DXB", "DWC"]},
+      "cargoRules": [
+        {
+          "ruleId": "EMIRATES-NETWORK-001",
+          "cargoCategory": "general_cargo",
+          "acceptanceStatus": "confirmation_required",
+          "conditions": [
+            {"en": "Network and hub evidence supports candidate selection only; product, route, capacity, dimensions, and cargo acceptance require current booking confirmation.", "ar": "بيانات الشبكة والمركز تدعم الترشيح فقط، بينما المنتج والمسار والسعة والأبعاد وقبول البضاعة تحتاج تأكيد الحجز الحالي."}
+          ],
+          "requiredEvidence": ["route", "cargo_details", "booking_confirmation"],
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["EMIRATES-SKYCARGO-NETWORK-2026"],
+          "reviewBy": "2026-11-05"
+        }
+      ],
+      "commercialRules": {"volumetricWeight": null, "limits": []},
+      "confirmation": {
+        "requiredBeforeBooking": true,
+        "contactChannel": "local_skycargo_office",
+        "reason": {"en": "Published network presence is not acceptance evidence.", "ar": "وجود الناقل في الشبكة المنشورة ليس دليل قبول."}
+      },
+      "sources": ["EMIRATES-SKYCARGO-NETWORK-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:10:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "No commercial factor or cargo acceptance inferred."}
+    }
+  ]
+}
