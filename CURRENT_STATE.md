@@ -1,8 +1,8 @@
 # INCO Current State
 
 **Date:** 2026-08-05  
-**Phase:** Deterministic core validated; trade-lane knowledge implementation active  
-**Implementation status:** Executable domain core and trade-lane evaluator passing CI; origin, carrier, gateway, and corridor registries under controlled expansion
+**Phase:** Deterministic core validated; integrated rule modules under active implementation  
+**Implementation status:** Domain core `0.3.0` includes cargo calculation, trade-lane evaluation, destination-country requirement evaluation, and dangerous-goods/special-cargo pre-screen
 
 ## Execution Authority
 
@@ -20,12 +20,13 @@ Every executable result must pass CI before approval. Missing or volatile inform
 - Launch destination markets: UAE, Saudi Arabia, Egypt, and Oman.
 - Priority origin markets: China, India, Turkey, Italy, United States, Russia, and Australia.
 - Russia and other triggered transactions require enhanced transaction-specific compliance screening.
+- Current implementation uses only free, official, and open-source resources.
 
 ## Architecture Decisions
 
 ### ADR-001: Deterministic Core
 
-**Status:** Approved and implemented through `@inco/domain-core` version `0.2.0`.
+**Status:** Approved and implemented through `@inco/domain-core` version `0.3.0`.
 
 - Strict TypeScript.
 - JSON Schemas as external contracts.
@@ -41,6 +42,14 @@ Every executable result must pass CI before approval. Missing or volatile inform
 - Carrier and Carrier Service Registry.
 - Trade Lane and Transit Segment model.
 - Route & Carrier Decision Pack direction.
+
+### ADR-003: Free and Official Source First
+
+**Status:** Approved.
+
+- No paid data, software, API, or content license in the current stage.
+- Use official free sources and open-source tooling.
+- Missing live or licensed data returns uncertainty rather than inferred certainty.
 
 ## WP-01: Trade-Term Decision Logic
 
@@ -62,21 +71,25 @@ Remaining:
 
 ## WP-02: Logistics Knowledge Architecture
 
-**Status:** Active; foundation established.
+**Status:** Active; executable country and cargo pre-screen modules started.
 
 Completed:
 
 - Source hierarchy and registry.
 - Destination-country schema and four seed packs.
-- DG pre-screen specification.
-- Cargo and container-planning specifications.
-- Broker marketplace specification.
-- Question-to-rule traceability and acceptance scenarios.
+- Executable destination-country rule schema.
+- Executable seed rule packs for UAE, Saudi Arabia, Egypt, and Oman.
+- Deterministic `evaluateCountryRequirements()` implementation.
+- Country-rule integrity and evaluator tests.
+- Dangerous-goods pre-screen input and output schemas.
+- Deterministic `prescreenCargo()` implementation.
+- Representative DG/special-cargo tests covering ordinary cargo, unknown mixtures, aerosols, perfume/alcohol indicators, damaged batteries, and oversized machinery.
 
 Remaining:
 
-- Normalize country and DG rules into executable records.
-- Fill P0 official-source gaps.
+- Official source normalization for country rule records.
+- Additional DG indicator rules and mode/country escalation mapping.
+- Full acceptance scenario fixture set.
 
 ## WP-03: Origins, Gateways, Carriers, and Trade Lanes
 
@@ -133,39 +146,39 @@ Completed:
 - `enhanced_compliance_required` override with transaction-specific screening controls.
 - Automated tests for candidate, source-gap, stale, unsupported, validation, and enhanced-compliance cases.
 
-Files:
+## Roadmap to Internal Testing
 
-- `packages/domain-core/src/trade-lane-evaluator.ts`
-- `packages/domain-core/test/trade-lane-evaluator.test.ts`
-- `knowledge/trade-lanes/launch-corridors.v0.1.json`
+Source of truth: `docs/ROADMAP_TO_INTERNAL_TESTING_v1.0.md`.
+
+Current workstreams:
+
+- Issue #5: executable destination-country rules.
+- Issue #6: dangerous-goods and cargo nature pre-screen.
+- Issue #7: minimum gateway and carrier coverage.
+- Issue #8: integrated trade-lane engine.
+- Issue #9: internal end-to-end scenarios.
+- Issue #10: internal test harness and readiness gate.
 
 ### Next autonomous work
 
-1. Complete gateway records for Turkey, Italy, United States, Australia, and Russia.
-2. Add additional Saudi, Egyptian, and Omani gateways where route demand justifies them.
-3. Expand corridor coverage and transit-segment modeling.
-4. Add Russia enhanced-compliance fixtures and rule records.
-5. Normalize country and DG requirements into executable evaluation.
-6. Expand route, transit, carrier, stale-rule, and source-gap tests.
+1. Complete source normalization and rule records required for `GATE-CR-01`.
+2. Expand DG pre-screen rules and escalation mapping required for `GATE-DG-01`.
+3. Complete priority gateways and carrier-service records required for `GATE-GC-01`.
+4. Integrate cargo pre-screen, country requirements, gateway, carrier, and trade-term outputs into one consolidated result.
+5. Execute the first three end-to-end scenarios and create the internal test harness.
 
 ## Approved Executable Result
 
-### `@inco/domain-core` version `0.2.0`
+### `@inco/domain-core` version `0.3.0`
 
 Implemented:
 
-- Unit normalization for mm, cm, m, inches, kg, g, and lb.
-- CBM per package and total CBM.
-- Gross, volumetric, and chargeable weight.
-- Per-piece and shipment-total bases.
-- Rounding increments and shipment minimums.
-- Runtime validation.
-- Stale-rule blocking and unverified-rule warnings.
-- Audit metadata.
+- CBM, gross, volumetric, and chargeable-weight calculation.
+- Unit normalization, per-piece and shipment-total bases, rounding, minimums, runtime validation, and audit metadata.
 - Deterministic trade-lane corridor evaluation.
-- Source-gap, stale-record, incomplete-route, and enhanced-compliance decisions.
-
-A shipment-total aggregation defect was detected and corrected before approval. Version `0.2.0` build and all tests passed in GitHub Actions run `31030180600`.
+- Deterministic destination-country requirement evaluation.
+- Deterministic dangerous-goods and special-cargo pre-screen.
+- Source-gap, stale-record, incomplete-route, missing-input, carrier-confirmation, specialist-confirmation, and enhanced-compliance decisions.
 
 ## Active Quality Gates
 
@@ -174,6 +187,8 @@ CI runs when changing:
 - Domain-core code and tests.
 - Cargo fixtures.
 - Carrier services and source records.
+- Country-rule records and schemas.
+- DG pre-screen schemas.
 - Gateway records and source records.
 - Trade-lane corridor records.
 - Carrier, gateway, and trade-lane schemas.
@@ -183,6 +198,9 @@ The tests currently cover:
 - Cargo calculations and regressions.
 - Express carrier traceability.
 - Ocean and air carrier traceability.
+- Country-rule integrity for UAE, Saudi Arabia, Egypt, and Oman.
+- Destination-country evaluator decisions.
+- DG and special-cargo representative scenarios.
 - Gateway traceability for UAE, China, India, Saudi Arabia, Egypt, and Oman.
 - Trade-lane reference integrity and uncertainty controls.
 - Executable trade-lane evaluation decisions.
@@ -199,7 +217,7 @@ The tests currently cover:
 ## Decisions Still Requiring Owner Approval
 
 - Pricing and material changes to free-versus-paid boundaries.
-- Paid data or software licenses.
+- Any future paid data or software license.
 - Final production architecture, hosting commitment, and deployment.
 - Google authentication.
 - Payment provider.
@@ -218,4 +236,8 @@ The tests currently cover:
 - Gateway records expanded across UAE, China, India, Saudi Arabia, Egypt, and Oman.
 - Launch corridor registry added and linked to gateway and carrier records.
 - Deterministic trade-lane evaluator implemented and approved as domain core `0.2.0`.
-- GitHub Actions run `31030180600` completed successfully.
+- Free-and-official-source-first policy approved in ADR-003.
+- Roadmap to internal testing created with coded tasks and GitHub workstreams.
+- Destination-country rule schema, four executable seed packs, evaluator, and tests added.
+- DG pre-screen schemas, deterministic evaluator, and representative tests added.
+- Domain core advanced to `0.3.0`.
