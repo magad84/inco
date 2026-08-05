@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inco.local/schemas/trade-term-review-input.schema.json",
+  "title": "INCO Trade-Term Review Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "review_id",
+    "perspective",
+    "selected_term",
+    "seller_country",
+    "buyer_country",
+    "origin",
+    "destination",
+    "transport_modes",
+    "named_place",
+    "intended_delivery_point",
+    "expected_responsibilities"
+  ],
+  "properties": {
+    "review_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "locale": {
+      "type": "string",
+      "enum": ["en", "ar"],
+      "default": "en"
+    },
+    "perspective": {
+      "type": "string",
+      "enum": ["seller", "buyer", "neutral_reviewer"]
+    },
+    "review_context": {
+      "type": "string",
+      "enum": ["new_selection", "quotation_review", "purchase_order_review", "contract_review", "other"],
+      "default": "new_selection"
+    },
+    "selected_term": {
+      "type": "string",
+      "enum": ["EXW", "FCA", "CPT", "CIP", "DAP", "DPU", "DDP", "FAS", "FOB", "CFR", "CIF"]
+    },
+    "seller_country": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100
+    },
+    "buyer_country": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100
+    },
+    "origin": {
+      "$ref": "#/$defs/locationInput"
+    },
+    "destination": {
+      "$ref": "#/$defs/locationInput"
+    },
+    "transit_locations": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/locationInput"},
+      "default": []
+    },
+    "transport_modes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["ocean", "inland_waterway", "air", "road", "rail", "courier", "postal", "multimodal", "undecided"]
+      }
+    },
+    "containerized": {
+      "type": "string",
+      "enum": ["yes", "no", "unknown"],
+      "default": "unknown"
+    },
+    "cargo_description": {
+      "type": ["string", "null"],
+      "maxLength": 1000,
+      "default": null
+    },
+    "named_place": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provided", "exact_wording"],
+      "properties": {
+        "provided": {"type": "boolean"},
+        "exact_wording": {"type": ["string", "null"], "maxLength": 500},
+        "point_type": {
+          "type": "string",
+          "enum": ["seller_premises", "warehouse", "terminal", "port", "airport", "border", "buyer_premises", "address", "city", "country", "other", "unknown"],
+          "default": "unknown"
+        }
+      }
+    },
+    "intended_delivery_point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage"],
+      "properties": {
+        "stage": {
+          "type": "string",
+          "enum": [
+            "seller_premises_before_loading",
+            "seller_premises_after_loading",
+            "origin_terminal_or_carrier",
+            "alongside_vessel",
+            "on_board_vessel",
+            "first_carrier_handover",
+            "destination_terminal",
+            "destination_ready_for_unloading",
+            "destination_after_unloading",
+            "buyer_final_address",
+            "unknown"
+          ]
+        },
+        "description": {"type": ["string", "null"], "maxLength": 500}
+      }
+    },
+    "expected_risk_transfer_stage": {
+      "type": ["string", "null"],
+      "enum": [
+        "seller_premises_before_loading",
+        "seller_premises_after_loading",
+        "origin_terminal_or_carrier",
+        "alongside_vessel",
+        "on_board_vessel",
+        "first_carrier_handover",
+        "destination_terminal",
+        "destination_ready_for_unloading",
+        "destination_after_unloading",
+        "buyer_final_address",
+        "unknown",
+        null
+      ],
+      "default": null
+    },
+    "expected_responsibilities": {
+      "$ref": "#/$defs/expectedResponsibilities"
+    },
+    "capabilities": {
+      "$ref": "#/$defs/capabilityInput"
+    },
+    "priorities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "seller_minimize_responsibility",
+          "seller_control_main_carriage",
+          "buyer_control_main_carriage",
+          "buyer_delivered_solution",
+          "risk_retained_to_destination",
+          "insurance_control",
+          "cost_visibility",
+          "simplify_clearance",
+          "customer_service_control"
+        ]
+      },
+      "default": []
+    },
+    "existing_wording": {
+      "type": ["string", "null"],
+      "maxLength": 3000,
+      "default": null
+    }
+  },
+  "$defs": {
+    "locationInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["country"],
+      "properties": {
+        "country": {"type": "string", "minLength": 2, "maxLength": 100},
+        "city": {"type": ["string", "null"], "maxLength": 200},
+        "facility": {"type": ["string", "null"], "maxLength": 300},
+        "address": {"type": ["string", "null"], "maxLength": 500}
+      }
+    },
+    "partyValue": {
+      "type": "string",
+      "enum": ["seller", "buyer", "shared", "third_party", "unknown"]
+    },
+    "expectedResponsibilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["main_carriage", "export_clearance", "import_clearance"],
+      "properties": {
+        "loading_at_seller": {"$ref": "#/$defs/partyValue"},
+        "pre_carriage": {"$ref": "#/$defs/partyValue"},
+        "export_clearance": {"$ref": "#/$defs/partyValue"},
+        "origin_handling": {"$ref": "#/$defs/partyValue"},
+        "main_carriage": {"$ref": "#/$defs/partyValue"},
+        "cargo_insurance": {"$ref": "#/$defs/partyValue"},
+        "destination_handling": {"$ref": "#/$defs/partyValue"},
+        "unloading_at_destination": {"$ref": "#/$defs/partyValue"},
+        "import_clearance": {"$ref": "#/$defs/partyValue"},
+        "import_duties_and_taxes": {"$ref": "#/$defs/partyValue"},
+        "final_delivery": {"$ref": "#/$defs/partyValue"}
+      }
+    },
+    "capabilityState": {
+      "type": "string",
+      "enum": ["confirmed", "available_through_provider", "not_available", "unknown"]
+    },
+    "capabilityInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "seller_export_clearance": {"$ref": "#/$defs/capabilityState"},
+        "buyer_export_clearance_in_seller_country": {"$ref": "#/$defs/capabilityState"},
+        "seller_import_clearance_in_buyer_country": {"$ref": "#/$defs/capabilityState"},
+        "buyer_import_clearance": {"$ref": "#/$defs/capabilityState"},
+        "seller_destination_unloading": {"$ref": "#/$defs/capabilityState"},
+        "seller_main_carriage_management": {"$ref": "#/$defs/capabilityState"},
+        "buyer_main_carriage_management": {"$ref": "#/$defs/capabilityState"}
+      },
+      "default": {}
+    }
+  }
+}
