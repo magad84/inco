@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inco.local/schemas/trade-lane.schema.json",
+  "title": "INCO Trade Lane",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tradeLaneId",
+    "origin",
+    "destination",
+    "cargoProfile",
+    "segments",
+    "status",
+    "requirements",
+    "risks",
+    "audit"
+  ],
+  "properties": {
+    "tradeLaneId": { "type": "string", "pattern": "^LANE-[A-Z0-9._-]+$" },
+    "origin": { "$ref": "#/$defs/endpoint" },
+    "destination": { "$ref": "#/$defs/endpoint" },
+    "cargoProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description", "cargoCategories", "dangerousGoodsStatus"],
+      "properties": {
+        "description": { "type": "string", "minLength": 1 },
+        "cargoCategories": { "type": "array", "items": { "type": "string" } },
+        "dangerousGoodsStatus": {
+          "type": "string",
+          "enum": [
+            "no_indicator_found",
+            "possible_dangerous_goods",
+            "dangerous_goods_data_required",
+            "classified_by_user_or_specialist",
+            "carrier_acceptance_required",
+            "specialist_confirmation_required",
+            "insufficient_information"
+          ]
+        },
+        "grossWeightKg": { "type": ["number", "null"], "minimum": 0 },
+        "volumeM3": { "type": ["number", "null"], "minimum": 0 },
+        "specialHandling": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/segment" }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "candidate",
+        "conditional",
+        "confirmation_required",
+        "enhanced_compliance_required",
+        "not_supported",
+        "insufficient_information"
+      ]
+    },
+    "requirements": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/requirement" }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["riskId", "severity", "category", "title", "reason", "mitigation"],
+        "properties": {
+          "riskId": { "type": "string" },
+          "severity": { "type": "string", "enum": ["critical", "high", "medium", "low", "information"] },
+          "category": {
+            "type": "string",
+            "enum": [
+              "export",
+              "carrier",
+              "transit",
+              "gateway",
+              "import",
+              "inland_transport",
+              "dangerous_goods",
+              "sanctions_or_controls",
+              "documents",
+              "cost",
+              "timing",
+              "other"
+            ]
+          },
+          "title": { "$ref": "#/$defs/bilingualText" },
+          "reason": { "$ref": "#/$defs/bilingualText" },
+          "mitigation": { "$ref": "#/$defs/bilingualText" },
+          "sourceIds": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "candidateAlternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["alternativeId", "changeType", "reason"],
+        "properties": {
+          "alternativeId": { "type": "string" },
+          "changeType": { "type": "string", "enum": ["gateway", "carrier_service", "mode", "route", "delivery_point"] },
+          "replacementRef": { "type": ["string", "null"] },
+          "reason": { "$ref": "#/$defs/bilingualText" },
+          "newRisks": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "enhancedCompliance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["not_required", "screening_required", "specialist_confirmation_required", "blocked_pending_review"]
+        },
+        "triggers": { "type": "array", "items": { "type": "string" } },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "counterparty",
+              "beneficial_owner",
+              "bank_and_payment_route",
+              "product_control",
+              "end_use",
+              "re_export",
+              "carrier_or_asset",
+              "gateway_or_transit",
+              "legal_specialist"
+            ]
+          }
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "ruleVersions", "sourceIds", "evaluatedAt"],
+      "properties": {
+        "schemaVersion": { "type": "string" },
+        "ruleVersions": { "type": "array", "items": { "type": "string" } },
+        "sourceIds": { "type": "array", "items": { "type": "string" } },
+        "evaluatedAt": { "type": "string", "format": "date-time" },
+        "staleRules": { "type": "array", "items": { "type": "string" } },
+        "assumptions": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "$defs": {
+    "bilingualText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "ar"],
+      "properties": {
+        "en": { "type": "string", "minLength": 1 },
+        "ar": { "type": "string", "minLength": 1 }
+      }
+    },
+    "endpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["countryCode"],
+      "properties": {
+        "countryCode": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "gatewayId": { "type": ["string", "null"] },
+        "locality": { "type": ["string", "null"] },
+        "namedPoint": { "type": ["string", "null"] }
+      }
+    },
+    "segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["segmentId", "sequence", "segmentType", "mode", "from", "to", "status"],
+      "properties": {
+        "segmentId": { "type": "string" },
+        "sequence": { "type": "integer", "minimum": 1 },
+        "segmentType": {
+          "type": "string",
+          "enum": ["origin_pre_carriage", "export_gateway", "main_carriage", "transit", "destination_gateway", "destination_on_carriage"]
+        },
+        "mode": { "type": "string", "enum": ["ocean", "air", "courier", "postal", "road", "rail", "multimodal"] },
+        "from": { "$ref": "#/$defs/endpoint" },
+        "to": { "$ref": "#/$defs/endpoint" },
+        "carrierId": { "type": ["string", "null"] },
+        "serviceId": { "type": ["string", "null"] },
+        "status": {
+          "type": "string",
+          "enum": ["candidate", "conditional", "confirmed_by_source", "confirmation_required", "not_supported", "source_unavailable"]
+        },
+        "ruleRefs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requirementId", "stage", "status", "description", "nextAction"],
+      "properties": {
+        "requirementId": { "type": "string" },
+        "stage": {
+          "type": "string",
+          "enum": ["origin", "export_gateway", "carrier", "transit", "destination_gateway", "destination_country", "inland_transport"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["required", "conditional", "confirmation_required", "source_unavailable", "not_applicable"]
+        },
+        "description": { "$ref": "#/$defs/bilingualText" },
+        "competentAuthorityOrProvider": { "type": ["string", "null"] },
+        "reason": { "$ref": "#/$defs/bilingualText" },
+        "impactIfNotConfirmed": { "$ref": "#/$defs/bilingualText" },
+        "nextAction": { "$ref": "#/$defs/bilingualText" },
+        "sourceIds": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
