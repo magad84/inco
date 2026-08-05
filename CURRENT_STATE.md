@@ -1,7 +1,7 @@
 # INCO Current State
 
 **Date:** 2026-08-05  
-**Phase:** Knowledge normalization and deterministic rule preparation  
+**Phase:** Deterministic domain contracts and architecture decision preparation  
 **Implementation status:** Production coding not started
 
 ## Approved Product Direction
@@ -27,7 +27,7 @@
 
 ### WP-01: MVP Trade-Term Decision Logic
 
-Status: In progress; core matrix and scenarios created.
+Status: In progress; core matrix, terminology, traceability, and scenarios created.
 
 Completed:
 
@@ -35,13 +35,14 @@ Completed:
 - eleven-term deterministic rule matrix.
 - named-place, responsibility, risk, cost, alternative, and suitability structures.
 - representative trade-term acceptance scenarios.
+- controlled Arabic-English terminology register.
 
 Remaining before implementation:
 
 - Convert matrix into structured rule records.
 - assign source IDs and effective rule version.
-- complete term-level scenario coverage.
-- produce bilingual terminology and labels.
+- create trade-term input/output schemas.
+- complete term-level scenario fixtures.
 
 ### WP-02: Logistics Knowledge Architecture and Source Registry
 
@@ -65,8 +66,36 @@ Remaining:
 
 - Normalize verified source records into executable rules.
 - fill P0 official-source gaps.
-- create machine-readable schemas and fixtures.
-- validate the first implementation slice.
+- create machine-readable DG and country-rule schemas and fixtures.
+- validate later implementation slices.
+
+## First Implementation Slice Readiness
+
+The deterministic free Cargo Calculator now has:
+
+- Functional specification.
+- exact unit conversion rules.
+- CBM, gross-weight, volumetric-weight, and chargeable-weight formulas.
+- precision and rounding rules.
+- stale and user-configured carrier-factor behavior.
+- input JSON Schema.
+- output JSON Schema.
+- valid arithmetic and conversion fixtures.
+- invalid validation and stale-rule fixtures.
+- audit and source/version requirements.
+
+Files:
+
+- `docs/CARGO_CALCULATORS_SPEC.md`
+- `docs/CARGO_CALCULATOR_RULES.md`
+- `schemas/cargo-calculator-input.schema.json`
+- `schemas/cargo-calculator-output.schema.json`
+- `fixtures/cargo-calculator/cases.json`
+
+Important limitation:
+
+- The schemas and fixtures have been authored but not yet executed by CI or a selected runtime.
+- No implementation language or application architecture has been approved.
 
 ## Current Document Set
 
@@ -89,6 +118,7 @@ Remaining:
 - `docs/QUESTION_ARCHITECTURE.md`
 - `docs/QUESTION_RULE_TRACEABILITY.md`
 - `docs/ACCEPTANCE_SCENARIOS.md`
+- `docs/BILINGUAL_TERMINOLOGY.md`
 
 ### Knowledge and research
 
@@ -101,7 +131,11 @@ Remaining:
 ### Calculators and optimization
 
 - `docs/CARGO_CALCULATORS_SPEC.md`
+- `docs/CARGO_CALCULATOR_RULES.md`
 - `docs/OPEN_SOURCE_EVALUATION.md`
+- `schemas/cargo-calculator-input.schema.json`
+- `schemas/cargo-calculator-output.schema.json`
+- `fixtures/cargo-calculator/cases.json`
 
 ### Marketplace
 
@@ -191,39 +225,35 @@ Pricing amounts, payment gateway, credits, subscriptions, and company plans rema
 
 Work may continue without owner interruption on:
 
-1. Structured rule and source data schemas.
-2. trade-term rule normalization.
-3. country-rule normalization.
-4. dangerous-goods pre-screen rule records.
-5. calculator fixtures and unit tests specifications.
-6. bilingual terminology register.
-7. official source-gap research.
-8. first implementation-slice selection based on readiness.
+1. Technical architecture proposal for the deterministic domain core.
+2. structured trade-term rule records and schemas.
+3. DG and country-rule machine-readable contracts.
+4. source-gap research using official sources.
+5. executable fixture expansion.
 
 Owner approval is required before:
 
-- Pricing values.
+- Starting production code under a selected architecture.
+- pricing values.
 - paid provider or data-license commitments.
-- production architecture and hosting commitment.
+- production hosting commitment.
 - AI model or provider selection.
 - launch-country changes.
 - public broker-marketplace launch.
 - material changes to free versus paid boundaries.
 
-## Next Implementation Gate
+## Current Decision Gate
 
-The recommended first coding slice is the deterministic free Cargo Calculator because its mathematical rules can be validated independently while volatile carrier factors remain configurable.
+The next genuine owner decision is the technical architecture for the first deterministic implementation slice.
 
-Codex implementation may begin only after that slice has:
+Recommended direction to document and present:
 
-- Approved input/output JSON schemas.
-- unit normalization rules.
-- calculation fixtures.
-- carrier-factor configuration schema.
-- validation and error cases.
-- source/version audit fields.
+- TypeScript domain core for calculators, validation, trade-term rules, and the future web application.
+- Exact decimal arithmetic through an approved small dependency or controlled decimal implementation.
+- No database, authentication, payment, or external services in the first package.
+- A replaceable Python optimization service may be added later only for the paid Container Load Planner if benchmark evidence justifies it.
 
-Trade-term review should follow after structured term rules and full term-level test fixtures are complete.
+This direction minimizes early complexity while preserving a future optimization boundary.
 
 ## Change Log
 
@@ -240,4 +270,6 @@ Trade-term review should follow after structured term rules and full term-level 
 - Eleven-term rule matrix created.
 - Cross-module acceptance scenarios and question-to-rule traceability created.
 - Open-source container-loading candidates reviewed; no dependency adopted.
+- Cargo Calculator input/output schemas, deterministic rules, and fixtures created.
+- Controlled bilingual terminology register created.
 - Governing files and documentation index aligned.
