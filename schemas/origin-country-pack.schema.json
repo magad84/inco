@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inco.local/schemas/origin-country-pack.schema.json",
+  "title": "INCO Origin Country Pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "packId",
+    "countryCode",
+    "countryName",
+    "status",
+    "version",
+    "scope",
+    "authorities",
+    "requirements",
+    "gateways",
+    "sources",
+    "review"
+  ],
+  "properties": {
+    "packId": { "type": "string", "pattern": "^ORIGIN-[A-Z]{2}-[A-Z0-9._-]+$" },
+    "countryCode": { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "countryName": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "ar"],
+      "properties": {
+        "en": { "type": "string", "minLength": 1 },
+        "ar": { "type": "string", "minLength": 1 }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["research_seed", "verified_partial", "verified", "stale_review_required", "suspended"]
+    },
+    "version": { "type": "string", "minLength": 1 },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["flows", "modes", "cargoCategories"],
+      "properties": {
+        "flows": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "enum": ["export", "re_export", "transit", "domestic_pre_carriage"] }
+        },
+        "modes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "enum": ["ocean", "air", "courier", "postal", "road", "rail", "multimodal"] }
+        },
+        "cargoCategories": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "authorities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["authorityId", "name", "role", "sourceIds"],
+        "properties": {
+          "authorityId": { "type": "string", "minLength": 1 },
+          "name": { "$ref": "#/$defs/bilingualText" },
+          "role": { "$ref": "#/$defs/bilingualText" },
+          "sourceIds": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/requirement" }
+    },
+    "gateways": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "enhancedCompliance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "required": { "type": "boolean" },
+        "triggers": { "type": "array", "items": { "type": "string" } },
+        "defaultStatus": {
+          "type": "string",
+          "enum": ["not_required", "screening_required", "specialist_confirmation_required"]
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "review": { "$ref": "#/$defs/review" }
+  },
+  "$defs": {
+    "bilingualText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "ar"],
+      "properties": {
+        "en": { "type": "string", "minLength": 1 },
+        "ar": { "type": "string", "minLength": 1 }
+      }
+    },
+    "requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requirementId",
+        "category",
+        "trigger",
+        "outcome",
+        "certainty",
+        "sourceIds",
+        "effectiveFrom",
+        "reviewBy"
+      ],
+      "properties": {
+        "requirementId": { "type": "string", "minLength": 1 },
+        "category": {
+          "type": "string",
+          "enum": [
+            "export_declaration",
+            "export_permit",
+            "product_control",
+            "origin_document",
+            "dangerous_goods",
+            "postal_or_courier",
+            "gateway",
+            "security_or_sanctions",
+            "other"
+          ]
+        },
+        "trigger": { "type": "object" },
+        "outcome": { "$ref": "#/$defs/bilingualText" },
+        "certainty": {
+          "type": "string",
+          "enum": ["confirmed_rule", "conditional_guidance", "confirmation_required", "source_unavailable"]
+        },
+        "sourceIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "effectiveFrom": { "type": ["string", "null"], "format": "date" },
+        "effectiveTo": { "type": ["string", "null"], "format": "date" },
+        "reviewBy": { "type": "string", "format": "date" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lastVerifiedAt", "nextReviewAt", "reviewOwner"],
+      "properties": {
+        "lastVerifiedAt": { "type": ["string", "null"], "format": "date-time" },
+        "nextReviewAt": { "type": "string", "format": "date-time" },
+        "reviewOwner": { "type": "string", "minLength": 1 },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}
