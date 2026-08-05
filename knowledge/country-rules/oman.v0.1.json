@@ -1,0 +1,86 @@
+{
+  "datasetVersion": "0.1",
+  "countryCode": "OM",
+  "status": "research_seed",
+  "policy": "Candidate rules derived from the approved Oman seed pack. Permit-route interaction, thresholds, and current service conditions must remain confirmation-required until normalized from official sources.",
+  "rules": [
+    {
+      "ruleId": "CR-OM-EXCEPTIONAL-LOAD-001",
+      "countryCode": "OM",
+      "jurisdiction": {"en": "Oman", "ar": "سلطنة عُمان"},
+      "stage": "inland_transport",
+      "category": "special_load",
+      "status": "research_seed",
+      "trigger": {"exceptionalLoadIndicator": true},
+      "requiredInputs": ["vehicle_and_trailer_configuration", "axle_count", "unladen_vehicle_weight", "cargo_weight", "loaded_gross_weight", "length", "width", "height", "overhang", "indivisible_load_status", "origin", "destination", "route", "operating_card_status", "movement_date"],
+      "outcome": {
+        "decision": "confirmation_required",
+        "message": {"en": "An exceptional-load permit, route review, and possible escort assessment may be required.", "ar": "قد يلزم تصريح حمولة استثنائية ومراجعة مسار وتقييم لاحتمال الحاجة إلى مرافقة."},
+        "nextAction": {"en": "Confirm the current transport-ministry, police-permit, route, axle, and operating-card requirements.", "ar": "أكد المتطلبات الحالية لوزارة النقل وتصريح الشرطة والمسار والمحاور وبطاقة التشغيل."},
+        "impactIfNotConfirmed": {"en": "Movement may be delayed, refused, rerouted, or exposed to property, safety, and enforcement risk.", "ar": "قد تتأخر الحركة أو تُرفض أو يُعاد توجيهها أو تتعرض لمخاطر الممتلكات والسلامة والمخالفة."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "Oman transport ministry services and Royal Oman Police where applicable", "ar": "خدمات وزارة النقل في عُمان وشرطة عُمان السلطانية حسب الحالة"},
+        "reason": {"en": "Permit-route interaction and detailed road limits are not yet normalized.", "ar": "لم يتم بعد تحويل العلاقة بين مسارات التصاريح وحدود الطرق التفصيلية إلى بيانات تنفيذية."},
+        "sourceRoute": "official Oman transport and police permit services"
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-OMAN-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-08-20T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "No unconditional no-escort or permit conclusion."}
+    },
+    {
+      "ruleId": "CR-OM-BROKER-VERIFY-001",
+      "countryCode": "OM",
+      "jurisdiction": {"en": "Oman", "ar": "سلطنة عُمان"},
+      "stage": "provider_verification",
+      "category": "broker_or_provider",
+      "status": "verified_partial",
+      "trigger": {"customsBrokerRequired": true},
+      "requiredInputs": ["legal_entity", "customs_clearance_license", "license_validity", "approved_customs_points", "bayan_user_or_broker_evidence", "representative_authorization"],
+      "outcome": {
+        "decision": "confirmation_required",
+        "message": {"en": "Customs-clearance provider validity and customs-point coverage must be verified before appointment.", "ar": "يجب التحقق من صلاحية مقدم خدمات التخليص الجمركي ونطاق النقاط الجمركية قبل التعيين."},
+        "nextAction": {"en": "Verify license validity, Bayan evidence, authorized representatives, and coverage for the selected customs point.", "ar": "تحقق من صلاحية الترخيص وإثباتات بيان والممثلين المعتمدين والتغطية للنقطة الجمركية المختارة."},
+        "impactIfNotConfirmed": {"en": "The provider may not be authorized for the required customs point or activity.", "ar": "قد لا يكون مقدم الخدمة مخولًا للنقطة الجمركية أو النشاط المطلوب."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "Oman Customs official clearance-company and licensing services", "ar": "خدمات شركات التخليص والترخيص الرسمية لدى جمارك عُمان"},
+        "reason": {"en": "License validity and customs-point coverage are time-sensitive.", "ar": "صلاحية الترخيص ونطاق النقاط الجمركية متغيران بمرور الوقت."},
+        "sourceRoute": "official Oman Customs provider information"
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-OMAN-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-09-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Manual official verification until supported integration exists."}
+    },
+    {
+      "ruleId": "CR-OM-POST-ACCEPTANCE-001",
+      "countryCode": "OM",
+      "jurisdiction": {"en": "Oman", "ar": "سلطنة عُمان"},
+      "stage": "pre_import",
+      "category": "postal_or_courier",
+      "status": "research_seed",
+      "trigger": {"mode": ["postal", "courier"]},
+      "requiredInputs": ["product_identity", "composition", "service", "customs_declaration_requirement", "packaging_quality", "dangerous_or_prohibited_indicator", "origin_country", "destination_country"],
+      "outcome": {
+        "decision": "confirmation_required",
+        "message": {"en": "Postal or express acceptance depends on the current provider, service, destination, packaging, and cargo conditions.", "ar": "يعتمد قبول الشحنة البريدية أو السريعة على مقدم الخدمة والخدمة والوجهة والتغليف وشروط البضاعة الحالية."},
+        "nextAction": {"en": "Run cargo pre-screen and confirm current prohibited, dangerous, packaging, customs-declaration, weight, and dimension conditions with the provider.", "ar": "نفّذ الفحص المبدئي للبضاعة وأكد شروط الممنوعات والخطورة والتغليف والإقرار الجمركي والأوزان والأبعاد الحالية مع مقدم الخدمة."},
+        "impactIfNotConfirmed": {"en": "The shipment may be refused, returned, delayed, or require additional declarations.", "ar": "قد تُرفض الشحنة أو تُعاد أو تتأخر أو تحتاج إقرارات إضافية."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "Selected Oman postal or express provider", "ar": "مقدم الخدمة البريدية أو السريعة المختار في عُمان"},
+        "reason": {"en": "Provider and destination conditions may change and are service-specific.", "ar": "قد تتغير شروط مقدم الخدمة والوجهة وهي مرتبطة بالخدمة المحددة."},
+        "sourceRoute": "official provider service and prohibited-items source"
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-OMAN-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-09-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "No blanket provider acceptance."}
+    }
+  ]
+}
