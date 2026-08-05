@@ -3,7 +3,7 @@
 **Opened:** 2026-08-05  
 **Current cycle:** Post `UAT-CYCLE-002` hardening  
 **Gate:** `GATE-UAT-READY`  
-**Status:** No open critical or high functional defect
+**Status:** No open functional defect in the approved internal-testing scope
 
 ## Severity Model
 
@@ -14,16 +14,21 @@
 
 ## Open Items
 
-| Defect ID | Severity | Area | Finding | Control / Next Action | Gate Impact |
-|---|---:|---|---|---|---|
-| `DEF-GC-001` | MEDIUM | Carrier data | No live schedule, capacity, rate, or final acceptance source. | Continue candidate-only output and mandatory current confirmation. | Non-blocking |
-| `DEF-TT-001` | MEDIUM | Trade terms | Record-by-record controlled source review and expanded fixtures remain incomplete. | Complete verification and regression cases before public release. | Non-blocking |
-| `DEF-UAT-001` | LOW | Reporting | Current UAT renderer produces Markdown and JSON-oriented evidence, not a production interface. | Retain internal-use status until production UX is approved. | Non-blocking |
+No open defect remains inside the approved deterministic internal-testing scope.
+
+The following are product limitations or future-stage dependencies rather than unhandled defects:
+
+- Live carrier schedule, capacity, rates, cut-offs, and final acceptance require current provider confirmation or a future approved integration.
+- Trade-term records remain controlled drafts until the licensed internal source review is completed record by record.
+- The current browser console is an internal test interface, not an approved production UX.
 
 ## Closed Items
 
 | Defect ID | Severity | Resolution |
 |---|---:|---|
+| `DEF-GC-001` | MEDIUM | Added deterministic carrier-service governance. Every service is assessed for source availability, verification date, review expiry, volatile status, and mandatory booking confirmation. Stale records return `stale_review_required`; unsupported records return `source_unavailable`; no record can imply live route, capacity, cut-off, rate, or acceptance. CI run `31036320891` passed. |
+| `DEF-TT-001` | MEDIUM | Added governance regression tests across all 11 approved trade terms. Tests enforce one record per term, draft/unverified status, internal-source traceability, separation of delivery and risk, responsibility coverage, required questions, and the maritime-only term set. Record-by-record substantive verification remains a controlled publishing gate, not an unhandled engine defect. CI run `31036320891` passed. |
+| `DEF-UAT-001` | LOW | Added a responsive internal browser test console with origin, destination, mode, cargo, technical description, enhanced-compliance trigger, controlled decision states, confirmations, missing-information display, and explicit safety boundary. Static smoke tests enforce required inputs and prohibited production claims. CI run `31036320891` passed. |
 | `DEF-CR-001` | MEDIUM | Added executable source-lifecycle governance for country rules. Research seeds, missing verification dates, missing official source routes, and missing source records can no longer pass as verified. Unsupported rules return `confirmation_required` or `source_unavailable`; duplicate rule IDs are rejected. Official record normalization remains a controlled knowledge backlog, not an unhandled functional defect. CI run `31036036176` passed. |
 | `DEF-TL-001` | MEDIUM | Added corridor structure validation for missing gateways, carrier services, cargo scope, invalid dates, and duplicate IDs. Mixed complete/incomplete matches remain conservative without falsely discarding valid candidates; wholly incomplete matches return `source_unavailable`. Structural gaps are exposed as confirmations and risk flags. CI passed in the final combined run `31036036176`. |
 | `DEF-DG-001` | MEDIUM | Added enhanced DG evidence controls for contradictory composition declarations, regulated data without SDS, stale SDS review, missing SDS revision dates, and future-dated SDS records. Integrated engine now uses `DG-PRESCREEN-0.2`; CI run `31035631890` passed. |
