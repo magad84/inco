@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inco.local/schemas/trade-term-rule.schema.json",
+  "title": "INCO Trade-Term Rule",
+  "description": "Versioned rule record for deterministic review of a trade term.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "rule_id",
+    "term_code",
+    "rule_version",
+    "status",
+    "mode_group",
+    "named_point_role",
+    "delivery",
+    "risk_transfer",
+    "responsibilities",
+    "strengths",
+    "common_risks",
+    "alternative_triggers",
+    "source_ids",
+    "verification_status"
+  ],
+  "properties": {
+    "rule_id": {
+      "type": "string",
+      "pattern": "^TERM-[A-Z]{3}-[0-9]{3}$"
+    },
+    "term_code": {
+      "type": "string",
+      "enum": ["EXW", "FCA", "CPT", "CIP", "DAP", "DPU", "DDP", "FAS", "FOB", "CFR", "CIF"]
+    },
+    "rule_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "approved", "review_required", "retired"]
+    },
+    "mode_group": {
+      "type": "string",
+      "enum": ["any_or_multimodal", "sea_or_inland_waterway_only"]
+    },
+    "named_point_role": {
+      "type": "string",
+      "enum": ["delivery_point", "cost_destination", "shipment_port", "destination_port", "delivery_and_cost_destination"]
+    },
+    "delivery": {
+      "$ref": "#/$defs/deliveryRule"
+    },
+    "risk_transfer": {
+      "$ref": "#/$defs/riskRule"
+    },
+    "responsibilities": {
+      "$ref": "#/$defs/responsibilityMap"
+    },
+    "strengths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seller", "buyer"],
+      "properties": {
+        "seller": {"type": "array", "items": {"type": "string"}},
+        "buyer": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "common_risks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/riskItem"
+      }
+    },
+    "alternative_triggers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/alternativeTrigger"
+      }
+    },
+    "required_questions": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "source_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "effective_from": {
+      "type": ["string", "null"],
+      "format": "date",
+      "default": null
+    },
+    "last_verified": {
+      "type": ["string", "null"],
+      "format": "date",
+      "default": null
+    },
+    "next_review": {
+      "type": ["string", "null"],
+      "format": "date",
+      "default": null
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": [
+        "VERIFIED_CURRENT",
+        "VERIFIED_WITH_LIMITATIONS",
+        "OFFICIAL_SOURCE_REQUIRES_INTERPRETATION",
+        "STALE_REVIEW_REQUIRED",
+        "UNVERIFIED"
+      ]
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "default": null
+    }
+  },
+  "$defs": {
+    "deliveryRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_key", "location_stage", "seller_unloading_obligation"],
+      "properties": {
+        "event_key": {"type": "string"},
+        "location_stage": {
+          "type": "string",
+          "enum": [
+            "seller_named_place",
+            "carrier_handover_named_place",
+            "first_carrier_handover",
+            "destination_ready_for_unloading",
+            "destination_after_unloading",
+            "alongside_vessel_shipment_port",
+            "on_board_vessel_shipment_port"
+          ]
+        },
+        "seller_unloading_obligation": {
+          "type": "string",
+          "enum": ["yes", "no", "depends_on_named_point", "separate_agreement_required"]
+        },
+        "seller_loading_obligation": {
+          "type": "string",
+          "enum": ["yes", "no", "depends_on_named_point", "depends_on_delivery_variant", "separate_agreement_required"]
+        }
+      }
+    },
+    "riskRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_key", "same_as_delivery_event", "destination_risk_retained_by_seller"],
+      "properties": {
+        "event_key": {"type": "string"},
+        "same_as_delivery_event": {"type": "boolean"},
+        "destination_risk_retained_by_seller": {"type": "boolean"},
+        "warning_keys": {
+          "type": "array",
+          "items": {"type": "string"},
+          "default": []
+        }
+      }
+    },
+    "responsibilityMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "packaging",
+        "loading_at_seller",
+        "pre_carriage",
+        "export_clearance",
+        "origin_handling",
+        "main_carriage",
+        "cargo_insurance",
+        "destination_handling",
+        "unloading_at_destination",
+        "import_clearance",
+        "import_duties_and_taxes",
+        "final_delivery"
+      ],
+      "properties": {
+        "packaging": {"$ref": "#/$defs/responsibilityValue"},
+        "loading_at_seller": {"$ref": "#/$defs/responsibilityValue"},
+        "pre_carriage": {"$ref": "#/$defs/responsibilityValue"},
+        "export_clearance": {"$ref": "#/$defs/responsibilityValue"},
+        "origin_handling": {"$ref": "#/$defs/responsibilityValue"},
+        "main_carriage": {"$ref": "#/$defs/responsibilityValue"},
+        "cargo_insurance": {"$ref": "#/$defs/responsibilityValue"},
+        "destination_handling": {"$ref": "#/$defs/responsibilityValue"},
+        "unloading_at_destination": {"$ref": "#/$defs/responsibilityValue"},
+        "import_clearance": {"$ref": "#/$defs/responsibilityValue"},
+        "import_duties_and_taxes": {"$ref": "#/$defs/responsibilityValue"},
+        "final_delivery": {"$ref": "#/$defs/responsibilityValue"}
+      }
+    },
+    "responsibilityValue": {
+      "type": "string",
+      "enum": [
+        "SELLER",
+        "BUYER",
+        "SELLER_CONTRACTS_BUYER_BEARING_RISK",
+        "SELLER_ARRANGES_MINIMUM_REQUIRED_INSURANCE",
+        "SELLER_ARRANGES_BROADER_REQUIRED_INSURANCE",
+        "NO_DEFAULT_INSURANCE_OBLIGATION",
+        "DEPENDS_ON_NAMED_POINT",
+        "DEPENDS_ON_CARRIAGE_CONTRACT",
+        "DEPENDS_ON_DELIVERY_VARIANT",
+        "SEPARATE_AGREEMENT_REQUIRED",
+        "UNKNOWN"
+      ]
+    },
+    "riskItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["risk_key", "default_severity", "affected_party", "trigger_key"],
+      "properties": {
+        "risk_key": {"type": "string"},
+        "default_severity": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low", "information"]
+        },
+        "affected_party": {
+          "type": "string",
+          "enum": ["seller", "buyer", "both", "depends"]
+        },
+        "trigger_key": {"type": "string"}
+      }
+    },
+    "alternativeTrigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["alternative_term", "trigger_key", "reason_key"],
+      "properties": {
+        "alternative_term": {
+          "type": "string",
+          "enum": ["EXW", "FCA", "CPT", "CIP", "DAP", "DPU", "DDP", "FAS", "FOB", "CFR", "CIF"]
+        },
+        "trigger_key": {"type": "string"},
+        "reason_key": {"type": "string"}
+      }
+    }
+  }
+}
