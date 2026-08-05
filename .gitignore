@@ -1,0 +1,43 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dependencies
+node_modules/
+.venv/
+venv/
+
+# Build and cache
+.next/
+dist/
+build/
+coverage/
+.cache/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# Logs
+*.log
+logs/
+
+# Local databases and user data
+*.sqlite
+*.sqlite3
+*.db
+uploads/
+private/
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
