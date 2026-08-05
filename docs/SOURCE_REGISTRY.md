@@ -1,6 +1,6 @@
 # INCO Verified Source Registry
 
-**Version:** 0.1  
+**Version:** 0.2  
 **Date:** 2026-08-05  
 **Status:** Seed registry for WP-02  
 **Scope:** UAE, Saudi Arabia, Egypt, Oman, international transport safety, carrier rules, cargo calculations, and container planning
@@ -32,6 +32,8 @@
 | UAE-RTA-001 | Dubai RTA | Permit for large and special load vehicles | V2 | Monthly | https://rta.ae/wps/portal/rta/ae/home/rta-services/service-details?serviceId=329 | Seed thresholds include special load indicators for weight, width, height, and length. Confirm at transaction time. |
 | UAE-RTA-002 | Dubai RTA | Heavy vehicles in banned times and roads | V2 | Monthly | https://www.rta.ae/wps/portal/rta/ae/home/rta-services/service-details?serviceId=332 | Use for permit trigger, documents, validity, and current route/time controls. |
 | UAE-RTA-003 | Dubai RTA | Truck movement restriction notices | V4 | Daily when relevant | https://rta.ae/wps/portal/rta/ae/home/news-and-media/all-news/NewsDetails/expanding-truck-movement-restrictions-to-enhance-road-safety-levels | Operational notices can temporarily change the normal rule; do not hard-code. |
+| UAE-AD-ROAD-001 | Abu Dhabi Mobility | Restricted movement hours for heavy vehicles in Abu Dhabi city | V4 | Monthly and before movement | https://admobility.gov.ae/en/news/update-to-restricted-movement | Official notice effective 27 January 2025. Store time windows as effective-dated operational rules and recheck before use. |
+| UAE-AD-ROAD-002 | Abu Dhabi Mobility | Commercial freight transport permits and Asateel platform | V2 | Quarterly | https://admobility.gov.ae/en/digital-services/commercial-transport | Seed source for operator, vehicle, tracking-device, and commercial-transport permit requirements in Abu Dhabi Emirate. |
 | UAE-POST-001 | Emirates Post | Dangerous, prohibited, and restricted postal items | V3 | Monthly | https://www.emiratespost.ae/dangerous-goods | Product-level pre-screen source. Acceptance still depends on service and destination. |
 | UAE-CUS-001 | Federal customs authority | Unified customs law and customs-broker framework | V2 | Quarterly | https://icp.gov.ae/en/legal-affairs/ | Establishes that customs brokers are licensed and subject to local administration conditions. |
 | UAE-CUS-002 | Federal customs authority | Unified customs procedures resources | V2 | Quarterly | https://icp.gov.ae/customs-affair/ | Use as the official gateway for current UAE customs procedures and service fees. |
@@ -49,6 +51,8 @@
 | KSA-ZATCA-003 | ZATCA | Authorize customs broker through Fasah | V2 | Quarterly | https://zatca.gov.sa/en/eServices/Pages/eServices-235.aspx | Shows importer/exporter authorization requires broker license number and Fasah account. |
 | KSA-ZATCA-004 | ZATCA | Customs consulting license | V2 | Quarterly | https://zatca.gov.sa/ar/eServices/Pages/eServices-228.aspx | Distinguish customs consulting from customs clearance operations. |
 | KSA-DG-001 | Saudi national platform | Dangerous-goods declaration service | V2 | Quarterly | https://my.gov.sa/en/services/563047 | Research required to map exact mode, authority, and transaction conditions. |
+| KSA-POST-001 | Saudi Post / SPL | Items prohibited from entering Saudi Arabia | V3 | Monthly | https://splonline.com.sa/en/items-prohibited/ | Destination-country prohibition source. Some categories depend on law, customs, destination, or special transport capability. |
+| KSA-POST-002 | Saudi Post / SPL | Postal dangerous and prohibited item categories | V3 | Monthly | https://splonline.com.sa/en/prohibited-items/ | Includes carrier-level indicators such as toxic, infectious, flammable, compressed-gas, explosive, oxidizing, magnetic, engine, dry-ice, and lithium-battery categories. Treat as postal-service pre-screen and reconfirm service acceptance. |
 
 ## 5. Egypt Sources
 
@@ -73,7 +77,8 @@
 | OMN-CUS-002 | Oman Customs | Customs-broker user registration in Bayan | V2 | Quarterly | https://www.customs.gov.om/en/business-services/procedural_services/users-registration-in-bayan-system/ | Requires customs-clearance course evidence for broker users. |
 | OMN-CUS-003 | Oman Customs | Customs-broker transfer and authorization process | V2 | Quarterly | https://www.customs.gov.om/en/business-services/procedural_services/request-of-customs-broker-authorization/ | Useful for employment/status validation; not a public license-status API. |
 | OMN-CUS-004 | Oman Customs | Official permit directory | V2 | Quarterly | https://www.customs.gov.om/en/business-services/permit/ | Use as authoritative permit-discovery gateway. |
-| OMN-POST-001 | Oman Post | Postal prohibitions and restrictions | V3 | Monthly | Pending verified official public source | Research gap. Do not infer acceptance from general postal standards alone. |
+| OMN-POST-001 | Oman Post | Postal and express shipment terms, unacceptable shipments, and prohibited items | V3 | Monthly | https://www.omanpost.om/ar/terms-and-conditions | Official source showing customs-declaration, safe-packaging, dangerous/prohibited-substance, and general prohibited-item conditions across postal products. |
+| OMN-POST-002 | Oman Post | Frequently asked questions and prohibited shipment examples | V3 | Monthly | https://www.omanpost.om/ar/faq | Use as a current provider guidance source; service-specific confirmation and destination-country checks remain required. |
 
 ## 7. Carrier and Calculation Sources
 
@@ -100,9 +105,9 @@
 ## 9. Research Gaps Blocking Executable Rules
 
 1. Egypt official exceptional-load, road, bridge, and tunnel permit sources.
-2. Official postal prohibited/restricted-item sources for Saudi Arabia, Egypt, and Oman.
-3. Detailed Saudi exceptional-load permit workflow and thresholds from the active authority site.
-4. UAE emirate-by-emirate abnormal-load and truck-restriction rules beyond Dubai.
+2. Egypt Post official prohibited/restricted-item and service-limit sources.
+3. Detailed Saudi exceptional-load permit workflow and complete thresholds from the active authority route.
+4. UAE abnormal-load permit and route rules for Abu Dhabi, Sharjah, and other emirates beyond the current Dubai seed; Abu Dhabi truck-time and commercial-permit sources are now seeded.
 5. Country-specific airline and ocean-carrier local conditions for the four launch countries.
 6. Official road axle-load tables and bridge-route approval processes for all four countries.
 7. Dangerous-goods national variations and competent-authority contacts by mode.
