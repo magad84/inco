@@ -6,16 +6,20 @@ on:
       - "packages/domain-core/**"
       - "fixtures/cargo-calculator/**"
       - "knowledge/carrier-services/**"
+      - "knowledge/gateways/**"
       - "knowledge/source-records/**"
       - "schemas/carrier-service.schema.json"
+      - "schemas/transport-gateway.schema.json"
       - ".github/workflows/domain-core.yml"
   pull_request:
     paths:
       - "packages/domain-core/**"
       - "fixtures/cargo-calculator/**"
       - "knowledge/carrier-services/**"
+      - "knowledge/gateways/**"
       - "knowledge/source-records/**"
       - "schemas/carrier-service.schema.json"
+      - "schemas/transport-gateway.schema.json"
       - ".github/workflows/domain-core.yml"
 
 permissions:
