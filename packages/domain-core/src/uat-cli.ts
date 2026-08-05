@@ -9,21 +9,38 @@ import type { DestinationCountryRule } from "./country-requirements-evaluator.js
 import type { TradeLaneCorridor } from "./trade-lane-evaluator.js";
 
 const repositoryRoot = resolve(process.cwd(), "../..");
-const fixturePath = resolve(repositoryRoot, "fixtures/e2e/cases.v0.1.json");
 const corridorPath = resolve(
   repositoryRoot,
   "knowledge/trade-lanes/launch-corridors.v0.1.json",
 );
 
-const fixture = JSON.parse(readFileSync(fixturePath, "utf8")) as {
-  cases: InternalTestScenario[];
-};
+function readFixture(fileName: string): InternalTestScenario[] {
+  return (
+    JSON.parse(
+      readFileSync(resolve(repositoryRoot, "fixtures/e2e", fileName), "utf8"),
+    ) as { cases: InternalTestScenario[] }
+  ).cases;
+}
+
+const waveIndex = process.argv.indexOf("--wave");
+const requestedWave = waveIndex >= 0 ? process.argv[waveIndex + 1] : "first";
+if (!requestedWave || !["first", "second", "all"].includes(requestedWave)) {
+  throw new Error("--wave must be first, second, or all");
+}
+
+const scenarios =
+  requestedWave === "first"
+    ? readFixture("cases.v0.1.json")
+    : requestedWave === "second"
+      ? readFixture("cases.v0.2.json")
+      : [...readFixture("cases.v0.1.json"), ...readFixture("cases.v0.2.json")];
+
 const corridorData = JSON.parse(readFileSync(corridorPath, "utf8")) as {
   corridors: TradeLaneCorridor[];
 };
 
 const ruleFileNames = [
-  ...new Set(fixture.cases.map((scenario) => scenario.countryRuleFile)),
+  ...new Set(scenarios.map((scenario) => scenario.countryRuleFile)),
 ];
 const rulesByFile = Object.fromEntries(
   ruleFileNames.map((fileName) => {
@@ -38,11 +55,17 @@ const rulesByFile = Object.fromEntries(
 );
 
 const now = new Date().toISOString();
+const cycleId =
+  requestedWave === "first"
+    ? "UAT-CYCLE-001-CLI"
+    : requestedWave === "second"
+      ? "UAT-CYCLE-002-CLI"
+      : "UAT-CYCLE-ALL-CLI";
 const cycle = executeInternalTestCycle(
-  fixture.cases,
+  scenarios,
   corridorData.corridors,
   rulesByFile,
-  "UAT-CYCLE-CLI",
+  cycleId,
   now,
 );
 
