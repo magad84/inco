@@ -1,0 +1,322 @@
+{
+  "fixture_version": "0.1",
+  "calculator_version_target": "0.1.0",
+  "valid_cases": [
+    {
+      "case_id": "CAL-VALID-001",
+      "description": "One hundred cartons in centimeters using a 5000 divisor",
+      "input": {
+        "calculation_id": "CAL-VALID-001",
+        "locale": "en",
+        "packages": [
+          {
+            "package_type_id": "CARTON-A",
+            "description": "Standard carton",
+            "length": 60,
+            "width": 40,
+            "height": 30,
+            "dimension_unit": "cm",
+            "quantity": 100,
+            "gross_weight_per_package": 12,
+            "weight_unit": "kg"
+          }
+        ],
+        "carrier_rule": {
+          "provider": "TEST_PROVIDER",
+          "service": "TEST_5000",
+          "market_or_route": "TEST_ONLY",
+          "divisor_cm3_per_kg": 5000,
+          "calculation_basis": "per_piece",
+          "higher_of_actual_and_volumetric": true,
+          "rounding_increment_kg": null,
+          "minimum_chargeable_weight_kg": null,
+          "source_id": "TEST-SOURCE-5000",
+          "effective_from": "2026-01-01",
+          "effective_to": null,
+          "last_verified": "2026-08-05",
+          "verification_status": "VERIFIED_CURRENT"
+        }
+      },
+      "expected": {
+        "status": "SUCCESS",
+        "package_count": 100,
+        "package_type_count": 1,
+        "cbm_per_package": 0.072,
+        "total_cbm": 7.2,
+        "total_gross_weight_kg": 1200,
+        "volumetric_weight_per_package_kg": 14.4,
+        "total_volumetric_weight_kg": 1440,
+        "total_chargeable_weight_kg": 1440
+      }
+    },
+    {
+      "case_id": "CAL-VALID-002",
+      "description": "Same cartons using a service-specific 4000 divisor",
+      "input": {
+        "calculation_id": "CAL-VALID-002",
+        "locale": "en",
+        "packages": [
+          {
+            "package_type_id": "CARTON-A",
+            "length": 60,
+            "width": 40,
+            "height": 30,
+            "dimension_unit": "cm",
+            "quantity": 100,
+            "gross_weight_per_package": 12,
+            "weight_unit": "kg"
+          }
+        ],
+        "carrier_rule": {
+          "provider": "TEST_PROVIDER",
+          "service": "TEST_4000",
+          "market_or_route": "TEST_ONLY",
+          "divisor_cm3_per_kg": 4000,
+          "calculation_basis": "per_piece",
+          "higher_of_actual_and_volumetric": true,
+          "rounding_increment_kg": null,
+          "minimum_chargeable_weight_kg": null,
+          "source_id": "TEST-SOURCE-4000",
+          "effective_from": "2026-01-01",
+          "effective_to": null,
+          "last_verified": "2026-08-05",
+          "verification_status": "VERIFIED_CURRENT"
+        }
+      },
+      "expected": {
+        "status": "SUCCESS",
+        "package_count": 100,
+        "package_type_count": 1,
+        "total_cbm": 7.2,
+        "total_gross_weight_kg": 1200,
+        "volumetric_weight_per_package_kg": 18,
+        "total_volumetric_weight_kg": 1800,
+        "total_chargeable_weight_kg": 1800
+      }
+    },
+    {
+      "case_id": "CAL-VALID-003",
+      "description": "Millimeter conversion without carrier rule",
+      "input": {
+        "calculation_id": "CAL-VALID-003",
+        "locale": "ar",
+        "packages": [
+          {
+            "package_type_id": "CARTON-MM",
+            "length": 600,
+            "width": 400,
+            "height": 300,
+            "dimension_unit": "mm",
+            "quantity": 10,
+            "gross_weight_per_package": 12,
+            "weight_unit": "kg"
+          }
+        ],
+        "carrier_rule": null,
+        "requested_outputs": ["cbm", "gross_weight"]
+      },
+      "expected": {
+        "status": "SUCCESS",
+        "normalized_dimensions_mm": {
+          "length": 600,
+          "width": 400,
+          "height": 300
+        },
+        "cbm_per_package": 0.072,
+        "total_cbm": 0.72,
+        "total_gross_weight_kg": 120,
+        "total_volumetric_weight_kg": null,
+        "total_chargeable_weight_kg": null
+      }
+    },
+    {
+      "case_id": "CAL-VALID-004",
+      "description": "Imperial dimension and weight conversion",
+      "input": {
+        "calculation_id": "CAL-VALID-004",
+        "locale": "en",
+        "packages": [
+          {
+            "package_type_id": "CARTON-IN",
+            "length": 24,
+            "width": 16,
+            "height": 12,
+            "dimension_unit": "in",
+            "quantity": 1,
+            "gross_weight_per_package": 26.4554714622,
+            "weight_unit": "lb"
+          }
+        ],
+        "carrier_rule": {
+          "provider": "TEST_PROVIDER",
+          "service": "TEST_5000",
+          "market_or_route": "TEST_ONLY",
+          "divisor_cm3_per_kg": 5000,
+          "calculation_basis": "per_piece",
+          "higher_of_actual_and_volumetric": true,
+          "rounding_increment_kg": null,
+          "minimum_chargeable_weight_kg": null,
+          "source_id": "TEST-SOURCE-5000",
+          "effective_from": "2026-01-01",
+          "effective_to": null,
+          "last_verified": "2026-08-05",
+          "verification_status": "VERIFIED_CURRENT"
+        }
+      },
+      "expected": {
+        "status": "SUCCESS",
+        "normalized_dimensions_mm": {
+          "length": 609.6,
+          "width": 406.4,
+          "height": 304.8
+        },
+        "gross_weight_per_package_kg": 12,
+        "cbm_per_package": 0.075511590912,
+        "volumetric_weight_per_package_kg": 15.1023181824,
+        "total_chargeable_weight_kg": 15.1023181824
+      },
+      "tolerance": 0.000000001
+    },
+    {
+      "case_id": "CAL-VALID-005",
+      "description": "Multiple package types are calculated separately and summed",
+      "input": {
+        "calculation_id": "CAL-VALID-005",
+        "locale": "en",
+        "packages": [
+          {
+            "package_type_id": "A",
+            "length": 50,
+            "width": 40,
+            "height": 30,
+            "dimension_unit": "cm",
+            "quantity": 10,
+            "gross_weight_per_package": 8,
+            "weight_unit": "kg"
+          },
+          {
+            "package_type_id": "B",
+            "length": 100,
+            "width": 50,
+            "height": 40,
+            "dimension_unit": "cm",
+            "quantity": 5,
+            "gross_weight_per_package": 20,
+            "weight_unit": "kg"
+          }
+        ],
+        "carrier_rule": null,
+        "requested_outputs": ["cbm", "gross_weight"]
+      },
+      "expected": {
+        "status": "SUCCESS",
+        "package_count": 15,
+        "package_type_count": 2,
+        "total_cbm": 1.6,
+        "total_gross_weight_kg": 180
+      }
+    }
+  ],
+  "invalid_cases": [
+    {
+      "case_id": "CAL-INVALID-001",
+      "description": "Missing dimension unit",
+      "input": {
+        "calculation_id": "CAL-INVALID-001",
+        "packages": [
+          {
+            "package_type_id": "A",
+            "length": 60,
+            "width": 40,
+            "height": 30,
+            "quantity": 1,
+            "gross_weight_per_package": 12,
+            "weight_unit": "kg"
+          }
+        ]
+      },
+      "expected_error": {
+        "code": "VALIDATION_REQUIRED_FIELD",
+        "field_path": "packages[0].dimension_unit"
+      }
+    },
+    {
+      "case_id": "CAL-INVALID-002",
+      "description": "Zero dimension",
+      "input": {
+        "calculation_id": "CAL-INVALID-002",
+        "packages": [
+          {
+            "package_type_id": "A",
+            "length": 0,
+            "width": 40,
+            "height": 30,
+            "dimension_unit": "cm",
+            "quantity": 1,
+            "gross_weight_per_package": 12,
+            "weight_unit": "kg"
+          }
+        ]
+      },
+      "expected_error": {
+        "code": "VALIDATION_POSITIVE_NUMBER_REQUIRED",
+        "field_path": "packages[0].length"
+      }
+    },
+    {
+      "case_id": "CAL-INVALID-003",
+      "description": "Quantity is not a positive integer",
+      "input": {
+        "calculation_id": "CAL-INVALID-003",
+        "packages": [
+          {
+            "package_type_id": "A",
+            "length": 60,
+            "width": 40,
+            "height": 30,
+            "dimension_unit": "cm",
+            "quantity": 0,
+            "gross_weight_per_package": 12,
+            "weight_unit": "kg"
+          }
+        ]
+      },
+      "expected_error": {
+        "code": "VALIDATION_POSITIVE_INTEGER_REQUIRED",
+        "field_path": "packages[0].quantity"
+      }
+    },
+    {
+      "case_id": "CAL-INVALID-004",
+      "description": "Stale carrier rule cannot produce a definitive commercial result",
+      "input": {
+        "calculation_id": "CAL-INVALID-004",
+        "packages": [
+          {
+            "package_type_id": "A",
+            "length": 60,
+            "width": 40,
+            "height": 30,
+            "dimension_unit": "cm",
+            "quantity": 1,
+            "gross_weight_per_package": 12,
+            "weight_unit": "kg"
+          }
+        ],
+        "carrier_rule": {
+          "provider": "TEST_PROVIDER",
+          "service": "STALE_TEST",
+          "market_or_route": "TEST_ONLY",
+          "divisor_cm3_per_kg": 5000,
+          "calculation_basis": "per_piece",
+          "higher_of_actual_and_volumetric": true,
+          "verification_status": "STALE_REVIEW_REQUIRED"
+        }
+      },
+      "expected_error": {
+        "code": "STALE_CARRIER_RULE_BLOCKED",
+        "field_path": "carrier_rule.verification_status"
+      }
+    }
+  ]
+}
