@@ -1,0 +1,90 @@
+{
+  "registryVersion": "0.1",
+  "status": "verified_partial",
+  "gateways": [
+    {
+      "gatewayId": "GATEWAY-US-POLA",
+      "gatewayType": "seaport",
+      "officialName": {"en": "Port of Los Angeles", "ar": "ميناء لوس أنجلوس"},
+      "countryCode": "US",
+      "locality": {"en": "Los Angeles", "ar": "لوس أنجلوس"},
+      "locationCodes": {"unLocode": "USLAX", "iata": null, "icao": null, "internal": null},
+      "authorities": [{"name": {"en": "Port of Los Angeles", "ar": "ميناء لوس أنجلوس"}, "role": {"en": "Port authority and landlord", "ar": "هيئة الميناء والجهة المالكة للبنية"}, "sourceIds": ["GW-US-POLA-CONTAINERS-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["ocean", "road", "rail", "multimodal"], "cargoTypes": ["general", "containerized", "breakbulk", "automotive", "bulk"], "equipment": [], "services": ["container terminals", "intermodal rail", "warehousing"]},
+      "constraints": [{"constraintId": "POLA-TERMINAL-SERVICE-CONFIRM", "category": "route", "status": "confirmation_required", "trigger": {"shipmentSpecific": true}, "outcome": {"en": "Confirm terminal assignment, carrier rotation, cut-off, live capacity and cargo acceptance before routing.", "ar": "يجب تأكيد المحطة ودوران خدمة الناقل وموعد الإغلاق والسعة الحالية وقبول البضاعة قبل اعتماد المسار."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-US-POLA-CONTAINERS-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["GW-US-POLA-CONTAINERS-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T18:05:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Port capability only; no live service or acceptance claim."}
+    },
+    {
+      "gatewayId": "GATEWAY-US-LAX",
+      "gatewayType": "cargo_airport",
+      "officialName": {"en": "Los Angeles International Airport", "ar": "مطار لوس أنجلوس الدولي"},
+      "countryCode": "US",
+      "locality": {"en": "Los Angeles", "ar": "لوس أنجلوس"},
+      "locationCodes": {"unLocode": null, "iata": "LAX", "icao": "KLAX", "internal": null},
+      "authorities": [{"name": {"en": "Los Angeles World Airports", "ar": "مطارات لوس أنجلوس العالمية"}, "role": {"en": "Airport operator", "ar": "مشغل المطار"}, "sourceIds": ["GW-US-LAX-CARGO-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["air", "road"], "cargoTypes": ["general", "postal_or_courier", "high_value", "perishable"], "equipment": [], "services": ["cargo operations indicator", "airline cargo handling"]},
+      "constraints": [{"constraintId": "LAX-AIRLINE-HANDLER-CONFIRM", "category": "cargo_acceptance", "status": "confirmation_required", "trigger": {"shipmentSpecific": true}, "outcome": {"en": "Confirm airline, handler, terminal, commodity and shipment acceptance before booking.", "ar": "يجب تأكيد شركة الطيران ووكيل المناولة والمحطة ونوع البضاعة وقبول الشحنة قبل الحجز."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-US-LAX-CARGO-2026"], "reviewBy": "2026-10-05"}],
+      "sources": ["GW-US-LAX-CARGO-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T18:05:00Z", "nextReviewAt": "2026-10-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Airport-level indicator only."}
+    },
+    {
+      "gatewayId": "GATEWAY-AU-PORT-BOTANY",
+      "gatewayType": "seaport",
+      "officialName": {"en": "Port Botany", "ar": "ميناء بوتاني"},
+      "countryCode": "AU",
+      "locality": {"en": "Sydney", "ar": "سيدني"},
+      "locationCodes": {"unLocode": "AUBTB", "iata": null, "icao": null, "internal": null},
+      "authorities": [{"name": {"en": "NSW Ports", "ar": "موانئ نيو ساوث ويلز"}, "role": {"en": "Port landlord and infrastructure manager", "ar": "مالك الميناء ومدير البنية التحتية"}, "sourceIds": ["GW-AU-PORT-BOTANY-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["ocean", "road", "rail", "multimodal"], "cargoTypes": ["general", "containerized", "reefer", "bulk_liquid", "gas"], "equipment": [], "services": ["three container terminals", "on-dock rail", "dedicated freight rail"]},
+      "constraints": [{"constraintId": "BOTANY-TERMINAL-OPERATOR-CONFIRM", "category": "route", "status": "confirmation_required", "trigger": {"shipmentSpecific": true}, "outcome": {"en": "Confirm terminal operator, carrier call, cut-off, rail or truck slot and cargo acceptance.", "ar": "يجب تأكيد مشغل المحطة ونداء الناقل وموعد الإغلاق وموعد القطار أو الشاحنة وقبول البضاعة."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-AU-PORT-BOTANY-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["GW-AU-PORT-BOTANY-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T18:05:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "NSW Ports does not directly handle cargo; terminal confirmation required."}
+    },
+    {
+      "gatewayId": "GATEWAY-AU-SYD",
+      "gatewayType": "cargo_airport",
+      "officialName": {"en": "Sydney Airport", "ar": "مطار سيدني"},
+      "countryCode": "AU",
+      "locality": {"en": "Sydney", "ar": "سيدني"},
+      "locationCodes": {"unLocode": null, "iata": "SYD", "icao": "YSSY", "internal": null},
+      "authorities": [{"name": {"en": "Sydney Airport", "ar": "مطار سيدني"}, "role": {"en": "Airport operator", "ar": "مشغل المطار"}, "sourceIds": ["GW-AU-SYD-CARGO-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["air", "road"], "cargoTypes": ["general", "postal_or_courier", "live_animals", "dangerous_goods"], "equipment": [], "services": ["cargo and ground handling contacts", "freight operations indicator"]},
+      "constraints": [{"constraintId": "SYD-HANDLER-DG-CONFIRM", "category": "dangerous_goods", "status": "confirmation_required", "trigger": {"specialCargo": true}, "outcome": {"en": "Confirm airline, handler and airport conditions for dangerous or special cargo before tender.", "ar": "يجب تأكيد شروط شركة الطيران ووكيل المناولة والمطار للبضائع الخطرة أو الخاصة قبل التسليم."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-AU-SYD-CARGO-2026"], "reviewBy": "2026-10-05"}],
+      "sources": ["GW-AU-SYD-CARGO-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T18:05:00Z", "nextReviewAt": "2026-10-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Cargo acceptance is airline and handler specific."}
+    },
+    {
+      "gatewayId": "GATEWAY-RU-SPB-MARINE",
+      "gatewayType": "seaport",
+      "officialName": {"en": "Saint Petersburg Marine Terminal", "ar": "المحطة البحرية في سانت بطرسبرغ"},
+      "countryCode": "RU",
+      "locality": {"en": "Saint Petersburg", "ar": "سانت بطرسبرغ"},
+      "locationCodes": {"unLocode": "RULED", "iata": null, "icao": null, "internal": null},
+      "authorities": [{"name": {"en": "Passenger Port of Saint Petersburg Marine Facade", "ar": "ميناء الركاب في سانت بطرسبرغ مارين فاساد"}, "role": {"en": "Terminal operator", "ar": "مشغل المحطة"}, "sourceIds": ["GW-RU-SPB-CARGO-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["ocean", "road"], "cargoTypes": ["general", "cargo_passenger"], "equipment": [], "services": ["limited cargo berth", "cargo-passenger berths"]},
+      "constraints": [{"constraintId": "RU-SPB-ENHANCED-COMPLIANCE", "category": "compliance", "status": "enhanced_compliance_required", "trigger": {"countryCode": "RU"}, "outcome": {"en": "Do not recommend or book the route until transaction-specific sanctions, counterpart, bank, vessel, cargo, end-use and transit screening is completed.", "ar": "لا يُوصى بالمسار ولا يُحجز قبل استكمال فحص العقوبات والأطراف والبنوك والسفينة والبضاعة والاستخدام النهائي ودول العبور لكل معاملة."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-RU-SPB-CARGO-2026"], "reviewBy": "2026-09-05"}],
+      "sources": ["GW-RU-SPB-CARGO-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T18:05:00Z", "nextReviewAt": "2026-09-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Limited cargo-terminal capability; enhanced compliance is mandatory."}
+    },
+    {
+      "gatewayId": "GATEWAY-RU-SVO",
+      "gatewayType": "cargo_airport",
+      "officialName": {"en": "Sheremetyevo International Airport cargo terminal", "ar": "محطة الشحن بمطار شيريميتيفو الدولي"},
+      "countryCode": "RU",
+      "locality": {"en": "Moscow", "ar": "موسكو"},
+      "locationCodes": {"unLocode": null, "iata": "SVO", "icao": "UUEE", "internal": null},
+      "authorities": [{"name": {"en": "Moscow Cargo", "ar": "موسكو كارجو"}, "role": {"en": "Cargo terminal and handling operator", "ar": "مشغل محطة الشحن والمناولة"}, "sourceIds": ["GW-RU-SVO-CARGO-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["air", "road"], "cargoTypes": ["general", "postal_or_courier", "special_cargo"], "equipment": [], "services": ["cargo terminal", "special-category handling coordination"]},
+      "constraints": [{"constraintId": "RU-SVO-ENHANCED-COMPLIANCE", "category": "compliance", "status": "enhanced_compliance_required", "trigger": {"countryCode": "RU"}, "outcome": {"en": "Confirm airline, terminal, commodity, route and all transaction-specific compliance controls before any recommendation.", "ar": "يجب تأكيد شركة الطيران والمحطة ونوع البضاعة والمسار وجميع ضوابط الامتثال الخاصة بالمعاملة قبل أي توصية."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-RU-SVO-CARGO-2026"], "reviewBy": "2026-09-05"}],
+      "sources": ["GW-RU-SVO-CARGO-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T18:05:00Z", "nextReviewAt": "2026-09-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Terminal capability does not establish route legality or carrier acceptance."}
+    }
+  ]
+}
