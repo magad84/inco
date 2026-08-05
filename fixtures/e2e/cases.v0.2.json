@@ -1,0 +1,140 @@
+{
+  "datasetVersion": "0.2",
+  "policy": "Second-wave internal scenarios validate conditional routing, special-cargo evidence, and enhanced-compliance overrides without implying live booking, carrier acceptance, or authority approval.",
+  "cases": [
+    {
+      "caseId": "E2E-004",
+      "title": "China to Oman general air cargo",
+      "countryRuleFile": "oman.v0.1.json",
+      "input": {
+        "lane": {
+          "originCountry": "CN",
+          "destinationCountry": "OM",
+          "mode": "air_cargo",
+          "cargoCategories": ["general"],
+          "requestedOriginGatewayId": "GATEWAY-CN-PVG",
+          "requestedDestinationGatewayId": "GATEWAY-OM-MCT-AIR",
+          "transactionDate": "2026-08-05"
+        },
+        "cargo": {
+          "product": {
+            "commercialName": "Electronic accessories without batteries",
+            "technicalDescription": "Finished solid electronic accessories containing no batteries, liquids, gases, magnets, aerosols, fuel, or chemical mixtures",
+            "compositionKnown": true,
+            "physicalState": "solid",
+            "hazardIndicators": [],
+            "specialCargoIndicators": []
+          },
+          "shipment": {
+            "originCountry": "CN",
+            "destinationCountry": "OM",
+            "mode": "air",
+            "plannedShipmentDate": "2026-08-05"
+          }
+        },
+        "destinationFacts": {
+          "transactionRole": "import",
+          "transportMode": "air",
+          "gateway": "Muscat International Airport",
+          "cargoCategory": "general"
+        }
+      },
+      "expected": {
+        "decisionState": "confirmation_required",
+        "requiredConfirmationIncludes": ["actual_route_and_transit", "airline_capacity", "cargo_acceptance"],
+        "mustHaveSources": true
+      }
+    },
+    {
+      "caseId": "E2E-005",
+      "title": "Italy to Oman oversized project cargo",
+      "countryRuleFile": "oman.v0.1.json",
+      "input": {
+        "lane": {
+          "originCountry": "IT",
+          "destinationCountry": "OM",
+          "mode": "ocean",
+          "cargoCategories": ["project_cargo", "oversized"],
+          "requestedDestinationGatewayId": "GATEWAY-OM-SOHAR-PORT",
+          "transactionDate": "2026-08-05"
+        },
+        "cargo": {
+          "product": {
+            "commercialName": "Industrial process skid",
+            "technicalDescription": "Large fabricated industrial process skid shipped as one oversized project-cargo unit",
+            "compositionKnown": true,
+            "physicalState": "article",
+            "hazardIndicators": [],
+            "specialCargoIndicators": ["oversized", "project_cargo", "heavy_lift"]
+          },
+          "package": {
+            "packageCount": 1,
+            "grossWeightKg": 42000,
+            "packagingDescription": "Seaworthy project-cargo skid"
+          },
+          "shipment": {
+            "originCountry": "IT",
+            "destinationCountry": "OM",
+            "mode": "ocean",
+            "plannedShipmentDate": "2026-08-05"
+          }
+        },
+        "destinationFacts": {
+          "transactionRole": "import",
+          "transportMode": "ocean",
+          "gateway": "Port of Sohar",
+          "specialLoadIndicator": true,
+          "cargoCategory": "project_cargo"
+        }
+      },
+      "expected": {
+        "decisionState": "blocked_information_required",
+        "requiredCargoStatus": "SPECIAL_CARGO_DATA_REQUIRED",
+        "requiredConfirmationIncludes": ["carrier_and_vessel", "lifting_plan", "road_route_and_permits"],
+        "mustHaveMissingInformation": true
+      }
+    },
+    {
+      "caseId": "E2E-006",
+      "title": "Russia-related transaction requiring enhanced compliance",
+      "countryRuleFile": "uae.v0.1.json",
+      "input": {
+        "lane": {
+          "originCountry": "RU",
+          "destinationCountry": "AE",
+          "mode": "ocean",
+          "cargoCategories": ["general"],
+          "transactionDate": "2026-08-05",
+          "enhancedComplianceTrigger": true
+        },
+        "cargo": {
+          "product": {
+            "commercialName": "Industrial spare parts",
+            "technicalDescription": "Finished solid industrial spare parts with no declared dangerous-goods indicators",
+            "compositionKnown": true,
+            "physicalState": "solid",
+            "hazardIndicators": [],
+            "specialCargoIndicators": []
+          },
+          "shipment": {
+            "originCountry": "RU",
+            "destinationCountry": "AE",
+            "mode": "ocean",
+            "plannedShipmentDate": "2026-08-05"
+          }
+        },
+        "destinationFacts": {
+          "transactionRole": "import",
+          "emirate": "Dubai",
+          "gateway_or_city": "Dubai",
+          "transaction_role": "import",
+          "transport_mode": "ocean"
+        }
+      },
+      "expected": {
+        "decisionState": "enhanced_compliance_required",
+        "requiredConfirmationIncludes": ["counterparty_screening", "beneficial_owner_screening", "bank_and_payment_route_screening", "product_and_end_use_controls"]
+      }
+    }
+  ]
+}
