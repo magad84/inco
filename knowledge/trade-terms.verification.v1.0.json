@@ -1,0 +1,27 @@
+{
+  "ledgerVersion": "1.0",
+  "sourceId": "INTERNAL-TRADE-001",
+  "reviewedAt": "2026-08-05",
+  "reviewMethod": "Record-by-record comparison of delivery, risk, carriage, insurance, export clearance, import clearance, loading, unloading, named point, and mode scope against the controlled internal reference.",
+  "publicUsePolicy": "Only original INCO wording and structured decision logic may be exposed. The protected source and its wording remain internal.",
+  "records": [
+    {"termCode":"EXW","ruleId":"TERM-EXW-001","status":"VERIFIED","sourceSection":"EXW","sourcePageStart":22,"sourcePageEnd":27,"checks":{"modeScope":true,"deliveryPoint":true,"riskTransfer":true,"carriage":true,"insurance":true,"exportClearance":true,"importClearance":true,"loadingUnloading":true,"namedPoint":true},"reviewNote":"Buyer-side loading and export-clearance exposure retained; FCA alternative warning retained."},
+    {"termCode":"FCA","ruleId":"TERM-FCA-001","status":"VERIFIED","sourceSection":"FCA","sourcePageStart":28,"sourcePageEnd":37,"checks":{"modeScope":true,"deliveryPoint":true,"riskTransfer":true,"carriage":true,"insurance":true,"exportClearance":true,"importClearance":true,"loadingUnloading":true,"namedPoint":true},"reviewNote":"Seller-premises and other-place delivery variants remain distinct."},
+    {"termCode":"CPT","ruleId":"TERM-CPT-001","status":"VERIFIED","sourceSection":"CPT","sourcePageStart":38,"sourcePageEnd":44,"checks":{"modeScope":true,"deliveryPoint":true,"riskTransfer":true,"carriage":true,"insurance":true,"exportClearance":true,"importClearance":true,"loadingUnloading":true,"namedPoint":true},"reviewNote":"Seller-paid carriage remains separate from early delivery and risk transfer."},
+    {"termCode":"CIP","ruleId":"TERM-CIP-001","status":"VERIFIED","sourceSection":"CIP","sourcePageStart":45,"sourcePageEnd":53,"checks":{"modeScope":true,"deliveryPoint":true,"riskTransfer":true,"carriage":true,"insurance":true,"exportClearance":true,"importClearance":true,"loadingUnloading":true,"namedPoint":true},"reviewNote":"Insurance arrangement does not move the delivery or risk-transfer point."},
+    {"termCode":"DAP","ruleId":"TERM-DAP-001","status":"VERIFIED","sourceSection":"DAP","sourcePageStart":54,"sourcePageEnd":60,"checks":{"modeScope":true,"deliveryPoint":true,"riskTransfer":true,"carriage":true,"insurance":true,"exportClearance":true,"importClearance":true,"loadingUnloading":true,"namedPoint":true},"reviewNote":"Delivery occurs ready for unloading; buyer import clearance retained."},
+    {"termCode":"DPU","ruleId":"TERM-DPU-001","status":"VERIFIED","sourceSection":"DPU","sourcePageStart":61,"sourcePageEnd":66,"checks":{"modeScope":true,"deliveryPoint":true,"riskTransfer":true,"carriage":true,"insurance":true,"exportClearance":true,"importClearance":true,"loadingUnloading":true,"namedPoint":true},"reviewNote":"Seller unloading obligation retained as the distinguishing control."},
+    {"termCode":"DDP","ruleId":"TERM-DDP-001","status":"VERIFIED","sourceSection":"DDP","sourcePageStart":67,"sourcePageEnd":72,"checks":{"modeScope":true,"deliveryPoint":true,"riskTransfer":true,"carriage":true,"insurance":true,"exportClearance":true,"importClearance":true,"loadingUnloading":true,"namedPoint":true},"reviewNote":"Seller import-clearance and duty exposure retained with capability warning."},
+    {"termCode":"FAS","ruleId":"TERM-FAS-001","status":"VERIFIED","sourceSection":"FAS","sourcePageStart":74,"sourcePageEnd":80,"checks":{"modeScope":true,"deliveryPoint":true,"riskTransfer":true,"carriage":true,"insurance":true,"exportClearance":true,"importClearance":true,"loadingUnloading":true,"namedPoint":true},"reviewNote":"Maritime-only scope and alongside-vessel delivery retained."},
+    {"termCode":"FOB","ruleId":"TERM-FOB-001","status":"VERIFIED","sourceSection":"FOB","sourcePageStart":81,"sourcePageEnd":87,"checks":{"modeScope":true,"deliveryPoint":true,"riskTransfer":true,"carriage":true,"insurance":true,"exportClearance":true,"importClearance":true,"loadingUnloading":true,"namedPoint":true},"reviewNote":"Maritime-only on-board delivery retained; containerized cargo warning preserved."},
+    {"termCode":"CFR","ruleId":"TERM-CFR-001","status":"VERIFIED","sourceSection":"CFR","sourcePageStart":88,"sourcePageEnd":94,"checks":{"modeScope":true,"deliveryPoint":true,"riskTransfer":true,"carriage":true,"insurance":true,"exportClearance":true,"importClearance":true,"loadingUnloading":true,"namedPoint":true},"reviewNote":"Seller-paid freight remains separate from on-board delivery and risk transfer."},
+    {"termCode":"CIF","ruleId":"TERM-CIF-001","status":"VERIFIED","sourceSection":"CIF","sourcePageStart":95,"sourcePageEnd":104,"checks":{"modeScope":true,"deliveryPoint":true,"riskTransfer":true,"carriage":true,"insurance":true,"exportClearance":true,"importClearance":true,"loadingUnloading":true,"namedPoint":true},"reviewNote":"Maritime-only scope, seller-arranged insurance, and on-board risk transfer retained."}
+  ],
+  "gate": {
+    "status": "PASS",
+    "recordCount": 11,
+    "allowedForInternalDecisionSupport": true,
+    "allowedForPublicOutput": true,
+    "conditions": ["original_inco_wording_only", "no_protected_source_text", "named_point_required", "version_required", "not_legal_advice"]
+  }
+}
