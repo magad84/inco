@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inco.local/schemas/carrier-service.schema.json",
+  "title": "INCO Carrier Service",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "carrierId",
+    "serviceId",
+    "carrierName",
+    "serviceName",
+    "mode",
+    "status",
+    "marketScope",
+    "cargoRules",
+    "commercialRules",
+    "sources",
+    "review"
+  ],
+  "properties": {
+    "carrierId": { "type": "string", "pattern": "^CARRIER-[A-Z0-9._-]+$" },
+    "serviceId": { "type": "string", "pattern": "^SERVICE-[A-Z0-9._-]+$" },
+    "carrierName": { "$ref": "#/$defs/bilingualText" },
+    "serviceName": { "$ref": "#/$defs/bilingualText" },
+    "mode": {
+      "type": "string",
+      "enum": ["ocean", "air_cargo", "express_courier", "postal", "road", "rail", "multimodal"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["research_seed", "verified_partial", "verified", "stale_review_required", "temporarily_unavailable", "inactive"]
+    },
+    "marketScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["originCountries", "destinationCountries"],
+      "properties": {
+        "originCountries": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z]{2}$" } },
+        "destinationCountries": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z]{2}$" } },
+        "originGateways": { "type": "array", "items": { "type": "string" } },
+        "destinationGateways": { "type": "array", "items": { "type": "string" } },
+        "excludedRoutes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "cargoRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ruleId", "cargoCategory", "acceptanceStatus", "conditions", "sourceIds", "reviewBy"],
+        "properties": {
+          "ruleId": { "type": "string", "minLength": 1 },
+          "cargoCategory": { "type": "string", "minLength": 1 },
+          "acceptanceStatus": {
+            "type": "string",
+            "enum": [
+              "accepted_indicator",
+              "conditional_acceptance",
+              "pre_approval_required",
+              "prohibited",
+              "service_not_supported",
+              "confirmation_required",
+              "source_unavailable"
+            ]
+          },
+          "conditions": { "type": "array", "items": { "$ref": "#/$defs/bilingualText" } },
+          "requiredEvidence": { "type": "array", "items": { "type": "string" } },
+          "effectiveFrom": { "type": ["string", "null"], "format": "date" },
+          "effectiveTo": { "type": ["string", "null"], "format": "date" },
+          "sourceIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "reviewBy": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "commercialRules": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "volumetricWeight": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["method", "unitSystem", "status", "sourceIds", "reviewBy"],
+          "properties": {
+            "method": {
+              "type": "string",
+              "enum": ["divisor", "conversion_factor", "w_m_ratio", "carrier_calculator_only", "unknown"]
+            },
+            "divisor": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+            "conversionFactor": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+            "unitSystem": { "type": "string", "enum": ["cm_kg", "in_lb", "m3_kg", "carrier_defined"] },
+            "roundingMethod": { "type": ["string", "null"] },
+            "status": {
+              "type": "string",
+              "enum": ["verified", "conditional", "stale_review_required", "source_unavailable"]
+            },
+            "effectiveFrom": { "type": ["string", "null"], "format": "date" },
+            "effectiveTo": { "type": ["string", "null"], "format": "date" },
+            "sourceIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "reviewBy": { "type": "string", "format": "date" }
+          }
+        },
+        "limits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["limitId", "category", "status", "sourceIds", "reviewBy"],
+            "properties": {
+              "limitId": { "type": "string" },
+              "category": { "type": "string", "enum": ["weight", "dimension", "piece_count", "declared_value", "equipment", "other"] },
+              "value": { "type": ["number", "string", "null"] },
+              "unit": { "type": ["string", "null"] },
+              "status": { "type": "string", "enum": ["verified", "conditional", "confirmation_required", "source_unavailable"] },
+              "sourceIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+              "reviewBy": { "type": "string", "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    "confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requiredBeforeBooking": { "type": "boolean" },
+        "contactChannel": { "type": ["string", "null"] },
+        "reason": { "$ref": "#/$defs/bilingualText" }
+      }
+    },
+    "sources": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "review": { "$ref": "#/$defs/review" }
+  },
+  "$defs": {
+    "bilingualText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "ar"],
+      "properties": {
+        "en": { "type": "string", "minLength": 1 },
+        "ar": { "type": "string", "minLength": 1 }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lastVerifiedAt", "nextReviewAt", "reviewOwner"],
+      "properties": {
+        "lastVerifiedAt": { "type": ["string", "null"], "format": "date-time" },
+        "nextReviewAt": { "type": "string", "format": "date-time" },
+        "reviewOwner": { "type": "string", "minLength": 1 },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}
