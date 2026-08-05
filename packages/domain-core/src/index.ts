@@ -7,3 +7,4 @@ export * from "./carrier-service-governance.js";
 export * from "./integrated-decision-engine.js";
 export * from "./internal-test-report.js";
 export * from "./internal-test-runner.js";
+export * from "./uat-evaluation.js";
