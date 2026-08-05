@@ -176,3 +176,7 @@ A task is `DONE` only when:
 4. GitHub Actions passes.
 5. `CURRENT_STATE.md` is updated for material milestones.
 6. No paid source or service has been introduced.
+
+## Latest Quality Note
+
+A temporary invalid lockfile caused CI run `31032071303` to fail during dependency installation. The lockfile was removed immediately, and the correction run `31032143473` completed all install, build, and test steps successfully.
