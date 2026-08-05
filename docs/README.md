@@ -14,18 +14,27 @@ Before strategy, research, design, or implementation work, read:
 5. `SOURCE_REGISTRY.md`
 6. The specification and country pack for the affected module.
 
-## 2. Product Foundation
+## 2. Architecture Decision
+
+| File | Purpose | Status |
+|---|---|---|
+| `ADR_001_DETERMINISTIC_CORE_ARCHITECTURE.md` | Recommends a strict TypeScript domain core with a deferred Python optimization boundary | Proposed; owner approval required before code |
+
+Decision issue: GitHub Issue #3.
+
+## 3. Product Foundation
 
 | File | Purpose | Status |
 |---|---|---|
 | `MVP_PRODUCT_SPEC.md` | Core trade-term MVP journey, output, and free/paid boundary | Working specification |
-| `TRADE_TERM_RULE_MATRIX.md` | Deterministic rules for the eleven principal trade terms | Implementation seed; structured conversion and term-level tests continue |
+| `TRADE_TERM_RULE_MATRIX.md` | Deterministic rules for the eleven principal trade terms | Implementation seed |
+| `TRADE_TERM_SOURCE_GOVERNANCE.md` | Controlled use of the restricted internal trade-term reference | Governing source note |
 | `QUESTION_ARCHITECTURE.md` | Conditional question families and entry routes | Working architecture |
 | `QUESTION_RULE_TRACEABILITY.md` | Maps questions to formulas, rules, outputs, commercial boundary, and retention | Working traceability matrix |
 | `ACCEPTANCE_SCENARIOS.md` | Cross-module expected behavior before code | Initial deterministic test library |
 | `BILINGUAL_TERMINOLOGY.md` | Controlled Arabic-English terminology for trade, cargo, transport, and system outputs | Working terminology register |
 
-## 3. Knowledge Governance
+## 4. Knowledge Governance
 
 | File | Purpose | Status |
 |---|---|---|
@@ -34,7 +43,7 @@ Before strategy, research, design, or implementation work, read:
 | `RESEARCH_BACKLOG.md` | Prioritized gaps and research tasks | Active |
 | `COUNTRY_PACK_SCHEMA.md` | Standard schema for national and local compliance packs | Working schema |
 
-## 4. Cargo and Transport Modules
+## 5. Cargo and Transport Modules
 
 | File | Purpose | Status |
 |---|---|---|
@@ -43,7 +52,7 @@ Before strategy, research, design, or implementation work, read:
 | `CARGO_CALCULATOR_RULES.md` | Exact units, formulas, precision, rounding, validation, and stale-rule behavior | Implementation-ready mathematical rules |
 | `OPEN_SOURCE_EVALUATION.md` | Technical and legal evaluation of container-loading projects | Version 0.2; no dependency approved |
 
-## 5. Country Packs
+## 6. Country Packs
 
 | File | Coverage | Status |
 |---|---|---|
@@ -54,13 +63,15 @@ Before strategy, research, design, or implementation work, read:
 
 A seed pack is not production-ready. It identifies verified candidates, missing sources, and required user questions.
 
-## 6. Marketplace
+## 7. Marketplace
 
 | File | Purpose | Status |
 |---|---|---|
 | `BROKER_MARKETPLACE_SPEC.md` | Provider registration, license verification, matching, consent, complaints, and monetization boundary | Future-module specification |
 
-## 7. Machine-Readable Contracts
+## 8. Machine-Readable Contracts
+
+### Cargo Calculator
 
 | File | Purpose | Status |
 |---|---|---|
@@ -68,7 +79,17 @@ A seed pack is not production-ready. It identifies verified candidates, missing 
 | `../schemas/cargo-calculator-output.schema.json` | Output, audit, warning, assumption, and provider-rule contract | Created; implementation-neutral |
 | `../fixtures/cargo-calculator/cases.json` | Valid and invalid arithmetic, conversion, and stale-rule cases | Created; not yet executed by CI |
 
-## 8. Current Gates
+### Trade-Term Review
+
+| File | Purpose | Status |
+|---|---|---|
+| `../schemas/trade-term-rule.schema.json` | Rule-record contract | Created; implementation-neutral |
+| `../schemas/trade-term-review-input.schema.json` | Transaction-review input contract | Created; implementation-neutral |
+| `../schemas/trade-term-review-output.schema.json` | Explainable result, risk, alternative, and action contract | Created; implementation-neutral |
+| `../knowledge/trade-terms.v0.1.json` | Structured records for the eleven principal terms | Draft; controlled source review required |
+| `../fixtures/trade-term-review/cases.json` | Seven core transaction fixtures | Created; not yet executed by CI |
+
+## 9. Current Gates
 
 ### Research Gate
 
@@ -105,7 +126,7 @@ Pricing, payment provider, credits, subscriptions, and company plans require own
 
 AI remains pending. No model or provider is part of the current implementation scope.
 
-## 9. First Implementation Readiness
+## 10. First Implementation Readiness
 
 The deterministic Cargo Calculator is the most implementation-ready slice because:
 
@@ -115,19 +136,23 @@ The deterministic Cargo Calculator is the most implementation-ready slice becaus
 - valid and invalid fixtures exist.
 - safety and commercial boundaries are defined.
 
-Before coding this slice:
+Coding is blocked only by ADR-001 owner approval.
 
-1. Approve the core technical architecture and implementation language.
-2. validate the JSON schemas and fixtures in the selected runtime.
-3. create unit tests from the fixtures.
-4. keep UI, account, payment, and database outside the first domain-core package.
+## 11. Work Continuing Without Architecture Approval
 
-## 10. Current Next Work
+- Controlled review of the structured trade-term records.
+- additional term-level fixtures.
+- country-rule normalization.
+- DG and special-cargo machine-readable contracts.
+- official source-gap research.
 
-1. Create the technical architecture proposal for the deterministic domain core.
-2. convert the trade-term matrix into machine-readable rule records.
-3. define trade-term review input/output schemas.
-4. assign final rule and source IDs.
-5. complete P0 official road, postal, and carrier research.
-6. convert acceptance scenarios into executable fixtures.
-7. begin the first deterministic code slice only after its architecture decision is approved.
+## 12. Work Requiring Approval
+
+After ADR-001 approval:
+
+1. Create `packages/domain-core`.
+2. select and review one small decimal-arithmetic dependency.
+3. implement the Cargo Calculator only.
+4. validate JSON Schemas.
+5. execute fixtures as unit tests.
+6. publish no web application, authentication, payment, database, or deployment work under this authorization.
