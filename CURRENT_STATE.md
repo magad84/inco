@@ -1,29 +1,88 @@
 # INCO Current State
 
 **Date:** 2026-08-05  
-**Phase:** Deterministic core validated; trade-lane knowledge expansion active  
-**Implementation status:** First executable domain-core slice approved and passing CI
+**Phase:** Deterministic core validated; trade-lane knowledge implementation active  
+**Implementation status:** Executable domain core passing CI; origin, carrier, and gateway registries under controlled expansion
+
+## Execution Authority
+
+The owner has authorized autonomous progression through all already-approved research, knowledge, schema, deterministic-code, testing, documentation, and GitHub stages.
+
+The team should continue without routine approval and escalate only decisions involving pricing, paid licenses, production architecture or deployment, authentication, payment, AI, live carrier APIs, public marketplace exposure, material legal/security risk, or a major scope change.
+
+Every executable result must pass CI before approval. Missing or volatile information must return `confirmation_required`, `source_unavailable`, or `stale_review_required` rather than a guessed answer.
 
 ## Approved Product Direction
 
-- INCO is an independent bilingual international-commerce and logistics decision-support platform.
-- Trade-term review remains the core product.
-- The platform models the shipment from origin country and gateway through carrier and transit to destination gateway, destination country, and inland delivery.
-- The product is rules-first and must operate without generative AI.
-- AI remains pending.
-- Free professional diagnostics and paid execution/report outputs remain approved.
-- Google sign-in, payment, production application architecture, and deployment require later decisions.
+- Bilingual professional decision support for international commerce and logistics.
+- Core trade-term review plus cargo, country, gateway, carrier, and full trade-lane analysis.
+- Rules-first and fully useful without generative AI.
+- Launch destination markets: UAE, Saudi Arabia, Egypt, and Oman.
+- Priority origin markets: China, India, Turkey, Italy, United States, Russia, and Australia.
+- Russia requires enhanced transaction-specific compliance screening.
 
-## Geographic Scope
+## Architecture Decisions
 
-### Launch Destination Markets
+### ADR-001: Deterministic Core
 
-- United Arab Emirates.
-- Saudi Arabia.
-- Egypt.
-- Oman.
+**Status:** Approved and implemented for Cargo Calculator version `0.1.1`.
 
-### Priority Origin Markets
+- Strict TypeScript.
+- JSON Schemas as external contracts.
+- Controlled decimal arithmetic with `decimal.js`.
+- No framework, database, authentication, payment, PDF, AI, or network dependency in the domain package.
+
+### ADR-002: Trade-Lane Knowledge Scope
+
+**Status:** Approved and active.
+
+- Origin Country Packs.
+- Transport Gateway Registry.
+- Carrier and Carrier Service Registry.
+- Trade Lane and Transit Segment model.
+- Route & Carrier Decision Pack direction.
+
+## WP-01: Trade-Term Decision Logic
+
+**Status:** In progress.
+
+Completed:
+
+- Eleven-term operational matrix.
+- Machine-readable dataset and schemas.
+- Responsibility, risk, cost, suitability, and alternatives structures.
+- Representative fixtures.
+- Controlled bilingual terminology.
+
+Remaining:
+
+- Record-by-record controlled source review.
+- Final verification dates and message keys.
+- Additional fixtures.
+
+## WP-02: Logistics Knowledge Architecture
+
+**Status:** Active; foundation established.
+
+Completed:
+
+- Source hierarchy and registry.
+- Destination-country schema and four seed packs.
+- DG pre-screen specification.
+- Cargo and container-planning specifications.
+- Broker marketplace specification.
+- Question-to-rule traceability and acceptance scenarios.
+
+Remaining:
+
+- Normalize country and DG rules into executable records.
+- Fill P0 official-source gaps.
+
+## WP-03: Origins, Gateways, Carriers, and Trade Lanes
+
+**Status:** Active. GitHub Issue #4.
+
+### Origin packs completed
 
 - China.
 - India.
@@ -33,89 +92,42 @@
 - Russia with enhanced compliance controls.
 - Australia.
 
-## Architecture Decisions
+### Carrier knowledge completed to verified-partial level
 
-### ADR-001: Deterministic Core
+- Express source and service records for DHL Express, FedEx, Aramex, and UPS.
+- Ocean and air records for selected services from MSC, CMA CGM, Hapag-Lloyd, Emirates SkyCargo, Etihad Cargo, and Turkish Cargo.
+- Volatile operational advisories are separated from stable capability rules.
+- Carrier integrity tests reject missing sources, duplicate services, missing review controls, and stale volatile advisories.
 
-**Status:** Approved and implemented for the first Cargo Calculator slice.
+### Gateway knowledge completed to verified-partial level
 
-- Strict TypeScript domain core.
-- JSON Schemas as external contracts.
-- `decimal.js` for controlled decimal arithmetic.
-- No web framework, database, authentication, payment, PDF, AI, or network calls in the package.
-- Optional Python optimization remains deferred to the paid load-planner benchmark stage.
+UAE, China, and India initial records:
 
-### ADR-002: Trade-Lane Knowledge Scope
+- Dubai International Airport.
+- Al Maktoum International Airport.
+- Khalifa Port.
+- Port of Shanghai.
+- Shanghai Pudong International Airport.
+- Jawaharlal Nehru Port.
 
-**Status:** Approved.
+Saudi Arabia, Egypt, and Oman initial records:
 
-- Origin Country Packs.
-- Transport Gateway Registry.
-- Carrier and Carrier Service Registry.
-- Trade Lane and Transit Segment model.
-- Russia enhanced-compliance controls.
-- Future Route & Carrier Decision Pack.
+- Jeddah Islamic Port.
+- Cairo International Airport.
+- Sokhna Port.
+- Muscat International Airport.
+- Port of Sohar.
 
-## Work Packages
+Gateway rules preserve `confirmation_required` for terminal assignment, cargo acceptance, dangerous-goods handling, equipment, cut-offs, customs, permits, and inland movement where current confirmation is needed.
 
-### WP-01: Trade-Term Decision Logic
+### Next autonomous work
 
-**Status:** In progress.
-
-Completed:
-
-- Eleven-term operational rule matrix.
-- Machine-readable term dataset and schemas.
-- Responsibility, risk, cost, alternative, and suitability structures.
-- Seven representative fixtures.
-- Controlled bilingual terminology.
-
-Remaining:
-
-- Controlled source review.
-- Final rule/source verification dates.
-- Additional fixtures and executable message keys.
-
-### WP-02: Logistics Knowledge Architecture
-
-**Status:** Active; foundation established.
-
-Completed:
-
-- Knowledge architecture and source hierarchy.
-- Destination-country schema and four seed packs.
-- DG pre-screen specification.
-- Calculator and load-planner specifications.
-- Broker marketplace specification.
-- Question-to-rule traceability and acceptance scenarios.
-- Open-source solver evaluation.
-
-Remaining:
-
-- Normalize country and carrier rules.
-- Fill P0 official-source gaps.
-- Create machine-readable DG and destination fixtures.
-
-### WP-03: Origins, Gateways, Carriers, and Trade Lanes
-
-**Status:** Active. GitHub Issue #4.
-
-Completed:
-
-- Origin Country Pack schema.
-- Transport Gateway schema.
-- Carrier Service schema.
-- Trade Lane schema.
-- China origin seed pack.
-- India origin seed pack.
-
-Next:
-
-1. Turkey, Italy, United States, Russia, and Australia origin seed packs.
-2. Initial gateway dataset for origin and destination markets.
-3. Initial carrier/service records.
-4. Russia enhanced-compliance fixtures.
-5. Route, transit, carrier, and stale-rule tests.
+1. Complete gateway records for Turkey, Italy, United States, Australia, and Russia.
+2. Add additional Saudi, Egyptian, and Omani gateways where route demand justifies them.
+3. Link gateway, carrier, cargo, origin, and destination records into executable trade-lane evaluation.
+4. Add Russia enhanced-compliance fixtures.
+5. Expand route, transit, carrier, stale-rule, and source-gap tests.
+6. Continue official-source normalization and review scheduling.
 
 ## Approved Executable Result
 
@@ -125,81 +137,59 @@ Implemented:
 
 - Unit normalization for mm, cm, m, inches, kg, g, and lb.
 - CBM per package and total CBM.
-- Gross weight.
-- Volumetric weight.
-- Chargeable weight.
-- Per-piece and shipment-total calculation bases.
-- Rounding increments.
-- Shipment minimum chargeable weight.
-- Runtime validation of units and positive values.
-- Blocking stale carrier rules.
-- Warning for user-supplied unverified carrier rules.
+- Gross, volumetric, and chargeable weight.
+- Per-piece and shipment-total bases.
+- Rounding increments and shipment minimums.
+- Runtime validation.
+- Stale-rule blocking and unverified-rule warnings.
 - Audit metadata.
 
-Quality controls:
+A shipment-total aggregation defect was detected and corrected before approval. Build and tests passed in GitHub Actions.
 
-- Core fixtures executed.
-- Advanced regression fixtures added.
-- A shipment-total aggregation defect was detected and corrected before approval.
-- GitHub Actions build and test job completed successfully on run `31025604772`.
+## Active Quality Gates
 
-Files:
+CI runs when changing:
 
-- `packages/domain-core/src/cargo-calculator.ts`
-- `packages/domain-core/test/cargo-calculator.test.ts`
-- `fixtures/cargo-calculator/cases.json`
-- `fixtures/cargo-calculator/advanced-cases.json`
-- `.github/workflows/domain-core.yml`
+- Domain-core code and tests.
+- Cargo fixtures.
+- Carrier services and source records.
+- Gateway records and source records.
+- Carrier and gateway schemas.
+
+The tests currently cover:
+
+- Cargo calculations and regressions.
+- Express carrier traceability.
+- Ocean and air carrier traceability.
+- Gateway traceability for UAE, China, India, Saudi Arabia, Egypt, and Oman.
 
 ## Safety Boundaries
 
-- No carrier acceptance claim without current evidence or provider confirmation.
-- No gateway capability inferred from a location code alone.
-- No volatile carrier rule without effective and review dates.
+- No carrier acceptance claim without current evidence or direct confirmation.
+- No gateway capability inferred from a code or name alone.
+- No volatile rule without effective and review dates.
 - No DG pre-screen presented as final classification.
-- No route or abnormal-load indicator presented as approval.
-- Missing or stale rules return confirmation or source-status states rather than guessed conclusions.
-
-## Commercial Boundaries
-
-### Free direction
-
-- Trade-term review.
-- Basic DG pre-screen.
-- CBM, gross, volumetric, and chargeable-weight calculations.
-- Candidate gateway and carrier indicators.
-- Critical risks and missing-information guidance.
-
-### Paid direction
-
-- Trade Decision Pack.
-- Route & Carrier Decision Pack.
-- Detailed comparisons and compliance brief.
-- Multi-SKU Container Load Plan.
-- Saved cases, visualization, and professional reports.
-
-Pricing, payment provider, credits, subscriptions, and company plans remain undecided.
+- No route, abnormal-load, or container-fit result presented as approval.
+- No provider ranking based solely on sponsorship.
 
 ## Decisions Still Requiring Owner Approval
 
-- Pricing values.
+- Pricing and material changes to free-versus-paid boundaries.
 - Paid data or software licenses.
-- Final production web architecture and hosting commitment.
-- Google authentication implementation.
-- Payment provider selection.
-- AI model or provider selection.
-- Live booking or rate APIs.
+- Final production architecture, hosting commitment, and deployment.
+- Google authentication.
+- Payment provider.
+- AI model or provider.
+- Live booking, rates, or government APIs.
 - Public broker marketplace launch.
-- Material changes to free versus paid boundaries.
 
 ## Change Log
 
 ### 2026-08-05
 
-- ADR-001 approved and deterministic Cargo Calculator implemented.
-- Domain core corrected to calculate shipment-total chargeable weight across the whole shipment.
-- Advanced regression fixtures added.
-- GitHub Actions build and tests passed.
-- Domain core `0.1.1` approved.
-- ADR-002 and WP-03 activated.
-- China and India origin seed packs added.
+- Autonomous execution authority recorded in project governance.
+- Domain core `0.1.1` approved after CI.
+- Seven origin packs completed.
+- Express, ocean, and air carrier knowledge records and tests added.
+- Gateway records expanded across UAE, China, India, Saudi Arabia, Egypt, and Oman.
+- Official-source and review controls added for every executable knowledge record.
