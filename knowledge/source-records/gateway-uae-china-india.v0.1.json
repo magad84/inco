@@ -1,0 +1,84 @@
+{
+  "registryVersion": "0.1",
+  "verifiedAt": "2026-08-05T17:15:00Z",
+  "reviewPolicy": "Gateway capability records must come from an official operator or authority source. Capability does not imply acceptance of a specific shipment.",
+  "sources": [
+    {
+      "sourceId": "GW-DUBAI-AIRPORTS-CARGO-2026",
+      "gatewayScope": ["GATEWAY-AE-DXB", "GATEWAY-AE-DWC"],
+      "title": "Dubai Airports Cargo",
+      "sourceType": "official_airport_operator",
+      "url": "https://dubaiairports.ae/corporate/business-opportunities/cargo",
+      "supports": ["general_cargo", "live_animals", "perishables", "customs_presence", "sea_air_bonded_link", "dwc_cargo_terminals"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "GW-DWC-OFFICIAL-2026",
+      "gatewayScope": ["GATEWAY-AE-DWC"],
+      "title": "Dubai World Central Official Profile",
+      "sourceType": "official_airport_operator",
+      "url": "https://dubaiairports.ae/corporate/our-story/dwc-dubai-world-central",
+      "supports": ["cargo_operations", "general_aviation", "future_cargo_capacity_indicator"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "GW-KHALIFA-ADT-2026",
+      "gatewayScope": ["GATEWAY-AE-KHALIFA"],
+      "title": "Abu Dhabi Terminals at Khalifa Port",
+      "sourceType": "official_port_operator",
+      "url": "https://www.adports.ae/ports-terminals/terminals/abu-dhabi-terminals-adt/",
+      "supports": ["containerized", "deep_water", "rail_connectivity", "road_connectivity", "berths", "reefer_and_terminal_capacity_indicator"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "GW-SHANGHAI-SIPG-2026",
+      "gatewayScope": ["GATEWAY-CN-SHANGHAI-PORT"],
+      "title": "Shanghai International Port Group Services",
+      "sourceType": "official_port_operator",
+      "url": "https://en.portshanghai.com.cn/OurServices/index.jhtml",
+      "supports": ["containerized", "bulk", "general_cargo", "special_cargo", "ro_ro", "container_berths"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "GW-PVG-CARGO-CEIV-2025",
+      "gatewayScope": ["GATEWAY-CN-PVG"],
+      "title": "Pudong Airport Cargo Terminal CEIV Certifications",
+      "sourceType": "official_airport_group",
+      "url": "https://www.shairport.com/ensh/xwg/info_itemid_43769.html",
+      "supports": ["pharmaceuticals", "lithium_batteries", "live_animals", "perishable", "specialized_air_cargo_handling"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "GW-JNPA-OFFICIAL-2026",
+      "gatewayScope": ["GATEWAY-IN-JNPA"],
+      "title": "Jawaharlal Nehru Port Authority",
+      "sourceType": "official_port_authority",
+      "url": "https://www.jnport.gov.in/",
+      "supports": ["containerized", "global_port_connections", "container_tracking", "berthing_status"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "GW-JNPA-TERMINALS-2026",
+      "gatewayScope": ["GATEWAY-IN-JNPA"],
+      "title": "JNPA Container Terminals",
+      "sourceType": "official_port_authority_terminal_data",
+      "url": "https://www.jnport.gov.in/page/terminals/VDRTUFJlSzllbDRDY05hVzdmdG5KZz09",
+      "supports": ["container_terminal", "reefer_points", "vessel_draft", "terminal_capacity", "quay_length"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    }
+  ]
+}
