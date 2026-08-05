@@ -2,15 +2,15 @@
 
 **Date:** 2026-08-05  
 **Phase:** Deterministic core validated; trade-lane knowledge implementation active  
-**Implementation status:** Executable domain core passing CI; origin, carrier, and gateway registries under controlled expansion
+**Implementation status:** Executable domain core and trade-lane evaluator passing CI; origin, carrier, gateway, and corridor registries under controlled expansion
 
 ## Execution Authority
 
 The owner has authorized autonomous progression through all already-approved research, knowledge, schema, deterministic-code, testing, documentation, and GitHub stages.
 
-The team should continue without routine approval and escalate only decisions involving pricing, paid licenses, production architecture or deployment, authentication, payment, AI, live carrier APIs, public marketplace exposure, material legal/security risk, or a major scope change.
+Continue without routine approval. Escalate only decisions involving pricing, paid licenses, production architecture or deployment, authentication, payment, AI, live carrier APIs, public marketplace exposure, material legal/security risk, or a major scope change.
 
-Every executable result must pass CI before approval. Missing or volatile information must return `confirmation_required`, `source_unavailable`, or `stale_review_required` rather than a guessed answer.
+Every executable result must pass CI before approval. Missing or volatile information must return `confirmation_required`, `source_unavailable`, `stale_review_required`, or `enhanced_compliance_required` rather than a guessed answer.
 
 ## Approved Product Direction
 
@@ -19,13 +19,13 @@ Every executable result must pass CI before approval. Missing or volatile inform
 - Rules-first and fully useful without generative AI.
 - Launch destination markets: UAE, Saudi Arabia, Egypt, and Oman.
 - Priority origin markets: China, India, Turkey, Italy, United States, Russia, and Australia.
-- Russia requires enhanced transaction-specific compliance screening.
+- Russia and other triggered transactions require enhanced transaction-specific compliance screening.
 
 ## Architecture Decisions
 
 ### ADR-001: Deterministic Core
 
-**Status:** Approved and implemented for Cargo Calculator version `0.1.1`.
+**Status:** Approved and implemented through `@inco/domain-core` version `0.2.0`.
 
 - Strict TypeScript.
 - JSON Schemas as external contracts.
@@ -120,18 +120,37 @@ Saudi Arabia, Egypt, and Oman initial records:
 
 Gateway rules preserve `confirmation_required` for terminal assignment, cargo acceptance, dangerous-goods handling, equipment, cut-offs, customs, permits, and inland movement where current confirmation is needed.
 
+### Trade-lane corridors and executable evaluation
+
+Completed:
+
+- Launch corridor registry linking origin, destination, mode, gateways, carrier-service candidates, cargo scope, confirmation requirements, and risk flags.
+- Deterministic `evaluateTradeLane()` implementation.
+- Filtering by countries, mode, cargo category, optional gateways, and optional service.
+- Stale corridor detection against transaction date.
+- `source_unavailable` when no verified corridor or service source exists.
+- `confirmation_required` for current operational confirmation and incomplete route structure.
+- `enhanced_compliance_required` override with transaction-specific screening controls.
+- Automated tests for candidate, source-gap, stale, unsupported, validation, and enhanced-compliance cases.
+
+Files:
+
+- `packages/domain-core/src/trade-lane-evaluator.ts`
+- `packages/domain-core/test/trade-lane-evaluator.test.ts`
+- `knowledge/trade-lanes/launch-corridors.v0.1.json`
+
 ### Next autonomous work
 
 1. Complete gateway records for Turkey, Italy, United States, Australia, and Russia.
 2. Add additional Saudi, Egyptian, and Omani gateways where route demand justifies them.
-3. Link gateway, carrier, cargo, origin, and destination records into executable trade-lane evaluation.
-4. Add Russia enhanced-compliance fixtures.
-5. Expand route, transit, carrier, stale-rule, and source-gap tests.
-6. Continue official-source normalization and review scheduling.
+3. Expand corridor coverage and transit-segment modeling.
+4. Add Russia enhanced-compliance fixtures and rule records.
+5. Normalize country and DG requirements into executable evaluation.
+6. Expand route, transit, carrier, stale-rule, and source-gap tests.
 
 ## Approved Executable Result
 
-### `@inco/domain-core` version `0.1.1`
+### `@inco/domain-core` version `0.2.0`
 
 Implemented:
 
@@ -143,8 +162,10 @@ Implemented:
 - Runtime validation.
 - Stale-rule blocking and unverified-rule warnings.
 - Audit metadata.
+- Deterministic trade-lane corridor evaluation.
+- Source-gap, stale-record, incomplete-route, and enhanced-compliance decisions.
 
-A shipment-total aggregation defect was detected and corrected before approval. Build and tests passed in GitHub Actions.
+A shipment-total aggregation defect was detected and corrected before approval. Version `0.2.0` build and all tests passed in GitHub Actions run `31030180600`.
 
 ## Active Quality Gates
 
@@ -154,7 +175,8 @@ CI runs when changing:
 - Cargo fixtures.
 - Carrier services and source records.
 - Gateway records and source records.
-- Carrier and gateway schemas.
+- Trade-lane corridor records.
+- Carrier, gateway, and trade-lane schemas.
 
 The tests currently cover:
 
@@ -162,6 +184,8 @@ The tests currently cover:
 - Express carrier traceability.
 - Ocean and air carrier traceability.
 - Gateway traceability for UAE, China, India, Saudi Arabia, Egypt, and Oman.
+- Trade-lane reference integrity and uncertainty controls.
+- Executable trade-lane evaluation decisions.
 
 ## Safety Boundaries
 
@@ -192,4 +216,6 @@ The tests currently cover:
 - Seven origin packs completed.
 - Express, ocean, and air carrier knowledge records and tests added.
 - Gateway records expanded across UAE, China, India, Saudi Arabia, Egypt, and Oman.
-- Official-source and review controls added for every executable knowledge record.
+- Launch corridor registry added and linked to gateway and carrier records.
+- Deterministic trade-lane evaluator implemented and approved as domain core `0.2.0`.
+- GitHub Actions run `31030180600` completed successfully.
