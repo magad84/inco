@@ -1,255 +1,186 @@
 # INCO Current State
 
 **Date:** 2026-08-05  
-**Phase:** Approved deterministic-core implementation plus trade-lane knowledge expansion  
-**Implementation status:** First domain-core slice authorized; executable code not yet committed
+**Phase:** Deterministic core validated; trade-lane knowledge expansion active  
+**Implementation status:** First executable domain-core slice approved and passing CI
 
 ## Approved Product Direction
 
 - INCO is an independent bilingual international-commerce and logistics decision-support platform.
 - Trade-term review remains the core product.
-- The product now models the complete shipment trade lane from origin country and gateway through carrier and transit to destination gateway, destination country, and inland delivery.
+- The platform models the shipment from origin country and gateway through carrier and transit to destination gateway, destination country, and inland delivery.
 - The product is rules-first and must operate without generative AI.
-- The AI module remains intentionally pending.
+- AI remains pending.
 - Free professional diagnostics and paid execution/report outputs remain approved.
-- Users should receive useful free results before registration.
-- Google sign-in is planned for saving, resuming, purchasing, and report access.
-- Authentication and payment processing remain separate.
+- Google sign-in, payment, production application architecture, and deployment require later decisions.
 
-## Approved Geographic Scope
+## Geographic Scope
 
 ### Launch Destination Markets
 
-1. United Arab Emirates.
-2. Saudi Arabia.
-3. Egypt.
-4. Oman.
+- United Arab Emirates.
+- Saudi Arabia.
+- Egypt.
+- Oman.
 
 ### Priority Origin Markets
 
-1. China.
-2. India.
-3. Turkey.
-4. Italy.
-5. United States.
-6. Russia, with enhanced compliance controls.
-7. Australia.
-
-The priority-origin list is a research and first-release scope, not a permanent ranking of source countries.
-
-## Approved Provider Research Priority
-
-### Express and Postal
-
-- DHL Express.
-- FedEx.
-- Aramex.
-- National postal operators in launch and priority-origin markets.
-- UPS where authoritative market and service sources are available.
-
-### Ocean
-
-- Maersk.
-- MSC.
-- CMA CGM.
-- COSCO.
-- Hapag-Lloyd.
-- ONE.
-- Evergreen.
-
-### Air Cargo
-
-- Emirates SkyCargo.
-- Etihad Cargo.
-- Qatar Airways Cargo.
-- Saudia Cargo.
-- Turkish Cargo.
-- EgyptAir Cargo.
-- Oman Air Cargo.
-
-Additional carriers may be added when verified trade lanes and demand justify them.
+- China.
+- India.
+- Turkey.
+- Italy.
+- United States.
+- Russia with enhanced compliance controls.
+- Australia.
 
 ## Architecture Decisions
 
 ### ADR-001: Deterministic Core
 
-**Status:** Approved and Issue #3 closed as completed.
+**Status:** Approved and implemented for the first Cargo Calculator slice.
 
-Approved boundary:
-
-- Strict TypeScript deterministic domain core.
+- Strict TypeScript domain core.
 - JSON Schemas as external contracts.
-- One reviewed decimal-arithmetic dependency.
-- No production web framework, database, authentication, payment, PDF, AI, or network calls in the first package.
-- Optional Python optimization service remains deferred to the paid Container Load Planner benchmark stage.
-
-Authorization now exists to create `packages/domain-core` and implement the deterministic Cargo Calculator with tests.
+- `decimal.js` for controlled decimal arithmetic.
+- No web framework, database, authentication, payment, PDF, AI, or network calls in the package.
+- Optional Python optimization remains deferred to the paid load-planner benchmark stage.
 
 ### ADR-002: Trade-Lane Knowledge Scope
 
 **Status:** Approved.
 
-Approved additions:
-
 - Origin Country Packs.
 - Transport Gateway Registry.
 - Carrier and Carrier Service Registry.
 - Trade Lane and Transit Segment model.
-- Full origin-to-destination route analysis.
-- Russia Enhanced Compliance Pack.
-- Future `INCO Route & Carrier Decision Pack`.
+- Russia enhanced-compliance controls.
+- Future Route & Carrier Decision Pack.
 
-Decision record:
+## Work Packages
 
-- `docs/ADR_002_TRADE_LANE_ORIGIN_GATEWAY_CARRIER_SCOPE.md`
+### WP-01: Trade-Term Decision Logic
 
-## Active Work Packages
-
-### WP-01: MVP Trade-Term Decision Logic
-
-**Status:** In progress; deterministic contracts established.
+**Status:** In progress.
 
 Completed:
 
 - Eleven-term operational rule matrix.
-- Named-place, responsibility, risk, cost, alternative, and suitability structures.
-- Machine-readable rule schema.
-- Structured eleven-term dataset version 0.1.
-- Trade-term input and output schemas.
-- Seven representative transaction fixtures.
-- Controlled Arabic-English terminology register.
+- Machine-readable term dataset and schemas.
+- Responsibility, risk, cost, alternative, and suitability structures.
+- Seven representative fixtures.
+- Controlled bilingual terminology.
 
 Remaining:
 
-- Controlled record-by-record source review.
-- Final verification dates and source status.
-- Additional term-level fixtures.
-- Executable message-key catalog.
+- Controlled source review.
+- Final rule/source verification dates.
+- Additional fixtures and executable message keys.
 
-### WP-02: Logistics Knowledge Architecture and Source Registry
+### WP-02: Logistics Knowledge Architecture
 
-**Status:** Active; foundation substantially established.
+**Status:** Active; foundation established.
 
 Completed:
 
 - Knowledge architecture and source hierarchy.
-- Source Registry version 0.2.
-- Country-pack schema and four destination seed packs.
-- Cargo and dangerous-goods pre-screen specification.
-- Calculator and paid load-planner specification.
+- Destination-country schema and four seed packs.
+- DG pre-screen specification.
+- Calculator and load-planner specifications.
 - Broker marketplace specification.
-- Question-to-rule traceability.
-- Cross-module acceptance scenarios.
+- Question-to-rule traceability and acceptance scenarios.
 - Open-source solver evaluation.
 
 Remaining:
 
-- Normalize verified source records into executable country and carrier rules.
+- Normalize country and carrier rules.
 - Fill P0 official-source gaps.
-- Create machine-readable DG and destination-country fixtures.
+- Create machine-readable DG and destination fixtures.
 
-### WP-03: Origin Markets, Gateways, Carriers, and Trade Lanes
+### WP-03: Origins, Gateways, Carriers, and Trade Lanes
 
 **Status:** Active. GitHub Issue #4.
 
-Completed foundation:
+Completed:
 
-- ADR-002 approved.
-- Origin Country Pack schema created.
-- Transport Gateway schema created.
-- Carrier Service schema created.
-- Trade Lane schema created.
+- Origin Country Pack schema.
+- Transport Gateway schema.
+- Carrier Service schema.
+- Trade Lane schema.
+- China origin seed pack.
+- India origin seed pack.
+
+Next:
+
+1. Turkey, Italy, United States, Russia, and Australia origin seed packs.
+2. Initial gateway dataset for origin and destination markets.
+3. Initial carrier/service records.
+4. Russia enhanced-compliance fixtures.
+5. Route, transit, carrier, and stale-rule tests.
+
+## Approved Executable Result
+
+### `@inco/domain-core` version `0.1.1`
+
+Implemented:
+
+- Unit normalization for mm, cm, m, inches, kg, g, and lb.
+- CBM per package and total CBM.
+- Gross weight.
+- Volumetric weight.
+- Chargeable weight.
+- Per-piece and shipment-total calculation bases.
+- Rounding increments.
+- Shipment minimum chargeable weight.
+- Runtime validation of units and positive values.
+- Blocking stale carrier rules.
+- Warning for user-supplied unverified carrier rules.
+- Audit metadata.
+
+Quality controls:
+
+- Core fixtures executed.
+- Advanced regression fixtures added.
+- A shipment-total aggregation defect was detected and corrected before approval.
+- GitHub Actions build and test job completed successfully on run `31025604772`.
 
 Files:
 
-- `schemas/origin-country-pack.schema.json`
-- `schemas/transport-gateway.schema.json`
-- `schemas/carrier-service.schema.json`
-- `schemas/trade-lane.schema.json`
+- `packages/domain-core/src/cargo-calculator.ts`
+- `packages/domain-core/test/cargo-calculator.test.ts`
+- `fixtures/cargo-calculator/cases.json`
+- `fixtures/cargo-calculator/advanced-cases.json`
+- `.github/workflows/domain-core.yml`
 
-Next deliverables:
+## Safety Boundaries
 
-1. Seven priority-origin research seed packs.
-2. Initial gateway records for the four destination and seven origin markets.
-3. Initial provider and service records for approved carrier priorities.
-4. Russia enhanced-compliance fixtures.
-5. Route, transit, carrier, and stale-rule acceptance cases.
-6. Question-to-rule traceability for gateway and carrier selection.
-
-## First Implementation Slice Readiness
-
-The deterministic free Cargo Calculator has:
-
-- Functional specification.
-- Exact unit conversion rules.
-- CBM, gross-weight, volumetric-weight, and chargeable-weight formulas.
-- Precision and rounding rules.
-- Stale and user-configured carrier-factor behavior.
-- Input and output JSON Schemas.
-- Valid and invalid fixtures.
-- Audit and source/version requirements.
-
-The architecture gate is approved. The next engineering step is to create `packages/domain-core`, validate the schemas, implement the calculator, and execute the fixtures as automated tests.
-
-## Current Safety and Knowledge Boundaries
-
-- Do not claim carrier acceptance without current authoritative evidence or direct provider confirmation.
-- Do not infer gateway capability from a location code alone.
-- Do not hard-code volatile carrier conditions without effective and review dates.
-- Do not treat cargo pre-screening as final dangerous-goods classification.
-- Do not present route, bridge, tunnel, or abnormal-load indicators as approval.
-- Do not rank carriers, gateways, brokers, or service providers solely because of sponsorship.
-- Russia-related transactions must return enhanced compliance screening states where applicable.
-- Missing or stale rules must return `confirmation_required`, `source_unavailable`, or `stale_review_required` instead of a guessed conclusion.
+- No carrier acceptance claim without current evidence or provider confirmation.
+- No gateway capability inferred from a location code alone.
+- No volatile carrier rule without effective and review dates.
+- No DG pre-screen presented as final classification.
+- No route or abnormal-load indicator presented as approval.
+- Missing or stale rules return confirmation or source-status states rather than guessed conclusions.
 
 ## Commercial Boundaries
 
 ### Free direction
 
-- Core trade-term review.
-- Basic cargo and dangerous-goods pre-screen.
-- Basic CBM and weight calculations.
-- Candidate gateway, carrier, and service indicators.
-- Preliminary container and route indicators.
+- Trade-term review.
+- Basic DG pre-screen.
+- CBM, gross, volumetric, and chargeable-weight calculations.
+- Candidate gateway and carrier indicators.
 - Critical risks and missing-information guidance.
 
 ### Paid direction
 
-- INCO Trade Decision Pack.
-- INCO Route & Carrier Decision Pack.
-- Detailed multi-option comparison.
+- Trade Decision Pack.
+- Route & Carrier Decision Pack.
+- Detailed comparisons and compliance brief.
 - Multi-SKU Container Load Plan.
-- Saved case, visualization, and printable report.
-- Advanced origin, destination, gateway, carrier, and compliance brief where verified rules support it.
-- Future provider RFQ or marketplace workflow.
+- Saved cases, visualization, and professional reports.
 
-Pricing amounts, payment gateway, credits, subscriptions, and company plans remain undecided.
+Pricing, payment provider, credits, subscriptions, and company plans remain undecided.
 
-## Explicitly Not Started
-
-- Production frontend and backend.
-- Production database.
-- Google authentication.
-- Payment integration.
-- PDF generation.
-- Production container solver.
-- Provider onboarding portal.
-- AI model evaluation or integration.
-- Live carrier booking or rate APIs.
-- Deployment.
-
-## Next Autonomous Work
-
-Work may continue without owner interruption on:
-
-1. Create and test the TypeScript Cargo Calculator domain core under ADR-001.
-2. Build the seven priority-origin seed packs.
-3. Seed gateway and carrier-service registries with authoritative sources.
-4. Expand route and carrier fixtures.
-5. Continue official source-gap research.
-6. Normalize country, gateway, carrier, and trade-lane records.
-
-Owner approval is still required before:
+## Decisions Still Requiring Owner Approval
 
 - Pricing values.
 - Paid data or software licenses.
@@ -258,21 +189,17 @@ Owner approval is still required before:
 - Payment provider selection.
 - AI model or provider selection.
 - Live booking or rate APIs.
-- Public broker-marketplace launch.
+- Public broker marketplace launch.
 - Material changes to free versus paid boundaries.
 
 ## Change Log
 
 ### 2026-08-05
 
-- Repository initialized and product governance created.
-- Trade-term review and paid Trade Decision Pack recorded.
-- AI deferred.
-- Product expanded into modular logistics decision support.
-- WP-02 opened and knowledge, source, country, DG, calculator, marketplace, and test foundations created.
-- Eleven-term rules and machine-readable trade-term contracts created.
-- Cargo Calculator contracts and fixtures created.
-- ADR-001 approved and Issue #3 closed.
-- ADR-002 approved for origin markets, gateways, carriers, services, transit, and full trade-lane modeling.
-- WP-03 opened as Issue #4.
-- Origin Country Pack, Transport Gateway, Carrier Service, and Trade Lane schemas created.
+- ADR-001 approved and deterministic Cargo Calculator implemented.
+- Domain core corrected to calculate shipment-total chargeable weight across the whole shipment.
+- Advanced regression fixtures added.
+- GitHub Actions build and tests passed.
+- Domain core `0.1.1` approved.
+- ADR-002 and WP-03 activated.
+- China and India origin seed packs added.
