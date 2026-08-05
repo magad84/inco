@@ -1,41 +1,59 @@
 const $ = (id) => document.getElementById(id);
 
-function evaluateScenario() {
-  const origin = $("origin").value.trim().toUpperCase();
-  const destination = $("destination").value.trim().toUpperCase();
-  const description = $("description").value.trim();
-  const cargo = $("cargo").value.trim();
-  const enhanced = $("enhanced").checked;
-
-  let state = "confirmation_required";
-  let reason = "Current carrier, gateway, route, and destination requirements must be confirmed.";
-  const confirmations = ["current_route", "capacity", "cutoff", "cargo_acceptance"];
-  const missing = [];
-
-  if (!/^[A-Z]{2}$/.test(origin) || !/^[A-Z]{2}$/.test(destination)) {
-    state = "blocked_information_required";
-    reason = "Origin and destination must use two-letter uppercase country codes.";
-    missing.push("valid_origin_country", "valid_destination_country");
-  } else if (!description || !cargo) {
-    state = "blocked_information_required";
-    reason = "Cargo identity and technical description are required before evaluation.";
-    missing.push("cargo_category", "technical_description");
-  } else if (enhanced) {
-    state = "enhanced_compliance_required";
-    reason = "Transaction-specific screening overrides a simple route candidate.";
-    confirmations.push(
-      "counterparty_screening",
-      "beneficial_owner_screening",
-      "bank_and_payment_route_screening",
-      "product_and_end_use_controls",
-    );
-  }
-
-  $("state").textContent = state;
-  $("state").dataset.state = state;
-  $("reason").textContent = reason;
-  $("confirmations").textContent = [...new Set(confirmations)].join(", ");
-  $("missing").textContent = missing.length ? missing.join(", ") : "None identified by this UI pre-check.";
+function list(values) {
+  return values && values.length ? values.join(", ") : "None";
 }
 
+async function evaluateScenario() {
+  $("run").disabled = true;
+  $("reason").textContent = "Evaluating with the deterministic engine...";
+
+  const payload = {
+    originCountry: $("origin").value.trim().toUpperCase(),
+    destinationCountry: $("destination").value.trim().toUpperCase(),
+    mode: $("mode").value,
+    cargoCategory: $("cargo").value.trim(),
+    technicalDescription: $("description").value.trim(),
+    physicalState: $("physicalState").value,
+    compositionKnown: $("compositionKnown").checked,
+    hazardIndicators: $("hazards").value.split(",").map((v) => v.trim()).filter(Boolean),
+    specialCargoIndicators: $("special").value.split(",").map((v) => v.trim()).filter(Boolean),
+    enhancedComplianceTrigger: $("enhanced").checked,
+    transactionDate: $("transactionDate").value,
+  };
+
+  try {
+    const response = await fetch("/api/evaluate", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || "Evaluation failed");
+
+    $("state").textContent = result.decisionState;
+    $("state").dataset.state = result.decisionState;
+    $("reason").textContent = list(result.reasons);
+    $("confirmations").textContent = list(result.requiredConfirmations);
+    $("missing").textContent = list(result.missingInformation);
+    $("risks").textContent = list(result.criticalRisks);
+    $("sources").textContent = list(result.sources);
+    $("laneState").textContent = result.lane.decisionState;
+    $("cargoState").textContent = list(result.cargo.statuses);
+    $("countryState").textContent = result.destination.status;
+    $("raw").textContent = JSON.stringify(result, null, 2);
+  } catch (error) {
+    $("state").textContent = "request_error";
+    $("reason").textContent = error.message;
+    $("confirmations").textContent = "None";
+    $("missing").textContent = "Correct the request and run again.";
+    $("risks").textContent = "Request not evaluated";
+    $("sources").textContent = "None";
+    $("raw").textContent = "";
+  } finally {
+    $("run").disabled = false;
+  }
+}
+
+$("transactionDate").value = new Date().toISOString().slice(0, 10);
 $("run").addEventListener("click", evaluateScenario);
