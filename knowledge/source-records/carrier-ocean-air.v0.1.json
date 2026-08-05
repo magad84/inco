@@ -1,0 +1,111 @@
+{
+  "registryVersion": "0.1",
+  "verifiedAt": "2026-08-05T17:10:00Z",
+  "reviewPolicy": "Operational advisories are volatile and must be rechecked before recommendation or booking.",
+  "sources": [
+    {
+      "sourceId": "MSC-UAE-LOCAL-2026",
+      "providerId": "MSC",
+      "mode": "ocean",
+      "title": "United Arab Emirates Shipping Services",
+      "sourceType": "official_carrier_local_information",
+      "url": "https://www.msc.com/en/local-information/middle-east/united-arab-emirates",
+      "supports": ["uae_port_coverage", "hazardous_cargo_documentation", "shipping_instruction_cutoffs", "special_delivery_advance_notice"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-09-05"
+    },
+    {
+      "sourceId": "MSC-ME-BOOKING-SUSPENSION-2026-03-01",
+      "providerId": "MSC",
+      "mode": "ocean",
+      "title": "Booking Suspension for Worldwide Cargo to Middle East",
+      "sourceType": "official_carrier_operational_advisory",
+      "url": "https://www.msc.com/en/newsroom/customer-advisories/2026/march/booking-suspension-for-worldwide-cargo-to-middle-east",
+      "supports": ["temporary_middle_east_booking_restriction"],
+      "verificationStatus": "volatile_recheck_required",
+      "effectiveFrom": "2026-03-01",
+      "effectiveTo": null,
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-08-12"
+    },
+    {
+      "sourceId": "CMA-ME-DG-SUSPENSION-2026-03-02",
+      "providerId": "CMA-CGM",
+      "mode": "ocean",
+      "title": "Middle East Suspension of Hazardous Bookings",
+      "sourceType": "official_carrier_operational_advisory",
+      "url": "https://www.cma-cgm.com/news/5342/advisory-4-middle-east-suspension-of-hazardous-bookings",
+      "supports": ["temporary_dangerous_goods_booking_suspension"],
+      "verificationStatus": "volatile_recheck_required",
+      "effectiveFrom": "2026-03-02",
+      "effectiveTo": null,
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-08-12"
+    },
+    {
+      "sourceId": "CMA-UAE-MPCI-2026-05-18",
+      "providerId": "CMA-CGM",
+      "mode": "ocean",
+      "title": "UAE Maritime Preload Cargo Information Program",
+      "sourceType": "official_carrier_compliance_advisory",
+      "url": "https://www.cma-cgm.com/local/united-arab-emirates/news/381/cma-cgm-uae-customer-advisory-31-2026-uae-maritime-preload-cargo-information-mpci-program-go-live-date-19-may-2026",
+      "supports": ["uae_mpci_advance_filing"],
+      "verificationStatus": "verified_current",
+      "effectiveFrom": "2026-07-01",
+      "effectiveTo": null,
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-10-05"
+    },
+    {
+      "sourceId": "HAPAG-HAMBURG-DG-2026-06",
+      "providerId": "HAPAG-LLOYD",
+      "mode": "ocean",
+      "title": "Hamburg Dangerous Goods Delivery Requirements",
+      "sourceType": "official_carrier_port_advisory",
+      "url": "https://www.hapag-lloyd.com/en/services-information/offices-localinfo/local-news/2026/06/hamburg--new-requirements-for-dangerous-goods-deliveries-at-euro.html",
+      "supports": ["hamburg_dg_electronic_data_requirement"],
+      "verificationStatus": "verified_current",
+      "effectiveFrom": "2026-06-01",
+      "effectiveTo": null,
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "ETIHAD-GENERAL-CARGO-2026",
+      "providerId": "ETIHAD-CARGO",
+      "mode": "air_cargo",
+      "title": "Etihad Cargo General Cargo",
+      "sourceType": "official_carrier_product_page",
+      "url": "https://www.etihadcargo.com/content/eag/egcmc/etihadcargo/global/en/products/general-cargo.html",
+      "supports": ["general_cargo_excludes_restricted_perishable_and_dangerous_goods", "iata_compliance_indicator"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "TURKISH-TK-CARE-2026",
+      "providerId": "TURKISH-CARGO",
+      "mode": "air_cargo",
+      "title": "TK CARE Dangerous Goods and Sensitive Cargo",
+      "sourceType": "official_carrier_product_page",
+      "url": "https://www.turkishcargo.com/en/products-and-services/special-cargo/tk-care",
+      "supports": ["dangerous_goods_capability_indicator", "pre_booking_confirmation_required"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "sourceId": "EMIRATES-SKYCARGO-NETWORK-2026",
+      "providerId": "EMIRATES-SKYCARGO",
+      "mode": "air_cargo",
+      "title": "Emirates SkyCargo Network and Hub",
+      "sourceType": "official_carrier_profile",
+      "url": "https://www.emirates.com/us/english/skywards/partners/emirates-skycargo/",
+      "supports": ["dxb_dwc_hub_indicator", "global_network_indicator"],
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05",
+      "reviewBy": "2026-11-05"
+    }
+  ]
+}
