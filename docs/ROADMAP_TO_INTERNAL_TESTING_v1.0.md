@@ -44,15 +44,17 @@ Status values:
 
 | Code | Task | Priority | Dependency | Status | Acceptance Criteria |
 |---|---|---:|---|---:|---|
-| `CR-COM-001` | Finalize destination-country rule schema | P0 | None | READY | Supports authority, source, trigger, requirement, impact, next action, effective and review dates |
-| `CR-AE-001` | Normalize UAE import rules | P0 | `CR-COM-001` | READY | Executable UAE general-import and confirmation rules |
-| `CR-SA-001` | Normalize Saudi Arabia import rules | P0 | `CR-COM-001` | READY | Executable Saudi general-import and confirmation rules |
-| `CR-EG-001` | Normalize Egypt import rules | P0 | `CR-COM-001` | READY | Executable Egypt general-import and confirmation rules |
-| `CR-OM-001` | Normalize Oman import rules | P0 | `CR-COM-001` | READY | Executable Oman general-import and confirmation rules |
-| `CR-COM-002` | Country-rule integrity tests | P0 | `CR-AE-001`–`CR-OM-001` | READY | Reject missing sources, dates, authority, impact or next action |
-| `CR-COM-003` | Implement `evaluateCountryRequirements()` | P0 | `CR-COM-002` | READY | Returns requirements, gaps, risks, source status and confirmation actions |
+| `CR-COM-001` | Finalize destination-country rule schema | P0 | None | DONE | Supports authority, source, trigger, requirement, impact, next action, effective and review dates |
+| `CR-AE-001` | Normalize UAE import rules | P0 | `CR-COM-001` | IN_PROGRESS | Executable UAE seed rules complete; official-source normalization remains |
+| `CR-SA-001` | Normalize Saudi Arabia import rules | P0 | `CR-COM-001` | IN_PROGRESS | Executable Saudi seed rules complete; official-source normalization remains |
+| `CR-EG-001` | Normalize Egypt import rules | P0 | `CR-COM-001` | IN_PROGRESS | Executable Egypt seed rules complete; official-source normalization remains |
+| `CR-OM-001` | Normalize Oman import rules | P0 | `CR-COM-001` | IN_PROGRESS | Executable Oman seed rules complete; official-source normalization remains |
+| `CR-COM-002` | Country-rule integrity tests | P0 | `CR-AE-001`–`CR-OM-001` | DONE | Reject missing sources, dates, authority, impact or next action |
+| `CR-COM-003` | Implement `evaluateCountryRequirements()` | P0 | `CR-COM-002` | DONE | Returns requirements, gaps, source status and confirmation actions |
+| `CR-COM-004` | Normalize official source records and verification dates | P0 | Country seed rules | READY | Every executable rule references current official source records |
+| `CR-COM-005` | Add complete country acceptance fixtures | P0 | `CR-COM-004` | READY | Four country packs pass complete, incomplete, stale and source-gap cases |
 
-**Phase gate `GATE-CR-01`:** All four destination packs evaluate successfully against fixtures and CI.
+**Phase gate `GATE-CR-01`:** All four destination packs evaluate successfully against official-source-normalized fixtures and CI.
 
 ---
 
@@ -62,11 +64,12 @@ Status values:
 
 | Code | Task | Priority | Dependency | Status | Acceptance Criteria |
 |---|---|---:|---|---:|---|
-| `DG-001` | Finalize cargo pre-screen input/output schemas | P0 | None | READY | Structured description, composition, battery, liquid, gas, temperature, biological and dimension fields |
-| `DG-002` | Create deterministic indicator rule set | P0 | `DG-001` | READY | Rules for batteries, chemicals, gases, flammables, magnetized, radioactive, biological, food, pharma, reefer, oversized and high-value cargo |
-| `DG-003` | Implement `prescreenCargo()` | P0 | `DG-002` | READY | Returns indicator state, missing evidence, severity and next action |
-| `DG-004` | Add carrier and gateway escalation mapping | P0 | `DG-003` | READY | Maps cargo indicators to carrier pre-approval, handler, authority or specialist confirmation |
-| `DG-005` | Add DG fixtures and regression tests | P0 | `DG-004` | READY | Minimum 15 positive, negative and insufficient-information cases |
+| `DG-001` | Finalize cargo pre-screen input/output schemas | P0 | None | DONE | Structured description, composition, battery, liquid, gas, temperature, biological and dimension fields |
+| `DG-002` | Create deterministic indicator rule set | P0 | `DG-001` | IN_PROGRESS | First rules implemented; remaining indicators and contradictions pending |
+| `DG-003` | Implement `prescreenCargo()` | P0 | `DG-002` | DONE | Returns indicator state, missing evidence, severity and next action |
+| `DG-004` | Add carrier and gateway escalation mapping | P0 | `DG-003` | IN_PROGRESS | General carrier escalation implemented; provider, gateway, country and mode mapping remains |
+| `DG-005` | Add DG fixtures and regression tests | P0 | `DG-004` | IN_PROGRESS | Initial representative tests pass; full 15-scenario set remains |
+| `DG-006` | Add evidence-status and contradiction tests | P0 | `DG-005` | READY | Conflicting user and technical data block definitive output |
 
 **Phase gate `GATE-DG-01`:** No fixture produces unsupported final classification or acceptance claim.
 
@@ -151,17 +154,8 @@ Status values:
 ## Execution Order
 
 ```text
-CR-COM-001
-→ CR-AE-001 / CR-SA-001 / CR-EG-001 / CR-OM-001
-→ CR-COM-002
-→ CR-COM-003
-
-DG-001
-→ DG-002
-→ DG-003
-→ DG-004
-→ DG-005
-
+CR-COM-004 / CR-COM-005
+DG-002 / DG-004 / DG-005 / DG-006
 GC country/carrier tasks
 → GC-COM-001
 
