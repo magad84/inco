@@ -1,0 +1,76 @@
+{
+  "registryVersion": "0.1",
+  "status": "verified_partial",
+  "gateways": [
+    {
+      "gatewayId": "GATEWAY-SA-JEDDAH-PORT",
+      "gatewayType": "seaport",
+      "officialName": {"en": "Jeddah Islamic Port", "ar": "ميناء جدة الإسلامي"},
+      "countryCode": "SA",
+      "locality": {"en": "Jeddah", "ar": "جدة"},
+      "locationCodes": {"unLocode": "SAJED", "iata": null, "icao": null, "internal": null},
+      "authorities": [{"name": {"en": "Saudi Ports Authority", "ar": "الهيئة العامة للموانئ"}, "role": {"en": "Port authority", "ar": "الجهة المشرفة على الميناء"}, "sourceIds": ["MAWANI-JEDDAH-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["ocean", "road", "multimodal"], "cargoTypes": ["general", "containerized"], "equipment": [], "services": ["container_terminal_indicator", "shipping_service_activity"]},
+      "constraints": [{"constraintId": "SA-JED-CARGO-CONFIRM", "category": "cargo_acceptance", "status": "confirmation_required", "trigger": {}, "outcome": {"en": "Confirm terminal, service, cargo acceptance, cut-off, and documentation with the carrier and terminal before booking.", "ar": "يجب تأكيد المحطة والخدمة وقبول البضاعة ومواعيد الإغلاق والمستندات مع الناقل والمحطة قبل الحجز."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["MAWANI-JEDDAH-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["MAWANI-JEDDAH-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:20:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Capability is an official gateway indicator, not shipment approval."}
+    },
+    {
+      "gatewayId": "GATEWAY-EG-CAI-AIR",
+      "gatewayType": "cargo_airport",
+      "officialName": {"en": "Cairo International Airport", "ar": "مطار القاهرة الدولي"},
+      "countryCode": "EG",
+      "locality": {"en": "Cairo", "ar": "القاهرة"},
+      "locationCodes": {"unLocode": null, "iata": "CAI", "icao": "HECA", "internal": null},
+      "authorities": [{"name": {"en": "Cairo Airport Company", "ar": "شركة ميناء القاهرة الجوي"}, "role": {"en": "Airport operator", "ar": "مشغل المطار"}, "sourceIds": ["CAIRO-AIRPORT-CARGO-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["air", "road", "multimodal"], "cargoTypes": ["general", "perishable", "high_value"], "equipment": [], "services": ["cargo_terminal_indicator", "perishable_and_pharma_indicator"]},
+      "constraints": [{"constraintId": "EG-CAI-SPECIAL-CARGO-CONFIRM", "category": "cargo_acceptance", "status": "confirmation_required", "trigger": {"cargo": "special_or_controlled"}, "outcome": {"en": "Confirm handler, airline, storage conditions, permits, and customs process for controlled or special cargo.", "ar": "يجب تأكيد شركة المناولة وشركة الطيران وظروف التخزين والتصاريح والإجراءات الجمركية للبضائع الخاصة أو الخاضعة للرقابة."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["CAIRO-AIRPORT-CARGO-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["CAIRO-AIRPORT-CARGO-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:20:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Cargo facilities are indicated by the official airport source; actual acceptance remains conditional."}
+    },
+    {
+      "gatewayId": "GATEWAY-EG-SOKHNA-PORT",
+      "gatewayType": "seaport",
+      "officialName": {"en": "Sokhna Port", "ar": "ميناء السخنة"},
+      "countryCode": "EG",
+      "locality": {"en": "Ain Sokhna", "ar": "العين السخنة"},
+      "locationCodes": {"unLocode": "EGAIS", "iata": null, "icao": null, "internal": null},
+      "authorities": [{"name": {"en": "Suez Canal Economic Zone", "ar": "الهيئة العامة للمنطقة الاقتصادية لقناة السويس"}, "role": {"en": "Economic-zone authority", "ar": "الجهة المشرفة على المنطقة الاقتصادية"}, "sourceIds": ["SCZONE-SOKHNA-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["ocean", "road", "multimodal"], "cargoTypes": ["general", "containerized"], "equipment": [], "services": ["port_area_indicator"]},
+      "constraints": [{"constraintId": "EG-SOKHNA-TERMINAL-SOURCE-GAP", "category": "cargo_acceptance", "status": "confirmation_required", "trigger": {}, "outcome": {"en": "Current terminal capability, cargo acceptance, equipment, and operating conditions require terminal or carrier confirmation.", "ar": "تتطلب قدرات المحطة الحالية وقبول البضاعة والمعدات وظروف التشغيل تأكيدًا من المحطة أو الناقل."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["SCZONE-SOKHNA-2026"], "reviewBy": "2026-10-05"}],
+      "sources": ["SCZONE-SOKHNA-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:20:00Z", "nextReviewAt": "2026-10-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Official area identity verified; terminal-level operating data remains incomplete."}
+    },
+    {
+      "gatewayId": "GATEWAY-OM-MCT-AIR",
+      "gatewayType": "cargo_airport",
+      "officialName": {"en": "Muscat International Airport", "ar": "مطار مسقط الدولي"},
+      "countryCode": "OM",
+      "locality": {"en": "Muscat", "ar": "مسقط"},
+      "locationCodes": {"unLocode": null, "iata": "MCT", "icao": "OOMS", "internal": null},
+      "authorities": [{"name": {"en": "Oman Airports", "ar": "مطارات عُمان"}, "role": {"en": "Airport operator", "ar": "مشغل المطار"}, "sourceIds": ["OMAN-AIRPORTS-MCT-CARGO-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["air", "road", "multimodal"], "cargoTypes": ["general", "dangerous_goods", "perishable", "postal_or_courier"], "equipment": ["cold_storage", "freezer_storage", "dangerous_goods_storage"], "services": ["24_hour_import_export_cargo", "road_feeder_service", "mail_handling"]},
+      "constraints": [{"constraintId": "OM-MCT-DG-CONFIRM", "category": "dangerous_goods", "status": "confirmation_required", "trigger": {"cargo": "dangerous_goods"}, "outcome": {"en": "Dangerous-goods storage capability does not establish airline acceptance; confirm classification, documents, handling approval, and flight availability.", "ar": "وجود تخزين للبضائع الخطرة لا يثبت قبول شركة الطيران؛ يجب تأكيد التصنيف والمستندات وموافقة المناولة وتوافر الرحلة."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["OMAN-AIRPORTS-MCT-CARGO-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["OMAN-AIRPORTS-MCT-CARGO-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:20:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Official cargo-facility indicators recorded; shipment acceptance remains conditional."}
+    },
+    {
+      "gatewayId": "GATEWAY-OM-SOHAR-PORT",
+      "gatewayType": "seaport",
+      "officialName": {"en": "Port of Sohar", "ar": "ميناء صحار"},
+      "countryCode": "OM",
+      "locality": {"en": "Sohar", "ar": "صحار"},
+      "locationCodes": {"unLocode": "OMSOH", "iata": null, "icao": null, "internal": null},
+      "authorities": [{"name": {"en": "Asyad Group / Sohar Industrial Port Company", "ar": "مجموعة أسياد / شركة ميناء صحار الصناعي"}, "role": {"en": "Port group and manager", "ar": "مجموعة الموانئ ومدير الميناء"}, "sourceIds": ["ASYAD-SOHAR-PORT-2026", "ASYAD-SOHAR-CONTAINER-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["ocean", "road", "multimodal"], "cargoTypes": ["general", "containerized", "bulk", "breakbulk"], "equipment": ["container_terminal_indicator"], "services": ["container_handling", "general_cargo", "liquid_bulk", "transshipment_indicator", "free_zone_link"]},
+      "constraints": [{"constraintId": "OM-SOHAR-SPECIAL-CARGO-CONFIRM", "category": "cargo_acceptance", "status": "confirmation_required", "trigger": {"cargo": "dangerous_goods_or_project_cargo"}, "outcome": {"en": "Confirm terminal assignment, equipment, dangerous-goods conditions, berth window, and inland movement before commitment.", "ar": "يجب تأكيد المحطة والمعدات وشروط البضائع الخطرة ونافذة الرسو والنقل الداخلي قبل الالتزام."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["ASYAD-SOHAR-PORT-2026", "ASYAD-SOHAR-CONTAINER-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["ASYAD-SOHAR-PORT-2026", "ASYAD-SOHAR-CONTAINER-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:20:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Official port and terminal capability indicators recorded; route and shipment conditions remain conditional."}
+    }
+  ]
+}
