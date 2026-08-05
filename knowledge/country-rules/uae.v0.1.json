@@ -1,0 +1,86 @@
+{
+  "datasetVersion": "0.1",
+  "countryCode": "AE",
+  "status": "research_seed",
+  "policy": "Rules are executable only to the extent supported by current sources. Missing thresholds, exemptions, or current notices must return confirmation_required or source_unavailable.",
+  "rules": [
+    {
+      "ruleId": "CR-AE-JURISDICTION-001",
+      "countryCode": "AE",
+      "jurisdiction": {"en": "United Arab Emirates", "ar": "الإمارات العربية المتحدة"},
+      "stage": "pre_import",
+      "category": "customs",
+      "status": "verified_partial",
+      "trigger": {"transactionRole": ["import", "transit", "domestic_movement"]},
+      "requiredInputs": ["emirate", "gateway_or_city", "transaction_role", "transport_mode"],
+      "outcome": {
+        "decision": "confirmation_required",
+        "message": {"en": "Select the competent emirate, customs administration, and operational jurisdiction before applying local rules.", "ar": "يجب تحديد الإمارة والإدارة الجمركية والاختصاص التشغيلي قبل تطبيق القواعد المحلية."},
+        "nextAction": {"en": "Confirm emirate, gateway, customs point, and movement type.", "ar": "أكد الإمارة والمنفذ والنقطة الجمركية ونوع الحركة."},
+        "impactIfNotConfirmed": {"en": "The wrong customs, permit, or road-control workflow may be applied.", "ar": "قد يتم تطبيق مسار جمركي أو تصريح أو قيد طرق غير صحيح."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "Relevant UAE customs and local authority", "ar": "الجمارك والجهة المحلية المختصة في الإمارات"},
+        "reason": {"en": "Operational requirements vary by emirate, gateway, and movement type.", "ar": "تختلف المتطلبات التشغيلية حسب الإمارة والمنفذ ونوع الحركة."},
+        "sourceRoute": "official local authority or customs portal"
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-UAE-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-09-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Structural rule derived from approved UAE seed pack; official source normalization remains pending."}
+    },
+    {
+      "ruleId": "CR-AE-DXB-SPECIAL-LOAD-001",
+      "countryCode": "AE",
+      "jurisdiction": {"en": "Dubai", "ar": "دبي"},
+      "stage": "inland_transport",
+      "category": "special_load",
+      "status": "research_seed",
+      "trigger": {"emirate": "Dubai", "specialLoadIndicator": true},
+      "requiredInputs": ["loaded_gross_weight", "overall_length", "overall_width", "overall_height", "vehicle_and_trailer_type", "origin", "destination", "route", "movement_time"],
+      "outcome": {
+        "decision": "confirmation_required",
+        "message": {"en": "A Dubai special-load permit and route review may be required.", "ar": "قد يلزم تصريح حمولة خاصة ومراجعة المسار في دبي."},
+        "nextAction": {"en": "Confirm current thresholds, permit route, bridge and tunnel constraints, and movement window with the competent authority.", "ar": "أكد الحدود الحالية ومسار التصريح وقيود الجسور والأنفاق ونافذة الحركة مع الجهة المختصة."},
+        "impactIfNotConfirmed": {"en": "Movement may be delayed, refused, rerouted, or exposed to safety and enforcement risk.", "ar": "قد تتأخر الحركة أو تُرفض أو يُعاد توجيهها أو تتعرض لمخاطر السلامة والمخالفة."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "Dubai Roads and Transport Authority", "ar": "هيئة الطرق والمواصلات في دبي"},
+        "reason": {"en": "Controlled thresholds and route conditions are not yet normalized into the executable dataset.", "ar": "لم تُحوَّل الحدود وشروط المسار المعتمدة بعد إلى بيانات تنفيذية."},
+        "sourceRoute": "official Dubai road and permit source"
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-UAE-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-08-20T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Cannot issue threshold-based conclusion until official values are transcribed and verified."}
+    },
+    {
+      "ruleId": "CR-AE-POST-CARGO-001",
+      "countryCode": "AE",
+      "jurisdiction": {"en": "United Arab Emirates", "ar": "الإمارات العربية المتحدة"},
+      "stage": "pre_import",
+      "category": "postal_or_courier",
+      "status": "research_seed",
+      "trigger": {"mode": ["postal", "courier"]},
+      "requiredInputs": ["product_description", "composition", "service", "origin_country", "destination_country", "package_details", "dangerous_goods_indicators"],
+      "outcome": {
+        "decision": "confirmation_required",
+        "message": {"en": "Postal or courier acceptance requires provider-specific and destination-specific confirmation.", "ar": "قبول الشحنة البريدية أو السريعة يحتاج تأكيدًا خاصًا بمقدم الخدمة ودولة الوجهة."},
+        "nextAction": {"en": "Run cargo pre-screen and confirm the current prohibited, dangerous, and restricted-item rules with the selected provider.", "ar": "نفّذ الفحص المبدئي للبضاعة وأكد القواعد الحالية للممنوعات والبضائع الخطرة والمقيدة مع مقدم الخدمة المختار."},
+        "impactIfNotConfirmed": {"en": "The shipment may be refused, returned, delayed, or subject to additional documentation.", "ar": "قد تُرفض الشحنة أو تُعاد أو تتأخر أو تحتاج مستندات إضافية."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "Selected postal or courier provider", "ar": "مقدم الخدمة البريدية أو السريعة المختار"},
+        "reason": {"en": "Acceptance varies by provider, service, route, cargo, and date.", "ar": "يختلف القبول حسب مقدم الخدمة والخدمة والمسار والبضاعة والتاريخ."},
+        "sourceRoute": "official provider prohibited and restricted items page"
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-UAE-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-09-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Provider-specific source records must remain separate."}
+    }
+  ]
+}
