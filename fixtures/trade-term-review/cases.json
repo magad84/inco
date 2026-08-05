@@ -1,0 +1,368 @@
+{
+  "fixture_version": "0.1",
+  "rule_dataset_version": "0.1.0",
+  "cases": [
+    {
+      "case_id": "TERM-CASE-001",
+      "description": "Containerized shipment handed to origin terminal under FOB",
+      "input": {
+        "review_id": "TERM-CASE-001",
+        "locale": "en",
+        "perspective": "buyer",
+        "review_context": "quotation_review",
+        "selected_term": "FOB",
+        "seller_country": "China",
+        "buyer_country": "United Arab Emirates",
+        "origin": {"country": "China", "city": "Shanghai", "facility": "Container terminal", "address": null},
+        "destination": {"country": "United Arab Emirates", "city": "Dubai", "facility": "Jebel Ali Port", "address": null},
+        "transit_locations": [],
+        "transport_modes": ["road", "ocean", "road", "multimodal"],
+        "containerized": "yes",
+        "cargo_description": "General cargo in sealed containers",
+        "named_place": {"provided": true, "exact_wording": "FOB Shanghai Port", "point_type": "port"},
+        "intended_delivery_point": {"stage": "origin_terminal_or_carrier", "description": "Seller hands the sealed container to the terminal before vessel loading"},
+        "expected_risk_transfer_stage": "origin_terminal_or_carrier",
+        "expected_responsibilities": {
+          "loading_at_seller": "seller",
+          "pre_carriage": "seller",
+          "export_clearance": "seller",
+          "origin_handling": "seller",
+          "main_carriage": "buyer",
+          "cargo_insurance": "buyer",
+          "destination_handling": "buyer",
+          "unloading_at_destination": "buyer",
+          "import_clearance": "buyer",
+          "import_duties_and_taxes": "buyer",
+          "final_delivery": "buyer"
+        },
+        "capabilities": {
+          "seller_export_clearance": "confirmed",
+          "buyer_main_carriage_management": "confirmed"
+        },
+        "priorities": ["buyer_control_main_carriage"]
+      },
+      "expected_assertions": {
+        "status": "COMPLETE_WITH_WARNINGS",
+        "suitability": "POOR_FIT",
+        "alignment": {
+          "transport_compatibility": "MISALIGNED",
+          "delivery_alignment": "MISALIGNED",
+          "responsibility_alignment": "ALIGNED"
+        },
+        "required_risk_keys": ["risk.fob.container_misalignment"],
+        "required_alternative_terms": ["FCA"],
+        "free_warning_required": true
+      }
+    },
+    {
+      "case_id": "TERM-CASE-002",
+      "description": "DDP selected while seller has no destination import capability",
+      "input": {
+        "review_id": "TERM-CASE-002",
+        "locale": "en",
+        "perspective": "seller",
+        "review_context": "quotation_review",
+        "selected_term": "DDP",
+        "seller_country": "Egypt",
+        "buyer_country": "Saudi Arabia",
+        "origin": {"country": "Egypt", "city": "Cairo", "facility": "Seller warehouse", "address": null},
+        "destination": {"country": "Saudi Arabia", "city": "Riyadh", "facility": "Buyer warehouse", "address": null},
+        "transit_locations": [],
+        "transport_modes": ["road", "ocean", "road", "multimodal"],
+        "containerized": "yes",
+        "cargo_description": "General commercial goods",
+        "named_place": {"provided": true, "exact_wording": "DDP Buyer Warehouse, Riyadh, Saudi Arabia", "point_type": "buyer_premises"},
+        "intended_delivery_point": {"stage": "destination_ready_for_unloading", "description": "At buyer warehouse"},
+        "expected_risk_transfer_stage": "destination_ready_for_unloading",
+        "expected_responsibilities": {
+          "loading_at_seller": "seller",
+          "pre_carriage": "seller",
+          "export_clearance": "seller",
+          "origin_handling": "seller",
+          "main_carriage": "seller",
+          "cargo_insurance": "seller",
+          "destination_handling": "seller",
+          "unloading_at_destination": "buyer",
+          "import_clearance": "seller",
+          "import_duties_and_taxes": "seller",
+          "final_delivery": "seller"
+        },
+        "capabilities": {
+          "seller_export_clearance": "confirmed",
+          "seller_import_clearance_in_buyer_country": "not_available",
+          "buyer_import_clearance": "confirmed",
+          "seller_main_carriage_management": "confirmed"
+        },
+        "priorities": ["buyer_delivered_solution", "cost_visibility"]
+      },
+      "expected_assertions": {
+        "status": "COMPLETE_WITH_WARNINGS",
+        "suitability": "POOR_FIT",
+        "alignment": {
+          "transport_compatibility": "ALIGNED",
+          "operational_capability": "MISALIGNED",
+          "clearance_exposure": "MISALIGNED"
+        },
+        "required_risk_keys": ["risk.ddp.seller_importer_capability"],
+        "required_alternative_terms": ["DAP"],
+        "specialist_confirmation_types": ["customs", "tax"],
+        "free_warning_required": true
+      }
+    },
+    {
+      "case_id": "TERM-CASE-003",
+      "description": "CPT selected but buyer expects seller to retain risk to destination",
+      "input": {
+        "review_id": "TERM-CASE-003",
+        "locale": "en",
+        "perspective": "buyer",
+        "review_context": "purchase_order_review",
+        "selected_term": "CPT",
+        "seller_country": "Germany",
+        "buyer_country": "Oman",
+        "origin": {"country": "Germany", "city": "Hamburg", "facility": "Seller warehouse", "address": null},
+        "destination": {"country": "Oman", "city": "Muscat", "facility": "Named logistics facility", "address": null},
+        "transit_locations": [],
+        "transport_modes": ["road", "ocean", "road", "multimodal"],
+        "containerized": "yes",
+        "cargo_description": "Industrial components",
+        "named_place": {"provided": true, "exact_wording": "CPT Muscat Logistics Facility, Oman", "point_type": "warehouse"},
+        "intended_delivery_point": {"stage": "first_carrier_handover", "description": "Carrier collection at seller warehouse"},
+        "expected_risk_transfer_stage": "destination_ready_for_unloading",
+        "expected_responsibilities": {
+          "loading_at_seller": "seller",
+          "pre_carriage": "seller",
+          "export_clearance": "seller",
+          "origin_handling": "seller",
+          "main_carriage": "seller",
+          "cargo_insurance": "seller",
+          "destination_handling": "seller",
+          "unloading_at_destination": "buyer",
+          "import_clearance": "buyer",
+          "import_duties_and_taxes": "buyer",
+          "final_delivery": "seller"
+        },
+        "capabilities": {
+          "seller_export_clearance": "confirmed",
+          "buyer_import_clearance": "confirmed",
+          "seller_main_carriage_management": "confirmed"
+        },
+        "priorities": ["risk_retained_to_destination", "buyer_delivered_solution"]
+      },
+      "expected_assertions": {
+        "status": "COMPLETE_WITH_WARNINGS",
+        "suitability": "POOR_FIT",
+        "alignment": {
+          "transport_compatibility": "ALIGNED",
+          "risk_transfer_alignment": "MISALIGNED",
+          "cost_control_alignment": "ALIGNED"
+        },
+        "required_risk_keys": ["risk.cpt.risk_cost_confusion"],
+        "required_alternative_terms": ["DAP"],
+        "free_warning_required": true
+      }
+    },
+    {
+      "case_id": "TERM-CASE-004",
+      "description": "DAP selected but seller is expected to unload",
+      "input": {
+        "review_id": "TERM-CASE-004",
+        "locale": "en",
+        "perspective": "neutral_reviewer",
+        "review_context": "contract_review",
+        "selected_term": "DAP",
+        "seller_country": "United Arab Emirates",
+        "buyer_country": "Oman",
+        "origin": {"country": "United Arab Emirates", "city": "Dubai", "facility": "Seller warehouse", "address": null},
+        "destination": {"country": "Oman", "city": "Sohar", "facility": "Buyer site", "address": null},
+        "transit_locations": [],
+        "transport_modes": ["road"],
+        "containerized": "no",
+        "cargo_description": "Palletized machinery parts",
+        "named_place": {"provided": true, "exact_wording": "DAP Buyer Site, Sohar, Oman", "point_type": "buyer_premises"},
+        "intended_delivery_point": {"stage": "destination_after_unloading", "description": "Seller unloads at buyer site"},
+        "expected_risk_transfer_stage": "destination_after_unloading",
+        "expected_responsibilities": {
+          "loading_at_seller": "seller",
+          "pre_carriage": "seller",
+          "export_clearance": "seller",
+          "origin_handling": "seller",
+          "main_carriage": "seller",
+          "cargo_insurance": "seller",
+          "destination_handling": "seller",
+          "unloading_at_destination": "seller",
+          "import_clearance": "buyer",
+          "import_duties_and_taxes": "buyer",
+          "final_delivery": "seller"
+        },
+        "capabilities": {
+          "seller_export_clearance": "confirmed",
+          "buyer_import_clearance": "confirmed",
+          "seller_destination_unloading": "confirmed",
+          "seller_main_carriage_management": "confirmed"
+        },
+        "priorities": ["buyer_delivered_solution", "risk_retained_to_destination"]
+      },
+      "expected_assertions": {
+        "status": "COMPLETE_WITH_WARNINGS",
+        "suitability": "CONDITIONAL_FIT",
+        "alignment": {
+          "transport_compatibility": "ALIGNED",
+          "delivery_alignment": "MISALIGNED",
+          "responsibility_alignment": "MISALIGNED",
+          "operational_capability": "ALIGNED"
+        },
+        "required_risk_keys": ["risk.dap.unloading_expectation_conflict"],
+        "required_alternative_terms": ["DPU"],
+        "free_warning_required": true
+      }
+    },
+    {
+      "case_id": "TERM-CASE-005",
+      "description": "EXW selected while buyer cannot handle export clearance in seller country",
+      "input": {
+        "review_id": "TERM-CASE-005",
+        "locale": "en",
+        "perspective": "buyer",
+        "review_context": "new_selection",
+        "selected_term": "EXW",
+        "seller_country": "Saudi Arabia",
+        "buyer_country": "Egypt",
+        "origin": {"country": "Saudi Arabia", "city": "Dammam", "facility": "Seller warehouse", "address": null},
+        "destination": {"country": "Egypt", "city": "Cairo", "facility": "Buyer warehouse", "address": null},
+        "transit_locations": [],
+        "transport_modes": ["road", "ocean", "road", "multimodal"],
+        "containerized": "yes",
+        "cargo_description": "General cargo",
+        "named_place": {"provided": true, "exact_wording": "EXW Seller Warehouse, Dammam, Saudi Arabia", "point_type": "seller_premises"},
+        "intended_delivery_point": {"stage": "seller_premises_before_loading", "description": "Goods ready for collection"},
+        "expected_risk_transfer_stage": "seller_premises_before_loading",
+        "expected_responsibilities": {
+          "loading_at_seller": "buyer",
+          "pre_carriage": "buyer",
+          "export_clearance": "buyer",
+          "origin_handling": "buyer",
+          "main_carriage": "buyer",
+          "cargo_insurance": "buyer",
+          "destination_handling": "buyer",
+          "unloading_at_destination": "buyer",
+          "import_clearance": "buyer",
+          "import_duties_and_taxes": "buyer",
+          "final_delivery": "buyer"
+        },
+        "capabilities": {
+          "buyer_export_clearance_in_seller_country": "not_available",
+          "seller_export_clearance": "confirmed",
+          "buyer_main_carriage_management": "confirmed"
+        },
+        "priorities": ["buyer_control_main_carriage"]
+      },
+      "expected_assertions": {
+        "status": "COMPLETE_WITH_WARNINGS",
+        "suitability": "POOR_FIT",
+        "alignment": {
+          "transport_compatibility": "ALIGNED",
+          "operational_capability": "MISALIGNED",
+          "clearance_exposure": "MISALIGNED"
+        },
+        "required_risk_keys": ["risk.exw.buyer_export_clearance_capability"],
+        "required_alternative_terms": ["FCA"],
+        "free_warning_required": true
+      }
+    },
+    {
+      "case_id": "TERM-CASE-006",
+      "description": "CIF proposed for containerized multimodal cargo",
+      "input": {
+        "review_id": "TERM-CASE-006",
+        "locale": "en",
+        "perspective": "buyer",
+        "review_context": "quotation_review",
+        "selected_term": "CIF",
+        "seller_country": "China",
+        "buyer_country": "United Arab Emirates",
+        "origin": {"country": "China", "city": "Shenzhen", "facility": "Container terminal", "address": null},
+        "destination": {"country": "United Arab Emirates", "city": "Dubai", "facility": "Jebel Ali Port", "address": null},
+        "transit_locations": [],
+        "transport_modes": ["road", "ocean", "road", "multimodal"],
+        "containerized": "yes",
+        "cargo_description": "Containerized electronics",
+        "named_place": {"provided": true, "exact_wording": "CIF Jebel Ali Port, Dubai, UAE", "point_type": "port"},
+        "intended_delivery_point": {"stage": "origin_terminal_or_carrier", "description": "Container handed to carrier before loading"},
+        "expected_risk_transfer_stage": "origin_terminal_or_carrier",
+        "expected_responsibilities": {
+          "loading_at_seller": "seller",
+          "pre_carriage": "seller",
+          "export_clearance": "seller",
+          "origin_handling": "seller",
+          "main_carriage": "seller",
+          "cargo_insurance": "seller",
+          "destination_handling": "buyer",
+          "unloading_at_destination": "buyer",
+          "import_clearance": "buyer",
+          "import_duties_and_taxes": "buyer",
+          "final_delivery": "buyer"
+        },
+        "capabilities": {
+          "seller_export_clearance": "confirmed",
+          "buyer_import_clearance": "confirmed",
+          "seller_main_carriage_management": "confirmed"
+        },
+        "priorities": ["buyer_delivered_solution", "insurance_control"]
+      },
+      "expected_assertions": {
+        "status": "COMPLETE_WITH_WARNINGS",
+        "suitability": "CONDITIONAL_FIT",
+        "alignment": {
+          "transport_compatibility": "MISALIGNED",
+          "delivery_alignment": "MISALIGNED",
+          "insurance_alignment": "CONDITIONAL"
+        },
+        "required_alternative_terms": ["CIP"],
+        "free_warning_required": true
+      }
+    },
+    {
+      "case_id": "TERM-CASE-007",
+      "description": "Named place is only a country",
+      "input": {
+        "review_id": "TERM-CASE-007",
+        "locale": "en",
+        "perspective": "seller",
+        "review_context": "quotation_review",
+        "selected_term": "DAP",
+        "seller_country": "United Arab Emirates",
+        "buyer_country": "Oman",
+        "origin": {"country": "United Arab Emirates", "city": "Dubai", "facility": "Seller warehouse", "address": null},
+        "destination": {"country": "Oman", "city": null, "facility": null, "address": null},
+        "transit_locations": [],
+        "transport_modes": ["road"],
+        "containerized": "no",
+        "cargo_description": "General cargo",
+        "named_place": {"provided": true, "exact_wording": "DAP Oman", "point_type": "country"},
+        "intended_delivery_point": {"stage": "unknown", "description": null},
+        "expected_risk_transfer_stage": "unknown",
+        "expected_responsibilities": {
+          "export_clearance": "seller",
+          "main_carriage": "seller",
+          "import_clearance": "buyer"
+        },
+        "capabilities": {
+          "seller_export_clearance": "confirmed",
+          "buyer_import_clearance": "confirmed"
+        },
+        "priorities": ["buyer_delivered_solution"]
+      },
+      "expected_assertions": {
+        "status": "INSUFFICIENT_INFORMATION",
+        "suitability": "INSUFFICIENT_INFORMATION",
+        "alignment": {
+          "named_place_clarity": "MISALIGNED",
+          "delivery_alignment": "UNKNOWN"
+        },
+        "required_missing_fields": ["named_place.exact_wording", "intended_delivery_point.stage"],
+        "definitive_result_blocked": true
+      }
+    }
+  ]
+}
