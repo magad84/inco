@@ -1,0 +1,86 @@
+{
+  "datasetVersion": "0.1",
+  "countryCode": "EG",
+  "status": "research_seed",
+  "policy": "Candidate rules derived from the approved Egypt seed pack. Unsupported road, postal, and public broker-status areas must not produce definitive results.",
+  "rules": [
+    {
+      "ruleId": "CR-EG-ACI-001",
+      "countryCode": "EG",
+      "jurisdiction": {"en": "Egypt", "ar": "مصر"},
+      "stage": "pre_import",
+      "category": "documents",
+      "status": "research_seed",
+      "trigger": {"transactionRole": ["import", "transit"]},
+      "requiredInputs": ["transaction_role", "transport_mode", "planned_shipment_date", "seller_exporter_context", "importer_context", "shipment_document_status"],
+      "outcome": {
+        "decision": "confirmation_required",
+        "message": {"en": "Current advance cargo information requirements must be checked for the selected mode and shipment date.", "ar": "يجب التحقق من متطلبات معلومات الشحنة المسبقة الحالية وفق وسيلة النقل وتاريخ الشحنة."},
+        "nextAction": {"en": "Check the current official process, rollout status, timing, and document requirements before shipment.", "ar": "تحقق من العملية الرسمية الحالية ونطاق التطبيق والتوقيت ومتطلبات المستندات قبل الشحن."},
+        "impactIfNotConfirmed": {"en": "The shipment may face filing failure, delay, or clearance disruption.", "ar": "قد تواجه الشحنة فشلًا في التسجيل أو تأخيرًا أو تعطلًا في التخليص."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "Egyptian Customs Authority and current official cargo-information platform", "ar": "مصلحة الجمارك المصرية والمنصة الرسمية الحالية لمعلومات الشحن"},
+        "reason": {"en": "Mode rollout, timing, and current notices may change.", "ar": "قد يتغير نطاق التطبيق حسب الوسيلة والتوقيت والتنبيهات الحالية."},
+        "sourceRoute": "official Egyptian customs and cargo-information source"
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-EGYPT-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-08-20T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Workflow-only rule until current official notices are normalized."}
+    },
+    {
+      "ruleId": "CR-EG-HAZARDOUS-ACTIVITY-001",
+      "countryCode": "EG",
+      "jurisdiction": {"en": "Egypt", "ar": "مصر"},
+      "stage": "pre_import",
+      "category": "dangerous_goods",
+      "status": "research_seed",
+      "trigger": {"hazardousActivityIndicator": true},
+      "requiredInputs": ["material_or_waste_status", "hazard_data", "activity_context", "origin_activity", "destination_activity", "operator_license_evidence"],
+      "outcome": {
+        "decision": "confirmation_required",
+        "message": {"en": "Hazardous material or waste activity may require environmental licensing and specialist confirmation.", "ar": "قد يتطلب نشاط المواد أو النفايات الخطرة ترخيصًا بيئيًا وتأكيدًا متخصصًا."},
+        "nextAction": {"en": "Confirm classification, activity type, licensed operator, and current environmental authority requirements.", "ar": "أكد التصنيف ونوع النشاط والمشغل المرخص ومتطلبات الجهة البيئية الحالية."},
+        "impactIfNotConfirmed": {"en": "The movement or activity may be unlawful, unsafe, or refused by authorities and service providers.", "ar": "قد تكون الحركة أو العملية غير قانونية أو غير آمنة أو مرفوضة من الجهات ومقدمي الخدمة."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "Egyptian Environmental Affairs Agency and competent specialist", "ar": "جهاز شؤون البيئة المصري والمتخصص المختص"},
+        "reason": {"en": "The rule is a pre-screen, not a final classification or permit decision.", "ar": "هذه القاعدة فحص مبدئي وليست تصنيفًا نهائيًا أو قرار تصريح."},
+        "sourceRoute": "official environmental authority source"
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-EGYPT-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-08-20T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "No universal permit conclusion."}
+    },
+    {
+      "ruleId": "CR-EG-ROAD-SOURCE-GAP-001",
+      "countryCode": "EG",
+      "jurisdiction": {"en": "Egypt", "ar": "مصر"},
+      "stage": "inland_transport",
+      "category": "special_load",
+      "status": "research_seed",
+      "trigger": {"specialLoadIndicator": true},
+      "requiredInputs": ["vehicle", "axles", "dimensions", "weight", "route", "movement_date"],
+      "outcome": {
+        "decision": "source_unavailable",
+        "message": {"en": "Verified current exceptional-load, road, bridge, tunnel, and axle rules are not yet available in the executable dataset.", "ar": "القواعد الحالية المتحقق منها للأحمال الاستثنائية والطرق والجسور والأنفاق والمحاور غير متاحة بعد في البيانات التنفيذية."},
+        "nextAction": {"en": "Collect full load and route data and obtain current authority or specialist confirmation.", "ar": "اجمع بيانات الحمولة والمسار كاملة واحصل على تأكيد حالي من الجهة أو المتخصص."},
+        "impactIfNotConfirmed": {"en": "No route-readiness or movement conclusion can be issued safely.", "ar": "لا يمكن إصدار نتيجة آمنة عن جاهزية المسار أو الحركة."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "Competent Egyptian road, traffic, bridge, port, and local authorities", "ar": "جهات الطرق والمرور والجسور والموانئ والجهات المحلية المختصة في مصر"},
+        "reason": {"en": "The competent route and current legal limits remain an official-source gap.", "ar": "ما زالت الجهة المختصة والحدود القانونية الحالية فجوة في المصادر الرسمية."},
+        "sourceRoute": null
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-EGYPT-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-08-20T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Explicit blocked-rule behavior."}
+    }
+  ]
+}
