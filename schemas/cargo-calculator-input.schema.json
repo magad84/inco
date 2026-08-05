@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inco.local/schemas/cargo-calculator-input.schema.json",
+  "title": "INCO Cargo Calculator Input",
+  "description": "Implementation-neutral input contract for CBM, gross-weight, volumetric-weight, and chargeable-weight calculations.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["calculation_id", "packages"],
+  "properties": {
+    "calculation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "locale": {
+      "type": "string",
+      "enum": ["en", "ar"],
+      "default": "en"
+    },
+    "packages": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 500,
+      "items": {
+        "$ref": "#/$defs/packageInput"
+      }
+    },
+    "carrier_rule": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/carrierRuleInput"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "requested_outputs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "cbm",
+          "gross_weight",
+          "volumetric_weight",
+          "chargeable_weight"
+        ]
+      },
+      "default": [
+        "cbm",
+        "gross_weight",
+        "volumetric_weight",
+        "chargeable_weight"
+      ]
+    }
+  },
+  "$defs": {
+    "packageInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "package_type_id",
+        "length",
+        "width",
+        "height",
+        "dimension_unit",
+        "quantity",
+        "gross_weight_per_package",
+        "weight_unit"
+      ],
+      "properties": {
+        "package_type_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "description": {
+          "type": ["string", "null"],
+          "maxLength": 500,
+          "default": null
+        },
+        "length": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "dimension_unit": {
+          "type": "string",
+          "enum": ["mm", "cm", "m", "in", "ft"]
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000000
+        },
+        "gross_weight_per_package": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "weight_unit": {
+          "type": "string",
+          "enum": ["kg", "t", "lb"]
+        }
+      }
+    },
+    "carrierRuleInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "service",
+        "divisor_cm3_per_kg",
+        "calculation_basis",
+        "higher_of_actual_and_volumetric",
+        "verification_status"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "service": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "market_or_route": {
+          "type": ["string", "null"],
+          "maxLength": 300,
+          "default": null
+        },
+        "divisor_cm3_per_kg": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "calculation_basis": {
+          "type": "string",
+          "enum": ["per_piece", "consolidated"]
+        },
+        "higher_of_actual_and_volumetric": {
+          "type": "boolean"
+        },
+        "rounding_increment_kg": {
+          "type": ["number", "null"],
+          "exclusiveMinimum": 0,
+          "default": null
+        },
+        "minimum_chargeable_weight_kg": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "default": null
+        },
+        "source_id": {
+          "type": ["string", "null"],
+          "default": null
+        },
+        "effective_from": {
+          "type": ["string", "null"],
+          "format": "date",
+          "default": null
+        },
+        "effective_to": {
+          "type": ["string", "null"],
+          "format": "date",
+          "default": null
+        },
+        "last_verified": {
+          "type": ["string", "null"],
+          "format": "date",
+          "default": null
+        },
+        "verification_status": {
+          "type": "string",
+          "enum": [
+            "VERIFIED_CURRENT",
+            "VERIFIED_WITH_LIMITATIONS",
+            "USER_CONFIGURED_UNVERIFIED",
+            "STALE_REVIEW_REQUIRED"
+          ]
+        }
+      }
+    }
+  }
+}
