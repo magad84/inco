@@ -1,0 +1,54 @@
+{
+  "datasetVersion": "0.1",
+  "status": "verified_partial",
+  "sources": [
+    {
+      "sourceId": "GW-TR-IST-DHMI-CARGO-2026",
+      "title": "Istanbul Airport cargo capability",
+      "publisher": "State Airports Authority of Turkey (DHMI)",
+      "url": "https://www.dhmi.gov.tr/Sayfalar/Haber/avrupanin-kargo-devi-istanbul-havalimani.aspx",
+      "sourceType": "official_airport_authority",
+      "gatewayScope": ["GATEWAY-TR-IST"],
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T17:56:00Z",
+      "reviewBy": "2026-11-05T00:00:00Z",
+      "notes": "Supports airport-level cargo capability only. Airline, handler, route, capacity and shipment acceptance remain dynamic."
+    },
+    {
+      "sourceId": "GW-TR-MERSIN-MIP-2025",
+      "title": "Mersin International Port price list and specific conditions",
+      "publisher": "Mersin International Port",
+      "url": "https://mersinport.com.tr/en/Images/pdf/MIP_Price_List_and_Specific_Conditions_10th_February_2025.pdf",
+      "sourceType": "official_port_operator",
+      "gatewayScope": ["GATEWAY-TR-MERSIN-PORT"],
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T17:56:00Z",
+      "reviewBy": "2026-10-05T00:00:00Z",
+      "notes": "Establishes port and published service-condition context. Live berth, terminal, equipment, tariff and cargo acceptance require current confirmation."
+    },
+    {
+      "sourceId": "GW-IT-MXP-CARGO-2026",
+      "title": "Milano Malpensa Cargo City",
+      "publisher": "SEA Milan Airports",
+      "url": "https://www.milanomalpensacargo.com/en/cargo-city",
+      "sourceType": "official_airport_operator",
+      "gatewayScope": ["GATEWAY-IT-MXP"],
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T17:56:00Z",
+      "reviewBy": "2026-11-05T00:00:00Z",
+      "notes": "Airport-level cargo capability and community information only. Handler and carrier acceptance remain shipment specific."
+    },
+    {
+      "sourceId": "GW-IT-GENOA-PORTS-2026",
+      "title": "Ports of Genoa freight access and cargo information",
+      "publisher": "Western Ligurian Sea Port Authority",
+      "url": "https://www.portsofgenoa.com/en/port-basins-logistics/how-to-find-us/port/1%7C2/access/4%7C1%7C2/freight-weight-limits/3%7C5.html",
+      "sourceType": "official_port_authority",
+      "gatewayScope": ["GATEWAY-IT-GENOA-PORT"],
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T17:56:00Z",
+      "reviewBy": "2026-11-05T00:00:00Z",
+      "notes": "Supports freight-access and port-system context. Terminal capability, project-cargo equipment and live operational restrictions require confirmation."
+    }
+  ]
+}
