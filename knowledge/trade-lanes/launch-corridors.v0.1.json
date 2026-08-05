@@ -1,0 +1,82 @@
+{
+  "datasetVersion": "0.1",
+  "status": "verified_partial",
+  "policy": "A corridor record is a structured candidate path, not a live schedule, rate, capacity promise, customs approval, or cargo acceptance decision.",
+  "corridors": [
+    {
+      "tradeLaneId": "TL-CN-SHA-AE-KHALIFA-OCEAN",
+      "originCountry": "CN",
+      "destinationCountry": "AE",
+      "mode": "ocean",
+      "originGatewayId": "GATEWAY-CN-SHANGHAI-PORT",
+      "destinationGatewayId": "GATEWAY-AE-KHALIFA",
+      "candidateServiceIds": ["SERVICE-MSC-UAE-GENERAL"],
+      "cargoScope": ["general", "containerized"],
+      "status": "candidate_route",
+      "decisionState": "confirmation_required",
+      "requiredConfirmations": ["carrier_schedule", "terminal_assignment", "cargo_acceptance", "cut_off", "customs_and_import_requirements", "inland_delivery"],
+      "riskFlags": ["live_schedule_not_integrated", "rate_not_integrated", "capacity_not_confirmed"],
+      "reviewBy": "2026-09-05"
+    },
+    {
+      "tradeLaneId": "TL-IN-JNPA-SA-JEDDAH-OCEAN",
+      "originCountry": "IN",
+      "destinationCountry": "SA",
+      "mode": "ocean",
+      "originGatewayId": "GATEWAY-IN-JNPA",
+      "destinationGatewayId": "GATEWAY-SA-JEDDAH-PORT",
+      "candidateServiceIds": [],
+      "cargoScope": ["general", "containerized", "reefer"],
+      "status": "gateway_pair_only",
+      "decisionState": "source_unavailable",
+      "requiredConfirmations": ["carrier_service_source", "terminal_assignment", "cargo_acceptance", "cut_off", "saudi_import_requirements"],
+      "riskFlags": ["no_verified_service_record", "live_schedule_not_integrated"],
+      "reviewBy": "2026-09-05"
+    },
+    {
+      "tradeLaneId": "TL-CN-PVG-OM-MCT-AIR",
+      "originCountry": "CN",
+      "destinationCountry": "OM",
+      "mode": "air_cargo",
+      "originGatewayId": "GATEWAY-CN-PVG",
+      "destinationGatewayId": "GATEWAY-OM-MCT-AIR",
+      "candidateServiceIds": ["SERVICE-ETIHAD-GENERAL"],
+      "cargoScope": ["general"],
+      "status": "candidate_route",
+      "decisionState": "confirmation_required",
+      "requiredConfirmations": ["actual_route_and_transit", "airline_capacity", "dimensions", "cargo_acceptance", "handler_acceptance", "oman_import_requirements"],
+      "riskFlags": ["possible_transit_segment", "service_not_gateway_specific", "live_capacity_not_integrated"],
+      "reviewBy": "2026-09-05"
+    },
+    {
+      "tradeLaneId": "TL-TR-AIR-EG-CAI-DG",
+      "originCountry": "TR",
+      "destinationCountry": "EG",
+      "mode": "air_cargo",
+      "originGatewayId": null,
+      "destinationGatewayId": "GATEWAY-EG-CAI-AIR",
+      "candidateServiceIds": ["SERVICE-TURKISH-TK-CARE"],
+      "cargoScope": ["dangerous_goods"],
+      "status": "incomplete_route",
+      "decisionState": "confirmation_required",
+      "requiredConfirmations": ["origin_gateway", "classification", "shipper_declaration", "station_capability", "aircraft_acceptance", "egypt_import_and_handler_requirements"],
+      "riskFlags": ["origin_gateway_missing", "dangerous_goods_preapproval_required"],
+      "reviewBy": "2026-09-05"
+    },
+    {
+      "tradeLaneId": "TL-IT-OCEAN-OM-SOHAR-PROJECT",
+      "originCountry": "IT",
+      "destinationCountry": "OM",
+      "mode": "ocean",
+      "originGatewayId": null,
+      "destinationGatewayId": "GATEWAY-OM-SOHAR-PORT",
+      "candidateServiceIds": [],
+      "cargoScope": ["project_cargo", "oversized"],
+      "status": "incomplete_route",
+      "decisionState": "source_unavailable",
+      "requiredConfirmations": ["origin_gateway", "carrier_and_vessel", "terminal_equipment", "lifting_plan", "berth_window", "road_route_and_permits"],
+      "riskFlags": ["origin_gateway_missing", "carrier_service_missing", "project_cargo_engineering_required"],
+      "reviewBy": "2026-09-05"
+    }
+  ]
+}
