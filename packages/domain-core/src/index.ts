@@ -3,6 +3,7 @@ export * from "./trade-lane-evaluator.js";
 export * from "./country-requirements-evaluator.js";
 export * from "./dg-prescreen.js";
 export * from "./dg-prescreen-enhanced.js";
+export * from "./carrier-service-governance.js";
 export * from "./integrated-decision-engine.js";
 export * from "./internal-test-report.js";
 export * from "./internal-test-runner.js";
