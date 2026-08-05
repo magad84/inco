@@ -1,0 +1,300 @@
+{
+  "datasetVersion": "0.1",
+  "status": "verified_partial",
+  "market": "AE",
+  "services": [
+    {
+      "carrierId": "CARRIER-DHL-EXPRESS",
+      "serviceId": "SERVICE-DHL-EXPRESS-AE-GENERIC",
+      "carrierName": {"en": "DHL Express", "ar": "دي إتش إل إكسبرس"},
+      "serviceName": {"en": "UAE Express service family", "ar": "عائلة خدمات الشحن السريع في الإمارات"},
+      "mode": "express_courier",
+      "status": "verified_partial",
+      "marketScope": {"originCountries": ["AE"], "destinationCountries": []},
+      "cargoRules": [
+        {
+          "ruleId": "DHL-AE-CARGO-001",
+          "cargoCategory": "general_cargo",
+          "acceptanceStatus": "confirmation_required",
+          "conditions": [
+            {"en": "Acceptance depends on origin, destination, service and commodity.", "ar": "القبول يعتمد على بلد المنشأ والوجهة والخدمة ونوع البضاعة."}
+          ],
+          "requiredEvidence": ["commodity_description", "origin", "destination", "service"],
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["CARRIER-DHL-AE-EXPRESS-001"],
+          "reviewBy": "2026-09-05"
+        }
+      ],
+      "commercialRules": {
+        "volumetricWeight": {
+          "method": "carrier_calculator_only",
+          "unitSystem": "carrier_defined",
+          "status": "conditional",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["CARRIER-DHL-AE-EXPRESS-001"],
+          "reviewBy": "2026-09-05"
+        },
+        "limits": []
+      },
+      "confirmation": {
+        "requiredBeforeBooking": true,
+        "contactChannel": "official quote and service-availability tool",
+        "reason": {"en": "The verified source does not establish a universal divisor or route acceptance.", "ar": "المصدر المتحقق لا يثبت معاملًا موحدًا أو قبولًا عامًا للمسار."}
+      },
+      "sources": ["CARRIER-DHL-AE-EXPRESS-001"],
+      "review": {
+        "lastVerifiedAt": "2026-08-05T20:51:00+04:00",
+        "nextReviewAt": "2026-09-05T20:51:00+04:00",
+        "reviewOwner": "INCO knowledge governance",
+        "notes": "Verified only for rate basis; divisor and acceptance remain service-specific."
+      }
+    },
+    {
+      "carrierId": "CARRIER-FEDEX",
+      "serviceId": "SERVICE-FEDEX-AE-GENERIC",
+      "carrierName": {"en": "FedEx", "ar": "فيديكس"},
+      "serviceName": {"en": "UAE international package and freight services", "ar": "خدمات الطرود والشحن الدولي في الإمارات"},
+      "mode": "express_courier",
+      "status": "verified_partial",
+      "marketScope": {"originCountries": ["AE"], "destinationCountries": []},
+      "cargoRules": [
+        {
+          "ruleId": "FEDEX-AE-CARGO-001",
+          "cargoCategory": "general_cargo",
+          "acceptanceStatus": "confirmation_required",
+          "conditions": [
+            {"en": "Route and commodity acceptance require service-specific confirmation.", "ar": "قبول المسار والبضاعة يحتاج تأكيدًا خاصًا بالخدمة."}
+          ],
+          "requiredEvidence": ["commodity_description", "origin", "destination", "service"],
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["CARRIER-FEDEX-AE-RATES-001"],
+          "reviewBy": "2026-09-05"
+        }
+      ],
+      "commercialRules": {
+        "volumetricWeight": {
+          "method": "unknown",
+          "unitSystem": "carrier_defined",
+          "status": "source_unavailable",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["CARRIER-FEDEX-AE-RATES-001"],
+          "reviewBy": "2026-09-05"
+        },
+        "limits": [
+          {
+            "limitId": "FEDEX-AE-PACKAGE-LONGEST-SIDE",
+            "category": "dimension",
+            "value": 274,
+            "unit": "cm",
+            "status": "verified",
+            "sourceIds": ["CARRIER-FEDEX-AE-RATES-001"],
+            "reviewBy": "2026-09-05"
+          },
+          {
+            "limitId": "FEDEX-AE-PACKAGE-LENGTH-GIRTH",
+            "category": "dimension",
+            "value": 419,
+            "unit": "cm",
+            "status": "verified",
+            "sourceIds": ["CARRIER-FEDEX-AE-RATES-001"],
+            "reviewBy": "2026-09-05"
+          },
+          {
+            "limitId": "FEDEX-AE-PACKAGE-ACTUAL-WEIGHT",
+            "category": "weight",
+            "value": 68,
+            "unit": "kg",
+            "status": "verified",
+            "sourceIds": ["CARRIER-FEDEX-AE-RATES-001"],
+            "reviewBy": "2026-09-05"
+          }
+        ]
+      },
+      "confirmation": {
+        "requiredBeforeBooking": true,
+        "contactChannel": "official rate and service tool or relationship manager",
+        "reason": {"en": "The source confirms limits and charges but not commodity acceptance for every route.", "ar": "المصدر يؤكد الحدود والرسوم لكنه لا يؤكد قبول كل بضاعة على كل مسار."}
+      },
+      "sources": ["CARRIER-FEDEX-AE-RATES-001"],
+      "review": {
+        "lastVerifiedAt": "2026-08-05T20:51:00+04:00",
+        "nextReviewAt": "2026-09-05T20:51:00+04:00",
+        "reviewOwner": "INCO knowledge governance",
+        "notes": "Commercial limits are current-page evidence; route acceptance remains conditional."
+      }
+    },
+    {
+      "carrierId": "CARRIER-ARAMEX",
+      "serviceId": "SERVICE-ARAMEX-AE-EXPRESS",
+      "carrierName": {"en": "Aramex", "ar": "أرامكس"},
+      "serviceName": {"en": "UAE Express", "ar": "الشحن السريع في الإمارات"},
+      "mode": "express_courier",
+      "status": "verified_partial",
+      "marketScope": {"originCountries": ["AE"], "destinationCountries": []},
+      "cargoRules": [
+        {
+          "ruleId": "ARAMEX-AE-PROHIBITED-001",
+          "cargoCategory": "hazardous_or_combustible_materials",
+          "acceptanceStatus": "prohibited",
+          "conditions": [
+            {"en": "The published UAE Express terms list hazardous or combustible materials among materials not accepted.", "ar": "شروط الشحن السريع المنشورة في الإمارات تدرج المواد الخطرة أو القابلة للاشتعال ضمن المواد غير المقبولة."}
+          ],
+          "requiredEvidence": ["cargo_description", "sds_if_applicable"],
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["CARRIER-ARAMEX-AE-TERMS-001"],
+          "reviewBy": "2026-09-05"
+        },
+        {
+          "ruleId": "ARAMEX-AE-COUNTRY-ROUTE-001",
+          "cargoCategory": "general_cargo",
+          "acceptanceStatus": "confirmation_required",
+          "conditions": [
+            {"en": "Destination-country restrictions and service availability must also be checked.", "ar": "يجب كذلك التحقق من قيود بلد الوجهة وتوافر الخدمة."}
+          ],
+          "requiredEvidence": ["destination_country", "commodity_description"],
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["CARRIER-ARAMEX-AE-FAQ-001", "CARRIER-ARAMEX-AE-TERMS-001"],
+          "reviewBy": "2026-09-05"
+        }
+      ],
+      "commercialRules": {
+        "volumetricWeight": {
+          "method": "divisor",
+          "divisor": 5000,
+          "unitSystem": "cm_kg",
+          "roundingMethod": null,
+          "status": "conditional",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["CARRIER-ARAMEX-AE-FAQ-001"],
+          "reviewBy": "2026-09-05"
+        },
+        "limits": [
+          {
+            "limitId": "ARAMEX-AE-EXPRESS-WEIGHT",
+            "category": "weight",
+            "value": 30,
+            "unit": "kg",
+            "status": "verified",
+            "sourceIds": ["CARRIER-ARAMEX-AE-FAQ-001"],
+            "reviewBy": "2026-09-05"
+          },
+          {
+            "limitId": "ARAMEX-AE-EXPRESS-COMBINED-LENGTH",
+            "category": "dimension",
+            "value": 274,
+            "unit": "cm",
+            "status": "verified",
+            "sourceIds": ["CARRIER-ARAMEX-AE-FAQ-001"],
+            "reviewBy": "2026-09-05"
+          },
+          {
+            "limitId": "ARAMEX-AE-EXPRESS-DIMENSION-LIMIT",
+            "category": "dimension",
+            "value": 158,
+            "unit": "cm",
+            "status": "verified",
+            "sourceIds": ["CARRIER-ARAMEX-AE-FAQ-001"],
+            "reviewBy": "2026-09-05"
+          }
+        ]
+      },
+      "confirmation": {
+        "requiredBeforeBooking": true,
+        "contactChannel": "Aramex UAE service or customs-information channel",
+        "reason": {"en": "Country-specific restrictions and contractual exceptions may change the result.", "ar": "القيود الخاصة بالدولة والاستثناءات التعاقدية قد تغير النتيجة."}
+      },
+      "sources": ["CARRIER-ARAMEX-AE-FAQ-001", "CARRIER-ARAMEX-AE-TERMS-001"],
+      "review": {
+        "lastVerifiedAt": "2026-08-05T20:51:00+04:00",
+        "nextReviewAt": "2026-09-05T20:51:00+04:00",
+        "reviewOwner": "INCO knowledge governance",
+        "notes": "The 5000 divisor and limits are treated as UAE web guidance and require service confirmation."
+      }
+    },
+    {
+      "carrierId": "CARRIER-UPS",
+      "serviceId": "SERVICE-UPS-AE-PARCEL",
+      "carrierName": {"en": "UPS", "ar": "يو بي إس"},
+      "serviceName": {"en": "UAE parcel services", "ar": "خدمات الطرود في الإمارات"},
+      "mode": "express_courier",
+      "status": "verified_partial",
+      "marketScope": {"originCountries": ["AE"], "destinationCountries": []},
+      "cargoRules": [
+        {
+          "ruleId": "UPS-AE-DG-001",
+          "cargoCategory": "dangerous_goods",
+          "acceptanceStatus": "conditional_acceptance",
+          "conditions": [
+            {"en": "Some dangerous or restricted goods may require an account, contract, special service or may remain prohibited.", "ar": "قد تتطلب بعض المواد الخطرة أو المقيدة حسابًا أو عقدًا أو خدمة خاصة، وقد تظل بعض الفئات محظورة."}
+          ],
+          "requiredEvidence": ["commodity_description", "dg_classification_if_applicable", "origin", "destination", "service"],
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["CARRIER-UPS-AE-PROHIBITED-001"],
+          "reviewBy": "2026-09-05"
+        }
+      ],
+      "commercialRules": {
+        "volumetricWeight": {
+          "method": "divisor",
+          "divisor": 5000,
+          "unitSystem": "cm_kg",
+          "roundingMethod": "round_up_to_next_0.5_kg",
+          "status": "verified",
+          "effectiveFrom": null,
+          "effectiveTo": null,
+          "sourceIds": ["CARRIER-UPS-AE-DIMENSIONS-001"],
+          "reviewBy": "2026-09-05"
+        },
+        "limits": [
+          {
+            "limitId": "UPS-AE-PARCEL-WEIGHT",
+            "category": "weight",
+            "value": 70,
+            "unit": "kg",
+            "status": "verified",
+            "sourceIds": ["CARRIER-UPS-AE-DIMENSIONS-001"],
+            "reviewBy": "2026-09-05"
+          },
+          {
+            "limitId": "UPS-AE-PARCEL-LENGTH",
+            "category": "dimension",
+            "value": 274,
+            "unit": "cm",
+            "status": "verified",
+            "sourceIds": ["CARRIER-UPS-AE-DIMENSIONS-001"],
+            "reviewBy": "2026-09-05"
+          },
+          {
+            "limitId": "UPS-AE-PARCEL-LENGTH-GIRTH",
+            "category": "dimension",
+            "value": 400,
+            "unit": "cm",
+            "status": "verified",
+            "sourceIds": ["CARRIER-UPS-AE-DIMENSIONS-001"],
+            "reviewBy": "2026-09-05"
+          }
+        ]
+      },
+      "confirmation": {
+        "requiredBeforeBooking": true,
+        "contactChannel": "UPS UAE official service and dangerous-goods channels",
+        "reason": {"en": "Commodity and route restrictions remain service- and destination-specific.", "ar": "قيود البضاعة والمسار تظل مرتبطة بالخدمة والوجهة."}
+      },
+      "sources": ["CARRIER-UPS-AE-DIMENSIONS-001", "CARRIER-UPS-AE-PROHIBITED-001"],
+      "review": {
+        "lastVerifiedAt": "2026-08-05T20:51:00+04:00",
+        "nextReviewAt": "2026-09-05T20:51:00+04:00",
+        "reviewOwner": "INCO knowledge governance",
+        "notes": "UAE parcel limits and divisor are verified; cargo and route acceptance remain conditional."
+      }
+    }
+  ]
+}
