@@ -12,7 +12,8 @@
     "uat:second-wave": "npm run build && node dist/src/uat-cli.js --wave second",
     "uat:second-wave:ar": "npm run build && node dist/src/uat-cli.js --wave second --ar",
     "uat:all": "npm run build && node dist/src/uat-cli.js --wave all",
-    "uat:all:ar": "npm run build && node dist/src/uat-cli.js --wave all --ar"
+    "uat:all:ar": "npm run build && node dist/src/uat-cli.js --wave all --ar",
+    "uat:console": "npm run build && node dist/src/uat-server.js"
   },
   "dependencies": {
     "decimal.js": "^10.6.0"
