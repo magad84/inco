@@ -1,7 +1,7 @@
 # INCO Current State
 
 **Date:** 2026-08-05  
-**Phase:** Logistics knowledge architecture and verified research  
+**Phase:** Knowledge normalization and deterministic rule preparation  
 **Implementation status:** Production coding not started
 
 ## Approved Product Direction
@@ -27,70 +27,130 @@
 
 ### WP-01: MVP Trade-Term Decision Logic
 
-Status: Open.
+Status: In progress; core matrix and scenarios created.
 
-Purpose:
+Completed:
 
-- Define the deterministic transaction questionnaire.
-- create the trade-term rule matrix.
-- define responsibilities, risk, cost, suitability, alternatives, and acceptance scenarios.
+- Initial questionnaire architecture.
+- eleven-term deterministic rule matrix.
+- named-place, responsibility, risk, cost, alternative, and suitability structures.
+- representative trade-term acceptance scenarios.
+
+Remaining before implementation:
+
+- Convert matrix into structured rule records.
+- assign source IDs and effective rule version.
+- complete term-level scenario coverage.
+- produce bilingual terminology and labels.
 
 ### WP-02: Logistics Knowledge Architecture and Source Registry
 
-Status: Active.
+Status: Active; foundation substantially established.
 
-Purpose:
+Completed:
 
-- Build the verified source and rule foundation for the expanded logistics modules.
-- derive questions from approved knowledge objects.
-- document volatility, uncertainty, and confirmation states.
-- evaluate open-source container-loading options without adopting a dependency prematurely.
+- Knowledge architecture and module boundaries.
+- Source Registry version 0.2.
+- country-pack schema.
+- UAE, Saudi Arabia, Egypt, and Oman seed packs.
+- cargo and dangerous-goods pre-screen specification.
+- calculator and paid load-planner specification.
+- customs-broker marketplace specification.
+- question-to-rule traceability.
+- cross-module acceptance scenario library.
+- open-source solver evaluation version 0.2.
+- research backlog.
 
-## Completed Foundation Documents
+Remaining:
+
+- Normalize verified source records into executable rules.
+- fill P0 official-source gaps.
+- create machine-readable schemas and fixtures.
+- validate the first implementation slice.
+
+## Current Document Set
+
+### Governing
 
 - `README.md`
 - `PROJECT_CONTEXT.md`
 - `CURRENT_STATE.md`
 - `AGENTS.md`
 - `.gitignore`
+
+### Documentation index
+
+- `docs/README.md`
+
+### Product and rules
+
 - `docs/MVP_PRODUCT_SPEC.md`
+- `docs/TRADE_TERM_RULE_MATRIX.md`
+- `docs/QUESTION_ARCHITECTURE.md`
+- `docs/QUESTION_RULE_TRACEABILITY.md`
+- `docs/ACCEPTANCE_SCENARIOS.md`
+
+### Knowledge and research
+
 - `docs/KNOWLEDGE_ARCHITECTURE.md`
 - `docs/SOURCE_REGISTRY.md`
-- `docs/CARGO_CALCULATORS_SPEC.md`
-- `docs/BROKER_MARKETPLACE_SPEC.md`
-- `docs/QUESTION_ARCHITECTURE.md`
-- `docs/OPEN_SOURCE_EVALUATION.md`
 - `docs/RESEARCH_BACKLOG.md`
+- `docs/COUNTRY_PACK_SCHEMA.md`
+- `docs/DG_PRESCREEN_SPEC.md`
 
-## Research Completed to Seed the Architecture
+### Calculators and optimization
 
-The Source Registry now contains initial authoritative-source records for:
+- `docs/CARGO_CALCULATORS_SPEC.md`
+- `docs/OPEN_SOURCE_EVALUATION.md`
+
+### Marketplace
+
+- `docs/BROKER_MARKETPLACE_SPEC.md`
+
+### Country packs
+
+- `docs/country/UAE_SEED_PACK.md`
+- `docs/country/KSA_SEED_PACK.md`
+- `docs/country/EGYPT_SEED_PACK.md`
+- `docs/country/OMAN_SEED_PACK.md`
+
+## Research Progress
+
+The Source Registry contains initial authoritative-source records for:
 
 - International cargo transport unit packing and securing.
-- maritime and air dangerous-goods frameworks.
-- UAE road permits, truck restrictions, customs, postal, and airline sources.
-- Saudi heavy-goods transport and customs-broker licensing sources.
+- maritime and air dangerous-goods frameworks and edition control.
+- Dubai special-load and truck restriction sources.
+- Abu Dhabi heavy-vehicle time restrictions and commercial transport permits.
+- UAE customs, postal, and airline sources.
+- Saudi heavy-goods transport, customs-broker licensing, broker status, and official postal prohibited/DG sources.
 - Egypt customs registration, advance cargo information, and environmental licensing sources.
-- Oman abnormal-load permits, transport platform, customs-clearance licensing, and permit services.
+- Oman abnormal-load permits, transport platform, customs-clearance licensing, permit services, and official postal sources.
 - Selected carrier volumetric rules and container-equipment references.
-- Initial open-source container-loading candidates and license notes.
+- Open-source loading candidates and license/maintenance findings.
 
-These records are research seeds. They must be converted into versioned executable rules before application use.
+These are research seeds. They must be converted into versioned executable rules before product use.
 
-## Current Research Gaps
+## Open-Source Load Planner Position
 
-High-priority gaps include:
+- No external solver has been imported or approved.
+- `coin-or/clp-spreadsheet-solver` is currently the strongest requirements and benchmark reference, but its Excel/VBA delivery and license obligations prevent direct production adoption without review.
+- `hansehe/ContainerLoading` is limited to algorithm experimentation because of minimal documentation, old maintenance signal, and identified data/constraint concerns.
+- `mahdims/3D-bin-packing` is not eligible for code reuse because no explicit repository license was detected and it depends on Python 2.
+- INCO will define its own data model, tests, and replaceable engine interface before benchmarking implementations.
 
-- Egypt official exceptional-load, road, bridge, and tunnel permit sources.
-- Official postal restrictions for Saudi Arabia, Egypt, and Oman.
-- Saudi active exceptional-load permit workflow and complete thresholds.
-- UAE abnormal-load and truck controls outside Dubai.
-- Country-specific carrier conditions for launch markets.
-- Road axle and route approval rules for all four countries.
-- National dangerous-goods variations and competent-authority contacts.
-- Public customs-broker verification routes where available.
+## Current P0 Research Gaps
 
-The platform must return `confirmation required` or `source unavailable` rather than infer missing rules.
+- Egypt official exceptional-load, road, bridge, tunnel, axle, and escort sources.
+- Egypt Post official prohibited/restricted item and service-limit sources.
+- Complete active Saudi exceptional-load permit workflow and thresholds.
+- UAE abnormal-load and route rules outside the current Dubai seed, plus full Abu Dhabi exceptional-load workflow.
+- Official road axle-load and route-approval data for all four countries.
+- National dangerous-goods variations and competent-authority contacts by mode.
+- Country/service-specific carrier rules and volumetric factors.
+- Public customs-broker verification routes for jurisdictions where no direct status service is yet verified.
+
+The platform must return `confirmation required`, `source unavailable`, or `stale review required` instead of inferring a rule.
 
 ## Commercial Boundaries
 
@@ -100,6 +160,7 @@ The platform must return `confirmation required` or `source unavailable` rather 
 - basic cargo and DG pre-screen.
 - basic CBM and weight calculations.
 - preliminary container and route indicators.
+- critical risks and missing-information guidance.
 
 ### Paid direction
 
@@ -109,12 +170,13 @@ The platform must return `confirmation required` or `source unavailable` rather 
 - multi-SKU Container Load Plan.
 - saved case, visualization, and printable plan.
 - advanced compliance brief where verified rules support it.
+- future provider RFQ or marketplace workflow.
 
 Pricing amounts, payment gateway, credits, subscriptions, and company plans remain undecided.
 
 ## Explicitly Not Started
 
-- Frontend and backend implementation.
+- Production frontend and backend.
 - production database.
 - Google authentication.
 - payment integration.
@@ -129,14 +191,14 @@ Pricing amounts, payment gateway, credits, subscriptions, and company plans rema
 
 Work may continue without owner interruption on:
 
-1. Country-pack schemas and seed packs.
-2. Dangerous-goods pre-screen specification.
-3. Question-to-rule traceability.
-4. carrier-rule schema refinement.
-5. calculator test scenarios.
-6. open-source solver comparison.
-7. source-gap research using official sources.
-8. deterministic trade-term rules and representative cases.
+1. Structured rule and source data schemas.
+2. trade-term rule normalization.
+3. country-rule normalization.
+4. dangerous-goods pre-screen rule records.
+5. calculator fixtures and unit tests specifications.
+6. bilingual terminology register.
+7. official source-gap research.
+8. first implementation-slice selection based on readiness.
 
 Owner approval is required before:
 
@@ -150,22 +212,32 @@ Owner approval is required before:
 
 ## Next Implementation Gate
 
-Codex application implementation may begin only when the first selected module has:
+The recommended first coding slice is the deterministic free Cargo Calculator because its mathematical rules can be validated independently while volatile carrier factors remain configurable.
 
-- Approved input and output schemas.
-- traceable rules or formulas.
-- uncertainty and error states.
-- representative acceptance tests.
-- no unresolved safety-critical assumptions.
+Codex implementation may begin only after that slice has:
+
+- Approved input/output JSON schemas.
+- unit normalization rules.
+- calculation fixtures.
+- carrier-factor configuration schema.
+- validation and error cases.
+- source/version audit fields.
+
+Trade-term review should follow after structured term rules and full term-level test fixtures are complete.
 
 ## Change Log
 
 ### 2026-08-05
 
-- Repository initialized.
+- Repository initialized and product governance created.
 - Trade-term review and paid Trade Decision Pack recorded.
 - AI deferred.
 - Product expanded into modular logistics decision support.
 - WP-02 opened.
-- Knowledge Architecture, Source Registry, Calculator Specification, Broker Marketplace Specification, Question Architecture, Open-Source Evaluation, and Research Backlog added.
-- Governing files aligned with the expanded scope.
+- Knowledge, source, country, DG, calculator, marketplace, question, rule, and test foundations created.
+- Source Registry expanded with official Saudi and Oman postal sources and Abu Dhabi transport sources.
+- Four country seed packs created.
+- Eleven-term rule matrix created.
+- Cross-module acceptance scenarios and question-to-rule traceability created.
+- Open-source container-loading candidates reviewed; no dependency adopted.
+- Governing files and documentation index aligned.
