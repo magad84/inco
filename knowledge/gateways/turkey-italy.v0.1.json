@@ -1,0 +1,62 @@
+{
+  "registryVersion": "0.1",
+  "status": "verified_partial",
+  "gateways": [
+    {
+      "gatewayId": "GATEWAY-TR-IST",
+      "gatewayType": "cargo_airport",
+      "officialName": {"en": "Istanbul Airport", "ar": "مطار إسطنبول"},
+      "countryCode": "TR",
+      "locality": {"en": "Istanbul", "ar": "إسطنبول"},
+      "locationCodes": {"unLocode": null, "iata": "IST", "icao": "LTFM", "internal": null},
+      "authorities": [{"name": {"en": "DHMI / Istanbul Airport operator", "ar": "هيئة المطارات التركية / مشغل مطار إسطنبول"}, "role": {"en": "Airport authority and operator context", "ar": "جهة المطار وسياق التشغيل"}, "sourceIds": ["GW-TR-IST-DHMI-CARGO-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["air", "road", "multimodal"], "cargoTypes": ["general", "perishable", "high_value", "postal_or_courier", "special_cargo"], "equipment": [], "services": ["cargo terminal capability indicator", "road connectivity", "cargo handling community"]},
+      "constraints": [{"constraintId": "IST-CARRIER-HANDLER-CONFIRM", "category": "cargo_acceptance", "status": "confirmation_required", "trigger": {"shipmentSpecific": true}, "outcome": {"en": "Confirm airline, handling agent, station capability, route, capacity, dimensions and cargo acceptance before booking.", "ar": "يجب تأكيد شركة الطيران ووكيل المناولة وقدرة المحطة والمسار والسعة والأبعاد وقبول الشحنة قبل الحجز."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-TR-IST-DHMI-CARGO-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["GW-TR-IST-DHMI-CARGO-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:56:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Airport capability does not establish airline or shipment acceptance."}
+    },
+    {
+      "gatewayId": "GATEWAY-TR-MERSIN-PORT",
+      "gatewayType": "seaport",
+      "officialName": {"en": "Mersin International Port", "ar": "ميناء مرسين الدولي"},
+      "countryCode": "TR",
+      "locality": {"en": "Mersin", "ar": "مرسين"},
+      "locationCodes": {"unLocode": "TRMER", "iata": null, "icao": null, "internal": null},
+      "authorities": [{"name": {"en": "Mersin International Port", "ar": "ميناء مرسين الدولي"}, "role": {"en": "Port operator", "ar": "مشغل الميناء"}, "sourceIds": ["GW-TR-MERSIN-MIP-2025"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["ocean", "road", "rail", "multimodal"], "cargoTypes": ["general", "containerized", "reefer", "project_cargo", "oversized"], "equipment": [], "services": ["container handling", "general cargo", "rail connectivity indicator", "published port service conditions"]},
+      "constraints": [{"constraintId": "MERSIN-TERMINAL-CARGO-CONFIRM", "category": "cargo_acceptance", "status": "confirmation_required", "trigger": {"shipmentSpecific": true}, "outcome": {"en": "Confirm current terminal, berth, equipment, tariff conditions, cut-off and shipment acceptance.", "ar": "يجب تأكيد المحطة والرصيف والمعدات والشروط السعرية وموعد الإغلاق وقبول الشحنة حاليًا."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-TR-MERSIN-MIP-2025"], "reviewBy": "2026-10-05"}],
+      "sources": ["GW-TR-MERSIN-MIP-2025"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:56:00Z", "nextReviewAt": "2026-10-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Published conditions are not live booking or equipment confirmation."}
+    },
+    {
+      "gatewayId": "GATEWAY-IT-MXP",
+      "gatewayType": "cargo_airport",
+      "officialName": {"en": "Milan Malpensa Airport", "ar": "مطار ميلانو مالبينسا"},
+      "countryCode": "IT",
+      "locality": {"en": "Milan", "ar": "ميلانو"},
+      "locationCodes": {"unLocode": null, "iata": "MXP", "icao": "LIMC", "internal": null},
+      "authorities": [{"name": {"en": "SEA Milan Airports", "ar": "مجموعة مطارات ميلانو SEA"}, "role": {"en": "Airport operator", "ar": "مشغل المطار"}, "sourceIds": ["GW-IT-MXP-CARGO-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["air", "road", "multimodal"], "cargoTypes": ["general", "dangerous_goods", "perishable", "pharma", "live_animals", "high_value", "special_cargo"], "equipment": [], "services": ["cargo city", "cargo handling community", "all-cargo flight capability indicator"]},
+      "constraints": [{"constraintId": "MXP-HANDLER-CARRIER-CONFIRM", "category": "cargo_acceptance", "status": "confirmation_required", "trigger": {"shipmentSpecific": true}, "outcome": {"en": "Confirm airline, handler, warehouse, route, capacity and special-cargo acceptance before routing.", "ar": "يجب تأكيد شركة الطيران ووكيل المناولة والمخزن والمسار والسعة وقبول الشحنة الخاصة قبل تحديد المسار."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-IT-MXP-CARGO-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["GW-IT-MXP-CARGO-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:56:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Airport-level capability only; the operator does not directly manage individual shipments."}
+    },
+    {
+      "gatewayId": "GATEWAY-IT-GENOA-PORT",
+      "gatewayType": "seaport",
+      "officialName": {"en": "Port of Genoa", "ar": "ميناء جنوة"},
+      "countryCode": "IT",
+      "locality": {"en": "Genoa", "ar": "جنوة"},
+      "locationCodes": {"unLocode": "ITGOA", "iata": null, "icao": null, "internal": null},
+      "authorities": [{"name": {"en": "Western Ligurian Sea Port Authority", "ar": "هيئة موانئ بحر ليغوريا الغربية"}, "role": {"en": "Port system authority", "ar": "هيئة منظومة الموانئ"}, "sourceIds": ["GW-IT-GENOA-PORTS-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["ocean", "road", "rail", "multimodal"], "cargoTypes": ["general", "containerized", "breakbulk", "project_cargo", "oversized", "ro_ro"], "equipment": [], "services": ["container terminals", "general and breakbulk cargo", "freight access", "road and rail connectivity indicator"]},
+      "constraints": [{"constraintId": "GENOA-PROJECT-CARGO-CONFIRM", "category": "cargo_acceptance", "status": "confirmation_required", "trigger": {"specialCargo": true}, "outcome": {"en": "Confirm exact terminal, lifting capability, berth, access route, permits and engineering method for project or oversized cargo.", "ar": "يجب تأكيد المحطة وقدرة الرفع والرصيف ومسار الدخول والتصاريح والطريقة الهندسية لشحنات المشروعات أو الشحنات كبيرة الحجم."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-IT-GENOA-PORTS-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["GW-IT-GENOA-PORTS-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:56:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Port-system capability does not establish terminal assignment or project-cargo readiness."}
+    }
+  ]
+}
