@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inco.local/schemas/transport-gateway.schema.json",
+  "title": "INCO Transport Gateway",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "gatewayId",
+    "gatewayType",
+    "officialName",
+    "countryCode",
+    "locality",
+    "status",
+    "capabilities",
+    "constraints",
+    "sources",
+    "review"
+  ],
+  "properties": {
+    "gatewayId": { "type": "string", "pattern": "^GATEWAY-[A-Z0-9._-]+$" },
+    "gatewayType": {
+      "type": "string",
+      "enum": ["seaport", "cargo_airport", "land_border", "dry_port", "icd", "rail_terminal", "free_zone_gateway"]
+    },
+    "officialName": { "$ref": "#/$defs/bilingualText" },
+    "countryCode": { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "locality": { "$ref": "#/$defs/bilingualText" },
+    "locationCodes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unLocode": { "type": ["string", "null"] },
+        "iata": { "type": ["string", "null"], "pattern": "^[A-Z]{3}$" },
+        "icao": { "type": ["string", "null"], "pattern": "^[A-Z]{4}$" },
+        "internal": { "type": ["string", "null"] }
+      }
+    },
+    "authorities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "role", "sourceIds"],
+        "properties": {
+          "name": { "$ref": "#/$defs/bilingualText" },
+          "role": { "$ref": "#/$defs/bilingualText" },
+          "sourceIds": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["research_seed", "verified_partial", "verified", "stale_review_required", "temporarily_restricted", "inactive"]
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modes", "cargoTypes"],
+      "properties": {
+        "modes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "enum": ["ocean", "air", "road", "rail", "multimodal"] }
+        },
+        "cargoTypes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "general",
+              "containerized",
+              "reefer",
+              "dangerous_goods",
+              "bulk",
+              "breakbulk",
+              "project_cargo",
+              "oversized",
+              "live_animals",
+              "perishable",
+              "high_value",
+              "postal_or_courier"
+            ]
+          }
+        },
+        "equipment": { "type": "array", "items": { "type": "string" } },
+        "services": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["constraintId", "category", "status", "outcome", "sourceIds", "reviewBy"],
+        "properties": {
+          "constraintId": { "type": "string", "minLength": 1 },
+          "category": {
+            "type": "string",
+            "enum": [
+              "operating_hours",
+              "cargo_acceptance",
+              "dangerous_goods",
+              "weight",
+              "dimension",
+              "truck_access",
+              "route",
+              "customs",
+              "permit",
+              "security",
+              "temporary_operational_notice",
+              "other"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["confirmed_rule", "conditional_guidance", "confirmation_required", "source_unavailable"]
+          },
+          "trigger": { "type": "object" },
+          "outcome": { "$ref": "#/$defs/bilingualText" },
+          "effectiveFrom": { "type": ["string", "null"], "format": "date" },
+          "effectiveTo": { "type": ["string", "null"], "format": "date" },
+          "sourceIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "reviewBy": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "sources": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "review": { "$ref": "#/$defs/review" }
+  },
+  "$defs": {
+    "bilingualText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "ar"],
+      "properties": {
+        "en": { "type": "string", "minLength": 1 },
+        "ar": { "type": "string", "minLength": 1 }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lastVerifiedAt", "nextReviewAt", "reviewOwner"],
+      "properties": {
+        "lastVerifiedAt": { "type": ["string", "null"], "format": "date-time" },
+        "nextReviewAt": { "type": "string", "format": "date-time" },
+        "reviewOwner": { "type": "string", "minLength": 1 },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}
