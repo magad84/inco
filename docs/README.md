@@ -19,17 +19,18 @@ Before strategy, research, design, or implementation work, read:
 | File | Purpose | Status |
 |---|---|---|
 | `MVP_PRODUCT_SPEC.md` | Core trade-term MVP journey, output, and free/paid boundary | Working specification |
-| `TRADE_TERM_RULE_MATRIX.md` | Deterministic rules for the eleven principal trade terms | Implementation seed; requires structured conversion and tests |
+| `TRADE_TERM_RULE_MATRIX.md` | Deterministic rules for the eleven principal trade terms | Implementation seed; structured conversion and term-level tests continue |
 | `QUESTION_ARCHITECTURE.md` | Conditional question families and entry routes | Working architecture |
 | `QUESTION_RULE_TRACEABILITY.md` | Maps questions to formulas, rules, outputs, commercial boundary, and retention | Working traceability matrix |
 | `ACCEPTANCE_SCENARIOS.md` | Cross-module expected behavior before code | Initial deterministic test library |
+| `BILINGUAL_TERMINOLOGY.md` | Controlled Arabic-English terminology for trade, cargo, transport, and system outputs | Working terminology register |
 
 ## 3. Knowledge Governance
 
 | File | Purpose | Status |
 |---|---|---|
 | `KNOWLEDGE_ARCHITECTURE.md` | Product modules, source hierarchy, volatility, rule/source schemas, certainty boundaries | Governing architecture |
-| `SOURCE_REGISTRY.md` | Verified and pending source records | Seed registry; ongoing official-source research |
+| `SOURCE_REGISTRY.md` | Verified and pending source records | Seed registry version 0.2; official-source research continues |
 | `RESEARCH_BACKLOG.md` | Prioritized gaps and research tasks | Active |
 | `COUNTRY_PACK_SCHEMA.md` | Standard schema for national and local compliance packs | Working schema |
 
@@ -37,9 +38,10 @@ Before strategy, research, design, or implementation work, read:
 
 | File | Purpose | Status |
 |---|---|---|
-| `DG_PRESCREEN_SPEC.md` | Dangerous-goods and special-cargo evidence triage | Working specification |
-| `CARGO_CALCULATORS_SPEC.md` | CBM, volumetric, chargeable-weight, container estimate, and paid load-planner requirements | Working specification |
-| `OPEN_SOURCE_EVALUATION.md` | Technical and legal evaluation of container-loading projects | Active; no dependency approved |
+| `DG_PRESCREEN_SPEC.md` | Dangerous-goods and special-cargo evidence triage | Working deterministic specification |
+| `CARGO_CALCULATORS_SPEC.md` | CBM, volumetric, chargeable-weight, container estimate, and paid load-planner requirements | Working functional specification |
+| `CARGO_CALCULATOR_RULES.md` | Exact units, formulas, precision, rounding, validation, and stale-rule behavior | Implementation-ready mathematical rules |
+| `OPEN_SOURCE_EVALUATION.md` | Technical and legal evaluation of container-loading projects | Version 0.2; no dependency approved |
 
 ## 5. Country Packs
 
@@ -58,7 +60,15 @@ A seed pack is not production-ready. It identifies verified candidates, missing 
 |---|---|---|
 | `BROKER_MARKETPLACE_SPEC.md` | Provider registration, license verification, matching, consent, complaints, and monetization boundary | Future-module specification |
 
-## 7. Current Gates
+## 7. Machine-Readable Contracts
+
+| File | Purpose | Status |
+|---|---|---|
+| `../schemas/cargo-calculator-input.schema.json` | Input contract for package, units, carrier factor, and requested outputs | Created; implementation-neutral |
+| `../schemas/cargo-calculator-output.schema.json` | Output, audit, warning, assumption, and provider-rule contract | Created; implementation-neutral |
+| `../fixtures/cargo-calculator/cases.json` | Valid and invalid arithmetic, conversion, and stale-rule cases | Created; not yet executed by CI |
+
+## 8. Current Gates
 
 ### Research Gate
 
@@ -75,7 +85,7 @@ A rule can enter implementation only when:
 
 - Inputs and trigger are explicit.
 - output and uncertainty state are explicit.
-- source IDs are attached.
+- source IDs are attached where applicable.
 - representative tests exist.
 
 ### Module Gate
@@ -95,12 +105,29 @@ Pricing, payment provider, credits, subscriptions, and company plans require own
 
 AI remains pending. No model or provider is part of the current implementation scope.
 
-## 8. Current Next Work
+## 9. First Implementation Readiness
 
-1. Convert the trade-term matrix into structured rule records.
-2. assign rule and source IDs to all material questions.
-3. normalize the first country rules.
-4. complete missing official road, postal, and carrier research.
-5. define data schemas and bilingual terminology.
+The deterministic Cargo Calculator is the most implementation-ready slice because:
+
+- The formulas are stable mathematics.
+- carrier-specific factors remain external configuration.
+- input and output contracts exist.
+- valid and invalid fixtures exist.
+- safety and commercial boundaries are defined.
+
+Before coding this slice:
+
+1. Approve the core technical architecture and implementation language.
+2. validate the JSON schemas and fixtures in the selected runtime.
+3. create unit tests from the fixtures.
+4. keep UI, account, payment, and database outside the first domain-core package.
+
+## 10. Current Next Work
+
+1. Create the technical architecture proposal for the deterministic domain core.
+2. convert the trade-term matrix into machine-readable rule records.
+3. define trade-term review input/output schemas.
+4. assign final rule and source IDs.
+5. complete P0 official road, postal, and carrier research.
 6. convert acceptance scenarios into executable fixtures.
-7. start the first deterministic implementation module only after its gate is met.
+7. begin the first deterministic code slice only after its architecture decision is approved.
