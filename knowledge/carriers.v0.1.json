@@ -1,0 +1,42 @@
+{
+  "registry_version": "0.1",
+  "status": "research_seed",
+  "policy": "Provider presence does not imply route availability or cargo acceptance. Every service recommendation requires an effective-dated official source or direct confirmation.",
+  "providers": [
+    {"provider_id":"DHL-EXPRESS","name":"DHL Express","mode":"express","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"FEDEX","name":"FedEx","mode":"express","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"ARAMEX","name":"Aramex","mode":"express","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"UPS","name":"UPS","mode":"express","priority":"secondary","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"MAERSK","name":"Maersk","mode":"ocean","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"MSC","name":"MSC","mode":"ocean","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"CMA-CGM","name":"CMA CGM","mode":"ocean","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"COSCO","name":"COSCO Shipping Lines","mode":"ocean","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"HAPAG-LLOYD","name":"Hapag-Lloyd","mode":"ocean","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"ONE","name":"Ocean Network Express","mode":"ocean","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"EVERGREEN","name":"Evergreen Marine","mode":"ocean","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"EMIRATES-SKYCARGO","name":"Emirates SkyCargo","mode":"air_cargo","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"ETIHAD-CARGO","name":"Etihad Cargo","mode":"air_cargo","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"QATAR-CARGO","name":"Qatar Airways Cargo","mode":"air_cargo","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"SAUDIA-CARGO","name":"Saudia Cargo","mode":"air_cargo","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"TURKISH-CARGO","name":"Turkish Cargo","mode":"air_cargo","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"EGYPTAIR-CARGO","name":"EgyptAir Cargo","mode":"air_cargo","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"},
+    {"provider_id":"OMAN-AIR-CARGO","name":"Oman Air Cargo","mode":"air_cargo","priority":"initial","verification_status":"source_required","service_rule_status":"confirmation_required"}
+  ],
+  "required_service_fields": [
+    "provider_id",
+    "service_id",
+    "mode",
+    "origin_market",
+    "destination_market",
+    "gateway_scope",
+    "cargo_scope",
+    "dangerous_goods_state",
+    "weight_and_dimension_rules",
+    "volumetric_factor",
+    "effective_from",
+    "effective_to",
+    "source_ids",
+    "last_verified",
+    "confirmation_requirement"
+  ]
+}
