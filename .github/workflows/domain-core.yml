@@ -5,11 +5,17 @@ on:
     paths:
       - "packages/domain-core/**"
       - "fixtures/cargo-calculator/**"
+      - "knowledge/carrier-services/**"
+      - "knowledge/source-records/**"
+      - "schemas/carrier-service.schema.json"
       - ".github/workflows/domain-core.yml"
   pull_request:
     paths:
       - "packages/domain-core/**"
       - "fixtures/cargo-calculator/**"
+      - "knowledge/carrier-services/**"
+      - "knowledge/source-records/**"
+      - "schemas/carrier-service.schema.json"
       - ".github/workflows/domain-core.yml"
 
 permissions:
