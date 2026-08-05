@@ -1,161 +1,141 @@
 # INCO
 
-**International Commerce & Logistics Assistant**
+**Bilingual Decision Support for International Trade and Logistics**
 
-INCO is a bilingual, structured decision-support platform for international commerce, freight, cargo preparation, and logistics execution.
+INCO is a rules-first, source-governed decision-support engine that converts cargo, country, route, carrier, gateway, and trade-term information into transparent and traceable professional guidance.
 
-It is designed for working professionals who need to review trade terms, understand cargo and transport risks, calculate shipment requirements, compare practical options, and identify when carrier, authority, or specialist confirmation is required.
+It is designed for supply-chain, logistics, procurement, customs, trade, and operations professionals who need to identify missing information, operational risks, required confirmations, and practical next actions before relying on a shipment plan.
 
-## Current Product Direction
+## Current Status
 
-INCO is an independent product with its own repository, identity, architecture, data boundaries, and deployment model.
+INCO has reached **internal functional testing with a real deterministic engine and browser console**.
 
-The platform is rules-first, source-backed, and workflow-driven. Its core decision logic must work without generative AI.
+Implemented:
 
-The AI module remains intentionally pending. No model, provider, local runtime, or paid API has been approved.
+- deterministic TypeScript domain core;
+- cargo calculations;
+- destination-country requirement evaluation;
+- dangerous-goods and special-cargo pre-screen;
+- trade-lane, gateway, and carrier-service evaluation;
+- controlled trade-term records and verification overlay;
+- bilingual test reporting;
+- real HTTP evaluation endpoint and browser UAT console;
+- six launch scenarios plus negative, contradiction, road, multimodal, battery, medicine, food, chemical, and oversized tests;
+- source freshness, review-date, and uncertainty controls;
+- production-readiness and security gap analysis.
 
-## Product Modules
+Latest validated internal cycle: `UAT-CYCLE-003`.
 
-### 1. Trade-Term Review
+## Why INCO Is Different
 
-- Review whether a selected term fits the transaction.
-- Separate delivery, risk transfer, cost allocation, and operational control.
-- Check transport-mode compatibility and named-place clarity.
-- Compare seller and buyer responsibilities.
-- Identify advantages, disadvantages, missing information, and practical alternatives.
+INCO does not hide uncertainty or generate unsupported certainty.
 
-### 2. Cargo Nature and Dangerous-Goods Pre-Screen
+When evidence is incomplete or volatile, the engine returns controlled states such as:
 
-- Detect indicators that cargo may be dangerous, restricted, temperature-sensitive, fragile, high-value, oversized, overweight, perishable, or otherwise special.
-- Request the evidence needed for transport planning.
-- Identify when carrier, authority, or specialist confirmation is required.
+- `confirmation_required`
+- `source_unavailable`
+- `blocked_information_required`
+- `enhanced_compliance_required`
 
-This module is a pre-screen. It must never certify cargo as safe, non-dangerous, legally permitted, or carrier-accepted from a product name alone.
+A route candidate is not a booking. A cargo pre-screen is not a final dangerous-goods classification. A country rule is not customs approval. A carrier record is not live acceptance, capacity, schedule, cut-off, or price.
 
-### 3. Country Compliance Packs
+## Initial Coverage
 
-Initial countries:
+### Destination markets
 
-- United Arab Emirates.
-- Saudi Arabia.
-- Egypt.
-- Oman.
+- United Arab Emirates
+- Saudi Arabia
+- Egypt
+- Oman
 
-Country knowledge is organized by jurisdiction, transport mode, cargo type, authority, route, effective date, and review date.
+### Priority origins
 
-### 4. Carrier Rules Registry
+- China
+- India
+- Turkey
+- Italy
+- United States
+- Russia, with enhanced-compliance controls
+- Australia
 
-Planned carrier categories:
+### Transport and cargo coverage
 
-- Ocean carriers.
-- air cargo operators.
-- express couriers.
-- national postal operators.
-- road carriers.
-- specialist heavy-haul providers.
+- ocean;
+- air cargo;
+- courier and express;
+- initial road candidates;
+- initial multimodal candidates;
+- general, containerized, temperature-controlled, pharmaceutical, food, chemical, battery, dangerous-goods, oversized, and project cargo indicators.
 
-Carrier formulas, restrictions, acceptance conditions, and operational notices must be effective-dated and reviewed because they vary by provider, service, route, market, and cargo.
+## Run the Internal Console
 
-### 5. Cargo Calculators
+From `packages/domain-core`:
 
-Free deterministic tools are planned for:
+```bash
+npm install
+npm run uat:console
+```
 
-- CBM.
-- total gross weight.
-- volumetric weight.
-- chargeable weight.
-- preliminary pallet and container requirements.
+Open:
 
-### 6. Container Load Planner
+```text
+http://localhost:4173
+```
 
-A future paid professional module is planned for:
+The console calls the real deterministic engine through `/api/evaluate` and displays the decision state, cargo status, country status, route status, missing information, required confirmations, risks, and source identifiers.
 
-- Multi-SKU carton loading.
-- container selection.
-- orientation and stackability constraints.
-- fragile and heavy item controls.
-- payload and utilization.
-- weight-balance indicators.
-- loading and unloading sequence.
-- 2D/3D visualization.
-- printable professional report.
+## Open-Core Positioning
 
-A mathematical fit is not a safety certificate, dangerous-goods approval, carrier acceptance, securing plan, or road permit.
+INCO is positioned first as an open professional showcase, trust-building platform, and consulting lead-generation asset.
 
-### 7. Road and Abnormal-Load Indicators
+The public core may include:
 
-The platform may identify likely requirements related to:
+- deterministic logic;
+- schemas;
+- representative source-governed datasets;
+- tests and UAT evidence;
+- architecture and governance documentation;
+- a clearly limited demo.
 
-- Exceptional dimensions or gross weight.
-- axle limits.
-- truck movement restrictions.
-- route, bridge, and tunnel constraints.
-- escort and permit indicators.
+Protected knowledge operations remain private, including licensed source files, customer data, private rule packs, credentials, expert-reviewed reports, and company-specific deployments.
 
-Final route and permit approval remains with the competent authority and qualified operators.
+Commercial opportunities are expected primarily from consulting, training, expert-reviewed decision packs, private deployments, white-label implementations, company rule packs, and advanced professional modules.
 
-### 8. Verified Customs-Broker Marketplace
+See `docs/ADR_004_OPEN_CORE_POSITIONING_AND_COMMERCIAL_BOUNDARY.md`.
 
-A future marketplace may allow users to find and contact registered customs-clearance providers matched by country, customs point, cargo type, transport mode, language, and verified service coverage.
+## Repository and Licensing Status
 
-Paid visibility must remain separate from operational matching and verification status.
+This repository is public. A final open-source license has **not yet been selected**. Public visibility alone must not be interpreted as a completed unrestricted-use license decision.
 
-## Commercial Direction
+The license model will be chosen separately after reviewing permissive, copyleft, and source-available options against INCO's commercial strategy.
 
-### Free
+## Safety and Professional Boundary
 
-- INCO Free Review.
-- Basic cargo and risk pre-screen.
-- Basic CBM and volumetric calculations.
-- Preliminary shipment and container indicators.
+INCO provides professional decision support. It does not replace:
 
-### Paid
+- current carrier acceptance;
+- authority or customs approval;
+- legal or sanctions review;
+- dangerous-goods classification;
+- insurance advice;
+- route or abnormal-load approval;
+- qualified operational verification.
 
-- INCO Trade Decision Pack.
-- Multi-option professional comparison.
-- Detailed report and saved case.
-- Multi-SKU Container Load Plan.
-- Advanced logistics and compliance brief.
+## Key Documents
 
-The initial payment direction is pay per report or paid output. Credit bundles and business workspaces remain later-stage options.
-
-## Account Direction
-
-A visitor should be able to use the free tools before registration.
-
-Google sign-in is planned when the user wants to:
-
-- Save a case.
-- resume later.
-- purchase a report.
-- access paid results.
-- manage account data.
-
-Authentication and payment processing remain separate capabilities.
-
-## Current Phase
-
-The project is in **knowledge architecture, source verification, question design, and deterministic rules definition**.
-
-Production application development must not begin until the minimum rules, data schemas, source registry, uncertainty states, and acceptance tests are sufficiently defined.
-
-## Professional Boundary
-
-INCO provides professional decision support. It does not replace current carrier acceptance, authority approval, legal review, customs determination, dangerous-goods classification, insurance advice, route approval, or competent operational verification where those are required.
+1. `CURRENT_STATE.md`
+2. `PROJECT_CONTEXT.md`
+3. `docs/UAT_READINESS_GATE_v1.0.md`
+4. `docs/UAT_CYCLE_003_REPORT_v1.0.md`
+5. `docs/PRODUCTION_READINESS_ARCHITECTURE_SECURITY_GAP_ANALYSIS_v1.0.md`
+6. `docs/ADR_004_OPEN_CORE_POSITIONING_AND_COMMERCIAL_BOUNDARY.md`
+7. `SECURITY.md`
+8. `CONTRIBUTING.md`
 
 ## Governance
 
-- Product Owner: Mostafa Gad.
-- Strategic product and architecture governance: ChatGPT.
-- Engineering execution: Codex.
-- Source control: GitHub.
-- Repository: `magad84/inco`.
-
-Read these files before implementation:
-
-1. `PROJECT_CONTEXT.md`
-2. `CURRENT_STATE.md`
-3. `AGENTS.md`
-4. `docs/KNOWLEDGE_ARCHITECTURE.md`
-5. `docs/SOURCE_REGISTRY.md`
-6. `docs/QUESTION_ARCHITECTURE.md`
+- Product Owner: Mostafa Gad
+- Strategic product and architecture governance: ChatGPT
+- Engineering execution: Codex and controlled GitHub workflows
+- Source control: GitHub
+- Repository: `magad84/inco`
