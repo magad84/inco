@@ -32,11 +32,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: npm
-          cache-dependency-path: packages/domain-core/package-lock.json
 
       - name: Install dependencies
-        run: npm install --package-lock-only && npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Build and test
         run: npm test
