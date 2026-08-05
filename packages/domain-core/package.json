@@ -1,12 +1,14 @@
 {
   "name": "@inco/domain-core",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && node --test dist/test/**/*.test.js",
-    "check": "npm run test"
+    "check": "npm run test",
+    "uat:first-wave": "npm run build && node dist/src/uat-cli.js",
+    "uat:first-wave:ar": "npm run build && node dist/src/uat-cli.js --ar"
   },
   "dependencies": {
     "decimal.js": "^10.6.0"
