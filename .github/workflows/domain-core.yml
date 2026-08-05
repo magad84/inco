@@ -1,0 +1,42 @@
+name: Domain Core
+
+on:
+  push:
+    paths:
+      - "packages/domain-core/**"
+      - "fixtures/cargo-calculator/**"
+      - ".github/workflows/domain-core.yml"
+  pull_request:
+    paths:
+      - "packages/domain-core/**"
+      - "fixtures/cargo-calculator/**"
+      - ".github/workflows/domain-core.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    defaults:
+      run:
+        working-directory: packages/domain-core
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: packages/domain-core/package-lock.json
+
+      - name: Install dependencies
+        run: npm install --package-lock-only && npm ci
+
+      - name: Build and test
+        run: npm test
