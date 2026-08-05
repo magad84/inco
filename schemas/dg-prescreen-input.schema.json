@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inco.local/schemas/dg-prescreen-input.schema.json",
+  "title": "INCO Dangerous-Goods Pre-Screen Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["product", "shipment"],
+  "properties": {
+    "product": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commercialName", "technicalDescription", "physicalState"],
+      "properties": {
+        "commercialName": { "type": "string", "minLength": 1 },
+        "technicalDescription": { "type": "string" },
+        "intendedUse": { "type": ["string", "null"] },
+        "compositionKnown": { "type": ["boolean", "null"] },
+        "physicalState": {
+          "type": "string",
+          "enum": ["solid", "liquid", "gas", "aerosol", "powder", "paste", "gel", "article", "unknown"]
+        },
+        "hazardIndicators": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "battery",
+              "fuel_or_residue",
+              "flammable",
+              "compressed_gas",
+              "aerosol",
+              "paint_ink_adhesive_resin_solvent_cleaner",
+              "perfume_cosmetic_alcohol",
+              "oxidizer_or_peroxide",
+              "toxic_or_infectious",
+              "corrosive",
+              "pesticide_fertilizer_agricultural_chemical",
+              "magnetized",
+              "radioactive",
+              "dry_ice_or_refrigerant",
+              "biological",
+              "engine_machinery_vehicle_with_energy_or_fluid",
+              "medical_or_pharmaceutical_control",
+              "unknown_chemical_composition"
+            ]
+          }
+        },
+        "specialCargoIndicators": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "temperature_controlled",
+              "perishable",
+              "live_animal_or_plant",
+              "fragile",
+              "high_value",
+              "theft_sensitive",
+              "oversized",
+              "overweight",
+              "indivisible",
+              "moisture_sensitive",
+              "odor_producing",
+              "food_grade_segregation",
+              "pharma_or_healthcare_controlled",
+              "personal_effects",
+              "waste_or_used_goods"
+            ]
+          }
+        }
+      }
+    },
+    "technicalData": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sdsAvailable": { "type": ["boolean", "null"] },
+        "sdsRevisionDate": { "type": ["string", "null"], "format": "date" },
+        "unNumber": { "type": ["string", "null"] },
+        "properShippingName": { "type": ["string", "null"] },
+        "classOrDivision": { "type": ["string", "null"] },
+        "packingGroup": { "type": ["string", "null"] },
+        "flashPointC": { "type": ["number", "null"] }
+      }
+    },
+    "battery": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "present": { "type": "boolean" },
+        "chemistry": { "type": ["string", "null"] },
+        "configuration": { "type": ["string", "null"], "enum": ["alone", "packed_with_equipment", "contained_in_equipment", null] },
+        "wattHours": { "type": ["number", "null"], "minimum": 0 },
+        "damagedDefectiveRecalledPrototypeOrWaste": { "type": ["boolean", "null"] },
+        "testSummaryAvailable": { "type": ["boolean", "null"] }
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "packageCount": { "type": ["integer", "null"], "minimum": 1 },
+        "netQuantity": { "type": ["number", "null"], "minimum": 0 },
+        "grossWeightKg": { "type": ["number", "null"], "minimum": 0 },
+        "packagingDescription": { "type": ["string", "null"] }
+      }
+    },
+    "shipment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["originCountry", "destinationCountry", "mode", "plannedShipmentDate"],
+      "properties": {
+        "originCountry": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "destinationCountry": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "transitCountries": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z]{2}$" } },
+        "mode": { "type": "string", "enum": ["ocean", "air", "courier", "postal", "road", "multimodal"] },
+        "carrierId": { "type": ["string", "null"] },
+        "serviceId": { "type": ["string", "null"] },
+        "plannedShipmentDate": { "type": "string", "format": "date" }
+      }
+    }
+  }
+}
