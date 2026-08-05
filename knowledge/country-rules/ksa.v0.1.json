@@ -1,0 +1,86 @@
+{
+  "datasetVersion": "0.1",
+  "countryCode": "SA",
+  "status": "research_seed",
+  "policy": "Candidate rules derived from the approved Saudi seed pack. Unverified thresholds, permit routes, exemptions, and service conditions must return confirmation_required or source_unavailable.",
+  "rules": [
+    {
+      "ruleId": "CR-SA-HEAVY-GOODS-001",
+      "countryCode": "SA",
+      "jurisdiction": {"en": "Saudi Arabia", "ar": "المملكة العربية السعودية"},
+      "stage": "inland_transport",
+      "category": "road_restriction",
+      "status": "research_seed",
+      "trigger": {"heavyGoodsTransport": true},
+      "requiredInputs": ["transport_account_type", "operator_license_status", "vehicle_and_trailer_type", "driver_and_vehicle_permits", "cargo_type", "loaded_dimensions", "loaded_weights", "securing_and_distribution_plan"],
+      "outcome": {
+        "decision": "confirmation_required",
+        "message": {"en": "Heavy-goods transport may require licensed operator, vehicle, driver, and safety evidence.", "ar": "قد يتطلب نقل البضائع الثقيلة إثبات ترخيص المشغل والمركبة والسائق ومتطلبات السلامة."},
+        "nextAction": {"en": "Confirm current operator, vehicle, driver, securing, dimension, and weight obligations with the competent transport authority.", "ar": "أكد الالتزامات الحالية للمشغل والمركبة والسائق والتثبيت والأبعاد والأوزان مع جهة النقل المختصة."},
+        "impactIfNotConfirmed": {"en": "Movement may be delayed, stopped, or exposed to safety and enforcement risk.", "ar": "قد تتأخر الحركة أو تتوقف أو تتعرض لمخاطر السلامة والمخالفة."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "Transport General Authority", "ar": "الهيئة العامة للنقل"},
+        "reason": {"en": "Detailed article-level normalization and current exceptions remain pending.", "ar": "ما زالت المراجعة التفصيلية للمواد والاستثناءات الحالية قيد الاستكمال."},
+        "sourceRoute": "official Saudi transport regulation and service source"
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-KSA-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-08-20T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "No threshold-based decision until official limits are normalized."}
+    },
+    {
+      "ruleId": "CR-SA-EXCEPTIONAL-LOAD-001",
+      "countryCode": "SA",
+      "jurisdiction": {"en": "Saudi Arabia", "ar": "المملكة العربية السعودية"},
+      "stage": "inland_transport",
+      "category": "special_load",
+      "status": "research_seed",
+      "trigger": {"exceptionalLoadIndicator": true},
+      "requiredInputs": ["actual_dimensions", "actual_weights", "axle_configuration", "route", "indivisibility_evidence", "permit_status"],
+      "outcome": {
+        "decision": "confirmation_required",
+        "message": {"en": "A likely exceptional-load case requires current permit and route confirmation.", "ar": "حالة الحمولة الاستثنائية المحتملة تحتاج تأكيدًا حاليًا للتصريح والمسار."},
+        "nextAction": {"en": "Provide dimensions, weights, axles, route, indivisibility evidence, and current permit status.", "ar": "قدّم الأبعاد والأوزان والمحاور والمسار وإثبات عدم قابلية التجزئة وحالة التصريح الحالية."},
+        "impactIfNotConfirmed": {"en": "The movement may be refused or stopped and may create significant safety and compliance exposure.", "ar": "قد تُرفض الحركة أو تتوقف وقد تنشأ مخاطر كبيرة للسلامة والامتثال."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "Competent Saudi transport authority", "ar": "جهة النقل السعودية المختصة"},
+        "reason": {"en": "The complete active permit process and threshold source are not yet normalized.", "ar": "لم يتم بعد تحويل مسار التصريح الفعّال وحدوده بالكامل إلى بيانات تنفيذية."},
+        "sourceRoute": "official exceptional-load permit source"
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-KSA-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-08-20T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "High-priority source gap."}
+    },
+    {
+      "ruleId": "CR-SA-BROKER-VERIFY-001",
+      "countryCode": "SA",
+      "jurisdiction": {"en": "Saudi Arabia", "ar": "المملكة العربية السعودية"},
+      "stage": "provider_verification",
+      "category": "broker_or_provider",
+      "status": "verified_partial",
+      "trigger": {"customsBrokerRequired": true},
+      "requiredInputs": ["provider_legal_name", "customs_clearance_license_number", "license_status", "issue_date", "expiry_date", "declared_service_scope"],
+      "outcome": {
+        "decision": "confirmation_required",
+        "message": {"en": "Customs-clearance provider status must be verified through the current official licensing route.", "ar": "يجب التحقق من حالة مقدم خدمات التخليص الجمركي عبر مسار الترخيص الرسمي الحالي."},
+        "nextAction": {"en": "Check license status, validity, scope, and authorization before appointment.", "ar": "تحقق من حالة الترخيص وصلاحيته ونطاقه والتفويض قبل التعيين."},
+        "impactIfNotConfirmed": {"en": "An unverified or expired provider may be unable to act at the required customs point.", "ar": "قد لا يتمكن مقدم خدمة غير متحقق منه أو منتهي الترخيص من العمل في النقطة الجمركية المطلوبة."}
+      },
+      "confirmation": {
+        "required": true,
+        "authorityOrProvider": {"en": "ZATCA official licensing and authorization services", "ar": "خدمات الترخيص والتفويض الرسمية لدى هيئة الزكاة والضريبة والجمارك"},
+        "reason": {"en": "Provider status and scope are time-sensitive.", "ar": "حالة مقدم الخدمة ونطاقه متغيران بمرور الوقت."},
+        "sourceRoute": "official ZATCA licensing/status route"
+      },
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "sources": ["DOC-KSA-SEED-PACK-0.1"],
+      "review": {"lastVerifiedAt": null, "nextReviewAt": "2026-09-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Manual official verification until a supported integration exists."}
+    }
+  ]
+}
