@@ -1,0 +1,30 @@
+{
+  "gateId": "GATE-UAT-READY",
+  "version": "1.0",
+  "assessedAt": "2026-08-05T18:29:00Z",
+  "status": "PASS",
+  "scope": "internal_functional_testing_only",
+  "requiredScenarioIds": ["E2E-001", "E2E-002", "E2E-003", "E2E-004", "E2E-005", "E2E-006"],
+  "requiredDecisionStates": [
+    "candidate",
+    "confirmation_required",
+    "source_unavailable",
+    "blocked_information_required",
+    "enhanced_compliance_required"
+  ],
+  "controls": {
+    "strictTypeScript": true,
+    "ciRequired": true,
+    "bilingualReports": true,
+    "paidDependencyAllowed": false,
+    "liveAcceptanceClaimAllowed": false,
+    "finalDgClassificationAllowed": false,
+    "productionLaunchApproved": false
+  },
+  "evidence": {
+    "ciRunId": 31034849145,
+    "firstWaveFixture": "fixtures/e2e/cases.v0.1.json",
+    "secondWaveFixture": "fixtures/e2e/cases.v0.2.json",
+    "gateDocument": "docs/UAT_READINESS_GATE_v1.0.md"
+  }
+}
