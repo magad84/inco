@@ -4,10 +4,10 @@ import {
   type DestinationCountryRule,
 } from "./country-requirements-evaluator.js";
 import {
-  prescreenCargo,
   type DgPrescreenInput,
   type DgPrescreenResult,
 } from "./dg-prescreen.js";
+import { prescreenCargoEnhanced } from "./dg-prescreen-enhanced.js";
 import {
   evaluateTradeLane,
   type TradeLaneCorridor,
@@ -58,7 +58,7 @@ export function evaluateIntegratedDecision(
   }
 
   const lane = evaluateTradeLane(input.lane, corridors);
-  const cargo = prescreenCargo(input.cargo, evaluatedAt);
+  const cargo = prescreenCargoEnhanced(input.cargo, evaluatedAt);
   const destination = evaluateCountryRequirements(
     {
       countryCode: input.lane.destinationCountry,
