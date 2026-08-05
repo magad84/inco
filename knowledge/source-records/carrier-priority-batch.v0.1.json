@@ -1,0 +1,66 @@
+{
+  "datasetVersion": "0.1",
+  "generatedAt": "2026-08-05T18:20:00Z",
+  "sources": [
+    {
+      "sourceId": "MAERSK-ME-UPDATE-36-2026",
+      "provider": "Maersk",
+      "sourceType": "official_operational_advisory",
+      "url": "https://www.maersk.com/news/articles/2026/06/16/middle-east-operational-update-36",
+      "verificationStatus": "verified_current",
+      "lastVerified": "2026-08-05T18:20:00Z",
+      "reviewBy": "2026-08-12T00:00:00Z",
+      "notes": "Highly volatile; booking acceptance remains route and cargo specific."
+    },
+    {
+      "sourceId": "QATAR-CARGO-OFFICIAL-PRESENCE-2026",
+      "provider": "Qatar Airways Cargo",
+      "sourceType": "official_corporate_source",
+      "url": "https://www.qatarairways.com/press-releases/en-WW/249186-qatar-airways-cargo-iag-cargo-and-maskargo-announce-intention-to-launch-a-global-cargo-joint-business/",
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T18:20:00Z",
+      "reviewBy": "2026-11-05T00:00:00Z",
+      "notes": "Confirms official cargo operation presence only; product and route acceptance remain source-unavailable."
+    },
+    {
+      "sourceId": "SAUDIA-CARGO-OFFICIAL-PRODUCT-SEED-2026",
+      "provider": "Saudia Cargo",
+      "sourceType": "official_product_source",
+      "url": "https://china.saudiacargo.com/products/skyteam-specialized",
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T18:20:00Z",
+      "reviewBy": "2026-11-05T00:00:00Z",
+      "notes": "Product-family seed only; shipment and route acceptance require direct confirmation."
+    },
+    {
+      "sourceId": "EGYPTAIR-CARGO-DG-2026",
+      "provider": "EgyptAir Cargo",
+      "sourceType": "official_product_source",
+      "url": "https://www.egyptair-cargo.com/ms_DG.aspx",
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T18:20:00Z",
+      "reviewBy": "2026-11-05T00:00:00Z",
+      "notes": "Published DG handling capability; reservations and pre-arrangements remain essential for the entire route."
+    },
+    {
+      "sourceId": "OMANAIR-CARGO-DG-2026",
+      "provider": "Oman Air Cargo",
+      "sourceType": "official_product_source",
+      "url": "https://cargo.omanair.com/WY-Dangerous-goods",
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T18:20:00Z",
+      "reviewBy": "2026-11-05T00:00:00Z",
+      "notes": "Published DG handling capability at Muscat hub; route and shipment acceptance remain conditional."
+    },
+    {
+      "sourceId": "OMANAIR-CARGO-NETWORK-2026",
+      "provider": "Oman Air Cargo",
+      "sourceType": "official_network_source",
+      "url": "https://cargo.omanair.com/our-network",
+      "verificationStatus": "verified_partial",
+      "lastVerified": "2026-08-05T18:20:00Z",
+      "reviewBy": "2026-11-05T00:00:00Z",
+      "notes": "Network presence is not booking or cargo acceptance evidence."
+    }
+  ]
+}
