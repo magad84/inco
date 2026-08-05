@@ -17,7 +17,6 @@
 | Defect ID | Severity | Area | Finding | Control / Next Action | Gate Impact |
 |---|---:|---|---|---|---|
 | `DEF-CR-001` | MEDIUM | Country rules | Several rules remain verified-partial or research seed pending official source normalization. | Preserve confirmation states; normalize official records market by market. | Non-blocking |
-| `DEF-DG-001` | MEDIUM | DG pre-screen | Contradictory declarations and document-evidence lifecycle need broader fixtures. | Add contradiction, stale SDS, and user-declared versus document-provided cases. | Non-blocking |
 | `DEF-GC-001` | MEDIUM | Carrier data | No live schedule, capacity, rate, or final acceptance source. | Continue candidate-only output and mandatory current confirmation. | Non-blocking |
 | `DEF-TL-001` | MEDIUM | Trade lanes | Some corridors intentionally contain incomplete gateway or service structure. | Return `source_unavailable` or `confirmation_required`; expand official-source coverage. | Non-blocking |
 | `DEF-TT-001` | MEDIUM | Trade terms | Record-by-record controlled source review and expanded fixtures remain incomplete. | Complete verification and regression cases before public release. | Non-blocking |
@@ -27,6 +26,7 @@
 
 | Defect ID | Severity | Resolution |
 |---|---:|---|
+| `DEF-DG-001` | MEDIUM | Added enhanced DG evidence controls for contradictory composition declarations, regulated data without SDS, stale SDS review, missing SDS revision dates, and future-dated SDS records. Integrated engine now uses `DG-PRESCREEN-0.2`; CI run `31035631890` passed. |
 | `DEF-ENG-001` | HIGH | TypeScript integrated-engine test typing error corrected; CI passed. |
 | `DEF-CI-001` | HIGH | Invalid lockfile issue removed; dependency installation and tests restored. |
 
