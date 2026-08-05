@@ -7,8 +7,12 @@
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && node --test dist/test/**/*.test.js",
     "check": "npm run test",
-    "uat:first-wave": "npm run build && node dist/src/uat-cli.js",
-    "uat:first-wave:ar": "npm run build && node dist/src/uat-cli.js --ar"
+    "uat:first-wave": "npm run build && node dist/src/uat-cli.js --wave first",
+    "uat:first-wave:ar": "npm run build && node dist/src/uat-cli.js --wave first --ar",
+    "uat:second-wave": "npm run build && node dist/src/uat-cli.js --wave second",
+    "uat:second-wave:ar": "npm run build && node dist/src/uat-cli.js --wave second --ar",
+    "uat:all": "npm run build && node dist/src/uat-cli.js --wave all",
+    "uat:all:ar": "npm run build && node dist/src/uat-cli.js --wave all --ar"
   },
   "dependencies": {
     "decimal.js": "^10.6.0"
