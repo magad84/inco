@@ -1,0 +1,597 @@
+{
+  "dataset_id": "INCO-TRADE-TERMS",
+  "dataset_version": "0.1.0",
+  "status": "draft",
+  "source_governance": "docs/TRADE_TERM_SOURCE_GOVERNANCE.md",
+  "rules": [
+    {
+      "rule_id": "TERM-EXW-001",
+      "term_code": "EXW",
+      "rule_version": "0.1.0",
+      "status": "draft",
+      "mode_group": "any_or_multimodal",
+      "named_point_role": "delivery_point",
+      "delivery": {
+        "event_key": "delivery.goods_at_buyer_disposal_named_place",
+        "location_stage": "seller_named_place",
+        "seller_unloading_obligation": "no",
+        "seller_loading_obligation": "no"
+      },
+      "risk_transfer": {
+        "event_key": "risk.goods_at_buyer_disposal_named_place",
+        "same_as_delivery_event": true,
+        "destination_risk_retained_by_seller": false,
+        "warning_keys": ["warning.exw.risk_before_loading_control"]
+      },
+      "responsibilities": {
+        "packaging": "SELLER",
+        "loading_at_seller": "BUYER",
+        "pre_carriage": "BUYER",
+        "export_clearance": "BUYER",
+        "origin_handling": "BUYER",
+        "main_carriage": "BUYER",
+        "cargo_insurance": "NO_DEFAULT_INSURANCE_OBLIGATION",
+        "destination_handling": "BUYER",
+        "unloading_at_destination": "BUYER",
+        "import_clearance": "BUYER",
+        "import_duties_and_taxes": "BUYER",
+        "final_delivery": "BUYER"
+      },
+      "strengths": {
+        "seller": ["strength.exw.seller.minimum_default_logistics_involvement", "strength.exw.seller.early_delivery_and_risk_transfer"],
+        "buyer": ["strength.exw.buyer.maximum_transport_control", "strength.exw.buyer.carrier_route_and_insurance_choice"]
+      },
+      "common_risks": [
+        {"risk_key": "risk.exw.buyer_export_clearance_capability", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.exw.buyer_cannot_export_clear"},
+        {"risk_key": "risk.exw.loading_damage_ambiguity", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.exw.loading_party_unclear"},
+        {"risk_key": "risk.exw.seller_export_evidence_gap", "default_severity": "medium", "affected_party": "seller", "trigger_key": "trigger.exw.seller_needs_export_evidence"}
+      ],
+      "alternative_triggers": [
+        {"alternative_term": "FCA", "trigger_key": "trigger.exw.seller_can_export_clear", "reason_key": "alternative.fca.cleaner_origin_handover"}
+      ],
+      "required_questions": ["Q-T02", "Q-T08", "Q-T10"],
+      "source_ids": ["INTERNAL-TRADE-001"],
+      "last_verified": null,
+      "next_review": null,
+      "verification_status": "UNVERIFIED",
+      "notes": "Structured draft pending controlled source review."
+    },
+    {
+      "rule_id": "TERM-FCA-001",
+      "term_code": "FCA",
+      "rule_version": "0.1.0",
+      "status": "draft",
+      "mode_group": "any_or_multimodal",
+      "named_point_role": "delivery_point",
+      "delivery": {
+        "event_key": "delivery.goods_to_buyer_carrier_named_place",
+        "location_stage": "carrier_handover_named_place",
+        "seller_unloading_obligation": "depends_on_named_point",
+        "seller_loading_obligation": "depends_on_delivery_variant"
+      },
+      "risk_transfer": {
+        "event_key": "risk.goods_to_buyer_carrier_named_place",
+        "same_as_delivery_event": true,
+        "destination_risk_retained_by_seller": false,
+        "warning_keys": ["warning.fca.named_place_variant_changes_handling"]
+      },
+      "responsibilities": {
+        "packaging": "SELLER",
+        "loading_at_seller": "DEPENDS_ON_DELIVERY_VARIANT",
+        "pre_carriage": "DEPENDS_ON_NAMED_POINT",
+        "export_clearance": "SELLER",
+        "origin_handling": "DEPENDS_ON_NAMED_POINT",
+        "main_carriage": "BUYER",
+        "cargo_insurance": "NO_DEFAULT_INSURANCE_OBLIGATION",
+        "destination_handling": "BUYER",
+        "unloading_at_destination": "BUYER",
+        "import_clearance": "BUYER",
+        "import_duties_and_taxes": "BUYER",
+        "final_delivery": "BUYER"
+      },
+      "strengths": {
+        "seller": ["strength.fca.seller.export_control", "strength.fca.seller.clear_origin_delivery_point"],
+        "buyer": ["strength.fca.buyer.main_carriage_control", "strength.fca.buyer.multimodal_and_container_fit"]
+      },
+      "common_risks": [
+        {"risk_key": "risk.fca.named_point_insufficient", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.named_place.not_specific"},
+        {"risk_key": "risk.fca.loading_variant_confusion", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.fca.delivery_variant_unknown"},
+        {"risk_key": "risk.fca.terminal_handling_ambiguity", "default_severity": "medium", "affected_party": "both", "trigger_key": "trigger.fca.terminal_costs_unclear"}
+      ],
+      "alternative_triggers": [
+        {"alternative_term": "CPT", "trigger_key": "trigger.seller_should_contract_main_carriage", "reason_key": "alternative.cpt.seller_contracts_carriage"},
+        {"alternative_term": "CIP", "trigger_key": "trigger.seller_should_contract_carriage_and_insurance", "reason_key": "alternative.cip.seller_contracts_carriage_and_insurance"}
+      ],
+      "required_questions": ["Q-T02", "Q-T05", "Q-T08", "Q-T10"],
+      "source_ids": ["INTERNAL-TRADE-001"],
+      "last_verified": null,
+      "next_review": null,
+      "verification_status": "UNVERIFIED",
+      "notes": "Seller-premises and other-place delivery variants must remain distinct."
+    },
+    {
+      "rule_id": "TERM-CPT-001",
+      "term_code": "CPT",
+      "rule_version": "0.1.0",
+      "status": "draft",
+      "mode_group": "any_or_multimodal",
+      "named_point_role": "cost_destination",
+      "delivery": {
+        "event_key": "delivery.goods_to_first_carrier",
+        "location_stage": "first_carrier_handover",
+        "seller_unloading_obligation": "no",
+        "seller_loading_obligation": "yes"
+      },
+      "risk_transfer": {
+        "event_key": "risk.goods_to_first_carrier",
+        "same_as_delivery_event": true,
+        "destination_risk_retained_by_seller": false,
+        "warning_keys": ["warning.cpt.freight_paid_but_risk_transfers_early"]
+      },
+      "responsibilities": {
+        "packaging": "SELLER",
+        "loading_at_seller": "SELLER",
+        "pre_carriage": "SELLER",
+        "export_clearance": "SELLER",
+        "origin_handling": "SELLER",
+        "main_carriage": "SELLER_CONTRACTS_BUYER_BEARING_RISK",
+        "cargo_insurance": "NO_DEFAULT_INSURANCE_OBLIGATION",
+        "destination_handling": "DEPENDS_ON_CARRIAGE_CONTRACT",
+        "unloading_at_destination": "BUYER",
+        "import_clearance": "BUYER",
+        "import_duties_and_taxes": "BUYER",
+        "final_delivery": "DEPENDS_ON_CARRIAGE_CONTRACT"
+      },
+      "strengths": {
+        "seller": ["strength.cpt.seller.freight_procurement_control", "strength.cpt.seller.early_risk_transfer"],
+        "buyer": ["strength.cpt.buyer.seller_arranged_carriage", "strength.cpt.buyer.import_control"]
+      },
+      "common_risks": [
+        {"risk_key": "risk.cpt.risk_cost_confusion", "default_severity": "critical", "affected_party": "buyer", "trigger_key": "trigger.expected_risk_at_destination"},
+        {"risk_key": "risk.cpt.first_carrier_unclear", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.multimodal_first_carrier_unknown"},
+        {"risk_key": "risk.cpt.insurance_gap", "default_severity": "medium", "affected_party": "buyer", "trigger_key": "trigger.no_party_insurance_plan"}
+      ],
+      "alternative_triggers": [
+        {"alternative_term": "CIP", "trigger_key": "trigger.seller_should_arrange_insurance", "reason_key": "alternative.cip.adds_seller_insurance_arrangement"},
+        {"alternative_term": "DAP", "trigger_key": "trigger.seller_should_retain_risk_to_destination", "reason_key": "alternative.dap.destination_risk_and_delivery"},
+        {"alternative_term": "FCA", "trigger_key": "trigger.buyer_should_control_main_carriage", "reason_key": "alternative.fca.buyer_controls_carriage"}
+      ],
+      "required_questions": ["Q-T02", "Q-T04", "Q-T05", "Q-T06", "Q-T07"],
+      "source_ids": ["INTERNAL-TRADE-001"],
+      "last_verified": null,
+      "next_review": null,
+      "verification_status": "UNVERIFIED",
+      "notes": "Cost destination and delivery/risk point must be shown separately."
+    },
+    {
+      "rule_id": "TERM-CIP-001",
+      "term_code": "CIP",
+      "rule_version": "0.1.0",
+      "status": "draft",
+      "mode_group": "any_or_multimodal",
+      "named_point_role": "cost_destination",
+      "delivery": {
+        "event_key": "delivery.goods_to_first_carrier",
+        "location_stage": "first_carrier_handover",
+        "seller_unloading_obligation": "no",
+        "seller_loading_obligation": "yes"
+      },
+      "risk_transfer": {
+        "event_key": "risk.goods_to_first_carrier",
+        "same_as_delivery_event": true,
+        "destination_risk_retained_by_seller": false,
+        "warning_keys": ["warning.cip.insurance_does_not_delay_risk_transfer"]
+      },
+      "responsibilities": {
+        "packaging": "SELLER",
+        "loading_at_seller": "SELLER",
+        "pre_carriage": "SELLER",
+        "export_clearance": "SELLER",
+        "origin_handling": "SELLER",
+        "main_carriage": "SELLER_CONTRACTS_BUYER_BEARING_RISK",
+        "cargo_insurance": "SELLER_ARRANGES_BROADER_REQUIRED_INSURANCE",
+        "destination_handling": "DEPENDS_ON_CARRIAGE_CONTRACT",
+        "unloading_at_destination": "BUYER",
+        "import_clearance": "BUYER",
+        "import_duties_and_taxes": "BUYER",
+        "final_delivery": "DEPENDS_ON_CARRIAGE_CONTRACT"
+      },
+      "strengths": {
+        "seller": ["strength.cip.seller.carriage_and_insurance_control", "strength.cip.seller.early_risk_transfer"],
+        "buyer": ["strength.cip.buyer.seller_arranged_carriage_and_insurance", "strength.cip.buyer.multimodal_fit"]
+      },
+      "common_risks": [
+        {"risk_key": "risk.cip.insurance_risk_confusion", "default_severity": "critical", "affected_party": "buyer", "trigger_key": "trigger.expected_risk_at_destination"},
+        {"risk_key": "risk.cip.policy_scope_mismatch", "default_severity": "high", "affected_party": "buyer", "trigger_key": "trigger.insurance_requirements_not_reviewed"},
+        {"risk_key": "risk.cip.first_carrier_unclear", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.multimodal_first_carrier_unknown"}
+      ],
+      "alternative_triggers": [
+        {"alternative_term": "CPT", "trigger_key": "trigger.buyer_prefers_own_insurance", "reason_key": "alternative.cpt.no_seller_insurance_obligation"},
+        {"alternative_term": "DAP", "trigger_key": "trigger.seller_should_retain_risk_to_destination", "reason_key": "alternative.dap.destination_risk_and_delivery"},
+        {"alternative_term": "FCA", "trigger_key": "trigger.buyer_should_control_main_carriage", "reason_key": "alternative.fca.buyer_controls_carriage"}
+      ],
+      "required_questions": ["Q-T02", "Q-T04", "Q-T05", "Q-T06", "Q-T07"],
+      "source_ids": ["INTERNAL-TRADE-001"],
+      "last_verified": null,
+      "next_review": null,
+      "verification_status": "UNVERIFIED",
+      "notes": "Insurance arrangement, coverage, claims, and risk transfer must remain separate."
+    },
+    {
+      "rule_id": "TERM-DAP-001",
+      "term_code": "DAP",
+      "rule_version": "0.1.0",
+      "status": "draft",
+      "mode_group": "any_or_multimodal",
+      "named_point_role": "delivery_and_cost_destination",
+      "delivery": {
+        "event_key": "delivery.destination_ready_for_unloading",
+        "location_stage": "destination_ready_for_unloading",
+        "seller_unloading_obligation": "no",
+        "seller_loading_obligation": "yes"
+      },
+      "risk_transfer": {
+        "event_key": "risk.destination_ready_for_unloading",
+        "same_as_delivery_event": true,
+        "destination_risk_retained_by_seller": true,
+        "warning_keys": ["warning.dap.import_clearance_remains_buyer"]
+      },
+      "responsibilities": {
+        "packaging": "SELLER",
+        "loading_at_seller": "SELLER",
+        "pre_carriage": "SELLER",
+        "export_clearance": "SELLER",
+        "origin_handling": "SELLER",
+        "main_carriage": "SELLER",
+        "cargo_insurance": "NO_DEFAULT_INSURANCE_OBLIGATION",
+        "destination_handling": "SELLER",
+        "unloading_at_destination": "BUYER",
+        "import_clearance": "BUYER",
+        "import_duties_and_taxes": "BUYER",
+        "final_delivery": "SELLER"
+      },
+      "strengths": {
+        "seller": ["strength.dap.seller.destination_transport_control_without_import_clearance"],
+        "buyer": ["strength.dap.buyer.delivered_transport_with_import_control", "strength.dap.buyer.risk_transfers_at_destination"]
+      },
+      "common_risks": [
+        {"risk_key": "risk.dap.buyer_import_delay", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.buyer_import_capability_unknown"},
+        {"risk_key": "risk.dap.named_destination_unclear", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.named_place.not_specific"},
+        {"risk_key": "risk.dap.unloading_expectation_conflict", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.expected_seller_unloading"}
+      ],
+      "alternative_triggers": [
+        {"alternative_term": "DPU", "trigger_key": "trigger.seller_should_unload_destination", "reason_key": "alternative.dpu.seller_unloads"},
+        {"alternative_term": "DDP", "trigger_key": "trigger.seller_should_handle_import_and_has_capability", "reason_key": "alternative.ddp.seller_import_responsibility"},
+        {"alternative_term": "CPT", "trigger_key": "trigger.risk_should_transfer_at_carrier_handover", "reason_key": "alternative.cpt.earlier_risk_transfer"}
+      ],
+      "required_questions": ["Q-T02", "Q-T04", "Q-T09", "Q-T11"],
+      "source_ids": ["INTERNAL-TRADE-001"],
+      "last_verified": null,
+      "next_review": null,
+      "verification_status": "UNVERIFIED",
+      "notes": "Buyer import readiness and exact destination access are material."
+    },
+    {
+      "rule_id": "TERM-DPU-001",
+      "term_code": "DPU",
+      "rule_version": "0.1.0",
+      "status": "draft",
+      "mode_group": "any_or_multimodal",
+      "named_point_role": "delivery_and_cost_destination",
+      "delivery": {
+        "event_key": "delivery.destination_after_unloading",
+        "location_stage": "destination_after_unloading",
+        "seller_unloading_obligation": "yes",
+        "seller_loading_obligation": "yes"
+      },
+      "risk_transfer": {
+        "event_key": "risk.destination_after_unloading",
+        "same_as_delivery_event": true,
+        "destination_risk_retained_by_seller": true,
+        "warning_keys": ["warning.dpu.seller_unloading_risk"]
+      },
+      "responsibilities": {
+        "packaging": "SELLER",
+        "loading_at_seller": "SELLER",
+        "pre_carriage": "SELLER",
+        "export_clearance": "SELLER",
+        "origin_handling": "SELLER",
+        "main_carriage": "SELLER",
+        "cargo_insurance": "NO_DEFAULT_INSURANCE_OBLIGATION",
+        "destination_handling": "SELLER",
+        "unloading_at_destination": "SELLER",
+        "import_clearance": "BUYER",
+        "import_duties_and_taxes": "BUYER",
+        "final_delivery": "SELLER"
+      },
+      "strengths": {
+        "seller": ["strength.dpu.seller.controls_delivery_and_unloading"],
+        "buyer": ["strength.dpu.buyer.receives_unloaded_goods", "strength.dpu.buyer.import_control"]
+      },
+      "common_risks": [
+        {"risk_key": "risk.dpu.seller_unloading_capability", "default_severity": "critical", "affected_party": "seller", "trigger_key": "trigger.seller_unloading_capability_unknown"},
+        {"risk_key": "risk.dpu.site_access_and_equipment", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.destination_site_requirements_unknown"},
+        {"risk_key": "risk.dpu.import_delay_blocks_delivery", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.buyer_import_capability_unknown"}
+      ],
+      "alternative_triggers": [
+        {"alternative_term": "DAP", "trigger_key": "trigger.buyer_should_unload", "reason_key": "alternative.dap.buyer_unloads"},
+        {"alternative_term": "DDP", "trigger_key": "trigger.seller_should_handle_import_and_has_capability", "reason_key": "alternative.ddp.seller_import_responsibility"}
+      ],
+      "required_questions": ["Q-T02", "Q-T09", "Q-T11"],
+      "source_ids": ["INTERNAL-TRADE-001"],
+      "last_verified": null,
+      "next_review": null,
+      "verification_status": "UNVERIFIED",
+      "notes": "Unloading capability and destination access are blocking checks."
+    },
+    {
+      "rule_id": "TERM-DDP-001",
+      "term_code": "DDP",
+      "rule_version": "0.1.0",
+      "status": "draft",
+      "mode_group": "any_or_multimodal",
+      "named_point_role": "delivery_and_cost_destination",
+      "delivery": {
+        "event_key": "delivery.destination_ready_for_unloading_import_cleared",
+        "location_stage": "destination_ready_for_unloading",
+        "seller_unloading_obligation": "no",
+        "seller_loading_obligation": "yes"
+      },
+      "risk_transfer": {
+        "event_key": "risk.destination_ready_for_unloading_import_cleared",
+        "same_as_delivery_event": true,
+        "destination_risk_retained_by_seller": true,
+        "warning_keys": ["warning.ddp.seller_destination_import_exposure"]
+      },
+      "responsibilities": {
+        "packaging": "SELLER",
+        "loading_at_seller": "SELLER",
+        "pre_carriage": "SELLER",
+        "export_clearance": "SELLER",
+        "origin_handling": "SELLER",
+        "main_carriage": "SELLER",
+        "cargo_insurance": "NO_DEFAULT_INSURANCE_OBLIGATION",
+        "destination_handling": "SELLER",
+        "unloading_at_destination": "BUYER",
+        "import_clearance": "SELLER",
+        "import_duties_and_taxes": "SELLER",
+        "final_delivery": "SELLER"
+      },
+      "strengths": {
+        "seller": ["strength.ddp.seller.customer_delivery_control"],
+        "buyer": ["strength.ddp.buyer.maximum_default_seller_responsibility", "strength.ddp.buyer.delivered_cost_simplicity"]
+      },
+      "common_risks": [
+        {"risk_key": "risk.ddp.seller_importer_capability", "default_severity": "critical", "affected_party": "seller", "trigger_key": "trigger.seller_import_capability_not_confirmed"},
+        {"risk_key": "risk.ddp.tax_and_registration_exposure", "default_severity": "critical", "affected_party": "seller", "trigger_key": "trigger.destination_tax_and_registration_unknown"},
+        {"risk_key": "risk.ddp.unloading_expectation_conflict", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.expected_seller_unloading"}
+      ],
+      "alternative_triggers": [
+        {"alternative_term": "DAP", "trigger_key": "trigger.buyer_should_handle_import", "reason_key": "alternative.dap.buyer_import_responsibility"},
+        {"alternative_term": "DPU", "trigger_key": "trigger.seller_should_unload_but_buyer_imports", "reason_key": "alternative.dpu.seller_unloads_buyer_imports"}
+      ],
+      "required_questions": ["Q-T02", "Q-T09", "Q-T11"],
+      "source_ids": ["INTERNAL-TRADE-001"],
+      "last_verified": null,
+      "next_review": null,
+      "verification_status": "UNVERIFIED",
+      "notes": "Strong-fit output is blocked until seller destination import capability is confirmed."
+    },
+    {
+      "rule_id": "TERM-FAS-001",
+      "term_code": "FAS",
+      "rule_version": "0.1.0",
+      "status": "draft",
+      "mode_group": "sea_or_inland_waterway_only",
+      "named_point_role": "shipment_port",
+      "delivery": {
+        "event_key": "delivery.alongside_vessel_shipment_port",
+        "location_stage": "alongside_vessel_shipment_port",
+        "seller_unloading_obligation": "no",
+        "seller_loading_obligation": "yes"
+      },
+      "risk_transfer": {
+        "event_key": "risk.alongside_vessel_shipment_port",
+        "same_as_delivery_event": true,
+        "destination_risk_retained_by_seller": false,
+        "warning_keys": ["warning.fas.sea_only_and_alongside_delivery"]
+      },
+      "responsibilities": {
+        "packaging": "SELLER",
+        "loading_at_seller": "SELLER",
+        "pre_carriage": "SELLER",
+        "export_clearance": "SELLER",
+        "origin_handling": "SELLER",
+        "main_carriage": "BUYER",
+        "cargo_insurance": "NO_DEFAULT_INSURANCE_OBLIGATION",
+        "destination_handling": "BUYER",
+        "unloading_at_destination": "BUYER",
+        "import_clearance": "BUYER",
+        "import_duties_and_taxes": "BUYER",
+        "final_delivery": "BUYER"
+      },
+      "strengths": {
+        "seller": ["strength.fas.seller.delivery_before_vessel_loading"],
+        "buyer": ["strength.fas.buyer.vessel_and_main_freight_control"]
+      },
+      "common_risks": [
+        {"risk_key": "risk.fas.container_misalignment", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.containerized_or_terminal_handover"},
+        {"risk_key": "risk.fas.vessel_berth_timing", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.vessel_or_berth_not_confirmed"},
+        {"risk_key": "risk.fas.port_loading_cost_ambiguity", "default_severity": "medium", "affected_party": "both", "trigger_key": "trigger.port_loading_costs_unclear"}
+      ],
+      "alternative_triggers": [
+        {"alternative_term": "FCA", "trigger_key": "trigger.containerized_or_terminal_handover", "reason_key": "alternative.fca.carrier_or_terminal_delivery"},
+        {"alternative_term": "FOB", "trigger_key": "trigger.seller_should_load_on_board", "reason_key": "alternative.fob.on_board_delivery"},
+        {"alternative_term": "CFR", "trigger_key": "trigger.seller_should_contract_ocean_freight", "reason_key": "alternative.cfr.seller_contracts_ocean_freight"}
+      ],
+      "required_questions": ["Q-T02", "Q-T05", "Q-T10"],
+      "source_ids": ["INTERNAL-TRADE-001"],
+      "last_verified": null,
+      "next_review": null,
+      "verification_status": "UNVERIFIED",
+      "notes": "Not intended for a normal container-terminal delivery pattern."
+    },
+    {
+      "rule_id": "TERM-FOB-001",
+      "term_code": "FOB",
+      "rule_version": "0.1.0",
+      "status": "draft",
+      "mode_group": "sea_or_inland_waterway_only",
+      "named_point_role": "shipment_port",
+      "delivery": {
+        "event_key": "delivery.on_board_vessel_shipment_port",
+        "location_stage": "on_board_vessel_shipment_port",
+        "seller_unloading_obligation": "no",
+        "seller_loading_obligation": "yes"
+      },
+      "risk_transfer": {
+        "event_key": "risk.on_board_vessel_shipment_port",
+        "same_as_delivery_event": true,
+        "destination_risk_retained_by_seller": false,
+        "warning_keys": ["warning.fob.container_terminal_handover_may_precede_delivery"]
+      },
+      "responsibilities": {
+        "packaging": "SELLER",
+        "loading_at_seller": "SELLER",
+        "pre_carriage": "SELLER",
+        "export_clearance": "SELLER",
+        "origin_handling": "SELLER",
+        "main_carriage": "BUYER",
+        "cargo_insurance": "NO_DEFAULT_INSURANCE_OBLIGATION",
+        "destination_handling": "BUYER",
+        "unloading_at_destination": "BUYER",
+        "import_clearance": "BUYER",
+        "import_duties_and_taxes": "BUYER",
+        "final_delivery": "BUYER"
+      },
+      "strengths": {
+        "seller": ["strength.fob.seller.export_and_on_board_delivery_control"],
+        "buyer": ["strength.fob.buyer.ocean_freight_control"]
+      },
+      "common_risks": [
+        {"risk_key": "risk.fob.container_misalignment", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.containerized_or_terminal_handover"},
+        {"risk_key": "risk.fob.vessel_nomination_and_cutoff", "default_severity": "high", "affected_party": "both", "trigger_key": "trigger.vessel_nomination_or_cutoff_unclear"},
+        {"risk_key": "risk.fob.origin_terminal_cost_ambiguity", "default_severity": "medium", "affected_party": "both", "trigger_key": "trigger.origin_terminal_costs_unclear"}
+      ],
+      "alternative_triggers": [
+        {"alternative_term": "FCA", "trigger_key": "trigger.containerized_or_terminal_handover", "reason_key": "alternative.fca.carrier_or_terminal_delivery"},
+        {"alternative_term": "CFR", "trigger_key": "trigger.seller_should_contract_ocean_freight", "reason_key": "alternative.cfr.seller_contracts_ocean_freight"},
+        {"alternative_term": "CIF", "trigger_key": "trigger.seller_should_contract_ocean_freight_and_insurance", "reason_key": "alternative.cif.seller_contracts_freight_and_insurance"}
+      ],
+      "required_questions": ["Q-T02", "Q-T05", "Q-T10"],
+      "source_ids": ["INTERNAL-TRADE-001"],
+      "last_verified": null,
+      "next_review": null,
+      "verification_status": "UNVERIFIED",
+      "notes": "Containerized cargo requires explicit compatibility review."
+    },
+    {
+      "rule_id": "TERM-CFR-001",
+      "term_code": "CFR",
+      "rule_version": "0.1.0",
+      "status": "draft",
+      "mode_group": "sea_or_inland_waterway_only",
+      "named_point_role": "destination_port",
+      "delivery": {
+        "event_key": "delivery.on_board_vessel_shipment_port",
+        "location_stage": "on_board_vessel_shipment_port",
+        "seller_unloading_obligation": "no",
+        "seller_loading_obligation": "yes"
+      },
+      "risk_transfer": {
+        "event_key": "risk.on_board_vessel_shipment_port",
+        "same_as_delivery_event": true,
+        "destination_risk_retained_by_seller": false,
+        "warning_keys": ["warning.cfr.freight_paid_but_risk_transfers_at_shipment"]
+      },
+      "responsibilities": {
+        "packaging": "SELLER",
+        "loading_at_seller": "SELLER",
+        "pre_carriage": "SELLER",
+        "export_clearance": "SELLER",
+        "origin_handling": "SELLER",
+        "main_carriage": "SELLER_CONTRACTS_BUYER_BEARING_RISK",
+        "cargo_insurance": "NO_DEFAULT_INSURANCE_OBLIGATION",
+        "destination_handling": "DEPENDS_ON_CARRIAGE_CONTRACT",
+        "unloading_at_destination": "BUYER",
+        "import_clearance": "BUYER",
+        "import_duties_and_taxes": "BUYER",
+        "final_delivery": "BUYER"
+      },
+      "strengths": {
+        "seller": ["strength.cfr.seller.ocean_freight_control_and_early_risk_transfer"],
+        "buyer": ["strength.cfr.buyer.freight_paid_to_destination_port"]
+      },
+      "common_risks": [
+        {"risk_key": "risk.cfr.risk_cost_confusion", "default_severity": "critical", "affected_party": "buyer", "trigger_key": "trigger.expected_risk_at_destination"},
+        {"risk_key": "risk.cfr.no_seller_insurance_obligation", "default_severity": "high", "affected_party": "buyer", "trigger_key": "trigger.no_party_insurance_plan"},
+        {"risk_key": "risk.cfr.destination_charges_unclear", "default_severity": "high", "affected_party": "buyer", "trigger_key": "trigger.destination_charges_unclear"}
+      ],
+      "alternative_triggers": [
+        {"alternative_term": "CIF", "trigger_key": "trigger.seller_should_arrange_insurance", "reason_key": "alternative.cif.adds_seller_insurance_arrangement"},
+        {"alternative_term": "CPT", "trigger_key": "trigger.containerized_or_multimodal", "reason_key": "alternative.cpt.multimodal_carriage_paid_structure"},
+        {"alternative_term": "DAP", "trigger_key": "trigger.seller_should_retain_risk_to_destination", "reason_key": "alternative.dap.destination_risk_and_delivery"}
+      ],
+      "required_questions": ["Q-T02", "Q-T04", "Q-T06", "Q-T07"],
+      "source_ids": ["INTERNAL-TRADE-001"],
+      "last_verified": null,
+      "next_review": null,
+      "verification_status": "UNVERIFIED",
+      "notes": "Destination port is a cost destination while delivery and risk occur at shipment."
+    },
+    {
+      "rule_id": "TERM-CIF-001",
+      "term_code": "CIF",
+      "rule_version": "0.1.0",
+      "status": "draft",
+      "mode_group": "sea_or_inland_waterway_only",
+      "named_point_role": "destination_port",
+      "delivery": {
+        "event_key": "delivery.on_board_vessel_shipment_port",
+        "location_stage": "on_board_vessel_shipment_port",
+        "seller_unloading_obligation": "no",
+        "seller_loading_obligation": "yes"
+      },
+      "risk_transfer": {
+        "event_key": "risk.on_board_vessel_shipment_port",
+        "same_as_delivery_event": true,
+        "destination_risk_retained_by_seller": false,
+        "warning_keys": ["warning.cif.freight_and_insurance_do_not_delay_risk_transfer"]
+      },
+      "responsibilities": {
+        "packaging": "SELLER",
+        "loading_at_seller": "SELLER",
+        "pre_carriage": "SELLER",
+        "export_clearance": "SELLER",
+        "origin_handling": "SELLER",
+        "main_carriage": "SELLER_CONTRACTS_BUYER_BEARING_RISK",
+        "cargo_insurance": "SELLER_ARRANGES_MINIMUM_REQUIRED_INSURANCE",
+        "destination_handling": "DEPENDS_ON_CARRIAGE_CONTRACT",
+        "unloading_at_destination": "BUYER",
+        "import_clearance": "BUYER",
+        "import_duties_and_taxes": "BUYER",
+        "final_delivery": "BUYER"
+      },
+      "strengths": {
+        "seller": ["strength.cif.seller.freight_and_insurance_control_with_shipment_risk_transfer"],
+        "buyer": ["strength.cif.buyer.freight_and_insurance_arranged_to_destination_port"]
+      },
+      "common_risks": [
+        {"risk_key": "risk.cif.risk_cost_insurance_confusion", "default_severity": "critical", "affected_party": "buyer", "trigger_key": "trigger.expected_risk_at_destination"},
+        {"risk_key": "risk.cif.insurance_scope_may_not_match_buyer_need", "default_severity": "high", "affected_party": "buyer", "trigger_key": "trigger.insurance_requirements_not_reviewed"},
+        {"risk_key": "risk.cif.destination_charges_unclear", "default_severity": "high", "affected_party": "buyer", "trigger_key": "trigger.destination_charges_unclear"}
+      ],
+      "alternative_triggers": [
+        {"alternative_term": "CIP", "trigger_key": "trigger.containerized_or_multimodal", "reason_key": "alternative.cip.multimodal_carriage_and_insurance_structure"},
+        {"alternative_term": "CFR", "trigger_key": "trigger.buyer_prefers_own_insurance", "reason_key": "alternative.cfr.no_seller_insurance_obligation"},
+        {"alternative_term": "DAP", "trigger_key": "trigger.seller_should_retain_risk_to_destination", "reason_key": "alternative.dap.destination_risk_and_delivery"}
+      ],
+      "required_questions": ["Q-T02", "Q-T04", "Q-T06", "Q-T07"],
+      "source_ids": ["INTERNAL-TRADE-001"],
+      "last_verified": null,
+      "next_review": null,
+      "verification_status": "UNVERIFIED",
+      "notes": "Insurance scope and early risk transfer require separate explanation."
+    }
+  ]
+}
