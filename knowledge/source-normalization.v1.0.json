@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-08-05T19:00:00Z",
+  "policy": "Official and provider sources support deterministic candidate guidance only. Live schedules, capacity, rates, cut-offs, cargo acceptance, permits, and authority decisions always require current confirmation unless a future approved live integration exists.",
+  "countryMarkets": [
+    {"countryCode":"AE","ruleFile":"knowledge/country-rules/uae.v0.1.json","status":"verified_partial","reviewCadenceDays":30,"requiredLiveConfirmations":["customs_requirement","permit_requirement","gateway_procedure","special_load_route"]},
+    {"countryCode":"SA","ruleFile":"knowledge/country-rules/ksa.v0.1.json","status":"verified_partial","reviewCadenceDays":30,"requiredLiveConfirmations":["customs_requirement","product_regulator_requirement","permit_requirement","gateway_procedure"]},
+    {"countryCode":"EG","ruleFile":"knowledge/country-rules/egypt.v0.1.json","status":"verified_partial","reviewCadenceDays":30,"requiredLiveConfirmations":["customs_requirement","pre_arrival_requirement","permit_requirement","gateway_procedure"]},
+    {"countryCode":"OM","ruleFile":"knowledge/country-rules/oman.v0.1.json","status":"verified_partial","reviewCadenceDays":30,"requiredLiveConfirmations":["customs_requirement","permit_requirement","gateway_procedure","special_load_route"]}
+  ],
+  "carrierDatasets": [
+    {"path":"knowledge/carrier-services/express-ae.v0.1.json","scope":"express_and_courier","status":"verified_partial","reviewCadenceDays":30},
+    {"path":"knowledge/carrier-services/ocean-air.v0.1.json","scope":"ocean_and_air","status":"verified_partial","reviewCadenceDays":30},
+    {"path":"knowledge/carrier-services/priority-batch.v0.1.json","scope":"priority_carriers","status":"verified_partial","reviewCadenceDays":14}
+  ],
+  "mandatoryCarrierConfirmations": ["current_route","schedule","capacity","cutoff","equipment_or_aircraft","cargo_acceptance","booking_confirmation","rate_if_requested"],
+  "fallbackStates": {
+    "missingOfficialSource":"source_unavailable",
+    "expiredReview":"stale_review_required",
+    "currentSourceWithoutLiveOperationalData":"confirmation_required"
+  },
+  "nextReviewAt": "2026-08-19T00:00:00Z"
+}
