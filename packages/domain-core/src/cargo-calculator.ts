@@ -1,4 +1,4 @@
-import Decimal from "decimal.js";
+import { Decimal } from "decimal.js";
 
 export type DimensionUnit = "mm" | "cm" | "m" | "in";
 export type WeightUnit = "kg" | "g" | "lb";
