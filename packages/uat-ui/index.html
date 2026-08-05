@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>INCO Internal Test Console</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <p class="eyebrow">INCO INTERNAL USE ONLY</p>
+      <h1>Trade Decision Test Console</h1>
+      <p>Run a controlled shipment scenario and inspect decision state, missing data, confirmations, and safety boundaries.</p>
+    </header>
+
+    <section class="panel grid" aria-label="Scenario input">
+      <label>Origin country<input id="origin" value="CN" maxlength="2" /></label>
+      <label>Destination country<input id="destination" value="AE" maxlength="2" /></label>
+      <label>Mode<select id="mode"><option value="ocean">Ocean</option><option value="air_cargo">Air cargo</option><option value="courier">Courier</option></select></label>
+      <label>Cargo category<input id="cargo" value="general" /></label>
+      <label class="wide">Technical description<textarea id="description">Finished solid components without batteries, liquids, gases, fuel, or chemical mixtures.</textarea></label>
+      <label class="check"><input id="enhanced" type="checkbox" /> Enhanced-compliance trigger</label>
+      <button id="run" type="button">Evaluate internal scenario</button>
+    </section>
+
+    <section class="panel" aria-live="polite">
+      <div class="result-head"><h2>Controlled result</h2><span id="state" class="badge">not_evaluated</span></div>
+      <dl>
+        <dt>Reason</dt><dd id="reason">Enter a scenario and run the internal evaluation.</dd>
+        <dt>Required confirmations</dt><dd id="confirmations">None yet.</dd>
+        <dt>Missing information</dt><dd id="missing">None yet.</dd>
+      </dl>
+      <p class="boundary">This console is for internal functional testing. It does not provide carrier acceptance, customs clearance, authority approval, final dangerous-goods classification, or a production booking.</p>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
