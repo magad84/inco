@@ -11,27 +11,38 @@
     <header>
       <p class="eyebrow">INCO INTERNAL USE ONLY</p>
       <h1>Trade Decision Test Console</h1>
-      <p>Run a controlled shipment scenario and inspect decision state, missing data, confirmations, and safety boundaries.</p>
+      <p>Run the real deterministic engine and inspect route, cargo, country, sources, risks, missing data, and confirmations.</p>
     </header>
 
     <section class="panel grid" aria-label="Scenario input">
       <label>Origin country<input id="origin" value="CN" maxlength="2" /></label>
       <label>Destination country<input id="destination" value="AE" maxlength="2" /></label>
-      <label>Mode<select id="mode"><option value="ocean">Ocean</option><option value="air_cargo">Air cargo</option><option value="courier">Courier</option></select></label>
+      <label>Transaction date<input id="transactionDate" type="date" /></label>
+      <label>Mode<select id="mode"><option value="ocean">Ocean</option><option value="air_cargo">Air cargo</option><option value="courier">Courier</option><option value="postal">Postal</option><option value="road">Road</option><option value="multimodal">Multimodal</option></select></label>
       <label>Cargo category<input id="cargo" value="general" /></label>
+      <label>Physical state<select id="physicalState"><option value="solid">Solid</option><option value="liquid">Liquid</option><option value="gas">Gas</option><option value="aerosol">Aerosol</option><option value="powder">Powder</option><option value="paste">Paste</option><option value="gel">Gel</option><option value="article">Article</option><option value="unknown">Unknown</option></select></label>
       <label class="wide">Technical description<textarea id="description">Finished solid components without batteries, liquids, gases, fuel, or chemical mixtures.</textarea></label>
+      <label class="wide">Hazard indicators, comma separated<input id="hazards" placeholder="flammable_liquid, unknown_chemical_composition" /></label>
+      <label class="wide">Special-cargo indicators, comma separated<input id="special" placeholder="temperature_controlled, oversized, project_cargo" /></label>
+      <label class="check"><input id="compositionKnown" type="checkbox" checked /> Composition known</label>
       <label class="check"><input id="enhanced" type="checkbox" /> Enhanced-compliance trigger</label>
-      <button id="run" type="button">Evaluate internal scenario</button>
+      <button id="run" type="button">Evaluate with domain engine</button>
     </section>
 
     <section class="panel" aria-live="polite">
       <div class="result-head"><h2>Controlled result</h2><span id="state" class="badge">not_evaluated</span></div>
       <dl>
         <dt>Reason</dt><dd id="reason">Enter a scenario and run the internal evaluation.</dd>
+        <dt>Lane state</dt><dd id="laneState">Not evaluated.</dd>
+        <dt>Cargo state</dt><dd id="cargoState">Not evaluated.</dd>
+        <dt>Destination state</dt><dd id="countryState">Not evaluated.</dd>
         <dt>Required confirmations</dt><dd id="confirmations">None yet.</dd>
         <dt>Missing information</dt><dd id="missing">None yet.</dd>
+        <dt>Critical risks</dt><dd id="risks">None yet.</dd>
+        <dt>Sources</dt><dd id="sources">None yet.</dd>
       </dl>
-      <p class="boundary">This console is for internal functional testing. It does not provide carrier acceptance, customs clearance, authority approval, final dangerous-goods classification, or a production booking.</p>
+      <details><summary>Raw deterministic result</summary><pre id="raw"></pre></details>
+      <p class="boundary">This console is for internal functional testing. It does not provide carrier acceptance, customs clearance, authority approval, final dangerous-goods classification, live rates, live capacity, or a production booking.</p>
     </section>
   </main>
   <script src="./app.js"></script>
