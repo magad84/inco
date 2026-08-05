@@ -1,0 +1,100 @@
+{
+  "datasetVersion": "0.1",
+  "generatedAt": "2026-08-05T19:20:00Z",
+  "policy": "Product rules are decision-support triggers. They do not determine legal admissibility, tariff classification, dangerous-goods classification, product registration, permit approval, carrier acceptance, or customs release.",
+  "rules": [
+    {
+      "ruleId": "PRODUCT-SA-MEDICINE-001",
+      "countryCode": "SA",
+      "productCategory": "pharmaceutical",
+      "transportModes": ["air_cargo", "ocean", "road", "courier"],
+      "status": "verified_partial",
+      "trigger": {"categoryAny": ["pharmaceutical", "medicine", "drug"], "indicatorAny": ["temperature_controlled", "prescription", "controlled_medicine"]},
+      "requiredInformation": ["product_registration_status", "importer_authorization", "beneficiary_or_importer_role", "import_permission_status", "active_ingredient", "dosage_form", "batch_and_expiry", "temperature_range", "temperature_monitoring_plan", "storage_and_handling_plan"],
+      "requiredConfirmations": ["sfda_import_permission", "sfda_release_requirements", "carrier_temperature_control_acceptance", "route_and_station_capability", "customs_declaration_and_broker"],
+      "authority": "Saudi Food and Drug Authority",
+      "sourceIds": ["SFDA-HUMAN-MEDICINE-IBRCS-2026", "SFDA-MEDICINE-FAQ-2026"],
+      "decisionState": "confirmation_required",
+      "impactIfNotConfirmed": "Shipment may be delayed, refused, temperature-compromised, or held pending authority and carrier review.",
+      "nextAction": "Confirm product and importer eligibility in the current SFDA workflow before booking and dispatch.",
+      "reviewBy": "2026-09-05"
+    },
+    {
+      "ruleId": "PRODUCT-SA-FOOD-001",
+      "countryCode": "SA",
+      "productCategory": "food",
+      "transportModes": ["air_cargo", "ocean", "road", "courier"],
+      "status": "verified_partial",
+      "trigger": {"categoryAny": ["food", "beverage", "perishable", "frozen_food", "chilled_food"], "indicatorAny": ["temperature_controlled", "animal_origin", "plant_origin", "halal_certificate_required"]},
+      "requiredInformation": ["importer_food_activity", "sfda_account_status", "product_registration_status", "foreign_establishment_status_if_applicable", "country_and_establishment_eligibility", "invoice", "certificate_of_origin", "health_certificate_if_applicable", "halal_certificate_if_applicable", "temperature_range", "shelf_life_and_remaining_life"],
+      "requiredConfirmations": ["sfda_imported_food_requirements", "entry_port_inspection_process", "current_ban_or_restriction_status", "carrier_temperature_control_acceptance", "customs_declaration_and_broker"],
+      "authority": "Saudi Food and Drug Authority",
+      "sourceIds": ["SFDA-IMPORTED-FOOD-2026"],
+      "decisionState": "confirmation_required",
+      "impactIfNotConfirmed": "Shipment may be held for document review, inspection, sampling, laboratory testing, rejection, or re-export.",
+      "nextAction": "Verify importer, product, establishment, certificates, and current restriction status before booking.",
+      "reviewBy": "2026-09-05"
+    },
+    {
+      "ruleId": "PRODUCT-GENERAL-CHEMICAL-001",
+      "countryCode": "ALL",
+      "productCategory": "chemical",
+      "transportModes": ["air_cargo", "ocean", "road", "courier", "multimodal"],
+      "status": "controlled_framework",
+      "trigger": {"categoryAny": ["chemical", "mixture", "laboratory_reagent", "paint", "adhesive", "cleaning_agent"], "indicatorAny": ["flammable_liquid", "corrosive", "toxic", "oxidizer", "unknown_chemical_composition", "regulated_transport_data"]},
+      "requiredInformation": ["exact_commercial_name", "manufacturer", "composition", "concentration", "physical_state", "current_sds", "sds_revision_date", "transport_section_data", "un_number_if_applicable", "proper_shipping_name_if_applicable", "class_and_packing_group_if_applicable", "flash_point_if_applicable", "package_type_and_quantity"],
+      "requiredConfirmations": ["competent_dg_classification", "carrier_and_route_acceptance", "country_import_controls", "storage_and_handling_requirements", "emergency_response_information"],
+      "authority": "Country authority and selected carrier",
+      "sourceIds": [],
+      "decisionState": "blocked_information_required",
+      "impactIfNotConfirmed": "Incorrect declaration can cause refusal, delay, safety exposure, penalties, or emergency-response failure.",
+      "nextAction": "Obtain current manufacturer evidence and specialist classification before route reliance.",
+      "reviewBy": "2026-11-05"
+    },
+    {
+      "ruleId": "PRODUCT-GENERAL-BATTERY-001",
+      "countryCode": "ALL",
+      "productCategory": "battery",
+      "transportModes": ["air_cargo", "ocean", "road", "courier", "multimodal"],
+      "status": "controlled_framework",
+      "trigger": {"categoryAny": ["battery", "lithium_battery", "battery_powered_equipment"], "indicatorAny": ["battery", "lithium_ion", "lithium_metal", "damaged_battery", "defective_battery", "waste_battery"]},
+      "requiredInformation": ["battery_chemistry", "cell_or_battery", "contained_in_equipment_or_packed_with_equipment", "watt_hour_rating_or_lithium_content", "quantity", "state_of_charge_if_applicable", "test_summary_availability", "condition_new_used_damaged_defective_or_waste", "package_design", "marks_labels_and_documents"],
+      "requiredConfirmations": ["competent_dg_classification", "carrier_product_and_route_acceptance", "damaged_defective_or_waste_restrictions", "country_import_and_waste_controls", "package_and_document_compliance"],
+      "authority": "Country authority and selected carrier",
+      "sourceIds": [],
+      "decisionState": "blocked_information_required",
+      "impactIfNotConfirmed": "Shipment may be prohibited on the selected service, refused, delayed, or create serious fire and safety risk.",
+      "nextAction": "Identify battery type and condition, obtain transport evidence, and secure route-specific carrier approval before dispatch.",
+      "reviewBy": "2026-11-05"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "SFDA-HUMAN-MEDICINE-IBRCS-2026",
+      "authority": "Saudi Food and Drug Authority",
+      "url": "https://www.sfda.gov.sa/en/node/65938",
+      "verifiedAt": "2026-08-05T19:15:00Z",
+      "reviewBy": "2026-09-05T00:00:00Z",
+      "supports": ["human_medicine_import_permission_workflow_exists", "requirements_must_be_satisfied"],
+      "doesNotSupport": ["product_approval", "shipment_release", "carrier_acceptance"]
+    },
+    {
+      "sourceId": "SFDA-MEDICINE-FAQ-2026",
+      "authority": "Saudi Food and Drug Authority",
+      "url": "https://www.sfda.gov.sa/ar/faq/5521333",
+      "verifiedAt": "2026-08-05T19:15:00Z",
+      "reviewBy": "2026-09-05T00:00:00Z",
+      "supports": ["current_import_export_procedure_reference_required"],
+      "doesNotSupport": ["product_approval", "shipment_release", "carrier_acceptance"]
+    },
+    {
+      "sourceId": "SFDA-IMPORTED-FOOD-2026",
+      "authority": "Saudi Food and Drug Authority",
+      "url": "https://www.sfda.gov.sa/ar/imported-food",
+      "verifiedAt": "2026-08-05T19:15:00Z",
+      "reviewBy": "2026-09-05T00:00:00Z",
+      "supports": ["importer_and_product_registration_requirements", "inspection_and_release_process", "certificate_requirements_depend_on_product"],
+      "doesNotSupport": ["product_approval", "shipment_release", "country_or_establishment_current_eligibility_without_check"]
+    }
+  ]
+}
