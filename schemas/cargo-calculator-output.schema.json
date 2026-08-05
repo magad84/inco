@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inco.local/schemas/cargo-calculator-output.schema.json",
+  "title": "INCO Cargo Calculator Output",
+  "description": "Result contract for deterministic cargo calculations with version, assumption, and source traceability.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "calculation_id",
+    "calculator_version",
+    "status",
+    "package_results",
+    "totals",
+    "warnings",
+    "assumptions",
+    "generated_at"
+  ],
+  "properties": {
+    "calculation_id": {
+      "type": "string"
+    },
+    "calculator_version": {
+      "type": "string"
+    },
+    "rule_version": {
+      "type": ["string", "null"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["SUCCESS", "SUCCESS_WITH_WARNINGS", "VALIDATION_ERROR", "STALE_RULE_BLOCKED"]
+    },
+    "package_results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/packageResult"
+      }
+    },
+    "totals": {
+      "$ref": "#/$defs/totals"
+    },
+    "carrier_rule_applied": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/carrierRuleResult"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/message"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/message"
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/message"
+      },
+      "default": []
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "packageResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "package_type_id",
+        "quantity",
+        "normalized_dimensions_mm",
+        "gross_weight_per_package_kg",
+        "cbm_per_package",
+        "total_cbm",
+        "total_gross_weight_kg"
+      ],
+      "properties": {
+        "package_type_id": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "normalized_dimensions_mm": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["length", "width", "height"],
+          "properties": {
+            "length": {"type": "number", "exclusiveMinimum": 0},
+            "width": {"type": "number", "exclusiveMinimum": 0},
+            "height": {"type": "number", "exclusiveMinimum": 0}
+          }
+        },
+        "gross_weight_per_package_kg": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "cbm_per_package": {
+          "type": "number",
+          "minimum": 0
+        },
+        "total_cbm": {
+          "type": "number",
+          "minimum": 0
+        },
+        "total_gross_weight_kg": {
+          "type": "number",
+          "minimum": 0
+        },
+        "volumetric_weight_per_package_kg": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "total_volumetric_weight_kg": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "chargeable_weight_kg": {
+          "type": ["number", "null"],
+          "minimum": 0
+        }
+      }
+    },
+    "totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "package_count",
+        "package_type_count",
+        "total_cbm",
+        "total_gross_weight_kg"
+      ],
+      "properties": {
+        "package_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "package_type_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "total_cbm": {
+          "type": "number",
+          "minimum": 0
+        },
+        "total_gross_weight_kg": {
+          "type": "number",
+          "minimum": 0
+        },
+        "total_volumetric_weight_kg": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "total_chargeable_weight_kg": {
+          "type": ["number", "null"],
+          "minimum": 0
+        }
+      }
+    },
+    "carrierRuleResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "service",
+        "divisor_cm3_per_kg",
+        "calculation_basis",
+        "verification_status"
+      ],
+      "properties": {
+        "provider": {"type": "string"},
+        "service": {"type": "string"},
+        "market_or_route": {"type": ["string", "null"]},
+        "divisor_cm3_per_kg": {"type": "number", "exclusiveMinimum": 0},
+        "calculation_basis": {"type": "string", "enum": ["per_piece", "consolidated"]},
+        "higher_of_actual_and_volumetric": {"type": "boolean"},
+        "source_id": {"type": ["string", "null"]},
+        "last_verified": {"type": ["string", "null"], "format": "date"},
+        "verification_status": {
+          "type": "string",
+          "enum": [
+            "VERIFIED_CURRENT",
+            "VERIFIED_WITH_LIMITATIONS",
+            "USER_CONFIGURED_UNVERIFIED",
+            "STALE_REVIEW_REQUIRED"
+          ]
+        }
+      }
+    },
+    "message": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "severity", "message_key"],
+      "properties": {
+        "code": {"type": "string"},
+        "severity": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low", "information"]
+        },
+        "message_key": {"type": "string"},
+        "field_path": {"type": ["string", "null"]},
+        "details": {"type": ["object", "null"]}
+      }
+    }
+  }
+}
