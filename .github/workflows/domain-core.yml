@@ -7,9 +7,11 @@ on:
       - "fixtures/cargo-calculator/**"
       - "knowledge/carrier-services/**"
       - "knowledge/gateways/**"
+      - "knowledge/trade-lanes/**"
       - "knowledge/source-records/**"
       - "schemas/carrier-service.schema.json"
       - "schemas/transport-gateway.schema.json"
+      - "schemas/trade-lane.schema.json"
       - ".github/workflows/domain-core.yml"
   pull_request:
     paths:
@@ -17,9 +19,11 @@ on:
       - "fixtures/cargo-calculator/**"
       - "knowledge/carrier-services/**"
       - "knowledge/gateways/**"
+      - "knowledge/trade-lanes/**"
       - "knowledge/source-records/**"
       - "schemas/carrier-service.schema.json"
       - "schemas/transport-gateway.schema.json"
+      - "schemas/trade-lane.schema.json"
       - ".github/workflows/domain-core.yml"
 
 permissions:
