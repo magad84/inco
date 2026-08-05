@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inco.local/schemas/destination-country-rule.schema.json",
+  "title": "INCO Destination Country Rule",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ruleId",
+    "countryCode",
+    "jurisdiction",
+    "stage",
+    "category",
+    "status",
+    "trigger",
+    "outcome",
+    "confirmation",
+    "sources",
+    "review"
+  ],
+  "properties": {
+    "ruleId": { "type": "string", "pattern": "^CR-[A-Z0-9._-]+$" },
+    "countryCode": { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "jurisdiction": { "$ref": "#/$defs/bilingualText" },
+    "stage": {
+      "type": "string",
+      "enum": ["pre_import", "import_clearance", "gateway", "post_clearance", "inland_transport", "provider_verification"]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "documents",
+        "customs",
+        "tax_or_duty",
+        "permit",
+        "product_control",
+        "dangerous_goods",
+        "postal_or_courier",
+        "road_restriction",
+        "special_load",
+        "broker_or_provider",
+        "temporary_notice",
+        "other"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["research_seed", "verified_partial", "verified", "stale_review_required", "inactive"]
+    },
+    "trigger": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "requiredInputs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "message"],
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": [
+            "requirement_applies",
+            "conditional",
+            "confirmation_required",
+            "source_unavailable",
+            "not_applicable"
+          ]
+        },
+        "message": { "$ref": "#/$defs/bilingualText" },
+        "nextAction": { "$ref": "#/$defs/bilingualText" },
+        "impactIfNotConfirmed": { "$ref": "#/$defs/bilingualText" }
+      }
+    },
+    "confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "authorityOrProvider", "reason"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "authorityOrProvider": { "$ref": "#/$defs/bilingualText" },
+        "reason": { "$ref": "#/$defs/bilingualText" },
+        "sourceRoute": { "type": ["string", "null"] }
+      }
+    },
+    "effectiveFrom": { "type": ["string", "null"], "format": "date" },
+    "effectiveTo": { "type": ["string", "null"], "format": "date" },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "review": { "$ref": "#/$defs/review" }
+  },
+  "$defs": {
+    "bilingualText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "ar"],
+      "properties": {
+        "en": { "type": "string", "minLength": 1 },
+        "ar": { "type": "string", "minLength": 1 }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lastVerifiedAt", "nextReviewAt", "reviewOwner"],
+      "properties": {
+        "lastVerifiedAt": { "type": ["string", "null"], "format": "date-time" },
+        "nextReviewAt": { "type": "string", "format": "date-time" },
+        "reviewOwner": { "type": "string", "minLength": 1 },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}
