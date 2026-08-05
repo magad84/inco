@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inco.local/schemas/dg-prescreen-output.schema.json",
+  "title": "INCO Dangerous-Goods Pre-Screen Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["statuses", "confidence", "indicators", "missingInformation", "requiredEvidence", "confirmations", "nextActions", "audit"],
+  "properties": {
+    "statuses": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "NO_INDICATOR_FOUND",
+          "POSSIBLE_DANGEROUS_GOODS",
+          "DANGEROUS_GOODS_DATA_REQUIRED",
+          "SPECIAL_CARGO_DATA_REQUIRED",
+          "CARRIER_ACCEPTANCE_REQUIRED",
+          "AUTHORITY_CONFIRMATION_REQUIRED",
+          "SPECIALIST_CONFIRMATION_REQUIRED",
+          "INSUFFICIENT_INFORMATION"
+        ]
+      }
+    },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "indicators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["indicatorId", "category", "severity", "whyItMatters"],
+        "properties": {
+          "indicatorId": { "type": "string" },
+          "category": { "type": "string" },
+          "severity": { "type": "string", "enum": ["critical", "high", "medium", "low", "information"] },
+          "whyItMatters": { "$ref": "#/$defs/bilingualText" }
+        }
+      }
+    },
+    "missingInformation": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+    "requiredEvidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidenceId", "status", "reason", "blockedWithoutIt"],
+        "properties": {
+          "evidenceId": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["NOT_PROVIDED", "USER_DECLARED", "DOCUMENT_PROVIDED_UNREVIEWED", "DOCUMENT_REVIEW_REQUIRED", "SPECIALIST_VERIFIED", "CARRIER_CONFIRMED", "AUTHORITY_CONFIRMED", "EXPIRED_OR_STALE"]
+          },
+          "reason": { "$ref": "#/$defs/bilingualText" },
+          "blockedWithoutIt": { "type": "boolean" }
+        }
+      }
+    },
+    "confirmations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "reason", "impactIfNotConfirmed"],
+        "properties": {
+          "type": { "type": "string", "enum": ["carrier", "authority", "specialist", "country_and_mode"] },
+          "reason": { "$ref": "#/$defs/bilingualText" },
+          "impactIfNotConfirmed": { "$ref": "#/$defs/bilingualText" }
+        }
+      }
+    },
+    "nextActions": { "type": "array", "items": { "$ref": "#/$defs/bilingualText" } },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ruleVersion", "evaluatedAt", "mode", "disclaimerKeys"],
+      "properties": {
+        "ruleVersion": { "type": "string" },
+        "evaluatedAt": { "type": "string", "format": "date-time" },
+        "mode": { "type": "string" },
+        "disclaimerKeys": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "$defs": {
+    "bilingualText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "ar"],
+      "properties": {
+        "en": { "type": "string", "minLength": 1 },
+        "ar": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
