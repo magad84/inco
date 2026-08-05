@@ -1,0 +1,90 @@
+{
+  "registryVersion": "0.1",
+  "status": "verified_partial",
+  "gateways": [
+    {
+      "gatewayId": "GATEWAY-AE-DXB",
+      "gatewayType": "cargo_airport",
+      "officialName": {"en": "Dubai International Airport", "ar": "مطار دبي الدولي"},
+      "countryCode": "AE",
+      "locality": {"en": "Dubai", "ar": "دبي"},
+      "locationCodes": {"unLocode": null, "iata": "DXB", "icao": "OMDB", "internal": null},
+      "authorities": [{"name": {"en": "Dubai Airports", "ar": "مطارات دبي"}, "role": {"en": "Airport operator", "ar": "مشغل المطار"}, "sourceIds": ["GW-DUBAI-AIRPORTS-CARGO-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["air", "road", "multimodal"], "cargoTypes": ["general", "live_animals", "perishable", "high_value", "postal_or_courier"], "equipment": [], "services": ["cargo handling", "customs", "road feeder connectivity"]},
+      "constraints": [{"constraintId": "DXB-CARGO-ACCEPTANCE-CONFIRM", "category": "cargo_acceptance", "status": "confirmation_required", "trigger": {"shipmentSpecific": true}, "outcome": {"en": "Confirm terminal, airline and shipment-specific acceptance before booking.", "ar": "يجب تأكيد قبول المحطة وشركة الطيران والشحنة قبل الحجز."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-DUBAI-AIRPORTS-CARGO-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["GW-DUBAI-AIRPORTS-CARGO-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:15:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "General capability only; carrier and cargo acceptance remain shipment specific."}
+    },
+    {
+      "gatewayId": "GATEWAY-AE-DWC",
+      "gatewayType": "cargo_airport",
+      "officialName": {"en": "Al Maktoum International Airport", "ar": "مطار آل مكتوم الدولي"},
+      "countryCode": "AE",
+      "locality": {"en": "Dubai South", "ar": "دبي الجنوب"},
+      "locationCodes": {"unLocode": null, "iata": "DWC", "icao": "OMDW", "internal": null},
+      "authorities": [{"name": {"en": "Dubai Airports", "ar": "مطارات دبي"}, "role": {"en": "Airport operator", "ar": "مشغل المطار"}, "sourceIds": ["GW-DUBAI-AIRPORTS-CARGO-2026", "GW-DWC-OFFICIAL-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["air", "road", "multimodal"], "cargoTypes": ["general", "containerized", "perishable", "high_value", "postal_or_courier"], "equipment": [], "services": ["dedicated cargo terminals", "bonded road link to Jebel Ali", "sea-air transfer indicator"]},
+      "constraints": [{"constraintId": "DWC-SEA-AIR-CONFIRM", "category": "route", "status": "confirmation_required", "trigger": {"seaAirTransfer": true}, "outcome": {"en": "Confirm bonded transfer eligibility, handling agent and timing for each sea-air movement.", "ar": "يجب تأكيد أهلية النقل المضمون ووكيل المناولة والتوقيت لكل حركة بحرية جوية."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-DUBAI-AIRPORTS-CARGO-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["GW-DUBAI-AIRPORTS-CARGO-2026", "GW-DWC-OFFICIAL-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:15:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Capacity and future expansion are indicators, not booking confirmation."}
+    },
+    {
+      "gatewayId": "GATEWAY-AE-KHALIFA",
+      "gatewayType": "seaport",
+      "officialName": {"en": "Khalifa Port", "ar": "ميناء خليفة"},
+      "countryCode": "AE",
+      "locality": {"en": "Abu Dhabi", "ar": "أبوظبي"},
+      "locationCodes": {"unLocode": "AEKHL", "iata": null, "icao": null, "internal": null},
+      "authorities": [{"name": {"en": "AD Ports Group / Abu Dhabi Terminals", "ar": "مجموعة موانئ أبوظبي / أبوظبي للموانئ"}, "role": {"en": "Port and terminal operator", "ar": "مشغل الميناء والمحطة"}, "sourceIds": ["GW-KHALIFA-ADT-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["ocean", "road", "rail", "multimodal"], "cargoTypes": ["general", "containerized", "reefer", "project_cargo", "oversized"], "equipment": ["ship-to-shore cranes"], "services": ["container terminal", "road access", "rail connectivity indicator"]},
+      "constraints": [{"constraintId": "KHALIFA-SPECIAL-CARGO-CONFIRM", "category": "cargo_acceptance", "status": "confirmation_required", "trigger": {"specialCargo": true}, "outcome": {"en": "Confirm terminal equipment, slot, permits and handling method for oversized, dangerous or project cargo.", "ar": "يجب تأكيد معدات المحطة والموعد والتصاريح وطريقة المناولة للشحنات الضخمة أو الخطرة أو شحنات المشروعات."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-KHALIFA-ADT-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["GW-KHALIFA-ADT-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:15:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Published infrastructure supports candidate selection only."}
+    },
+    {
+      "gatewayId": "GATEWAY-CN-SHANGHAI-PORT",
+      "gatewayType": "seaport",
+      "officialName": {"en": "Port of Shanghai", "ar": "ميناء شنغهاي"},
+      "countryCode": "CN",
+      "locality": {"en": "Shanghai", "ar": "شنغهاي"},
+      "locationCodes": {"unLocode": "CNSHA", "iata": null, "icao": null, "internal": null},
+      "authorities": [{"name": {"en": "Shanghai International Port Group", "ar": "مجموعة ميناء شنغهاي الدولية"}, "role": {"en": "Port operator", "ar": "مشغل الميناء"}, "sourceIds": ["GW-SHANGHAI-SIPG-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["ocean", "road", "multimodal"], "cargoTypes": ["general", "containerized", "bulk", "breakbulk", "project_cargo", "oversized"], "equipment": ["container gantry cranes"], "services": ["container handling", "bulk and general cargo", "special cargo", "ro-ro"]},
+      "constraints": [{"constraintId": "SHA-TERMINAL-SELECTION", "category": "route", "status": "confirmation_required", "trigger": {"multiplePortAreas": true}, "outcome": {"en": "Confirm the correct Shanghai port area and terminal for the carrier service and cargo type.", "ar": "يجب تأكيد منطقة الميناء والمحطة الصحيحة في شنغهاي وفق خدمة الناقل ونوع البضاعة."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-SHANGHAI-SIPG-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["GW-SHANGHAI-SIPG-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:15:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Port-wide capability; terminal-level acceptance remains required."}
+    },
+    {
+      "gatewayId": "GATEWAY-CN-PVG",
+      "gatewayType": "cargo_airport",
+      "officialName": {"en": "Shanghai Pudong International Airport", "ar": "مطار شنغهاي بودونغ الدولي"},
+      "countryCode": "CN",
+      "locality": {"en": "Shanghai", "ar": "شنغهاي"},
+      "locationCodes": {"unLocode": null, "iata": "PVG", "icao": "ZSPD", "internal": null},
+      "authorities": [{"name": {"en": "Shanghai Airport Group", "ar": "مجموعة مطارات شنغهاي"}, "role": {"en": "Airport group", "ar": "مجموعة تشغيل المطارات"}, "sourceIds": ["GW-PVG-CARGO-CEIV-2025"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["air", "road"], "cargoTypes": ["general", "dangerous_goods", "live_animals", "perishable", "high_value"], "equipment": [], "services": ["specialized cargo handling indicator", "pharma", "lithium battery", "live animal and perishables handling indicator"]},
+      "constraints": [{"constraintId": "PVG-SPECIAL-CARGO-BOOKING", "category": "dangerous_goods", "status": "confirmation_required", "trigger": {"specialCargo": true}, "outcome": {"en": "Certification indicates handling capability; airline, terminal and shipment acceptance must still be confirmed.", "ar": "تشير الشهادات إلى قدرة المناولة، لكن يجب تأكيد قبول شركة الطيران والمحطة والشحنة."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-PVG-CARGO-CEIV-2025"], "reviewBy": "2026-11-05"}],
+      "sources": ["GW-PVG-CARGO-CEIV-2025"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:15:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "CEIV scope is a capability indicator, not blanket acceptance."}
+    },
+    {
+      "gatewayId": "GATEWAY-IN-JNPA",
+      "gatewayType": "seaport",
+      "officialName": {"en": "Jawaharlal Nehru Port", "ar": "ميناء جواهر لال نهرو"},
+      "countryCode": "IN",
+      "locality": {"en": "Navi Mumbai", "ar": "نافي مومباي"},
+      "locationCodes": {"unLocode": "INNSA", "iata": null, "icao": null, "internal": null},
+      "authorities": [{"name": {"en": "Jawaharlal Nehru Port Authority", "ar": "هيئة ميناء جواهر لال نهرو"}, "role": {"en": "Port authority", "ar": "هيئة الميناء"}, "sourceIds": ["GW-JNPA-OFFICIAL-2026", "GW-JNPA-TERMINALS-2026"]}],
+      "status": "verified_partial",
+      "capabilities": {"modes": ["ocean", "road", "rail", "multimodal"], "cargoTypes": ["general", "containerized", "reefer"], "equipment": ["container cranes", "reefer points"], "services": ["container terminals", "container tracking", "berthing information"]},
+      "constraints": [{"constraintId": "JNPA-TERMINAL-CONFIRM", "category": "route", "status": "confirmation_required", "trigger": {"terminalSpecific": true}, "outcome": {"en": "Confirm terminal assignment, current cut-off, reefer availability and carrier acceptance before routing.", "ar": "يجب تأكيد المحطة وموعد الإغلاق وتوفر نقاط المبرد وقبول الناقل قبل تحديد المسار."}, "effectiveFrom": null, "effectiveTo": null, "sourceIds": ["GW-JNPA-OFFICIAL-2026", "GW-JNPA-TERMINALS-2026"], "reviewBy": "2026-11-05"}],
+      "sources": ["GW-JNPA-OFFICIAL-2026", "GW-JNPA-TERMINALS-2026"],
+      "review": {"lastVerifiedAt": "2026-08-05T17:15:00Z", "nextReviewAt": "2026-11-05T00:00:00Z", "reviewOwner": "INCO Knowledge Governance", "notes": "Terminal capability is published; live slot and shipment acceptance remain dynamic."}
+    }
+  ]
+}
