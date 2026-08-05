@@ -1,0 +1,71 @@
+{
+  "datasetVersion": "0.1",
+  "status": "verified_partial",
+  "policy": "Candidate structures only. No record is a live route, truck acceptance, customs release, permit, transit guarantee, schedule, rate, or cargo acceptance decision.",
+  "corridors": [
+    {
+      "tradeLaneId": "TL-AE-SA-ALGHUWAIFAT-ALBATHA-ROAD",
+      "originCountry": "AE",
+      "destinationCountry": "SA",
+      "mode": "road",
+      "originGatewayId": "GATEWAY-AE-AL-GHUWAIFAT-LAND",
+      "destinationGatewayId": "GATEWAY-SA-AL-BATHA-LAND",
+      "candidateServiceIds": [],
+      "cargoScope": ["general", "food", "pharmaceutical", "temperature_controlled", "dangerous_goods", "oversized"],
+      "status": "border_pair_candidate",
+      "decisionState": "confirmation_required",
+      "requiredConfirmations": ["uae_export_and_exit_requirements", "saudi_import_and_entry_requirements", "truck_and_driver_eligibility", "carrier_authorization", "border_operating_status", "customs_broker_and_declarations", "cargo_specific_authority_requirements", "insurance", "route_and_delivery_window"],
+      "riskFlags": ["origin_gateway_source_normalization_pending", "live_border_status_not_integrated", "road_carrier_registry_not_integrated", "cargo_acceptance_not_confirmed"],
+      "sourceIds": ["ZATCA-AL-BATHA-PORT-2026"],
+      "reviewBy": "2026-09-05"
+    },
+    {
+      "tradeLaneId": "TL-AE-OM-WADI-AL-JIZZI-ROAD",
+      "originCountry": "AE",
+      "destinationCountry": "OM",
+      "mode": "road",
+      "originGatewayId": null,
+      "destinationGatewayId": "GATEWAY-OM-WADI-AL-JIZZI-LAND",
+      "candidateServiceIds": [],
+      "cargoScope": ["general", "food", "pharmaceutical", "temperature_controlled", "dangerous_goods", "oversized"],
+      "status": "destination_gateway_candidate",
+      "decisionState": "confirmation_required",
+      "requiredConfirmations": ["matching_uae_exit_gateway", "oman_import_and_entry_requirements", "truck_and_driver_eligibility", "carrier_authorization", "border_operating_status", "customs_broker_and_declarations", "cargo_specific_authority_requirements", "insurance", "route_and_delivery_window"],
+      "riskFlags": ["origin_gateway_missing", "live_border_status_not_integrated", "road_carrier_registry_not_integrated", "cargo_acceptance_not_confirmed"],
+      "sourceIds": ["OMAN-CUSTOMS-WADI-AL-JIZZI-2026"],
+      "reviewBy": "2026-09-05"
+    },
+    {
+      "tradeLaneId": "TL-AE-OM-KHATMAT-MILAHA-ROAD",
+      "originCountry": "AE",
+      "destinationCountry": "OM",
+      "mode": "road",
+      "originGatewayId": null,
+      "destinationGatewayId": "GATEWAY-OM-KHATMAT-MILAHA-LAND",
+      "candidateServiceIds": [],
+      "cargoScope": ["general", "food", "pharmaceutical", "temperature_controlled"],
+      "status": "destination_gateway_candidate",
+      "decisionState": "confirmation_required",
+      "requiredConfirmations": ["matching_uae_exit_gateway", "oman_import_and_entry_requirements", "truck_and_driver_eligibility", "carrier_authorization", "border_operating_status", "customs_broker_and_declarations", "cargo_specific_authority_requirements", "insurance", "route_and_delivery_window"],
+      "riskFlags": ["origin_gateway_missing", "live_border_status_not_integrated", "road_carrier_registry_not_integrated", "cargo_acceptance_not_confirmed"],
+      "sourceIds": ["OMAN-CUSTOMS-KHATMAT-MILAHA-2026"],
+      "reviewBy": "2026-09-05"
+    },
+    {
+      "tradeLaneId": "TL-SEA-OM-PORT-TO-GCC-ROAD-MULTIMODAL",
+      "originCountry": "OM",
+      "destinationCountry": "AE",
+      "mode": "multimodal",
+      "originGatewayId": "GATEWAY-OM-SOHAR-PORT",
+      "destinationGatewayId": null,
+      "candidateServiceIds": [],
+      "cargoScope": ["general", "containerized", "food", "pharmaceutical", "temperature_controlled", "dangerous_goods", "project_cargo"],
+      "status": "conceptual_multimodal_candidate",
+      "decisionState": "confirmation_required",
+      "requiredConfirmations": ["ocean_arrival_and_terminal_release", "customs_status_for_onward_movement", "transit_or_import_procedure", "container_and_seal_status", "road_carrier_authorization", "matching_land_border_pair", "cargo_specific_authority_requirements", "delivery_country_import_requirements"],
+      "riskFlags": ["no_verified_end_to_end_service", "no_live_terminal_release", "transit_eligibility_not_confirmed", "road_segment_not_confirmed", "cargo_acceptance_not_confirmed"],
+      "sourceIds": ["OMAN-CUSTOMS-TIR-2018", "OMAN-CUSTOMS-WADI-AL-JIZZI-2026", "OMAN-CUSTOMS-KHATMAT-MILAHA-2026"],
+      "reviewBy": "2026-09-05"
+    }
+  ]
+}
