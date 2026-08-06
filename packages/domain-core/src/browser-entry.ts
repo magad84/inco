@@ -1,4 +1,6 @@
-import { evaluateUatRequest, type DestinationCountryRule, type TradeLaneCorridor, type UatEvaluationRequest } from "./index.js";
+import type { DestinationCountryRule } from "./country-requirements-evaluator.js";
+import type { TradeLaneCorridor } from "./trade-lane-evaluator.js";
+import { evaluateUatRequest, type UatEvaluationRequest } from "./uat-evaluation.js";
 
 interface CorridorPack { corridors: TradeLaneCorridor[] }
 interface CountryRulePack { rules: DestinationCountryRule[] }
