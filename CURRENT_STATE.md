@@ -15,6 +15,7 @@ See:
 - `docs/INCO_V1_PROJECT_CLOSURE_AND_HANDOFF_v1.0.md`
 - `docs/INCO_FIGMA_VISUAL_BASELINE_APPROVAL_v1.0.md`
 - `docs/INCO_PROJECT_AGGREGATION_CHAT_PROMPT_v1.0.md`
+- `docs/MYGPT_INCO_REVIEW_v1.0.md`
 
 ## Approved Strategic Positioning
 
@@ -88,7 +89,27 @@ Manual redrawing, reconstruction, stretching, recoloring, cropping, or text appr
 - Result cards for route, cargo, destination, risks, missing facts, confirmations, sources, and next action.
 - Privacy-safe result-copy function.
 - Canonical URL and structured data aligned to `mostafagad.net/inco`.
-- MyGPT public link remains gated pending final knowledge alignment and audit.
+- MyGPT public link remains gated pending final Knowledge Pack, one-time instruction revision, full audit pass, and explicit owner approval.
+
+## Locked MyGPT Final Audit Gate
+
+The MyGPT integration is not part of the currently approved public release until all gate conditions pass.
+
+Required sequence:
+
+1. Prepare and approve the final governed MyGPT Knowledge Pack.
+2. Update the MyGPT instructions once only after the coded application, result model, bilingual wording, and official-confirmation protocol are stable.
+3. Run and record the complete mandatory audit scenarios in `docs/MYGPT_INCO_REVIEW_v1.0.md`.
+4. Correct any material failure and rerun affected and regression scenarios.
+5. Obtain explicit approval from Mostafa Gad before exposing the public MyGPT link.
+
+Current gate status:
+
+- Final Knowledge Pack: not approved
+- One-time instruction revision: not executed
+- Mandatory audit scenarios: not completed
+- Owner approval for public link: not granted
+- Public MyGPT link: must remain disabled
 
 ## Governed Public Knowledge Build
 
@@ -121,14 +142,17 @@ Priority origins include China, India, Turkey, Italy, the United States, Russia 
 4. Confirm final Domain Core, build, leakage checks, and CodeQL are green.
 5. Download and inspect the final static artifact.
 6. Complete repository-history review for secrets and protected content.
-7. Produce the final MyGPT Knowledge Pack, final instructions revision, and audit scenarios.
-8. Upload the approved artifact to `public_html/inco` on Neom Cloud.
-9. Validate HTTPS, asset paths, cache behavior, rollback, and live deterministic scenarios.
-10. Integrate navigation, sitemap, and internal links into MostafaGad.net V3.
+7. Prepare the final MyGPT Knowledge Pack.
+8. Execute the one-time final MyGPT instruction update after application stability.
+9. Run and record the complete MyGPT audit scenarios.
+10. Keep the MyGPT link disabled until explicit approval.
+11. Upload the approved artifact to `public_html/inco` on Neom Cloud.
+12. Validate HTTPS, asset paths, cache behavior, rollback, and live deterministic scenarios.
+13. Integrate navigation, sitemap, and internal links into MostafaGad.net V3.
 
 ## Owner Inputs Still Required
 
-No strategic product or design decision is pending. Execution-time access is required only for final Neom Cloud upload and live-site verification, plus explicit approval for any material change outside the closed V1 baseline.
+No strategic product or design decision is pending. Execution-time access is required only for final Neom Cloud upload and live-site verification, plus explicit approval for any material change outside the closed V1 baseline and explicit approval before enabling the MyGPT public link.
 
 ## Change Log
 
@@ -141,3 +165,4 @@ No strategic product or design decision is pending. Execution-time access is req
 - Approved `00 • INCO LOGO MASTER • APPROVED` as the only Figma logo source.
 - Closed INCO V1 product-definition and bilingual visual-design phase.
 - Created the formal V1 closure, Codex handoff, and project-aggregation prompt documents.
+- Locked the MyGPT final audit sequence: final Knowledge Pack, one-time instruction revision after application stability, mandatory review scenarios, and explicit owner approval before exposing the public link.
