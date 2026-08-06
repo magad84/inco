@@ -15,7 +15,7 @@ test("public UI is positioned as a free service rather than an internal demo", (
 
 test("public UI identifies the approved management and supply-chain positioning", () => {
   assert.match(html, /Business and Operations Leader with deep supply-chain expertise/);
-  assert.match(html, /INCO by Mostafa Gad/);
+  assert.match(html, /<span>INCO<\/span><small>by Mostafa Gad<\/small>/);
   assert.doesNotMatch(html, /Software Developer|AI Engineer|Technical Specialist/);
 });
 
