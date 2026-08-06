@@ -5,6 +5,7 @@ export * from "./dg-prescreen.js";
 export * from "./dg-prescreen-enhanced.js";
 export * from "./carrier-service-governance.js";
 export * from "./integrated-decision-engine.js";
+export * from "./ai-explanation.js";
 export * from "./internal-test-report.js";
 export * from "./internal-test-runner.js";
 export * from "./uat-evaluation.js";
