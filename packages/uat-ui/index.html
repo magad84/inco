@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="INCO is a free bilingual decision-support service for international trade, shipping, and supply-chain professionals." />
   <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://inco.mostafagad.net/" />
+  <link rel="canonical" href="https://mostafagad.net/inco" />
   <title>INCO | Free Trade and Logistics Decision Support</title>
   <link rel="stylesheet" href="./styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"INCO","url":"https://inco.mostafagad.net/","applicationCategory":"BusinessApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":["en","ar"],"creator":{"@type":"Person","name":"Mostafa Gad","url":"https://mostafagad.net/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"INCO","url":"https://mostafagad.net/inco","applicationCategory":"BusinessApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":["en","ar"],"creator":{"@type":"Person","name":"Mostafa Gad","url":"https://mostafagad.net/"}}</script>
 </head>
 <body>
   <a class="skip" href="#service">Skip to service</a>
   <header class="topbar">
-    <a class="brand" href="/" aria-label="INCO home"><span>INCO</span><small>by Mostafa Gad</small></a>
+    <a class="brand" href="https://mostafagad.net/" aria-label="MostafaGad.net home"><span>INCO</span><small>by Mostafa Gad</small></a>
     <button id="language" class="secondary" type="button" aria-label="Switch language">العربية</button>
   </header>
 
@@ -35,13 +35,13 @@
         <label><span data-i18n="cargo">Cargo category</span><input id="cargo" value="general" placeholder="general, food, medicine, chemical, battery" /></label>
         <label><span data-i18n="state">Physical state</span><select id="physicalState"><option value="solid">Solid</option><option value="liquid">Liquid</option><option value="gas">Gas</option><option value="aerosol">Aerosol</option><option value="powder">Powder</option><option value="paste">Paste</option><option value="gel">Gel</option><option value="article">Article</option><option value="unknown">Unknown</option></select></label>
         <label class="wide"><span data-i18n="description">Describe the goods clearly</span><textarea id="description">Finished solid components without batteries, liquids, gases, fuel, or chemical mixtures.</textarea></label>
-        <label class="wide"><span data-i18n="hazards">Known hazard indicators, separated by commas</span><input id="hazards" placeholder="flammable_liquid, lithium_battery, unknown_chemical_composition" /></label>
+        <label class="wide"><span data-i18n="hazards">Known hazard indicators, separated by commas</span><input id="hazards" placeholder="flammable_liquid, lithium_battery, damaged_battery, unknown_chemical_composition" /></label>
         <label class="wide"><span data-i18n="special">Special handling indicators, separated by commas</span><input id="special" placeholder="temperature_controlled, oversized, project_cargo" /></label>
         <label class="check"><input id="compositionKnown" type="checkbox" checked /><span data-i18n="known">Composition is known</span></label>
         <label class="check"><input id="enhanced" type="checkbox" /><span data-i18n="compliance">Enhanced compliance review may apply</span></label>
       </div>
       <button id="run" class="primary" type="button" data-i18n="run">Check this shipment</button>
-      <p class="privacy" data-i18n="privacy">The first public service does not require an account and does not intentionally save your shipment case. Do not enter names, invoice numbers, account details, or confidential commercial information.</p>
+      <p class="privacy" data-i18n="privacy">This browser-based service does not require an account and does not intentionally save or transmit your shipment case. Do not enter names, invoice numbers, account details, or confidential commercial information.</p>
     </section>
 
     <section id="results" class="panel result-panel" aria-live="polite" aria-labelledby="result-title">
@@ -58,8 +58,8 @@
         <article class="wide-card action-card"><h3 data-i18n="next">Recommended next step</h3><p id="nextStep">Run the check to receive a practical next action.</p></article>
       </div>
       <div class="companion">
-        <div><h3 data-i18n="assistantTitle">Discuss the result with INCO on ChatGPT</h3><p data-i18n="assistantText">Copy a privacy-safe summary, then open the optional conversational assistant. No shipment data is sent automatically.</p></div>
-        <div class="button-row"><button id="copyResult" class="secondary-dark" type="button" data-i18n="copyResult">Copy result summary</button><a id="gptLink" class="primary-link" href="https://chatgpt.com/g/g-6a66319a00a48191a0601bc4039fb159-inco" target="_blank" rel="noopener noreferrer" data-i18n="openAssistant">Open INCO Assistant</a></div>
+        <div><h3 data-i18n="assistantTitle">INCO conversational assistant</h3><p data-i18n="assistantText">The ChatGPT companion remains under final alignment. No shipment data is sent automatically.</p></div>
+        <div class="button-row"><button id="copyResult" class="secondary-dark" type="button" data-i18n="copyResult">Copy result summary</button><span id="gptLink" class="primary-link" aria-disabled="true" data-i18n="openAssistant">Assistant pending final review</span></div>
         <p id="copyStatus" class="status" aria-live="polite"></p>
       </div>
       <details><summary data-i18n="technical">Technical evidence</summary><pre id="raw"></pre></details>
@@ -74,13 +74,13 @@
         <label class="choice"><input type="radio" name="usefulness" value="not_enough" /><span data-i18n="notEnough">It did not help enough</span></label>
         <label class="choice"><input type="radio" name="usefulness" value="unclear" /><span data-i18n="unclear">I did not understand the result</span></label>
       </fieldset>
+      <label class="feedback-note"><span data-i18n="featureLabel">Which improvement would help you most?</span><select id="feature"><option value="simpler_explanation">Simpler explanation</option><option value="wider_import_analysis">Wider import-requirement analysis</option><option value="shipping_comparison">Shipping-option comparison</option><option value="trade_terms_review">Trade-term review</option><option value="more_calculations">More shipping calculations</option><option value="ai_document_analysis">AI-assisted document analysis</option><option value="downloadable_report">Downloadable professional report</option><option value="other">Other</option></select></label>
       <fieldset><legend data-i18n="feedbackQ2">Would you consider an optional advanced service for a small fee while the basic check remains free?</legend>
         <label class="choice"><input type="radio" name="advanced" value="yes" /><span data-i18n="yes">Yes</span></label>
         <label class="choice"><input type="radio" name="advanced" value="maybe" /><span data-i18n="maybe">Maybe, depending on features and price</span></label>
         <label class="choice"><input type="radio" name="advanced" value="free_only" /><span data-i18n="freeOnly">I prefer all services to remain free</span></label>
         <label class="choice"><input type="radio" name="advanced" value="no_need" /><span data-i18n="noNeed">I do not need an advanced version</span></label>
       </fieldset>
-      <label class="feedback-note"><span data-i18n="featureLabel">Which improvement would help you most?</span><select id="feature"><option value="simpler_explanation">Simpler explanation</option><option value="wider_import_analysis">Wider import-requirement analysis</option><option value="shipping_comparison">Shipping-option comparison</option><option value="trade_terms_review">Trade-term review</option><option value="more_calculations">More shipping calculations</option><option value="ai_document_analysis">AI-assisted document analysis</option><option value="downloadable_report">Downloadable professional report</option><option value="other">Other</option></select></label>
       <button id="copyFeedback" class="primary" type="button" data-i18n="copyFeedback">Copy feedback</button>
       <p id="feedbackStatus" class="status" aria-live="polite" data-i18n="feedbackPrivacy">This pre-launch survey does not transmit or store your response. It prepares a summary you can share voluntarily.</p>
     </section>
