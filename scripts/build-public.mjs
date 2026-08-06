@@ -1,8 +1,10 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { createRequire } from "node:module";
 import { resolve } from "node:path";
-import { build } from "esbuild";
 
 const root = resolve(import.meta.dirname, "..");
+const requireFromDomainCore = createRequire(resolve(root, "packages/domain-core/package.json"));
+const { build } = requireFromDomainCore("esbuild");
 const output = resolve(root, "dist-public");
 const ui = resolve(root, "packages/uat-ui");
 const knowledgeOutput = resolve(output, "knowledge");
