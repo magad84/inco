@@ -77,11 +77,23 @@ Priority origins include China, India, Turkey, Italy, United States, Russia with
 5. Preserve Arabic RTL behavior, field logic, card hierarchy, privacy text, and official-confirmation presentation.
 6. Do not add live prices, schedules, capacity, cut-offs, acceptance, customs approval, permits, or clearance claims.
 7. Do not introduce registration, payment, persistent storage, uploads, or analytics without approval.
-8. Keep MyGPT gated until its final knowledge pack and instructions audit are approved.
+8. Keep MyGPT gated until its final Knowledge Pack, one-time final instruction revision, mandatory audit scenarios, and explicit owner approval are complete.
 9. Maintain static deployment compatibility with Neom Cloud cPanel.
 10. Run all tests, static builds, leakage checks, and CodeQL before handoff.
 
-## 8. Remaining Execution Work
+## 8. Locked MyGPT Final Audit Gate
+
+The MyGPT public link must remain disabled until all of the following are complete:
+
+1. Prepare and approve the final governed MyGPT Knowledge Pack from the same approved master knowledge used by the browser release.
+2. Update the MyGPT instructions once only after the coded application, decision states, output fields, bilingual wording, and official-confirmation protocol are stable.
+3. Run and record all mandatory review scenarios in `docs/MYGPT_INCO_REVIEW_v1.0.md`.
+4. Correct any material failure and rerun affected and regression scenarios.
+5. Obtain explicit approval from Mostafa Gad to expose the MyGPT public link.
+
+No Codex implementation, deployment, visual completion, or website launch decision may be interpreted as automatic approval of the conversational assistant.
+
+## 9. Remaining Execution Work
 
 The project is closed as a V1 design and product-definition package, but the following implementation and launch tasks remain:
 
@@ -90,11 +102,14 @@ The project is closed as a V1 design and product-definition package, but the fol
 - run browser, mobile, RTL, and accessibility QA;
 - run full automated tests and static build;
 - produce and inspect the deployment artifact;
-- perform final MyGPT alignment and audit;
+- prepare the final MyGPT Knowledge Pack;
+- execute the one-time final MyGPT instruction update after application stability;
+- run and record the full MyGPT audit scenarios;
+- keep the MyGPT public link disabled until explicit approval;
 - deploy to Neom Cloud;
 - validate live HTTPS, paths, cache behavior, and rollback;
 - connect the page to MostafaGad.net navigation, sitemap, and internal links.
 
-## 9. Change Control
+## 10. Change Control
 
 INCO V1 is closed. Any change to the product scope, public positioning, logo, information architecture, result hierarchy, official-confirmation protocol, MyGPT role, privacy boundary, deployment target, or approved bilingual layouts requires explicit approval from Mostafa Gad and a new versioned decision record.
