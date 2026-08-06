@@ -9,15 +9,15 @@ const js = readFileSync(resolve(root, "packages/uat-ui/app.js"), "utf8");
 const server = readFileSync(resolve(root, "packages/domain-core/src/uat-server.ts"), "utf8");
 const css = readFileSync(resolve(root, "packages/uat-ui/styles.css"), "utf8");
 
-test("internal UAT UI exposes required scenario inputs and safety boundary", () => {
+test("public service UI exposes required scenario inputs and safety boundary", () => {
   for (const id of ["origin", "destination", "transactionDate", "mode", "cargo", "description", "physicalState", "compositionKnown", "hazards", "special", "enhanced", "run", "state", "risks", "sources", "raw"]) {
     assert.match(html, new RegExp(`id=["']${id}["']`));
   }
-  assert.match(html, /internal functional testing/i);
-  assert.match(html, /does not provide carrier acceptance/i);
+  assert.match(html, /free bilingual decision-support service/i);
+  assert.match(html, /does not replace current carrier acceptance/i);
 });
 
-test("internal UAT UI calls the real deterministic endpoint and renders module outputs", () => {
+test("public service UI calls the real deterministic endpoint and renders module outputs", () => {
   assert.match(js, /fetch\("\/api\/evaluate"/);
   assert.match(js, /result\.decisionState/);
   assert.match(js, /result\.lane\.decisionState/);
@@ -29,7 +29,7 @@ test("internal UAT UI calls the real deterministic endpoint and renders module o
   assert.match(server, /evaluateIntegratedDecision|\.\/index\.js/);
 });
 
-test("internal UAT UI has responsive styling", () => {
+test("public service UI has responsive styling", () => {
   assert.match(css, /@media/);
   assert.match(css, /grid-template-columns/);
 });
