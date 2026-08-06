@@ -2,13 +2,13 @@
 
 **Date:** 2026-08-06  
 **Phase:** Public open-core showcase completion and anonymous-tool hardening  
-**Implementation status:** `@inco/domain-core` version `0.4.0` with deterministic decision engine, real UAT HTTP endpoint, passing `UAT-CYCLE-003`, Apache-2.0 public-core license, road and multimodal candidate packs, product-rule packs, threat model, dependency monitoring, and CodeQL workflow.
+**Implementation status:** `@inco/domain-core` version `0.4.0` with deterministic decision engine, real UAT HTTP endpoint, passing `UAT-CYCLE-003`, Apache-2.0 public-core license, road and multimodal candidate packs, product-rule packs, threat model, dependency monitoring, CodeQL workflow, and provider-agnostic AI explanation adapter.
 
 ## Execution Authority
 
 The owner has authorized progression through all maturity stages. Execution continues automatically for documentation, schemas, deterministic logic, public sample data, tests, security baselines, and deployment-neutral architecture.
 
-Provider and commitment decisions remain explicit gates for production hosting, authentication, database, payment, AI, paid data, live carrier or government integrations, and public marketplace launch.
+Approved deployment direction: Neom Cloud VPS, anonymous public demo first, self-hosted authentication and PostgreSQL later, CAP-style manual payment for professional services, and optional AI explanation through OpenRouter with Ollama fallback.
 
 ## Approved Product and Commercial Positioning
 
@@ -25,6 +25,7 @@ Provider and commitment decisions remain explicit gates for production hosting, 
 - `ADR-002`: origin, gateway, carrier, service, and trade-lane architecture.
 - `ADR-003`: free-and-official-source-first policy.
 - `ADR-004`: open-core positioning, protected commercial boundary, and Apache-2.0 public-core licensing.
+- `ADR-005`: provider-agnostic AI explanation layer with OpenRouter primary, Ollama fallback, and deterministic-only degradation.
 
 ## Implemented Core
 
@@ -36,6 +37,7 @@ Provider and commitment decisions remain explicit gates for production hosting, 
 - Controlled states including `candidate`, `confirmation_required`, `source_unavailable`, `blocked_information_required`, and `enhanced_compliance_required`.
 - Bilingual internal reports and CLI runner.
 - Real browser-console adapter and HTTP evaluation endpoint.
+- Optional AI explanation adapter that cannot alter deterministic results.
 
 ## UAT Status
 
@@ -101,6 +103,7 @@ Implemented baseline:
 - Browser security headers.
 - Loopback-only default binding for the internal console.
 - Security regression tests for the endpoint baseline.
+- AI sanitization, provider fallback, timeout, and deterministic-state integrity tests.
 
 ## Maturity Gates
 
@@ -121,52 +124,74 @@ Remaining:
 
 **Status:** Engineering foundation in progress.
 
+Approved target:
+
+- Neom Cloud VPS.
+- Anonymous public demo at an isolated INCO subdomain.
+- No accounts, payments, document uploads, or saved customer cases in the first demo.
+
 Remaining before internet exposure:
 
-- Production reverse proxy or API gateway.
-- Distributed rate limiting.
+- Production reverse proxy.
+- Distributed or proxy-level rate limiting.
 - Formal request-schema middleware.
 - Health and readiness endpoints.
 - Privacy-safe logs, metrics, alerting, and error tracking.
-- Environment separation and independent security review.
+- Environment separation and deployment runbook.
 - Anonymous-use privacy notice.
 
 ### Gate C: Accounts and Saved Cases
 
-**Status:** Architecture-ready; providers not selected.
+**Status:** Architecture approved; activation deferred until demo usage supports it.
 
-Required:
+Approved direction:
 
-- Authentication and authorization.
+- Self-hosted authentication.
+- PostgreSQL on the Neom Cloud VPS.
+
+Required before activation:
+
+- Authentication and authorization implementation.
 - Tenant isolation.
-- Encrypted database.
+- Encrypted database and backups.
 - Saved-case and evidence-snapshot model.
 - Retention, deletion, export, backup, and restore controls.
 
 ### Gate D: Paid Reports and Workspaces
 
-**Status:** Control design pending.
+**Status:** Deferred until demand is demonstrated.
 
-Required:
+Approved direction:
 
-- Payment and entitlement provider.
+- CAP-style manual payment and verification workflow for professional services and expert-reviewed outputs.
+
+Required before activation:
+
 - Product and pricing model.
+- Payment-proof review and entitlement controls.
 - Tamper-evident reports.
 - Expert-review workflow.
 - Commercial terms, support, refunds, and disputes.
 
 ### Gate E: Live Integrations and Optional AI
 
-**Status:** Deferred pending approved providers and use cases.
+**Status:** AI explanation architecture implemented; live integrations remain deferred.
 
-Required:
+Approved AI direction:
 
-- Provider-specific security review.
-- Credential isolation and rotation.
-- Source-health monitoring and kill switches.
-- Controlled fallback when integrations fail.
-- AI prompt-injection and data-exfiltration controls.
-- Human review for high-risk outputs.
+- OpenRouter free-tier compatible endpoint as the demo primary provider.
+- Ollama on the VPS as fallback.
+- Deterministic-only output if both are unavailable.
+- Provider selected by environment variables.
+- Sanitized deterministic projection only; no customer-sensitive or protected knowledge sent to cloud AI.
+
+Remaining before AI is enabled publicly:
+
+- Create and securely store the OpenRouter API key.
+- Confirm the current free model identifier and provider terms at deployment time.
+- Select the installed Ollama fallback model based on VPS capacity.
+- Add UI disclosure and provider-status telemetry.
+- Perform prompt-injection and data-boundary tests.
 
 ## Current Master Plan
 
@@ -180,16 +205,16 @@ See `docs/ALL_GATES_EXECUTION_PLAN_v1.0.md`.
 - No DG pre-screen presented as final classification.
 - No route, customs, permit, legal, sanctions, insurance, or authority result presented as approval.
 - AI cannot override deterministic safety states.
+- AI failure cannot block the deterministic result.
 - Live integration failure must degrade to controlled uncertainty.
 
-## Decisions Still Requiring Owner Selection
+## Decisions Still Requiring Owner Input or Deployment Credentials
 
-- Production hosting architecture.
-- Authentication provider.
-- Database provider and managed/self-hosted model.
-- Payment provider and commercial pricing.
-- AI model/provider and permitted data boundary.
-- Paid data or software.
+- Neom Cloud VPS access details and DNS control when deployment begins.
+- OpenRouter API key.
+- Ollama installed-model selection after VPS capacity check.
+- Final public demo subdomain.
+- Pricing only when paid services are activated.
 - Live carrier or government integrations.
 - Public marketplace launch.
 
@@ -203,4 +228,7 @@ See `docs/ALL_GATES_EXECUTION_PLAN_v1.0.md`.
 - Dependabot and CodeQL added.
 - Anonymous endpoint security baseline implemented and tested.
 - All-gates execution plan created.
-- Current state reconciled with completed road, multimodal, product-rule, licensing, and production-readiness work.
+- Neom Cloud VPS, anonymous demo, self-hosted future identity, VPS PostgreSQL, CAP-style payments, and optional cloud/local AI direction approved.
+- ADR-005 added.
+- Provider-agnostic AI explanation adapter implemented with OpenRouter primary, Ollama fallback, sanitization, timeout, and deterministic-only degradation.
+- AI explanation regression tests passed in CI run `31063210745`.
