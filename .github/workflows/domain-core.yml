@@ -4,41 +4,35 @@ on:
   push:
     paths:
       - "packages/domain-core/**"
+      - "packages/uat-ui/**"
+      - "scripts/build-public.mjs"
       - "fixtures/cargo-calculator/**"
       - "knowledge/carrier-services/**"
       - "knowledge/country-rules/**"
       - "knowledge/gateways/**"
       - "knowledge/trade-lanes/**"
       - "knowledge/source-records/**"
-      - "schemas/carrier-service.schema.json"
-      - "schemas/destination-country-rule.schema.json"
-      - "schemas/dg-prescreen-input.schema.json"
-      - "schemas/dg-prescreen-output.schema.json"
-      - "schemas/transport-gateway.schema.json"
-      - "schemas/trade-lane.schema.json"
+      - "schemas/**"
       - ".github/workflows/domain-core.yml"
   pull_request:
     paths:
       - "packages/domain-core/**"
+      - "packages/uat-ui/**"
+      - "scripts/build-public.mjs"
       - "fixtures/cargo-calculator/**"
       - "knowledge/carrier-services/**"
       - "knowledge/country-rules/**"
       - "knowledge/gateways/**"
       - "knowledge/trade-lanes/**"
       - "knowledge/source-records/**"
-      - "schemas/carrier-service.schema.json"
-      - "schemas/destination-country-rule.schema.json"
-      - "schemas/dg-prescreen-input.schema.json"
-      - "schemas/dg-prescreen-output.schema.json"
-      - "schemas/transport-gateway.schema.json"
-      - "schemas/trade-lane.schema.json"
+      - "schemas/**"
       - ".github/workflows/domain-core.yml"
 
 permissions:
   contents: read
 
 jobs:
-  test:
+  test-and-build-public:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -58,5 +52,22 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Build and test
-        run: npm test
+      - name: Test and build governed public bundle
+        run: npm run check
+
+      - name: Verify static artifact
+        working-directory: .
+        run: |
+          test -f dist-public/index.html
+          test -f dist-public/app.js
+          test -f dist-public/engine.js
+          test -f dist-public/knowledge/launch-corridors.v0.1.json
+          ! grep -R -i -E "INTERNAL-TRADE-001|internal[_ -]?only|private[_ -]?source|licensed[_ -]?text|api[_ -]?key|password" dist-public
+
+      - name: Upload static deployment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: inco-static-public
+          path: dist-public
+          if-no-files-found: error
+          retention-days: 14
