@@ -1,17 +1,19 @@
 const $ = (id) => document.getElementById(id);
 let locale = "en";
+let enginePromise;
 
 const copy = {
   en: {
-    eyebrow:"FREE PROFESSIONAL SERVICE",title:"Check a shipment before you rely on the plan",lead:"INCO helps professionals, entrepreneurs, and individual importers identify missing information, operational risks, required confirmations, and practical next steps.",trust1:"No registration",trust2:"No saved cases",trust3:"Rules-first result",formTitle:"Shipment facts",formHelp:"Use two-letter country codes such as CN, AE, SA, EG, or OM.",origin:"Origin country",destination:"Destination country",date:"Planned transaction date",mode:"Transport mode",cargo:"Cargo category",state:"Physical state",description:"Describe the goods clearly",hazards:"Known hazard indicators, separated by commas",special:"Special handling indicators, separated by commas",known:"Composition is known",compliance:"Enhanced compliance review may apply",run:"Check this shipment",privacy:"The first public service does not require an account and does not intentionally save your shipment case. Do not enter names, invoice numbers, account details, or confidential commercial information.",resultTitle:"Initial decision-support result",initial:"Complete the shipment facts and run the free check.",route:"Route and service status",cargoStatus:"Cargo status",countryStatus:"Destination requirements",risk:"Key risks",missing:"Missing information",confirmations:"Confirm before proceeding",sources:"Controlled source references",next:"Recommended next step",technical:"Technical evidence",boundary:"INCO provides preliminary professional decision support. It does not replace current carrier acceptance, customs or authority approval, final dangerous-goods classification, sanctions or legal review, insurance advice, permits, or qualified operational verification.",aboutTitle:"Built from management and supply-chain expertise",aboutText:"INCO was founded by Mostafa Gad, a Business and Operations Leader with deep supply-chain expertise. The service translates professional experience, controlled sources, and business rules into practical checks.",website:"Visit MostafaGad.net",github:"View the open-source project",free:"Free limited professional service",none:"None identified.",working:"Checking the shipment with the deterministic engine...",error:"The request could not be evaluated.",correct:"Review the information and try again.",notEvaluated:"Not evaluated.",runNext:"Run the check to receive a practical next action."
+    eyebrow:"FREE PROFESSIONAL SERVICE",title:"Check a shipment before you rely on the plan",lead:"INCO helps professionals, entrepreneurs, and individual importers identify missing information, operational risks, required confirmations, and practical next steps.",trust1:"No registration",trust2:"No saved cases",trust3:"Rules-first result",formTitle:"Shipment facts",formHelp:"Use two-letter country codes such as CN, AE, SA, EG, or OM.",origin:"Origin country",destination:"Destination country",date:"Planned transaction date",mode:"Transport mode",cargo:"Cargo category",state:"Physical state",description:"Describe the goods clearly",hazards:"Known hazard indicators, separated by commas",special:"Special handling indicators, separated by commas",known:"Composition is known",compliance:"Enhanced compliance review may apply",run:"Check this shipment",privacy:"This browser-based service does not require an account and does not intentionally save or transmit your shipment case. Do not enter names, invoice numbers, account details, or confidential commercial information.",resultTitle:"Initial decision-support result",initial:"Complete the shipment facts and run the free check.",route:"Route and service status",cargoStatus:"Cargo status",countryStatus:"Destination requirements",risk:"Key risks",missing:"Missing information",confirmations:"Confirm before proceeding",sources:"Controlled source references",next:"Recommended next step",technical:"Technical evidence",boundary:"INCO provides preliminary professional decision support. It does not replace current carrier acceptance, customs or authority approval, final dangerous-goods classification, sanctions or legal review, insurance advice, permits, or qualified operational verification.",aboutTitle:"Built from management and supply-chain expertise",aboutText:"INCO was founded by Mostafa Gad, a Business and Operations Leader with deep supply-chain expertise. The service translates professional experience, controlled sources, and business rules into practical checks.",website:"Visit MostafaGad.net",github:"View the open-source project",free:"Free limited professional service",none:"None identified.",working:"Checking the shipment inside your browser...",error:"The request could not be evaluated.",correct:"Review the information and try again.",notEvaluated:"Not evaluated.",runNext:"Run the check to receive a practical next action."
   },
   ar: {
-    eyebrow:"خدمة مهنية مجانية",title:"افحص الشحنة قبل الاعتماد على خطة التنفيذ",lead:"يساعدك INCO على تحديد المعلومات الناقصة والمخاطر التشغيلية والتأكيدات المطلوبة والخطوات التالية قبل تنفيذ الشحنة.",trust1:"بدون تسجيل",trust2:"بدون حفظ الحالات",trust3:"نتيجة مبنية على قواعد",formTitle:"بيانات الشحنة",formHelp:"استخدم رمز الدولة من حرفين مثل CN أو AE أو SA أو EG أو OM.",origin:"دولة المنشأ",destination:"دولة الوصول",date:"تاريخ المعاملة المتوقع",mode:"وسيلة النقل",cargo:"فئة البضاعة",state:"الحالة الفيزيائية",description:"صف البضاعة بوضوح",hazards:"مؤشرات الخطورة المعروفة، مفصولة بفواصل",special:"مؤشرات المناولة الخاصة، مفصولة بفواصل",known:"تركيب البضاعة معروف",compliance:"قد يلزم فحص امتثال إضافي",run:"افحص هذه الشحنة",privacy:"لا تتطلب الخدمة حسابًا ولا تهدف إلى حفظ حالة الشحنة. لا تدخل أسماء أو أرقام فواتير أو حسابات أو معلومات تجارية سرية.",resultTitle:"نتيجة أولية لدعم القرار",initial:"أكمل بيانات الشحنة ثم شغّل الفحص المجاني.",route:"حالة المسار والخدمة",cargoStatus:"حالة البضاعة",countryStatus:"متطلبات دولة الوصول",risk:"المخاطر الرئيسية",missing:"المعلومات الناقصة",confirmations:"تأكيدات مطلوبة قبل التنفيذ",sources:"مراجع المصادر المضبوطة",next:"الخطوة التالية المقترحة",technical:"الأدلة الفنية",boundary:"يقدم INCO دعم قرار مهنيًا أوليًا، ولا يحل محل قبول الناقل الحالي أو موافقة الجمارك أو الجهات المختصة أو التصنيف النهائي للبضائع الخطرة أو مراجعة العقوبات والقانون أو التأمين أو التصاريح أو التحقق التشغيلي المتخصص.",aboutTitle:"مبني على خبرة الإدارة وسلاسل الإمداد",aboutText:"أسس مصطفى جاد INCO بصفته قائدًا في الإدارة والعمليات ذا خبرة عميقة في سلاسل الإمداد. تحول الخدمة الخبرة المهنية والمصادر المضبوطة وقواعد الأعمال إلى فحوص عملية.",website:"زيارة MostafaGad.net",github:"عرض المشروع مفتوح المصدر",free:"خدمة مهنية مجانية محدودة",none:"لم يتم تحديد شيء.",working:"جارٍ فحص الشحنة باستخدام المحرك القائم على القواعد...",error:"تعذر تقييم الطلب.",correct:"راجع البيانات وحاول مرة أخرى.",notEvaluated:"لم يتم التقييم.",runNext:"شغّل الفحص للحصول على خطوة تالية عملية."
+    eyebrow:"خدمة مهنية مجانية",title:"افحص الشحنة قبل الاعتماد على خطة التنفيذ",lead:"يساعدك INCO على تحديد المعلومات الناقصة والمخاطر التشغيلية والتأكيدات المطلوبة والخطوات التالية قبل تنفيذ الشحنة.",trust1:"بدون تسجيل",trust2:"بدون حفظ الحالات",trust3:"نتيجة مبنية على قواعد",formTitle:"بيانات الشحنة",formHelp:"استخدم رمز الدولة من حرفين مثل CN أو AE أو SA أو EG أو OM.",origin:"دولة المنشأ",destination:"دولة الوصول",date:"تاريخ المعاملة المتوقع",mode:"وسيلة النقل",cargo:"فئة البضاعة",state:"الحالة الفيزيائية",description:"صف البضاعة بوضوح",hazards:"مؤشرات الخطورة المعروفة، مفصولة بفواصل",special:"مؤشرات المناولة الخاصة، مفصولة بفواصل",known:"تركيب البضاعة معروف",compliance:"قد يلزم فحص امتثال إضافي",run:"افحص هذه الشحنة",privacy:"تعمل الخدمة داخل متصفحك دون حساب، ولا تهدف إلى حفظ أو إرسال حالة الشحنة. لا تدخل أسماء أو أرقام فواتير أو حسابات أو معلومات تجارية سرية.",resultTitle:"نتيجة أولية لدعم القرار",initial:"أكمل بيانات الشحنة ثم شغّل الفحص المجاني.",route:"حالة المسار والخدمة",cargoStatus:"حالة البضاعة",countryStatus:"متطلبات دولة الوصول",risk:"المخاطر الرئيسية",missing:"المعلومات الناقصة",confirmations:"تأكيدات مطلوبة قبل التنفيذ",sources:"مراجع المصادر المضبوطة",next:"الخطوة التالية المقترحة",technical:"الأدلة الفنية",boundary:"يقدم INCO دعم قرار مهنيًا أوليًا، ولا يحل محل قبول الناقل الحالي أو موافقة الجمارك أو الجهات المختصة أو التصنيف النهائي للبضائع الخطرة أو مراجعة العقوبات والقانون أو التأمين أو التصاريح أو التحقق التشغيلي المتخصص.",aboutTitle:"مبني على خبرة الإدارة وسلاسل الإمداد",aboutText:"أسس مصطفى جاد INCO بصفته قائدًا في الإدارة والعمليات ذا خبرة عميقة في سلاسل الإمداد. تحول الخدمة الخبرة المهنية والمصادر المضبوطة وقواعد الأعمال إلى فحوص عملية.",website:"زيارة MostafaGad.net",github:"عرض المشروع مفتوح المصدر",free:"خدمة مهنية مجانية محدودة",none:"لم يتم تحديد شيء.",working:"جارٍ فحص الشحنة داخل متصفحك...",error:"تعذر تقييم الطلب.",correct:"راجع البيانات وحاول مرة أخرى.",notEvaluated:"لم يتم التقييم.",runNext:"شغّل الفحص للحصول على خطوة تالية عملية."
   }
 };
 
 function t(key){ return copy[locale][key] || key; }
 function list(values){ return values && values.length ? values.join(locale === "ar" ? "، " : ", ") : t("none"); }
+function getEngine(){ enginePromise ??= import("./engine.js"); return enginePromise; }
 
 function applyLanguage(){
   document.documentElement.lang = locale;
@@ -28,20 +30,28 @@ function nextStep(result){
   return locale === "ar" ? "استخدم النتيجة كمرشح أولي واطلب التأكيدات الحية قبل الحجز أو التنفيذ." : "Use the result as an initial candidate and obtain live confirmations before booking or execution.";
 }
 
+function requestPayload(){
+  return {
+    originCountry: $("origin").value.trim().toUpperCase(),
+    destinationCountry: $("destination").value.trim().toUpperCase(),
+    mode: $("mode").value,
+    cargoCategory: $("cargo").value.trim(),
+    technicalDescription: $("description").value.trim(),
+    physicalState: $("physicalState").value,
+    compositionKnown: $("compositionKnown").checked,
+    hazardIndicators: $("hazards").value.split(",").map(v=>v.trim()).filter(Boolean),
+    specialCargoIndicators: $("special").value.split(",").map(v=>v.trim()).filter(Boolean),
+    enhancedComplianceTrigger: $("enhanced").checked,
+    transactionDate: $("transactionDate").value
+  };
+}
+
 async function evaluateScenario(){
   $("run").disabled = true;
   $("reason").textContent = t("working");
-  const payload = {
-    originCountry: $("origin").value.trim().toUpperCase(), destinationCountry: $("destination").value.trim().toUpperCase(), mode: $("mode").value,
-    cargoCategory: $("cargo").value.trim(), technicalDescription: $("description").value.trim(), physicalState: $("physicalState").value,
-    compositionKnown: $("compositionKnown").checked, hazardIndicators: $("hazards").value.split(",").map(v=>v.trim()).filter(Boolean),
-    specialCargoIndicators: $("special").value.split(",").map(v=>v.trim()).filter(Boolean), enhancedComplianceTrigger: $("enhanced").checked,
-    transactionDate: $("transactionDate").value
-  };
   try {
-    const response = await fetch("/api/evaluate", { method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify(payload) });
-    const result = await response.json();
-    if (!response.ok) throw new Error(result.error || t("error"));
+    const { evaluatePublicRequest } = await getEngine();
+    const result = await evaluatePublicRequest(requestPayload());
     $("state").textContent = result.decisionState;
     $("state").dataset.state = result.decisionState;
     $("reason").textContent = list(result.reasons);
@@ -59,8 +69,12 @@ async function evaluateScenario(){
     $("state").textContent = "request_error";
     $("state").dataset.state = "request_error";
     $("reason").textContent = error instanceof Error ? error.message : t("error");
-    $("confirmations").textContent = t("none"); $("missing").textContent = t("correct"); $("risks").textContent = t("error"); $("sources").textContent = t("none");
-    $("nextStep").textContent = t("correct"); $("raw").textContent = "";
+    $("confirmations").textContent = t("none");
+    $("missing").textContent = t("correct");
+    $("risks").textContent = t("error");
+    $("sources").textContent = t("none");
+    $("nextStep").textContent = t("correct");
+    $("raw").textContent = "";
   } finally { $("run").disabled = false; }
 }
 
