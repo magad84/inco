@@ -1,0 +1,37 @@
+services:
+  inco-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: inco-public-service:0.5.0
+    container_name: inco-public-service
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 4173
+      AI_ENABLED: "false"
+    expose:
+      - "4173"
+    networks:
+      - inco-edge
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,noexec,nosuid,nodev
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 128
+    mem_limit: 384m
+    cpus: 0.75
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:4173/readyz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+networks:
+  inco-edge:
+    name: inco-edge
