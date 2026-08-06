@@ -1,232 +1,180 @@
 # INCO Current State
 
 **Date:** 2026-08-06  
-**Phase:** Free public-service launch preparation  
-**Implementation status:** `@inco/domain-core` version `0.4.0` with deterministic decision engine, real UAT HTTP endpoint, passing `UAT-CYCLE-003`, Apache-2.0 public-core license, road and multimodal candidate packs, product-rule packs, threat model, dependency monitoring, CodeQL workflow, and optional provider-agnostic AI explanation adapter.
+**Phase:** Free public-service build and deployment preparation  
+**Implementation status:** deterministic domain core, bilingual public interface, anonymous hardened API, health/readiness probes, Apache-2.0 public core, CI, CodeQL, threat model, deployment runbook, and passing internal UAT foundation.
 
-## Execution Authority
+## Approved Strategic Positioning
 
-The owner has authorized progression through all approved research, knowledge, schema, deterministic-code, testing, documentation, GitHub, and deployment-preparation stages.
+INCO supports Mostafa Gad’s approved brand position:
 
-The approved launch model is a real, free, limited, anonymous professional service. It is not a temporary demo and is not a paid SaaS product.
+> **Business and Operations Leader with deep supply-chain expertise**
 
-## Approved Brand Positioning
+Technology, automation, and AI are execution enablers, not the primary professional identity.
 
-INCO must support the approved Mostafa Gad V3 positioning:
-
-> **Business & Operations Leader with Deep Supply Chain Expertise**
-
-The hierarchy is:
-
-1. Business and management leadership.
-2. Operations as the executive core.
-3. Supply Chain as the flagship deep expertise.
-4. Governance, performance, transformation, research, and professional learning as supporting authority.
-5. Applied AI and business automation as management enablers.
-
-Mostafa Gad is presented in INCO as Founder, Product Owner, Domain Architect, Business-Rules Owner, and Knowledge and Source-Governance Lead.
-
-He is not positioned primarily as a software developer, AI engineer, full-stack developer, or technical specialist.
-
-See `docs/ADR_006_BRAND_POSITIONING_AND_FREE_SERVICE_MODEL.md`.
+Mostafa Gad’s project role is Founder, Product Owner, Domain Architect, Business-Rules Owner, and Knowledge and Source-Governance Lead.
 
 ## Approved Service Model
 
-INCO is a free, limited decision-support service for:
+INCO is a real, free, limited professional service for:
 
-- supply-chain and logistics professionals;
-- procurement, trade, customs, and operations practitioners;
+- supply-chain, logistics, procurement, customs, trade, and operations professionals;
 - entrepreneurs;
-- small importers;
-- individual and first-time importers.
+- individual importers.
 
-The strategic objective is to:
+The objective is to deliver useful professional checks, increase qualified traffic, strengthen Mostafa Gad’s authority, and connect users with MostafaGad.net, research, books, videos, and the public GitHub project.
 
-- provide useful initial guidance;
-- attract qualified professional traffic;
-- strengthen trust in Mostafa Gad's management and supply-chain expertise;
-- connect users with related articles, research, books, videos, and professional pages;
-- support professional reputation, speaking, teaching, collaboration, and career opportunities.
-
-The initial public service will have:
+The first public release has:
 
 - no registration;
-- no payments;
-- no subscriptions;
+- no payment;
 - no saved cases;
-- no document uploads;
-- no live booking or rates;
-- no final customs, carrier, authority, legal, insurance, or dangerous-goods approval.
+- no document upload;
+- no persistent customer-data requirement;
+- no AI dependency;
+- bilingual deterministic output;
+- clear privacy and professional boundaries.
 
-## Approved Architecture Decisions
+## Hosting and Runtime Direction
 
-- `ADR-001`: deterministic TypeScript domain core.
-- `ADR-002`: origin, gateway, carrier, service, and trade-lane architecture.
-- `ADR-003`: free-and-official-source-first policy.
-- `ADR-004`: open-core positioning, protected commercial boundary, and Apache-2.0 public-core licensing.
-- `ADR-005`: provider-agnostic AI explanation layer with OpenRouter primary, Ollama fallback, and deterministic-only degradation.
-- `ADR-006`: Mostafa Gad brand positioning and free limited-service model.
+- Main website: MostafaGad.net on Neom Cloud.
+- INCO service: `inco.mostafagad.net` on the existing Hostinger VPS runtime.
+- HTTPS and reverse proxy: Caddy.
+- Initial application: private Node service behind the proxy.
+- Ollama, PostgreSQL, Redis, and Qdrant are not required by the initial service.
+- Optional AI adapter remains implemented but disabled through `AI_ENABLED=false`.
 
-## Implemented Core
+See `docs/PUBLIC_SERVICE_DEPLOYMENT_RUNBOOK_v1.0.md`.
+
+## Implemented Domain Core
 
 - CBM, gross, volumetric, and chargeable-weight calculations.
 - Destination-country requirement evaluation.
 - Dangerous-goods and special-cargo pre-screen.
 - Trade-lane corridor evaluation.
-- Integrated decision output across cargo, country, route, gateway, and carrier conditions.
-- Controlled states including `candidate`, `confirmation_required`, `source_unavailable`, `blocked_information_required`, and `enhanced_compliance_required`.
+- Integrated cargo, country, route, gateway, and carrier decision output.
+- Controlled states: `candidate`, `confirmation_required`, `source_unavailable`, `blocked_information_required`, and `enhanced_compliance_required`.
 - Bilingual internal reports and CLI runner.
-- Real browser-console adapter and HTTP evaluation endpoint.
-- Optional AI explanation adapter that cannot alter deterministic results.
+- Real HTTP evaluation endpoint.
 
-## UAT Status
+## Implemented Public Interface
 
-`UAT-CYCLE-003`: PASS.
+The former internal UAT console has been converted into a public-service interface with:
 
-Evidence:
+- English LTR and Arabic RTL modes;
+- simplified shipment-fact entry;
+- mobile-responsive layout;
+- accessible labels and skip navigation;
+- professional result sections for route, cargo, destination, risks, missing information, confirmations, sources, and next step;
+- deterministic-state-aware next-step messaging;
+- visible privacy warning against entering identifying or confidential information;
+- visible professional-use boundary;
+- founder and brand positioning aligned with Web V3;
+- links to MostafaGad.net and GitHub;
+- canonical URL and `WebApplication` structured data.
 
-- `docs/UAT_CYCLE_003_REPORT_v1.0.md`.
-- CI run `31037274839`.
-
-Coverage includes six launch scenarios plus invalid inputs, unsupported road and multimodal cases, chemical contradictions, damaged batteries, temperature-controlled medicine, food, oversized cargo, and enhanced-compliance scenarios.
-
-## Knowledge Coverage
-
-### Destination markets
-
-- UAE.
-- Saudi Arabia.
-- Egypt.
-- Oman.
-
-### Priority origins
-
-- China.
-- India.
-- Turkey.
-- Italy.
-- United States.
-- Russia with enhanced-compliance controls.
-- Australia.
-
-### Additional structured coverage
-
-- Initial GCC road and multimodal candidate structures.
-- Product-rule pack for medicines, food, chemicals, and batteries.
-- Eleven-term controlled verification overlay.
-- Source-normalization register with review cadence and fallback states.
-
-No dataset implies live route, schedule, capacity, price, cut-off, carrier acceptance, customs clearance, permit, or authority approval.
-
-## Licensing and Repository Governance
+## API and Security Baseline
 
 Implemented:
 
-- `LICENSE`: Apache License 2.0.
-- `NOTICE`: attribution and trademark boundary.
-- `SECURITY.md`.
-- `CONTRIBUTING.md`.
-- Public-core versus protected-knowledge boundary.
-- README alignment with the approved MG V3 positioning.
+- request body-size limit;
+- JSON content-type enforcement;
+- request timeout;
+- basic anonymous rate limiting;
+- browser security headers;
+- loopback default binding with explicit deployment host setting;
+- `GET /healthz`;
+- `GET /readyz`;
+- privacy-safe deployment guidance;
+- regression tests covering security, public UI positioning, bilingual behavior, SEO foundations, and deterministic safety boundaries.
 
-## AI Status
+## Knowledge Coverage
 
-The provider-agnostic AI explanation layer remains available in the codebase, but the approved public-launch default is:
+Destination markets:
 
-```text
-AI_ENABLED=false
-```
+- UAE;
+- Saudi Arabia;
+- Egypt;
+- Oman.
 
-The deterministic engine and bilingual templates will produce the service result without consuming OpenRouter or Ollama resources.
+Priority origins:
 
-AI may be activated later only if real usage demonstrates a clear user-value case.
+- China;
+- India;
+- Turkey;
+- Italy;
+- United States;
+- Russia with enhanced-compliance controls;
+- Australia.
 
-## Hosting Direction
+Additional controlled coverage includes road and multimodal candidate structures, medicines, food, chemicals, batteries, carrier and gateway seeds, source-normalization rules, and eleven controlled trade-term records.
 
-- Main website: Neom Cloud.
-- INCO public service target: `inco.mostafagad.net`.
-- Final hosting placement must follow the actual current server architecture and access available at deployment time.
-- The service should use the minimum required runtime and should not activate PostgreSQL, Redis, Qdrant, Ollama, authentication, or payment services without a demonstrated requirement.
+No dataset implies live route, schedule, capacity, price, cut-off, acceptance, clearance, permit, or authority approval.
 
-## Current Launch Workstream
+## Repository and Governance
 
-### Product and UX
+Implemented:
 
-Remaining:
+- Apache License 2.0;
+- NOTICE and public/private boundary;
+- SECURITY.md;
+- CONTRIBUTING.md;
+- Dependabot;
+- CodeQL;
+- threat model;
+- production-readiness gap analysis;
+- ADR-006 brand and free-service model;
+- public-service deployment runbook.
 
-- simplify the current UAT console into a public bilingual service journey;
-- define the minimum launch inputs;
-- convert internal technical states into clear professional language;
-- add related-content links back to MostafaGad.net;
-- add a concise founder and expertise attribution section;
-- add accessibility and mobile checks.
+## Current Release Gate
 
-### Public-Service Engineering
+### Completed or substantially completed
 
-Remaining:
+- deterministic engine;
+- source-governed public knowledge foundation;
+- internal UAT cycles;
+- public-service positioning;
+- bilingual public UI foundation;
+- anonymous API security baseline;
+- health and readiness probes;
+- deployment-neutral and Hostinger-specific runbook;
+- open-source governance.
 
-- formal request-schema middleware;
-- health and readiness endpoints;
-- production reverse proxy;
-- proxy-level rate limiting;
-- privacy-safe logs and basic operational monitoring;
-- production environment configuration;
-- deployment and rollback runbook.
+### Remaining before public launch
 
-### Brand and Search Integration
+1. Generate and commit a valid dependency lockfile.
+2. Complete repository-history review for secrets and protected source content.
+3. Add production container files and pinned runtime image.
+4. Add Caddy deployment configuration template without secrets.
+5. Add automated smoke tests for the running HTTP service.
+6. Verify current CI and CodeQL after the public UI changes.
+7. Complete browser/mobile accessibility review.
+8. Confirm DNS access and Hostinger VPS deployment access.
+9. Deploy to `inco.mostafagad.net` and validate TLS, health, readiness, rate limiting, and rollback.
+10. Integrate the INCO gateway page and internal links into MostafaGad.net V3.
+11. Add privacy-safe analytics only after the tracking boundary is approved.
+12. Prepare screenshots, architecture asset, and short bilingual launch video.
 
-Remaining:
+## Decisions Required From Owner
 
-- MostafaGad.net INCO landing page;
-- bilingual metadata and structured data;
-- internal links between INCO, articles, research, books, videos, and biography pages;
-- sitemap and canonical configuration;
-- Search Console submission after launch;
-- screenshots and architecture diagram;
-- short bilingual walkthrough video.
+No strategic product decision is currently pending.
 
-### Repository and Release Readiness
+Execution-time inputs will be required only for:
 
-Remaining:
-
-- restore a generated lockfile;
-- review repository history for secrets and protected content;
-- create a public release checklist;
-- confirm CI and CodeQL are green on the final launch commit;
-- create the first public release tag.
-
-## Safety Boundaries
-
-- No carrier acceptance claim without current evidence or direct confirmation.
-- No gateway capability inferred from a code or name alone.
-- No volatile rule without review controls.
-- No DG pre-screen presented as final classification.
-- No route, customs, permit, legal, sanctions, insurance, or authority result presented as approval.
-- AI cannot override deterministic safety states.
-- AI failure cannot block the deterministic result.
-- Live integration failure must degrade to controlled uncertainty.
-
-## Decisions Still Requiring Owner Input or Deployment Credentials
-
-No additional product-positioning or commercial decision is currently required.
-
-Operational inputs will be required when deployment begins:
-
-- actual server access and runtime inventory;
+- Hostinger VPS access;
 - DNS control for `inco.mostafagad.net`;
-- final hosting placement based on the verified server architecture;
-- analytics and Search Console access if measurement is enabled.
+- final approval immediately before public DNS cutover.
 
 ## Change Log
 
 ### 2026-08-06
 
-- Apache-2.0 licensing and NOTICE confirmed.
-- Threat model, Dependabot, and CodeQL added.
-- Anonymous endpoint security baseline implemented and tested.
-- AI explanation adapter implemented and tested, then set as disabled-by-default for launch.
-- MG V3 brand source reviewed.
-- `ADR-006` approved.
-- INCO repositioned from demo/SaaS framing to a real, free, limited professional service.
-- Payment, subscription, accounts, saved cases, and document uploads removed from the approved launch scope.
-- README aligned with the approved positioning: Business & Operations Leader with Deep Supply Chain Expertise.
+- INCO repositioned from demo/SaaS language to a free limited professional service.
+- Brand role aligned to Business and Operations Leader with deep supply-chain expertise.
+- AI disabled for initial public launch to avoid unnecessary cost and resource consumption.
+- Public bilingual responsive interface implemented.
+- Deterministic next-step presentation added.
+- Health and readiness endpoints added.
+- Public UI and API governance tests added.
+- Hostinger VPS deployment runbook added.
+- README reconciled with the free-service and brand strategy.
