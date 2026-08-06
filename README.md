@@ -2,150 +2,125 @@
 
 **Free Bilingual Decision Support for International Trade and Logistics**
 
-INCO is a free, rules-first, source-governed professional service for supply-chain and logistics professionals, entrepreneurs, and individual importers. It helps users identify missing information, operational risks, required confirmations, and practical next steps before relying on a shipment plan.
+INCO is a free, rules-first, source-governed professional service for supply-chain and logistics professionals, entrepreneurs, and individual importers. It identifies missing information, operational risks, required confirmations, and practical next steps before a shipment plan is relied upon.
 
-Public service URL: `https://inco.mostafagad.net`
+Public service URL: `https://mostafagad.net/inco`
 
 ## Founder and Positioning
 
 INCO was founded by **Mostafa Gad**, a **Business and Operations Leader with deep supply-chain expertise**.
 
-His role in the project is:
+His project role is Founder, Product Owner, Domain Architect, Business-Rules Owner, Knowledge and Source-Governance Lead, and strategic quality-governance owner. Technology is a management and execution enabler; the project does not position him as a software developer, AI engineer, or technical specialist.
 
-- Founder and Product Owner;
-- Domain Architect;
-- Business-Rules Owner;
-- Knowledge and Source-Governance Lead;
-- strategic technical and quality-governance owner.
+## First Public Release
 
-Technology is used as a management and execution enabler. The project does not position its founder as a software developer, AI engineer, or technical specialist.
-
-## Service Model
-
-INCO is a real, free, limited professional service. It is not positioned as a paid SaaS or a temporary demo.
-
-The first public release has:
-
-- no registration;
-- no payment;
-- no saved shipment cases;
-- no document upload;
-- no production customer database requirement;
+- no registration or payment;
+- no saved shipment cases or uploads;
+- no production customer database;
 - no AI dependency;
 - bilingual deterministic results;
-- links to related knowledge on MostafaGad.net and the public GitHub repository.
-
-The objective is to provide practical value, increase qualified professional visits, demonstrate management and supply-chain expertise, and connect users with Mostafa Gad’s articles, research, books, videos, and professional work.
+- browser-side evaluation without intentional shipment-case transmission;
+- primary destination packs for UAE, Saudi Arabia, Egypt, and Oman.
 
 ## What the Service Checks
 
-- destination-country requirements for UAE, Saudi Arabia, Egypt, and Oman;
-- cargo and special-handling indicators;
-- dangerous-goods and incomplete-information pre-screening;
+- destination-country requirements;
+- cargo, dangerous-goods, and special-handling indicators;
 - route, gateway, and carrier-service candidate conditions;
 - international trade-term responsibilities and checkpoints;
-- missing information, risks, required confirmations, controlled sources, and recommended next steps;
+- missing information, risks, confirmations, controlled sources, and next steps;
 - CBM, gross, volumetric, and chargeable-weight calculations in the domain core.
 
-Priority origin markets include China, India, Turkey, Italy, the United States, Russia with enhanced-compliance controls, and Australia.
+Priority origins include China, India, Turkey, Italy, the United States, Russia with enhanced-compliance controls, and Australia.
 
 ## Safety Boundary
 
-INCO provides preliminary professional decision support. It does not replace:
+INCO provides preliminary professional decision support. It does not replace current carrier acceptance, customs or authority approval, final dangerous-goods classification, sanctions or legal review, insurance advice, route or permit approval, live rates, capacity, schedules, cut-offs, booking, or qualified operational verification.
 
-- current carrier acceptance;
-- customs or authority approval;
-- final dangerous-goods classification;
-- sanctions or legal review;
-- insurance advice;
-- route, permit, or abnormal-load approval;
-- live rates, capacity, schedules, cut-offs, or booking;
-- qualified operational verification.
+Controlled states include:
 
-Missing or volatile evidence returns controlled states such as:
-
+- `candidate`
 - `confirmation_required`
 - `source_unavailable`
 - `blocked_information_required`
 - `enhanced_compliance_required`
 
-## Public Interface
+## Browser Architecture
 
-The current interface has been converted from an internal UAT console into a responsive bilingual public-service experience with:
+The approved public release runs as static files on Neom Cloud:
 
-- English LTR and Arabic RTL modes;
-- simplified shipment inputs;
-- clear result cards;
-- recommended next-step logic;
-- visible privacy and professional boundaries;
-- canonical metadata and `WebApplication` structured data;
-- links to MostafaGad.net and the open-source repository.
+```text
+mostafagad.net/inco
+  -> index.html + styles.css + app.js
+  -> engine.js deterministic browser bundle
+  -> same-origin governed JSON knowledge packs
+```
 
-## Run Locally
+The browser UI does not call `/api/evaluate`. The internal Node server and API remain development/test utilities only.
+
+## Build and Test
 
 From `packages/domain-core`:
 
 ```bash
 npm install
-npm run uat:console
+npm run check
 ```
 
-Open:
+`npm run check` executes the test suite and generates the governed static release in:
 
 ```text
-http://127.0.0.1:4173
+dist-public/
 ```
 
-Operational endpoints:
+GitHub Actions publishes the same directory as the `inco-static-public` artifact.
+
+## Deployment
+
+Upload the contents of `dist-public` to:
 
 ```text
-GET /healthz
-GET /readyz
-POST /api/evaluate
+public_html/inco
 ```
 
-## Deployment Direction
+No Node.js, npm, Docker, Caddy, database, Redis, Qdrant, or AI provider is required on Neom Cloud for the first release.
 
-- MostafaGad.net remains hosted on Neom Cloud.
-- `inco.mostafagad.net` is deployed on the existing Hostinger VPS runtime.
-- Caddy provides HTTPS and reverse proxying.
-- The INCO service runs privately behind the proxy.
-- Ollama, PostgreSQL, Redis, and Qdrant are not required for the initial release.
-- AI remains disabled at launch through `AI_ENABLED=false`.
+See:
 
-See `docs/PUBLIC_SERVICE_DEPLOYMENT_RUNBOOK_v1.0.md`.
+- `docs/ADR_007_STATIC_BROWSER_DEPLOYMENT_ON_NEOM.md`
+- `docs/NEOM_STATIC_DEPLOYMENT_RUNBOOK_v1.0.md`
 
-## Open-Core Governance
+## Knowledge Governance
 
-The public core may include deterministic logic, schemas, representative source-governed datasets, automated tests, architecture, and governance documentation.
+The static build exports only explicitly approved public JSON packs. It blocks internal/private/licensed/credential markers and excludes `INTERNAL-TRADE-001`, protected source text, customer data, credentials, and private rule packs.
 
-Protected knowledge operations remain outside the public repository, including licensed source files, customer data, credentials, private rule packs, expert-reviewed customer outputs, managed services, and company-specific deployments.
+No dataset implies live route, schedule, capacity, price, cut-off, acceptance, clearance, permit, or authority approval.
 
-## License
+## MyGPT Boundary
 
-The INCO public core is licensed under the **Apache License, Version 2.0**. See `LICENSE` and `NOTICE`.
+The optional INCO assistant on ChatGPT remains under final alignment. It may later explain deterministic results, ask for missing facts, and create checklists, but it cannot override the website engine. The public link remains gated until the final Knowledge Pack, instructions revision, and audit scenarios pass.
 
-The license does not grant rights to protected sources, customer data, private operational knowledge, credentials, the INCO visual identity, or the Mostafa Gad name as a trademark, endorsement, certification, or affiliation beyond reasonable attribution.
+## Open-Core Governance and License
+
+The INCO public core is licensed under the **Apache License, Version 2.0**. See `LICENSE` and `NOTICE`. The license does not grant rights to protected sources, customer data, credentials, the visual identity, or the Mostafa Gad name as a trademark, certification, endorsement, or affiliation beyond reasonable attribution.
 
 Copyright 2026 Mostafa Gad.
 
 ## Key Documents
 
 1. `CURRENT_STATE.md`
-2. `docs/ADR_006_BRAND_POSITIONING_AND_FREE_SERVICE_MODEL.md`
-3. `docs/PUBLIC_SERVICE_DEPLOYMENT_RUNBOOK_v1.0.md`
-4. `docs/PRODUCTION_READINESS_ARCHITECTURE_SECURITY_GAP_ANALYSIS_v1.0.md`
+2. `docs/ADR_007_STATIC_BROWSER_DEPLOYMENT_ON_NEOM.md`
+3. `docs/NEOM_STATIC_DEPLOYMENT_RUNBOOK_v1.0.md`
+4. `docs/MYGPT_INCO_REVIEW_v1.0.md`
 5. `docs/THREAT_MODEL_v1.0.md`
-6. `docs/UAT_CYCLE_003_REPORT_v1.0.md`
-7. `SECURITY.md`
-8. `CONTRIBUTING.md`
-9. `LICENSE`
-10. `NOTICE`
+6. `SECURITY.md`
+7. `CONTRIBUTING.md`
+8. `LICENSE`
+9. `NOTICE`
 
 ## Governance
 
 - Founder and Product Owner: Mostafa Gad
 - Strategic product and architecture governance: ChatGPT
 - Engineering execution: Codex and controlled GitHub workflows
-- Source control: GitHub
 - Repository: `magad84/inco`
