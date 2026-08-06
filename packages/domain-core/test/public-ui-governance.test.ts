@@ -20,7 +20,7 @@ test("public UI identifies the approved management and supply-chain positioning"
 });
 
 test("public UI states privacy and professional boundaries", () => {
-  assert.match(html, /does not intentionally save your shipment case/);
+  assert.match(html, /does not intentionally save or transmit your shipment case/);
   assert.match(html, /does not replace current carrier acceptance/);
   assert.match(html, /Do not enter names, invoice numbers, account details/);
 });
@@ -28,11 +28,17 @@ test("public UI states privacy and professional boundaries", () => {
 test("public UI has bilingual and search-discovery foundations", () => {
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /WebApplication/);
-  assert.match(html, /https:\/\/inco\.mostafagad\.net\//);
+  assert.match(html, /https:\/\/mostafagad\.net\/inco/);
   assert.match(app, /const copy =/);
   assert.match(app, /locale === "ar"/);
 });
 
+test("MyGPT remains gated until final alignment and audit", () => {
+  assert.match(html, /Assistant pending final review/);
+  assert.match(html, /aria-disabled="true"/);
+  assert.doesNotMatch(html, /href="https:\/\/chatgpt\.com\/g\//);
+});
+
 test("recommended next steps preserve deterministic safety states", () => {
-  for (const state of ["blocked_information_required","enhanced_compliance_required","source_unavailable","confirmation_required"]) assert.match(app, new RegExp(state));
+  for (const state of ["blocked_information_required","enhanced_compliance_required","source_unavailable","unsupported_scope","confirmation_required"]) assert.match(app, new RegExp(state));
 });
