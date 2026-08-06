@@ -1,0 +1,39 @@
+inco.mostafagad.net {
+  encode zstd gzip
+
+  @api path /api/* /healthz /readyz
+  handle @api {
+    rate_limit {
+      zone inco_api {
+        key {remote_host}
+        events 30
+        window 1m
+      }
+    }
+    reverse_proxy inco-app:4173
+  }
+
+  handle {
+    reverse_proxy inco-app:4173
+  }
+
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options "nosniff"
+    Referrer-Policy "strict-origin-when-cross-origin"
+    -Server
+  }
+
+  log {
+    output file /var/log/caddy/inco-access.log {
+      roll_size 10MiB
+      roll_keep 5
+      roll_keep_for 168h
+    }
+    format json
+  }
+}
+
+# Note: the rate_limit directive requires a compatible Caddy build/plugin.
+# When unavailable, enforce rate limiting at the existing proxy/firewall layer
+# while retaining the application-level fallback limiter.
