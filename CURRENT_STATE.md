@@ -1,19 +1,20 @@
 # INCO Current State
 
 **Date:** 2026-08-06  
-**Phase:** V1 product definition, bilingual visual design, and MyGPT governance audit closed  
-**Implementation status:** deterministic domain core, bilingual browser interface foundation, governed public-knowledge export, static production build foundation, CI artifact generation, CodeQL, privacy controls, approved English and Arabic Desktop and Mobile Figma baselines, approved MyGPT configuration, and completed MyGPT audit.
+**Phase:** V1 product definition, bilingual visual design, MyGPT governance audit, and Figma administrative organization closed  
+**Implementation status:** deterministic domain core, bilingual browser interface foundation, governed public-knowledge export, static production build foundation, CI artifact generation, CodeQL, privacy controls, approved English and Arabic Desktop and Mobile Figma baselines, organized and locked Figma source file, approved MyGPT configuration, and completed MyGPT audit.
 
 ## V1 Closure Status
 
-INCO V1 is formally closed and approved for product definition, scope, governance, logo usage, bilingual information architecture, deterministic-result hierarchy, privacy boundary, official-confirmation presentation, responsive visual design, and MyGPT operating controls.
+INCO V1 is formally closed and approved for product definition, scope, governance, logo usage, bilingual information architecture, deterministic-result hierarchy, privacy boundary, official-confirmation presentation, responsive visual design, MyGPT operating controls, and Figma file organization.
 
-This closure does not mean the public site is live. Final coded visual alignment, implementation QA, release artifact inspection, Neom Cloud deployment, and live verification remain execution tasks.
+This closure does not mean the public site is live. Final coded gap analysis and alignment, implementation QA, release artifact inspection, Neom Cloud deployment, and live verification remain execution tasks.
 
 See:
 
 - `docs/INCO_V1_PROJECT_CLOSURE_AND_HANDOFF_v1.0.md`
 - `docs/INCO_FIGMA_VISUAL_BASELINE_APPROVAL_v1.0.md`
+- `docs/INCO_FIGMA_FILE_ORGANIZATION_LOG_v1.0.md`
 - `docs/INCO_PROJECT_AGGREGATION_CHAT_PROMPT_v1.0.md`
 - `docs/MYGPT_INCO_REVIEW_v1.0.md`
 - `docs/MYGPT_AUDIT_EXECUTION_LOG_v1.0.md`
@@ -66,10 +67,34 @@ Approved frames:
 
 Approved logo source:
 
-- Page: `00 • INCO LOGO MASTER • APPROVED`
+- Page: `01 • INCO LOGO MASTER • APPROVED`
 - Primary-logo master node: `31:12`
 
 Manual redrawing, reconstruction, stretching, recoloring, cropping, or text approximation is prohibited.
+
+## Figma File Organization Status
+
+The live Figma file was administratively organized without changing the approved visual design.
+
+Current page structure:
+
+1. `00 • FILE GUIDE & STATUS`
+2. `01 • INCO LOGO MASTER • APPROVED`
+3. `10 • APPROVED V1 BASELINES • DO NOT EDIT`
+4. `20 • COMPONENTS & TOKENS • CONTROLLED`
+5. `90 • QA & IMPLEMENTATION NOTES`
+6. `99 • ARCHIVE • DO NOT USE`
+
+Governance status:
+
+- approved frames `2:2`, `2:150`, `40:2`, and `45:2` are locked;
+- closure node `48:2` is locked;
+- approved logo master `31:12` is locked;
+- no approved frame was intentionally moved internally, resized, recolored, retyped, rebuilt, or visually edited;
+- archived material must not be used for production implementation;
+- the approved node IDs remain the governing implementation references.
+
+See `docs/INCO_FIGMA_FILE_ORGANIZATION_LOG_v1.0.md`.
 
 ## Implemented Deterministic Core
 
@@ -138,20 +163,21 @@ Priority origins include China, India, Turkey, Italy, the United States, Russia 
 
 ## Remaining Before Public Launch
 
-1. Implement the approved four Figma frames faithfully in the repository.
-2. Reconcile final bilingual copy with runtime strings.
-3. Implement and verify the approved MyGPT button behavior.
-4. Run browser, mobile, RTL, accessibility, and regression QA.
-5. Confirm Domain Core tests, build, leakage checks, CodeQL, and release workflows are green.
-6. Generate, download, and manually inspect the final `dist-public` artifact.
-7. Review current repository content and relevant history for secrets or protected-source leakage.
-8. Upload only the approved public artifact to `public_html/inco` on Neom Cloud.
-9. Validate HTTPS, asset paths, caching, rollback, bilingual behavior, MyGPT link, and live deterministic scenarios.
-10. Integrate navigation, sitemap, metadata, and internal links into MostafaGad.net V3.
+1. Inspect the current coded implementation and complete a gap matrix against the four live approved Figma nodes.
+2. Change only verified visual or behavioral gaps; do not rebuild or redesign compliant areas.
+3. Reconcile final bilingual copy with runtime strings.
+4. Implement or verify the approved MyGPT button behavior already represented in the four Figma baselines.
+5. Run browser, mobile, RTL, accessibility, and regression QA.
+6. Confirm Domain Core tests, build, leakage checks, CodeQL, and release workflows are green.
+7. Generate, download, and manually inspect the final `dist-public` artifact.
+8. Review current repository content and relevant history for secrets or protected-source leakage.
+9. Upload only the approved public artifact to `public_html/inco` on Neom Cloud.
+10. Validate HTTPS, asset paths, caching, rollback, bilingual behavior, MyGPT link, and live deterministic scenarios.
+11. Integrate navigation, sitemap, metadata, and internal links into MostafaGad.net V3.
 
 ## Owner Inputs Still Required
 
-No strategic product, design, or MyGPT governance decision is pending. Execution-time access is required only for final Neom Cloud upload and live-site verification, plus approval for any material change outside the closed V1 baseline.
+No strategic product, design, Figma-organization, or MyGPT governance decision is pending. Execution-time access is required only for final Neom Cloud upload and live-site verification, plus approval for any material change outside the closed V1 baseline.
 
 ## Change Log
 
@@ -161,10 +187,14 @@ No strategic product, design, or MyGPT governance decision is pending. Execution
 - Approved the deterministic browser runtime and governed public-knowledge export.
 - Approved English Desktop and Mobile visual baselines.
 - Approved Arabic RTL Desktop and Mobile visual baselines.
-- Approved `00 • INCO LOGO MASTER • APPROVED` as the only Figma logo source.
+- Approved the INCO primary-logo master as the only Figma logo source.
 - Closed INCO V1 product-definition and bilingual visual-design phase.
 - Completed the governed MyGPT configuration and knowledge cleanup.
 - Completed the mandatory MyGPT audit with 16/16 scenarios and zero failures.
 - Completed the post-cleanup MyGPT regression with 3/3 scenarios passed.
 - Granted owner approval for public MyGPT-link implementation.
-- Moved the project to final coded alignment, pre-deployment QA, release artifact generation, Neom Cloud deployment, and live verification.
+- Administratively organized the live Figma file without changing the approved visual baseline.
+- Created file-guide, controlled-components, QA, and archive pages.
+- Locked the four approved visual frames, V1 closure node, and approved logo master.
+- Recorded the Figma organization in `docs/INCO_FIGMA_FILE_ORGANIZATION_LOG_v1.0.md`.
+- Moved the project to coded gap analysis, verified alignment, pre-deployment QA, release artifact generation, Neom Cloud deployment, and live verification.
