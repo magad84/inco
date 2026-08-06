@@ -2,7 +2,7 @@
 
 **Approval date:** 2026-08-06  
 **Approver:** Mostafa Gad  
-**Status:** APPROVED ENGLISH VISUAL BASELINE
+**Status:** APPROVED BILINGUAL V1 VISUAL BASELINE
 
 ## Approved Figma File
 
@@ -11,12 +11,21 @@
 
 ## Approved Frames
 
-- Desktop: `Desktop / INCO Product Page • EN • APPROVED BASELINE`
+### English
+
+- Desktop: `Desktop / INCO Product Page • EN • V1 APPROVED`
   - Node: `2:2`
-- Mobile: `Mobile / INCO Product Page • EN • APPROVED BASELINE`
+- Mobile: `Mobile / INCO Product Page • EN • V1 APPROVED`
   - Node: `2:150`
 
-These frames are the approved English visual baseline for the public INCO product page.
+### Arabic RTL
+
+- Desktop: `Desktop / INCO Product Page • AR • RTL • V1 APPROVED`
+  - Node: `40:2`
+- Mobile: `Mobile / INCO Product Page • AR • RTL • V1 APPROVED`
+  - Node: `45:2`
+
+These four frames are the approved bilingual V1 visual baseline for the public INCO product page.
 
 ## Approved Logo Governance
 
@@ -26,37 +35,23 @@ The only approved logo source inside Figma is:
 - Master frame: `MASTER • Primary logo • Light background`
 - Master node: `31:12`
 
-The Desktop header, Desktop About section, and Mobile header logos were replaced with copies taken directly from this approved master.
-
-The logo must not be redrawn, reconstructed, stretched, recolored, cropped, or replaced by a text approximation.
+All public-page logo placements must be copied from this approved master. The logo must not be redrawn, reconstructed, stretched, recolored, cropped, or replaced by a text approximation.
 
 ## Approved Visual Direction
 
-The approved baseline includes:
+The approved V1 baseline includes:
 
 - the official INCO logo and brand colors;
 - logistics hero photography with a controlled navy overlay;
 - functional icons for decision and status cards;
 - shipment-facts form structure;
-- result-state presentation;
+- deterministic result-state presentation;
 - official-confirmation protocol card;
 - conversational-assistant entry after the deterministic result;
 - professional-boundary disclosure;
-- responsive Desktop and Mobile layouts.
+- responsive Desktop and Mobile layouts;
+- English LTR and Arabic RTL presentation.
 
-## Next Design Phase
+## V1 Closure Decision
 
-The next phase is the Arabic RTL adaptation.
-
-The Arabic version must be derived from this approved baseline rather than designed independently. It must preserve the same information architecture, decision hierarchy, brand assets, component logic, privacy boundaries, and MyGPT placement while adapting:
-
-- copy into approved professional Arabic;
-- direction to RTL;
-- text alignment and icon placement;
-- field order where necessary for RTL comprehension;
-- typography, wrapping, and card heights;
-- Desktop first, followed automatically by Mobile after Desktop Arabic review.
-
-## Change Control
-
-Any future material change to the English baseline, logo, hero treatment, result hierarchy, or assistant placement requires a new review and approval record.
+The visual-design phase for INCO V1 is closed and approved. Future implementation must use these four frames as the source of truth. Changes that alter the logo, hero treatment, result hierarchy, information architecture, assistant placement, professional boundary, or bilingual layout require explicit change control and a new approval record.
