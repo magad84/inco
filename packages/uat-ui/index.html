@@ -22,9 +22,7 @@
       <p class="eyebrow" data-i18n="eyebrow">FREE PROFESSIONAL SERVICE</p>
       <h1 data-i18n="title">Check a shipment before you rely on the plan</h1>
       <p class="lead" data-i18n="lead">INCO helps professionals, entrepreneurs, and individual importers identify missing information, operational risks, required confirmations, and practical next steps.</p>
-      <div class="trust-row">
-        <span data-i18n="trust1">No registration</span><span data-i18n="trust2">No saved cases</span><span data-i18n="trust3">Rules-first result</span>
-      </div>
+      <div class="trust-row"><span data-i18n="trust1">No registration</span><span data-i18n="trust2">No saved cases</span><span data-i18n="trust3">Rules-first result</span></div>
     </section>
 
     <section id="service" class="panel" aria-labelledby="form-title">
@@ -59,12 +57,36 @@
         <article class="wide-card"><h3 data-i18n="sources">Controlled source references</h3><p id="sources">None yet.</p></article>
         <article class="wide-card action-card"><h3 data-i18n="next">Recommended next step</h3><p id="nextStep">Run the check to receive a practical next action.</p></article>
       </div>
+      <div class="companion">
+        <div><h3 data-i18n="assistantTitle">Discuss the result with INCO on ChatGPT</h3><p data-i18n="assistantText">Copy a privacy-safe summary, then open the optional conversational assistant. No shipment data is sent automatically.</p></div>
+        <div class="button-row"><button id="copyResult" class="secondary-dark" type="button" data-i18n="copyResult">Copy result summary</button><a id="gptLink" class="primary-link" href="https://chatgpt.com/g/g-6a66319a00a48191a0601bc4039fb159-inco" target="_blank" rel="noopener noreferrer" data-i18n="openAssistant">Open INCO Assistant</a></div>
+        <p id="copyStatus" class="status" aria-live="polite"></p>
+      </div>
       <details><summary data-i18n="technical">Technical evidence</summary><pre id="raw"></pre></details>
       <p class="boundary" data-i18n="boundary">INCO provides preliminary professional decision support. It does not replace current carrier acceptance, customs or authority approval, final dangerous-goods classification, sanctions or legal review, insurance advice, permits, or qualified operational verification.</p>
     </section>
 
+    <section class="panel feedback" aria-labelledby="feedback-title">
+      <p class="step">03</p><h2 id="feedback-title" data-i18n="feedbackTitle">Help shape the next version</h2>
+      <fieldset><legend data-i18n="feedbackQ1">How useful was the free INCO service?</legend>
+        <label class="choice"><input type="radio" name="usefulness" value="very_useful" /><span data-i18n="veryUseful">Very useful</span></label>
+        <label class="choice"><input type="radio" name="usefulness" value="useful_needs_development" /><span data-i18n="needsDevelopment">Useful, but it needs development</span></label>
+        <label class="choice"><input type="radio" name="usefulness" value="not_enough" /><span data-i18n="notEnough">It did not help enough</span></label>
+        <label class="choice"><input type="radio" name="usefulness" value="unclear" /><span data-i18n="unclear">I did not understand the result</span></label>
+      </fieldset>
+      <fieldset><legend data-i18n="feedbackQ2">Would you consider an optional advanced service for a small fee while the basic check remains free?</legend>
+        <label class="choice"><input type="radio" name="advanced" value="yes" /><span data-i18n="yes">Yes</span></label>
+        <label class="choice"><input type="radio" name="advanced" value="maybe" /><span data-i18n="maybe">Maybe, depending on features and price</span></label>
+        <label class="choice"><input type="radio" name="advanced" value="free_only" /><span data-i18n="freeOnly">I prefer all services to remain free</span></label>
+        <label class="choice"><input type="radio" name="advanced" value="no_need" /><span data-i18n="noNeed">I do not need an advanced version</span></label>
+      </fieldset>
+      <label class="feedback-note"><span data-i18n="featureLabel">Which improvement would help you most?</span><select id="feature"><option value="simpler_explanation">Simpler explanation</option><option value="wider_import_analysis">Wider import-requirement analysis</option><option value="shipping_comparison">Shipping-option comparison</option><option value="trade_terms_review">Trade-term review</option><option value="more_calculations">More shipping calculations</option><option value="ai_document_analysis">AI-assisted document analysis</option><option value="downloadable_report">Downloadable professional report</option><option value="other">Other</option></select></label>
+      <button id="copyFeedback" class="primary" type="button" data-i18n="copyFeedback">Copy feedback</button>
+      <p id="feedbackStatus" class="status" aria-live="polite" data-i18n="feedbackPrivacy">This pre-launch survey does not transmit or store your response. It prepares a summary you can share voluntarily.</p>
+    </section>
+
     <section class="about panel">
-      <p class="step">03</p><h2 data-i18n="aboutTitle">Built from management and supply-chain expertise</h2>
+      <p class="step">04</p><h2 data-i18n="aboutTitle">Built from management and supply-chain expertise</h2>
       <p data-i18n="aboutText">INCO was founded by Mostafa Gad, a Business and Operations Leader with deep supply-chain expertise. The service translates professional experience, controlled sources, and business rules into practical checks.</p>
       <nav class="links" aria-label="Related resources"><a href="https://mostafagad.net/" data-i18n="website">Visit MostafaGad.net</a><a href="https://github.com/magad84/inco" data-i18n="github">View the open-source project</a></nav>
     </section>
