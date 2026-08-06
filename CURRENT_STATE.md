@@ -1,8 +1,8 @@
 # INCO Current State
 
 **Date:** 2026-08-06  
-**Phase:** Static public-release preparation for Neom Cloud  
-**Implementation status:** deterministic domain core, bilingual browser interface, governed public-knowledge export, static production build, CI artifact generation, CodeQL, privacy controls, and passing internal UAT foundation.
+**Phase:** Approved English visual baseline and Arabic RTL design preparation  
+**Implementation status:** deterministic domain core, bilingual browser interface, governed public-knowledge export, static production build, CI artifact generation, CodeQL, privacy controls, passing internal UAT foundation, and approved English Desktop and Mobile Figma baseline.
 
 ## Approved Strategic Positioning
 
@@ -37,6 +37,20 @@ INCO is a real, free, limited professional service for professionals, entreprene
 
 See `docs/ADR_007_STATIC_BROWSER_DEPLOYMENT_ON_NEOM.md` and `docs/NEOM_STATIC_DEPLOYMENT_RUNBOOK_v1.0.md`.
 
+## Approved Figma Visual Baseline
+
+The English visual design is approved as the implementation baseline.
+
+- Figma file: `https://www.figma.com/design/ukiYrUNG1zs38GMS3edxJ2`
+- Desktop frame: `Desktop / INCO Product Page • EN • APPROVED BASELINE` (`2:2`)
+- Mobile frame: `Mobile / INCO Product Page • EN • APPROVED BASELINE` (`2:150`)
+- Approved logo page: `00 • INCO LOGO MASTER • APPROVED`
+- Approved primary-logo master node: `31:12`
+
+The Desktop header, Desktop About section, and Mobile header use logo copies taken directly from the approved master page. Manual redrawing, reconstruction, stretching, recoloring, cropping, or text approximation is prohibited.
+
+See `docs/INCO_FIGMA_VISUAL_BASELINE_APPROVAL_v1.0.md`.
+
 ## Implemented Deterministic Core
 
 - CBM, gross, volumetric, and chargeable-weight calculations.
@@ -59,7 +73,7 @@ See `docs/ADR_007_STATIC_BROWSER_DEPLOYMENT_ON_NEOM.md` and `docs/NEOM_STATIC_DE
 - Privacy-safe result-copy function.
 - Local-only pre-launch feedback summary; no transmission or storage.
 - Canonical URL and structured data aligned to `mostafagad.net/inco`.
-- MyGPT public link remains disabled pending final instructions, knowledge alignment, and audit.
+- MyGPT public link remains disabled in production pending final instructions, knowledge alignment, and audit.
 
 ## Governed Public Knowledge Build
 
@@ -95,24 +109,34 @@ Additional governed coverage includes road and multimodal candidate structures, 
 - browser runtime adapter;
 - static production-bundle generator;
 - public knowledge leakage controls;
-- bilingual public UI foundation;
+- approved English Desktop and Mobile Figma visual baseline;
+- approved INCO logo master page and logo-governance rule;
 - feedback and privacy-safe result-copy interactions;
 - Neom deployment architecture;
 - CI artifact workflow and CodeQL foundation;
 - Apache-2.0 public-core governance.
 
+### Current design phase
+
+1. Produce the Arabic RTL Desktop design from the approved English baseline.
+2. Review Arabic wording, direction, wrapping, icon placement, and card heights.
+3. After Arabic Desktop approval, adapt the same approved system automatically to Mobile.
+4. Align the coded bilingual UI with the final approved Figma frames.
+
 ### Remaining before public launch
 
-1. Confirm the final Domain Core and CodeQL runs are green after the latest governance updates.
-2. Download and inspect the generated `inco-static-public` artifact.
-3. Complete manual browser, mobile, RTL, and accessibility review.
-4. Complete repository-history review for secrets and protected source content.
-5. Finalize the public result wording and official-confirmation presentation.
-6. Produce the final MyGPT Knowledge Pack and one final instructions revision, then run the audit scenarios.
-7. Upload the approved artifact to `public_html/inco` on Neom Cloud.
-8. Validate HTTPS, asset paths, cache behavior, rollback, and live deterministic scenarios.
-9. Integrate navigation, sitemap, and internal links into MostafaGad.net V3.
-10. Add privacy-safe analytics only after the measurement boundary is approved.
+1. Complete Arabic RTL Desktop and Mobile visual approval.
+2. Align the coded UI with the approved English and Arabic Figma baselines.
+3. Confirm the final Domain Core and CodeQL runs are green after the latest UI-governance updates.
+4. Download and inspect the generated `inco-static-public` artifact.
+5. Complete manual browser, mobile, RTL, and accessibility review.
+6. Complete repository-history review for secrets and protected source content.
+7. Finalize the public result wording and official-confirmation presentation.
+8. Produce the final MyGPT Knowledge Pack and one final instructions revision, then run the audit scenarios.
+9. Upload the approved artifact to `public_html/inco` on Neom Cloud.
+10. Validate HTTPS, asset paths, cache behavior, rollback, and live deterministic scenarios.
+11. Integrate navigation, sitemap, and internal links into MostafaGad.net V3.
+12. Add privacy-safe analytics only after the measurement boundary is approved.
 
 ## Owner Inputs Still Required
 
@@ -128,3 +152,6 @@ No strategic product decision is pending. Execution-time access is required only
 - Added CI generation of the static deployment artifact.
 - Aligned canonical metadata, privacy messaging, feedback interactions, and MyGPT audit gating.
 - Deferred the final MyGPT instructions revision until all website concepts and output fields are stable.
+- Approved the English Desktop and Mobile Figma frames as the visual baseline.
+- Approved `00 • INCO LOGO MASTER • APPROVED` as the only Figma logo source.
+- Recorded Arabic RTL Desktop as the next design phase, followed by automatic Mobile adaptation after Desktop approval.
