@@ -2,235 +2,290 @@
 
 This file governs Codex and other engineering agents working in `magad84/inco`.
 
-## 1. Read Order
+## 1. Mandatory Read Order
 
-Before making changes, read:
+Before making any implementation change, read in this order:
 
-1. `PROJECT_CONTEXT.md`
-2. `CURRENT_STATE.md`
-3. `README.md`
-4. `docs/KNOWLEDGE_ARCHITECTURE.md`
-5. `docs/SOURCE_REGISTRY.md`
-6. `docs/QUESTION_ARCHITECTURE.md`
-7. The specification for the affected module.
-8. This file.
+1. `PROJECT_CONTEXT.md` — stable Product / Business Source of Truth.
+2. `CURRENT_STATE.md` — current phase, open items, risks, and next priorities.
+3. `AGENTS.md` — execution and change-control rules.
+4. Latest approved INCO ADRs and closure documents relevant to the task.
+5. `docs/CODEX_PREEXECUTION_GATE_v1.0.md`.
+6. Live approved Figma nodes when UI/UX is involved.
+7. The actual repository implementation, tests, build, routing, and data before editing.
 
-If requirements conflict, follow the latest explicit owner approval recorded in the repository. Do not infer approvals from old code, external repositories, or unrelated conversations.
+If old documentation conflicts with `PROJECT_CONTEXT.md` or newer explicit owner approvals, treat the old material as historical/superseded unless a current ADR explicitly revives it.
 
 ## 2. Roles
 
-- **Mostafa Gad:** Product Owner and final decision maker.
-- **ChatGPT:** Strategic product, knowledge architecture, requirements, and governance layer.
-- **Codex:** Technical implementation and verification layer.
+- **Mostafa Gad:** Product Owner and final product decision maker.
+- **CTO / Strategic Technical Lead:** validates architecture, technical direction, implementation quality, security, deployment, and escalations.
+- **Codex:** technical inspection, implementation, testing, correction, and technical documentation.
 
-Codex implements approved scope. It must not invent product strategy, logistics rules, commercial terms, legal positions, visual identity, data sources, or future integrations.
+Codex implements approved scope. It must not invent product strategy, business rules, commercial model, legal position, visual identity, data ownership, security/privacy policy, or future integrations.
 
-## 3. Current Implementation Gate
+## 3. Product Source of Truth Rule
 
-The project is currently in knowledge architecture and deterministic specification.
+`PROJECT_CONTEXT.md` is the consolidated product/business knowledge source.
 
-Do not scaffold the production application or select the final technology stack until the first implementation module has:
+It defines:
 
-- Approved input and output schemas.
-- traceable rules or formulas.
-- uncertainty and error states.
-- representative acceptance tests.
-- no unresolved safety-critical assumptions.
+- product identity and positioning;
+- target users and roles;
+- V1 scope and deferred scope;
+- modules and functional boundaries;
+- business and validation rules;
+- controlled decision states;
+- data/privacy principles;
+- MyGPT behavior;
+- screen/UX map;
+- Figma references;
+- route/canonical/SEO/GEO requirements;
+- source/RAG governance;
+- change-control boundaries.
 
-Low-risk prototypes or isolated algorithm benchmarks require an explicit work package and must not be presented as production implementation.
+Do not infer a requirement from old code or brainstorming when it is absent from the current Product Context.
 
-## 4. Approved Scope
+## 4. Current Execution Rule
 
-The approved modular direction includes:
+The next phase is **technical validation and implementation alignment**, not new feature development.
 
-- Trade-term review and decision support.
-- cargo-nature and dangerous-goods pre-screening.
-- country packs for UAE, Saudi Arabia, Egypt, and Oman.
-- carrier rules for ocean, air cargo, courier, postal, road, and specialist transport.
-- deterministic cargo calculators.
-- a future paid multi-SKU container load planner.
-- road, bridge, tunnel, truck-restriction, and abnormal-load indicators.
-- a future verified customs-broker marketplace.
+Before editing, Codex must establish the actual repository baseline and compare:
 
-Each module must remain separable and source-backed.
+```text
+Approved Product Requirements
+        ↓
+GitHub Documentation
+        ↓
+Actual Repository
+        ↓
+Actual Data / APIs / Routing / Architecture
+        ↓
+Actual Implementation
+```
 
-## 5. Explicitly Unapproved or Deferred
+Codex must identify:
 
-Do not add or imply without explicit approval:
+- architecture conflicts;
+- requirement conflicts;
+- missing implementation;
+- incorrect implementation;
+- duplicate logic;
+- dead code;
+- technical debt;
+- security/privacy issues;
+- data-model inconsistencies;
+- routing/canonical/hreflang conflicts;
+- integration problems;
+- scalability/maintainability risks;
+- missing tests;
+- documentation drift.
 
-- Generative AI or chatbot functionality.
-- A specific AI model or provider.
-- HS classification.
-- binding tariff, duty, or tax calculation.
-- live government integrations.
-- automatic legal-document amendment.
-- live carrier booking or rate APIs.
-- ERP integrations.
-- subscription billing.
-- team workspaces.
-- public APIs.
-- final production broker marketplace launch.
-- pricing amounts or payment-provider selection.
+Do not assume the architecture is correct because an older document says it is.
 
-## 6. Knowledge and Source Rules
+## 5. Change Authority
 
-- Use only approved sources in `docs/SOURCE_REGISTRY.md` or sources added through the same verification process.
-- Prefer official government, international, carrier, postal, port, airport, road, or customs sources.
-- Secondary material may support discovery but must not drive executable rules.
-- Do not copy protected standards, manuals, carrier publications, or licensed tables into the repository.
-- Store source metadata, paraphrased rule logic, and traceability.
-- Record effective date, expiry where known, last verified date, next review date, and verification status.
-- A source URL is not itself an executable rule.
-- Never use AI output as a source of truth.
+Codex may propose and implement a technical correction when it does **not** change an approved product requirement.
 
-## 7. Decision and Rule Logic
+Examples:
 
-The product must be rules-first.
+- refactoring duplicate implementation;
+- fixing broken routing while preserving the approved route model;
+- correcting accessibility defects;
+- correcting a test or build defect;
+- removing dead code that has no product effect;
+- fixing a privacy leak while preserving the approved privacy model;
+- aligning code to an approved Figma state;
+- strengthening maintainability without changing behavior.
 
-- Keep rules separate from UI components.
-- Keep business logic testable and versioned.
-- Do not hard-code unexplained professional assumptions.
-- Separate mathematical calculations from carrier-specific commercial rules.
-- Separate cost allocation from risk transfer.
-- Preserve uncertainty and missing-information states.
-- Do not manufacture a recommendation when required inputs are absent.
-- Map every material user-facing warning to a rule ID and source ID.
-- Store the applicable rule version with saved results.
+Codex must stop and classify `CTO / PRODUCT OWNER DECISION REQUIRED` if a proposed fix changes any of:
 
-## 8. Dangerous-Goods and Special-Cargo Boundary
+- product scope;
+- business rule or controlled decision state;
+- user journey;
+- approved screen behavior or major visual hierarchy;
+- commercial/free model;
+- data ownership or retention;
+- major architecture boundary;
+- integration strategy;
+- security/privacy policy;
+- brand positioning;
+- canonical/language route model;
+- legal obligations or public claims.
 
-The cargo module is a pre-screen only.
+## 6. Approved V1 Non-Negotiables
 
-Do not output unsupported statements such as:
+- INCO V1 is free.
+- No V1 payment, pricing, subscription, paid tier, freemium upgrade, or paid-report upsell.
+- No registration/account requirement.
+- No saved cases or persistent customer database.
+- No document upload.
+- Deterministic/rules-first result is controlling.
+- Public controlled states are exactly:
+  - `candidate`
+  - `confirmation_required`
+  - `source_unavailable`
+  - `blocked_information_required`
+  - `enhanced_compliance_required`
+- MyGPT may explain/checklist only and may not override the deterministic result.
+- No automatic shipment/result data transfer to MyGPT.
+- No unsupported live rate/capacity/schedule/cut-off/booking/acceptance/clearance/permit claims.
+- Primary V1 destination packs: UAE, Saudi Arabia, Egypt, Oman.
+- EN route: `https://mostafagad.net/inco/`.
+- AR route: `https://mostafagad.net/ar/inco/`.
+- Each route self-canonicalizes and uses reciprocal hreflang plus `x-default` to EN.
+- Legacy product-detail routes are redirect-only if present.
+- Figma approved nodes remain visual authority.
+- No protected/internal/licensed source leakage.
+- Specialist professional terminology may remain English in Arabic where clearer; do not force awkward translation.
 
-- Cargo is not dangerous.
-- Cargo is legally permitted.
-- A carrier will accept the shipment.
-- A government permit is unnecessary.
+## 7. Figma Rules
 
-When evidence is incomplete, return the approved status and next action, such as:
+Live Figma file:
 
-- Dangerous-goods data required.
-- carrier acceptance required.
-- authority confirmation required.
-- specialist confirmation required.
-- insufficient information.
+`https://www.figma.com/design/ukiYrUNG1zs38GMS3edxJ2`
 
-## 9. Carrier and Regulatory Volatility
+Approved frames:
 
-- Do not assume one universal volumetric divisor.
-- Do not assume a carrier rule applies across services, countries, routes, or dates.
-- Do not present temporary operational notices as permanent rules.
-- Rules that are stale or outside their jurisdiction must not produce definitive output.
-- The application must expose source date and confirmation requirements for volatile rules.
+- EN Desktop `2:2`.
+- EN Mobile `2:150`.
+- AR Desktop RTL `40:2`.
+- AR Mobile RTL `45:2`.
 
-## 10. Cargo Calculators
+Approved logo master: `31:12`.
 
-- Normalize units before calculation.
-- Validate dimensions, weight, quantity, and unit.
-- Preserve package-level data where commercial rules operate per piece.
-- Distinguish exact arithmetic from estimates and configurable assumptions.
-- A preliminary container estimate must consider both volume and payload.
-- Do not equate nominal container volume with usable packing capacity.
+MyGPT sections:
 
-## 11. Container Load Planner
+- EN Desktop `12:26`.
+- EN Mobile `12:33`.
+- AR Desktop `40:156`.
+- AR Mobile `45:84`.
 
-- Keep solver implementation behind an internal replaceable interface.
-- Do not import an open-source solver before license, dependency, security, and test review.
-- Respect dimensions, door opening, permitted rotations, payload, quantity, stackability, and approved physical constraints.
-- Expose unallocated items and reasons.
-- Expose assumptions, solver version, and warnings.
-- A geometric result must not be called a safe loading certificate, securing plan, dangerous-goods approval, carrier acceptance, or route approval.
+Rules:
 
-## 12. Customs-Broker Marketplace
+- inspect live nodes before visual work;
+- do not use archive material as production source;
+- do not redraw or approximate the logo;
+- do not redesign locked baselines without owner approval;
+- distinguish `Designed` from `Implemented` in every QA report;
+- dedicated Terms/Privacy page design is not currently an approved bespoke Figma screen unless a parent-site legal template is reused.
 
-- Distinguish self-declared data from verified data.
-- Track license scope, authority, issue date, expiry, coverage, and verification date.
-- Do not rank providers as best based only on payment or sponsorship.
-- Sponsored visibility must be labeled and separate from operational matching.
-- Obtain user consent before sharing case data.
-- Share only the minimum selected fields.
-- Provider documents require secure production storage and must not be committed to GitHub.
+## 8. Data / Privacy Rules
 
-## 13. Data and Privacy
+Approved V1 intent:
 
-- Collect only data required for the selected workflow.
-- Treat transaction, account, provider, and uploaded-document data as private.
-- Do not log sensitive inputs without an approved logging policy.
-- Do not place credentials, API keys, secrets, customer documents, broker licenses, or production data in the repository.
-- Google sign-in must request minimum identity scopes only.
-- Authentication and payment must remain separate modules.
-- Users must not access another user's cases, reports, provider documents, or payment records.
+- shipment-case processing in browser;
+- no intentional remote INCO case-evaluation API transmission;
+- no deliberate persistent case storage;
+- no shipment/result values in localStorage, sessionStorage, IndexedDB, cookies, URL query strings, analytics payloads, or third-party scripts without a new approval;
+- ordinary hosting/security logs are a separate technical-data category and must be validated in production;
+- no analytics/tracking may be added merely for convenience without owner/privacy approval.
 
-## 14. Commercial Boundary
+Codex must verify actual implementation rather than assuming these boundaries are already met.
 
-The intended progression is:
+## 9. Safety / Decision Rules
 
-1. Useful free deterministic review and calculators.
-2. Optional Google sign-in for saving and purchasing.
-3. Paid professional reports and Container Load Plans.
-4. Later credit bundles, business accounts, and provider commercial tools only after approval.
+- Missing material facts must not be guessed.
+- Unknown chemical composition/SDS gaps must not be treated as non-dangerous evidence.
+- Damaged lithium batteries must not be represented as accepted for air transport without qualified assessment and actual-carrier confirmation.
+- Russia-related transactions require enhanced transaction-specific compliance screening.
+- Unsupported destination coverage must remain general/candidate guidance only; do not invent local certainty.
+- When live/current provider-controlled data is unavailable, use the approved controlled-state logic rather than inventing values.
+- User risk acceptance cannot remove carrier/authority/specialist requirements.
 
-Do not implement pricing amounts, payment providers, subscriptions, credits, taxes, invoices, or marketplace fees before a specific decision approves them.
+## 10. Official Confirmation Protocol
 
-Critical safety, compliance, and risk warnings must not be hidden to force payment.
+When official/provider confirmation is required, preserve all five elements:
 
-## 15. AI Boundary
+1. Reason.
+2. Authority/provider.
+3. Official source, where available.
+4. Impact if not confirmed.
+5. Recommended next action.
 
-AI is intentionally undecided.
+## 11. MyGPT Rules
 
-The core platform must not depend on an LLM. Any future AI integration must be replaceable and isolated behind a defined interface. Model output must never become the sole source for classification, safety, responsibility, compliance, carrier acceptance, or recommendation logic.
+Approved external URL:
 
-## 16. Brand and Public Copy
+`https://chatgpt.com/g/g-6a66319a00a48191a0601bc4039fb159-inco`
 
-- Use only approved INCO visual assets, project-specific colors, and identity rules.
-- Do not reuse another project's palette or design system.
-- Do not invent logos, slogans, certifications, affiliations, endorsements, or authority relationships.
-- Avoid unsupported legal, customs, regulatory, safety, carrier, or contractual certainty.
-- Public copy must distinguish platform verification from government endorsement.
+Requirements:
 
-## 17. Engineering Standards
+- open manually by user action;
+- new tab with safe link behavior;
+- no appended shipment/result/personal/confidential data;
+- website deterministic result remains controlling;
+- ChatGPT is a separate external service boundary;
+- do not claim that MyGPT has current live provider data unless a supported process exists;
+- do not expose protected/internal sources.
 
-Apply DRY and YAGNI.
+## 12. Source / RAG Governance
 
-- Prefer the smallest architecture that satisfies the approved module.
-- Add dependencies only when justified and reviewed.
-- Keep modules cohesive and boundaries explicit.
-- Add tests for formulas and rules before or with implementation.
-- Validate inputs at system boundaries.
-- Use accessible, bilingual-ready UI patterns when frontend work begins.
-- Preserve RTL and LTR requirements in architecture and testing.
-- Document material architectural decisions.
-- Keep external providers behind replaceable adapters.
+Prefer official government, international safety/transport, carrier, port/airport/postal/customs/road authority sources.
 
-## 18. Change Control
+Secondary material may support discovery but must not silently become executable authority.
 
-Owner approval is required before changes to:
+Executable rules should be traceable, versioned, testable, and effective/review dated where relevant.
 
-- Product purpose or material scope.
-- launch countries.
-- free versus paid boundaries.
-- authentication or payment approach.
-- AI usage.
-- data retention or privacy behavior.
-- public claims or disclaimers.
-- product identity.
-- paid software or data-license commitments.
-- production deployment or infrastructure commitments.
-- live integrations.
-- public broker-marketplace launch.
+Public artifacts must exclude internal/private/licensed/protected source content, credentials, secrets, and customer data.
 
-Low-risk research, rule normalization, schema refinement, test creation, and implementation details may proceed when consistent with approved requirements and documented.
+MyGPT Knowledge is governed separately and uses the approved `01–08` pack only.
 
-## 19. Completion Standard
+## 13. SEO / GEO Rules
 
-A task is not complete unless:
+- SEO and GEO are one coordinated discoverability strategy.
+- Keep EN and AR independently crawlable.
+- Use correct self-canonicals, hreflang, language-aware metadata, structured data, sitemap entries, and internal links.
+- Preserve truthful Mostafa Gad creator/founder/entity relationship where visible and supported.
+- Use semantic headings and source-grounded content.
+- Do not add fake ratings, certifications, endorsements, reviews, live claims, mass thin pages, doorway pages, keyword permutations, or GEO hacks.
+- `llms.txt` is not a launch requirement.
 
-- It matches approved scope.
-- acceptance criteria are met.
-- formulas and material rules are tested.
-- sources and rule versions are traceable.
-- error, stale-source, and uncertainty states are handled.
-- security and privacy boundaries are preserved.
-- documentation is updated without duplication.
-- no unsafe or unsupported certainty is introduced.
+## 14. Deferred Features
+
+Do not build unless separately approved:
+
+- authentication;
+- saved cases;
+- persistent reports;
+- document uploads;
+- payment/pricing/subscriptions/freemium;
+- live carrier or government integrations;
+- public API;
+- ERP integration;
+- team workspaces;
+- broker marketplace;
+- paid report generation;
+- public container-load planner;
+- embedded generative chat;
+- additional country expansion beyond approved work package.
+
+## 15. Legal / Hosting Open Items
+
+Do not invent:
+
+- governing law;
+- jurisdiction/dispute wording;
+- final limitation-of-liability language;
+- hosting-log retention facts;
+- inherited analytics/tracking behavior.
+
+Use the existing Terms/Privacy drafts as product-boundary drafts only. Final publication must reflect verified hosting facts and approved legal wording.
+
+## 16. Testing and Completion Standard
+
+For any technical task, run the relevant existing tests and add tests only when needed to verify approved behavior.
+
+A task is not complete until:
+
+- implementation has been compared to approved requirements;
+- affected tests pass;
+- no product rule was silently changed;
+- privacy/security boundaries are preserved;
+- bilingual/RTL behavior is tested when relevant;
+- canonical/routing/SEO rules are tested when relevant;
+- Figma parity is checked when relevant;
+- known unresolved items are documented;
+- `CURRENT_STATE.md` is updated after material changes.
+
+Do not declare production `READY` or `LIVE` without the required technical, security, artifact, deployment, and live verification evidence.
