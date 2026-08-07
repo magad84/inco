@@ -2,20 +2,25 @@
 
 ## Supported Scope
 
-INCO is currently an internal-functional-testing and open-core showcase project. No public production service, user account system, payment system, or live carrier/government integration is represented as supported production infrastructure.
+INCO V1 is being prepared as a real, free, anonymous static browser service with a deterministic decision engine and governed public knowledge assets. It is not an account-based SaaS platform and does not include production payments, saved shipment cases, document uploads, live carrier/government integrations, or persistent customer case storage.
 
-Security reports are still welcome for:
+The public V1 browser architecture is designed so shipment-case values are evaluated locally in the browser and are not intentionally sent to a remote INCO evaluation API or persisted in a customer database.
+
+Security reports are welcome for:
 
 - exposed secrets or credentials;
 - unsafe repository content;
 - dependency or build-chain vulnerabilities;
-- cross-origin, request-handling, or local console weaknesses;
+- cross-origin or browser-runtime weaknesses;
 - rule-engine behavior that could create unsupported definitive output;
-- accidental exposure of protected source material or personal data.
+- accidental shipment-data persistence or transmission;
+- accidental exposure of protected source material or personal data;
+- public-build leakage of internal, licensed, private, credential, or secret material;
+- unsafe MyGPT link behavior or unexpected data transfer.
 
 ## Reporting
 
-Do not publish an exploitable issue, secret, personal data, or protected source content in a public issue.
+Do not publish an exploitable issue, secret, personal data, shipment data, confidential commercial information, or protected source content in a public issue.
 
 Use GitHub's private security advisory mechanism for this repository when available. Include:
 
@@ -25,11 +30,19 @@ Use GitHub's private security advisory mechanism for this repository when availa
 - potential impact;
 - suggested mitigation, when known.
 
-## Current Boundaries
+## Current V1 Boundary
 
-The browser console is for internal functional testing. It does not provide a production security boundary and must not be exposed publicly with sensitive data without completing the production-readiness controls documented in:
+The approved first public release is limited to:
 
-`docs/PRODUCTION_READINESS_ARCHITECTURE_SECURITY_GAP_ANALYSIS_v1.0.md`
+- static HTML, CSS, JavaScript, the deterministic browser bundle, and governed same-origin JSON knowledge assets;
+- no registration or authentication;
+- no payments;
+- no saved cases;
+- no uploads;
+- no live booking, rate, capacity, schedule, cut-off, carrier-acceptance, customs, or authority integration;
+- no AI dependency for the deterministic result.
+
+Development/internal HTTP endpoints and local testing utilities are not part of the approved public runtime and must not be exposed as production case-processing services.
 
 ## Secrets and Data
 
@@ -40,3 +53,32 @@ Never commit:
 - protected or licensed source files;
 - private company rule packs;
 - production logs containing personal or commercial information.
+
+The public build must continue to exclude internal/private/licensed/credential content and protected source text.
+
+## Browser Data Controls
+
+Before release, verify that shipment and result values are not written to:
+
+- `localStorage`;
+- `sessionStorage`;
+- IndexedDB;
+- cookies;
+- URL query strings or fragments;
+- analytics or tracking payloads;
+- third-party scripts or widgets.
+
+Clipboard actions must occur only after explicit user interaction.
+
+The MyGPT link must use the approved fixed URL only and must not encode shipment facts, result content, personal data, confidential data, or browser-storage values.
+
+## Hosting and Privacy
+
+The absence of persistent INCO case storage does not imply that ordinary web hosting processes no technical request metadata. Production launch review must confirm the actual Neom Cloud / parent-site server-log, security-log, analytics, retention, and access configuration and reconcile it with the public Privacy Notice.
+
+See:
+
+- `docs/INCO_PRIVACY_NOTICE_DRAFT_v1.0.md`
+- `docs/INCO_TERMS_OF_USE_DRAFT_v1.0.md`
+- `docs/INCO_PRE_CODEX_REVIEW_DEFECT_AND_IMPROVEMENT_REGISTER_v1.0.md`
+- `docs/PRODUCTION_READINESS_ARCHITECTURE_SECURITY_GAP_ANALYSIS_v1.0.md`
