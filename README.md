@@ -98,7 +98,30 @@ No dataset implies live route, schedule, capacity, price, cut-off, acceptance, c
 
 ## MyGPT Boundary
 
-The optional INCO assistant on ChatGPT remains under final alignment. It may later explain deterministic results, ask for missing facts, and create checklists, but it cannot override the website engine. The public link remains gated until the final Knowledge Pack, instructions revision, and audit scenarios pass.
+The approved INCO Assistant on ChatGPT may explain deterministic results, ask for material missing facts, and create checklists, but it cannot override the website engine.
+
+Approved MyGPT status:
+
+- instructions baseline: v1.2;
+- governed Knowledge files: `01` through `08` only;
+- audit: 16/16 completed with zero failures;
+- post-cleanup regression: 3/3 passed;
+- owner approval for public-link implementation: granted.
+
+Approved URL:
+
+`https://chatgpt.com/g/g-6a66319a00a48191a0601bc4039fb159-inco`
+
+The website link is not considered live until final coded alignment and production verification are complete. The website must not transfer shipment values, result content, query parameters, personal data, confidential data, or browser-storage values to MyGPT.
+
+## Privacy and Legal Launch Drafts
+
+Current launch-review drafts:
+
+- `docs/INCO_TERMS_OF_USE_DRAFT_v1.0.md`
+- `docs/INCO_PRIVACY_NOTICE_DRAFT_v1.0.md`
+
+These drafts describe the approved V1 product and data boundaries. Jurisdiction-specific legal wording, governing law, final limitation-of-liability language, and production hosting-log retention remain subject to owner/legal/hosting review before public publication.
 
 ## Open-Core Governance and License
 
@@ -109,14 +132,16 @@ Copyright 2026 Mostafa Gad.
 ## Key Documents
 
 1. `CURRENT_STATE.md`
-2. `docs/ADR_007_STATIC_BROWSER_DEPLOYMENT_ON_NEOM.md`
-3. `docs/NEOM_STATIC_DEPLOYMENT_RUNBOOK_v1.0.md`
-4. `docs/MYGPT_INCO_REVIEW_v1.0.md`
-5. `docs/THREAT_MODEL_v1.0.md`
-6. `SECURITY.md`
-7. `CONTRIBUTING.md`
-8. `LICENSE`
-9. `NOTICE`
+2. `docs/INCO_PRE_CODEX_REVIEW_DEFECT_AND_IMPROVEMENT_REGISTER_v1.0.md`
+3. `docs/CODEX_PREEXECUTION_GATE_v1.0.md`
+4. `docs/ADR_007_STATIC_BROWSER_DEPLOYMENT_ON_NEOM.md`
+5. `docs/NEOM_STATIC_DEPLOYMENT_RUNBOOK_v1.0.md`
+6. `docs/MYGPT_AUDIT_EXECUTION_LOG_v1.0.md`
+7. `docs/THREAT_MODEL_v1.0.md`
+8. `SECURITY.md`
+9. `CONTRIBUTING.md`
+10. `LICENSE`
+11. `NOTICE`
 
 ## Governance
 
