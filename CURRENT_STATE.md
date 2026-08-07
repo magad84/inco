@@ -1,12 +1,12 @@
 # INCO Current State
 
-**Date:** 2026-08-06  
-**Phase:** V1 product definition, bilingual visual design, MyGPT governance audit, and Figma administrative organization closed  
-**Implementation status:** deterministic domain core, bilingual browser interface foundation, governed public-knowledge export, static production build foundation, CI artifact generation, CodeQL, privacy controls, approved English and Arabic Desktop and Mobile Figma baselines, organized and locked Figma source file, approved MyGPT configuration, and completed MyGPT audit.
+**Date:** 2026-08-07  
+**Phase:** V1 product definition, bilingual visual design, MyGPT governance audit, Figma administrative organization, pre-Codex review, and canonical brand/SEO architecture approved  
+**Implementation status:** deterministic domain core, bilingual browser interface foundation, governed public-knowledge export, static production build foundation, CI artifact generation, CodeQL, privacy controls, approved English and Arabic Desktop and Mobile Figma baselines, organized and locked Figma source file, approved MyGPT configuration, completed MyGPT audit, corrected mobile date-field conflict, pre-Codex defect register, Terms/Privacy drafts, and approved canonical URL architecture.
 
 ## V1 Closure Status
 
-INCO V1 is formally closed and approved for product definition, scope, governance, logo usage, bilingual information architecture, deterministic-result hierarchy, privacy boundary, official-confirmation presentation, responsive visual design, MyGPT operating controls, and Figma file organization.
+INCO V1 is formally closed and approved for product definition, scope, governance, logo usage, bilingual information architecture, deterministic-result hierarchy, privacy boundary, official-confirmation presentation, responsive visual design, MyGPT operating controls, Figma file organization, and canonical URL/brand relationship.
 
 This closure does not mean the public site is live. Final coded gap analysis and alignment, implementation QA, release artifact inspection, Neom Cloud deployment, and live verification remain execution tasks.
 
@@ -15,7 +15,10 @@ See:
 - `docs/INCO_V1_PROJECT_CLOSURE_AND_HANDOFF_v1.0.md`
 - `docs/INCO_FIGMA_VISUAL_BASELINE_APPROVAL_v1.0.md`
 - `docs/INCO_FIGMA_FILE_ORGANIZATION_LOG_v1.0.md`
-- `docs/INCO_PROJECT_AGGREGATION_CHAT_PROMPT_v1.0.md`
+- `docs/INCO_PRE_CODEX_REVIEW_DEFECT_AND_IMPROVEMENT_REGISTER_v1.0.md`
+- `docs/INCO_PRE_CODEX_REVIEW_RESOLUTION_LOG_v1.0.md`
+- `docs/INCO_FINAL_PRODUCT_BRAND_SEO_GEO_REVIEW_v1.0.md`
+- `docs/ADR_008_INCO_CANONICAL_URL_AND_BRAND_AUTHORITY_v1.0.md`
 - `docs/MYGPT_INCO_REVIEW_v1.0.md`
 - `docs/MYGPT_AUDIT_EXECUTION_LOG_v1.0.md`
 - `docs/CODEX_MYGPT_LINK_ACTIVATION_v1.0.md`
@@ -30,9 +33,11 @@ Technology, automation, and AI are execution enablers, not the primary professio
 
 Mostafa Gad’s project role is Founder, Product Owner, Domain Architect, Business-Rules Owner, and Knowledge and Source-Governance Lead.
 
+INCO is a flagship Mostafa Gad knowledge-to-execution product, not an independent corporate brand.
+
 ## Approved Service Model
 
-INCO is a real, free, limited professional service for professionals, entrepreneurs, and individual importers. V1 has:
+INCO is a real, free professional decision-support service for professionals, entrepreneurs, and individual importers. V1 has:
 
 - no registration or payment;
 - no saved shipment cases or document uploads;
@@ -42,9 +47,33 @@ INCO is a real, free, limited professional service for professionals, entreprene
 - browser-side processing with no intentional shipment-case transmission;
 - clear privacy and professional boundaries.
 
+The word `limited` applies to professional scope and reliance boundaries, not to a freemium or paid-tier model. No paid tier, subscription, pricing, or paid-report workflow is included in V1.
+
+## Approved Canonical URL and Brand/SEO Architecture
+
+Official canonical URL:
+
+- `https://mostafagad.net/inco/`
+
+This is the single indexable canonical product URL for INCO.
+
+If the alternate/legacy route exists:
+
+- `https://mostafagad.net/products/inco/`
+
+it must return a permanent HTTP `301` redirect directly to:
+
+- `https://mostafagad.net/inco/`
+
+The route `https://mostafagad.net/products/` remains the MostafaGad.net product-discovery hub and may contain an INCO card linking directly to `/inco/`; it must not create a second canonical INCO detail page.
+
+The trailing-slash canonical must be used consistently in canonical metadata, sitemap, internal links, structured data, Open Graph, hreflang references where applicable, and public documentation.
+
+See `docs/ADR_008_INCO_CANONICAL_URL_AND_BRAND_AUTHORITY_v1.0.md`.
+
 ## Approved Hosting and Runtime
 
-- Public URL: `https://mostafagad.net/inco`
+- Public URL: `https://mostafagad.net/inco/`
 - Hosting: Neom Cloud cPanel under `public_html/inco`.
 - Runtime: static HTML, CSS, JavaScript, and approved JSON knowledge assets.
 - Build environment: GitHub Actions with Node.js used only to test and generate the static release artifact.
@@ -72,6 +101,8 @@ Approved logo source:
 
 Manual redrawing, reconstruction, stretching, recoloring, cropping, or text approximation is prohibited.
 
+The EN and AR mobile frames were corrected on 2026-08-07 to include the planned transaction date while preserving the approved design direction. Generic Arabic UI remnants were corrected; specialist professional terminology may remain in English where clearer and is not subject to forced translation.
+
 ## Figma File Organization Status
 
 The live Figma file was administratively organized without changing the approved visual design.
@@ -87,10 +118,9 @@ Current page structure:
 
 Governance status:
 
-- approved frames `2:2`, `2:150`, `40:2`, and `45:2` are locked;
+- approved frames `2:2`, `2:150`, `40:2`, and `45:2` are locked after approved corrections;
 - closure node `48:2` is locked;
 - approved logo master `31:12` is locked;
-- no approved frame was intentionally moved internally, resized, recolored, retyped, rebuilt, or visually edited;
 - archived material must not be used for production implementation;
 - the approved node IDs remain the governing implementation references.
 
@@ -115,7 +145,7 @@ See `docs/INCO_FIGMA_FILE_ORGANIZATION_LOG_v1.0.md`.
 - Mobile-responsive and accessible layout foundation.
 - Result cards for route, cargo, destination, risks, missing facts, confirmations, sources, and next action.
 - Privacy-safe result-copy function.
-- Canonical URL and structured data aligned to `mostafagad.net/inco`.
+- Canonical URL and structured data must be finalized to the approved trailing-slash canonical `https://mostafagad.net/inco/` during coded alignment.
 
 ## MyGPT Final Status
 
@@ -161,25 +191,52 @@ Primary destination markets:
 
 Priority origins include China, India, Turkey, Italy, the United States, Russia with enhanced-compliance controls, and Australia.
 
+## Terms, Privacy, and Launch Controls
+
+Neutral V1 working drafts exist for:
+
+- `docs/INCO_TERMS_OF_USE_DRAFT_v1.0.md`
+- `docs/INCO_PRIVACY_NOTICE_DRAFT_v1.0.md`
+
+Final implementation must include accessible Terms, Privacy, and professional-boundary routes/links without inventing jurisdiction-specific governing-law or liability language that has not been approved.
+
+Privacy wording must distinguish locally processed shipment-case values from ordinary technical hosting/security logs.
+
 ## Remaining Before Public Launch
 
 1. Inspect the current coded implementation and complete a gap matrix against the four live approved Figma nodes.
 2. Change only verified visual or behavioral gaps; do not rebuild or redesign compliant areas.
-3. Reconcile final bilingual copy with runtime strings.
-4. Implement or verify the approved MyGPT button behavior already represented in the four Figma baselines.
-5. Run browser, mobile, RTL, accessibility, and regression QA.
-6. Confirm Domain Core tests, build, leakage checks, CodeQL, and release workflows are green.
-7. Generate, download, and manually inspect the final `dist-public` artifact.
-8. Review current repository content and relevant history for secrets or protected-source leakage.
-9. Upload only the approved public artifact to `public_html/inco` on Neom Cloud.
-10. Validate HTTPS, asset paths, caching, rollback, bilingual behavior, MyGPT link, and live deterministic scenarios.
-11. Integrate navigation, sitemap, metadata, and internal links into MostafaGad.net V3.
+3. Reconcile final bilingual copy with runtime strings, without forced translation of clear specialist terminology.
+4. Implement the approved canonical URL consistently and add the `/products/inco/` -> `/inco/` 301 at the MostafaGad.net/site-routing layer if that alternate path exists.
+5. Implement/verify SEO metadata, structured-data creator/founder relationship, sitemap/internal-link consistency, and product-hub linking.
+6. Implement/verify Terms, Privacy, and professional-boundary navigation using approved neutral content and explicit owner/legal stop conditions.
+7. Implement or verify the approved MyGPT button behavior already represented in the four Figma baselines.
+8. Run browser, mobile, RTL, accessibility, SEO, canonical/redirect, and regression QA.
+9. Confirm Domain Core tests, build, leakage checks, CodeQL, and release workflows are green.
+10. Generate, download, and manually inspect the final `dist-public` artifact.
+11. Review current repository content and relevant history for secrets or protected-source leakage.
+12. Upload only the approved public artifact to `public_html/inco` on Neom Cloud.
+13. Validate HTTPS, redirect behavior, asset paths, caching, rollback, bilingual behavior, MyGPT link, and live deterministic scenarios.
+14. Integrate navigation, product hub, sitemap, metadata, and internal links into MostafaGad.net V3.
 
 ## Owner Inputs Still Required
 
-No strategic product, design, Figma-organization, or MyGPT governance decision is pending. Execution-time access is required only for final Neom Cloud upload and live-site verification, plus approval for any material change outside the closed V1 baseline.
+No strategic product, canonical URL, brand relationship, design-direction, Figma-organization, or MyGPT governance decision is pending. Execution-time access is required only for final Neom Cloud upload and live-site verification, plus approval for any material change outside the closed V1 baseline or jurisdiction-specific final legal wording.
 
 ## Change Log
+
+### 2026-08-07
+
+- Approved `https://mostafagad.net/inco/` as the single canonical public INCO URL.
+- Approved permanent `301` redirect from `/products/inco/` to `/inco/` if the alternate path exists.
+- Confirmed `/products/` remains the product-discovery hub rather than a second INCO detail route.
+- Approved INCO as a flagship Mostafa Gad knowledge-to-execution product, not an independent corporate brand.
+- Corrected EN/AR mobile Figma baselines to include the planned transaction date.
+- Corrected generic Arabic mobile UI remnants while preserving clear specialist terminology where appropriate.
+- Added pre-Codex defect/resolution governance.
+- Added V1 Terms of Use and Privacy Notice working drafts.
+- Updated README and SECURITY maturity/MyGPT wording.
+- Completed final Product + Brand + SEO + GEO review.
 
 ### 2026-08-06
 
