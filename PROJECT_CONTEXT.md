@@ -1,356 +1,802 @@
 # INCO Project Context
 
-**Status:** Approved product, knowledge, and deterministic-core foundation  
+**Status:** PRODUCT / BUSINESS KNOWLEDGE SOURCE OF TRUTH  
 **Owner:** Mostafa Gad  
 **Repository:** `magad84/inco`  
-**Last updated:** 2026-08-05
+**Last updated:** 2026-08-07  
+**Purpose:** Preserve approved product knowledge independently of chat history. This file does not certify the current software architecture or implementation.
 
-## 0. Execution Authority and Decision Escalation
+---
 
-The owner authorizes autonomous progression through all already-approved research, knowledge-engineering, schema, deterministic-code, testing, documentation, and GitHub stages.
+# 1. Knowledge Classification
 
-The execution agent should:
+## APPROVED
 
-- Continue directly into the next approved work stage without pausing for routine approval.
-- Choose efficient, maintainable, low-risk implementation details.
-- Commit completed work to GitHub with clear messages.
-- Run and review CI before treating executable results as approved.
-- Correct defects discovered by tests or source review without owner interruption.
-- Record material progress in `CURRENT_STATE.md` and the relevant GitHub issue.
-- Return `confirmation_required`, `source_unavailable`, or `stale_review_required` instead of guessing.
+- INCO V1 is a real, free, bilingual international-trade and logistics decision-support product.
+- INCO is a flagship Mostafa Gad knowledge-to-execution product under `MostafaGad.net`, not an independent corporate brand.
+- Mostafa Gad is positioned primarily as a Business & Operations Leader with deep supply-chain expertise. Technology, AI, automation, and open-source engineering are execution enablers, not the primary professional identity.
+- V1 is anonymous and has no registration, payment, subscription, paid tier, saved cases, document upload, or persistent customer database.
+- The deterministic/rules-first result is controlling. AI/MyGPT cannot override or downgrade the deterministic result.
+- V1 launch destination packs: UAE, Saudi Arabia, Egypt, Oman.
+- Priority origin context: China, India, Turkey, Italy, United States, Russia with enhanced-compliance controls, and Australia.
+- Public controlled decision states are exactly:
+  - `candidate`
+  - `confirmation_required`
+  - `source_unavailable`
+  - `blocked_information_required`
+  - `enhanced_compliance_required`
+- Official confirmation output uses five parts: reason; authority/provider; official source; impact; next action.
+- No unsupported live claims for rates, capacity, schedules, cut-offs, booking, carrier acceptance, customs clearance, permits, or authority approval.
+- Unknown or insufficient safety/composition data must not be treated as evidence that cargo is non-dangerous or accepted.
+- Damaged lithium batteries must never be represented as accepted for air transport without qualified assessment and written acceptance from the actual operating carrier.
+- Russia-related cases require enhanced transaction-specific compliance screening rather than a simple country-level allowed/prohibited conclusion.
+- Outside the four primary V1 destination packs, only general/candidate guidance may be given; no country-specific definitive result may be invented. The exact technical handling must still conform to the five approved public states.
+- V1 privacy model: shipment-case data is intended to be processed locally in the browser; no intentional transmission to a remote INCO evaluation API; no deliberate persistent case storage.
+- MyGPT is an optional external explanation/checklist companion using the approved URL, with no automatic transfer of shipment data or result data.
+- EN public route: `https://mostafagad.net/inco/`.
+- AR public route: `https://mostafagad.net/ar/inco/`.
+- Each language route self-canonicalizes. `hreflang=en` points to `/inco/`, `hreflang=ar` to `/ar/inco/`, and `x-default` to `/inco/`.
+- `/products/inco/` must redirect permanently to `/inco/` if present. `/ar/products/inco/` must redirect permanently to `/ar/inco/` if present.
+- `/products/` and `/ar/products/` are discovery hubs, not competing INCO detail pages.
+- SEO and GEO are one coordinated discoverability strategy based on crawlability, expert-led content, truthful structured data, stable URLs, source-grounded statements, and entity linking to Mostafa Gad / MostafaGad.net.
+- Specialist logistics/trade/customs/DG terminology may remain English in Arabic UI where professionally clearer. General UI labels and explanatory copy must remain coherent in Arabic.
+- Figma is the visual source of truth. GitHub does not replace Figma.
 
-Owner escalation is required only for decisions involving:
+## CURRENT DIRECTION
 
-- Pricing or material changes to free-versus-paid boundaries.
-- Paid software, data, or content licenses.
-- Final production architecture, hosting commitment, or deployment.
-- Authentication, payment, public API, or live carrier-booking integrations.
-- AI model/provider selection.
-- Material legal, sanctions, security, privacy, or public-marketplace risk.
-- A major product-scope change outside approved ADR-001 and ADR-002.
+- Close product/business/design knowledge and hand execution to Codex for technical validation, implementation-gap analysis, visual alignment, QA, and pre-deployment work.
+- Preserve the static anonymous V1 boundary unless a later owner decision changes it.
+- Keep INCO as an authority/acquisition product for MostafaGad.net, demonstrating conversion of domain expertise into governed execution.
+- Support search intent around real shipment problems rather than only the INCO brand name.
+- Use non-sensitive provenance where useful: engine/release version, knowledge release, evaluation date, source-review/effective date, and allowed public source identifiers/links.
+- Use contextual internal links from INCO to relevant Mostafa Gad expertise, research, articles, and knowledge-to-execution content without interrupting the shipment workflow.
 
-## 1. Product Definition
+## OPEN / MISSING
 
-INCO is a bilingual, structured international-commerce and logistics decision-support platform.
+- Final governing law, jurisdiction, dispute wording, and final limitation-of-liability wording for public Terms: `OWNER / LEGAL DECISION REQUIRED`.
+- Actual Neom Cloud / parent-site technical logging, access, retention, deletion, and inherited analytics/tracking behavior: `TECHNICAL / HOSTING VALIDATION REQUIRED`.
+- Final public Terms and Privacy publication state: drafts exist but require the above reviews.
+- Visual design for standalone Terms and Privacy pages/routes is not preserved as an approved dedicated Figma screen: `DESIGN REQUIRED` if a dedicated page treatment beyond parent-site legal templates is needed.
+- Actual repository architecture, routing, code quality, tests, implementation parity, and deployment readiness: `TECHNICAL VALIDATION REQUIRED BY CODEX`.
+- Parent MostafaGad.net integration details such as actual sitemap generation, redirect implementation layer, shared navigation, and final production routing: `TECHNICAL VALIDATION REQUIRED`.
+- Any future analytics measurement model beyond launch: `OWNER DECISION REQUIRED` before tracking is added.
 
-Its core product reviews a proposed trade term for a specific transaction. The wider approved direction adds modular support for cargo pre-screening, origin and destination country requirements, transport gateways, carrier services, freight calculations, container loading, abnormal-load indicators, and verified customs-clearance provider discovery.
+## DEFERRED
 
-INCO must evaluate the full shipment trade lane:
+Not part of V1 launch unless separately approved:
 
-```text
-Origin Country
-→ Origin Gateway
-→ Export Requirements
-→ Carrier and Service
-→ Transit, when applicable
-→ Destination Gateway
-→ Destination Country Requirements
-→ Inland Transport and Final Delivery
-```
+- Authentication and user accounts.
+- Saved shipment cases and persistent reports.
+- Document upload / AI document analysis.
+- Payment, pricing, subscription, paid reports, freemium or premium tiers.
+- Live carrier booking, rates, capacity, schedules, or cut-off integrations.
+- Live government/customs APIs.
+- Public API, ERP integrations, team workspaces.
+- Production broker marketplace.
+- Multi-SKU container-load planner / 2D or 3D loading optimization as a public V1 feature.
+- Large-scale road/bridge/tunnel/abnormal-load planning productization.
+- Expansion beyond the approved launch-market knowledge scope.
+- Embedded generative chat inside MostafaGad.net.
+- Mass AI-generated SEO pages, doorway pages, keyword permutations, or AI-specific ranking hacks.
 
-INCO must convert user data and verified rules into practical, explainable outputs. It must not behave as a general chatbot or claim authority that belongs to a government body, carrier, competent specialist, or licensed service provider.
+## SUPERSEDED / REJECTED
 
-## 2. Primary User Problems
+- V1 as a paid/freemium product, including `advanced service for a small fee`, paid tier, premium plan, pricing, subscription, or paid-report upsell: superseded by the free V1 decision.
+- Google sign-in as a V1 requirement: superseded / deferred.
+- Saved cases and persistent customer database as V1 requirements: superseded / deferred.
+- INCO as only an external GPT gateway: superseded.
+- INCO as primarily a subdomain application: superseded for V1 public entry.
+- `/products/inco/` as the canonical detail page: superseded by `/inco/` and `/ar/inco/` language architecture.
+- Historical parent-site descriptions that conflict with current INCO ADRs are background only for INCO-specific implementation.
+- The legacy public decision state `unsupported_scope` is not part of the approved five-state contract. Codex must trace any remaining implementation usage before changing code.
 
-Professionals often make shipment decisions using fragmented information spread across:
+---
 
-- Commercial agreements.
-- Origin-country export processes.
-- Destination-country import processes.
-- Ports, airports, land borders, dry ports, and inland depots.
-- Carrier services and local conditions.
-- Government permits and operational notices.
-- Dangerous-goods requirements.
-- Package dimensions and weights.
-- Equipment specifications.
-- Local road and route restrictions.
-- Customs-clearance providers.
+# 2. Product Identity, Vision, and Positioning
 
-INCO organizes these inputs into guided workflows that identify:
+## Product name
 
-- What is known.
-- What is missing.
-- What can be calculated.
-- What can be determined by an approved rule.
-- What remains conditional.
-- What requires current carrier, authority, or specialist confirmation.
+**INCO**
 
-## 3. Target Users
+## Public descriptor
 
-Primary users:
+EN: **Free International Trade & Logistics Decision Support**  
+AR: **أداة مجانية لدعم قرارات التجارة الدولية والشحن**
 
-- Import and export professionals.
-- Logistics and freight professionals.
-- Procurement and sourcing teams.
-- Supply Chain professionals.
-- Customs and trade operations specialists.
-- Sellers, buyers, and SMEs involved in cross-border transactions.
-- Freight forwarders and transport planners.
-- Professionals preparing cargo for sea, air, courier, postal, road, rail, or multimodal movement.
+Preferred service/footer wording:
 
-INCO must address users as working professionals, not as beginners.
+- EN: `Free professional decision-support service`
+- AR: `خدمة مجانية لدعم القرار المهني`
 
-## 4. Approved Geographic Model
+The word `limited` may describe professional reliance, verification, coverage, or liability boundaries, but not a commercial free-vs-paid tier.
 
-### 4.1 Launch Destination Markets
+## Vision
 
-1. United Arab Emirates.
-2. Saudi Arabia.
-3. Egypt.
-4. Oman.
+Turn professional international-trade, shipping, logistics, and supply-chain knowledge into structured, source-governed, practical decision support that makes uncertainty, missing facts, risks, required confirmations, and next actions explicit before execution.
 
-Destination packs focus on import requirements, destination customs, local transport, road and permit controls, postal conditions, gateways, and verified customs-clearance providers.
+## Brand role
 
-### 4.2 Priority Origin Markets
+INCO should prove that Mostafa Gad can convert management and supply-chain expertise into governed, executable decision systems. The product strengthens the wider MostafaGad.net knowledge-to-execution positioning.
 
-1. China.
-2. India.
-3. Turkey.
-4. Italy.
-5. United States.
-6. Russia.
-7. Australia.
+Public attribution should be clear but restrained:
 
-Origin packs focus on export declarations, product controls, export permits, origin documentation, dangerous-goods and special-cargo requirements, postal and courier conditions, and the principal gateways relevant to launch-market trade lanes.
+- INCO by Mostafa Gad.
+- Founder / Product Owner / Domain Architect / Business-Rules Owner / Knowledge and Source-Governance Lead.
+- Do not reposition Mostafa Gad primarily as a software developer or AI engineer.
 
-The priority-origin list is an approved research scope, not a permanent ranking of countries. Future expansion may use verified trade data, user demand, product categories, and actual shipment cases.
+---
 
-### 4.3 Russia Enhanced Compliance
+# 3. Target Users and Roles
 
-Russia-related transactions require enhanced, transaction-specific screening that may include counterparties, beneficial ownership, banks, payment routes, product and end-use controls, re-export, carriers, vessels or aircraft, gateways, transit countries, and specialist legal confirmation.
+## Primary end users
 
-INCO must not issue a simple country-level permitted or prohibited conclusion where transaction-specific screening is required.
+- Supply-chain and logistics professionals.
+- Procurement, trade, customs, and operations practitioners.
+- Import/export professionals.
+- Entrepreneurs and SMEs involved in cross-border trade.
+- Small and individual importers, including first-time importers.
+- Freight and shipment-planning professionals.
 
-## 5. Approved Product Modules
+The product should address users as working professionals and provide concise practical decision support rather than beginner training.
 
-### 5.1 Trade-Term Review
+## V1 user roles
 
-The core workflow must:
+### Anonymous Visitor / Professional User
 
-- Review whether the selected term fits the actual transaction.
-- Check transport-mode compatibility.
-- Review the named place and intended delivery point.
-- Separate delivery, risk transfer, cost allocation, and operational control.
-- Map seller and buyer responsibilities.
-- Identify operational and commercial risks.
-- Explain advantages and disadvantages for each party.
-- Identify missing or contradictory assumptions.
-- Compare practical alternatives.
-- Produce clarification, negotiation, and next-action points.
+- No authentication.
+- Can open EN or AR route.
+- Enters shipment facts.
+- Runs deterministic check.
+- Reads result, sources, risks, missing information, confirmations, and next action.
+- Can use privacy-safe copy actions where provided.
+- Can open MyGPT manually through the approved external link.
+- Can follow contextual links to relevant MostafaGad.net content.
 
-### 5.2 Cargo Nature and Dangerous-Goods Pre-Screen
+No account, administrator, organization, broker, billing, or saved-case user role is part of V1 public scope.
 
-The pre-screen may identify indicators of dangerous, restricted, prohibited, temperature-controlled, fragile, high-value, biological, magnetic, radioactive, oversized, overweight, or otherwise special cargo.
+---
 
-The module must not provide a final dangerous-goods classification or declare cargo accepted. It must request relevant evidence and route the user to the appropriate carrier, authority, or competent specialist when required.
+# 4. V1 Product Scope and Modules
 
-### 5.3 Origin and Destination Country Packs
+## M01. Shipment Facts Intake — APPROVED
 
-Country data must be versioned and may vary by:
+Purpose: collect only material facts that can change the result.
 
-- Import, export, re-export, transit, or domestic movement.
-- State, emirate, province, governorate, city, port, airport, border, free zone, or local authority.
+Approved/required data model includes where applicable:
+
+- Country of origin.
+- Country of export / dispatch.
+- Country of import / destination.
+- Planned transaction date.
 - Transport mode.
 - Cargo category.
-- Route and infrastructure.
-- Effective date.
+- Physical state.
+- Technical / goods description.
+- Whether composition is known.
+- Known hazard indicators.
+- Special-handling indicators.
+- Enhanced-compliance trigger / material compliance context.
 
-### 5.4 Transport Gateway Registry
+Users must be warned not to enter unnecessary personal, banking, invoice, credential, contract, or confidential commercial data.
 
-Ports, cargo airports, land borders, dry ports, inland container depots, rail terminals, and relevant free-zone gateways are independent knowledge objects.
+## M02. Cargo / Dangerous-Goods / Special-Cargo Pre-Screen — APPROVED
 
-Gateway records may include:
+Purpose: identify indicators that may affect shipment feasibility, evidence requirements, carrier acceptance, authority confirmation, or specialist review.
 
-- Official identity and location codes.
-- Gateway type and authorities.
-- Cargo and equipment capabilities.
-- Dangerous-goods and special-cargo indicators.
-- Customs and operating conditions.
-- Access, truck, route, weight, dimension, and operating constraints.
-- Effective date, verification date, and confirmation status.
+Rules:
 
-A location code may identify a gateway but must not be treated as proof of current operational capability.
+- Pre-screen is not final dangerous-goods classification.
+- Missing composition/SDS/technical evidence may block evaluation.
+- Do not declare cargo non-dangerous merely because hazard data is absent.
+- Do not claim carrier acceptance.
+- Damaged lithium battery cases require qualified assessment and actual-carrier confirmation.
 
-### 5.5 Carrier and Service Registry
+## M03. Destination Requirements — APPROVED
 
-A carrier name alone is not an executable rule. Carrier knowledge must be stored by provider, service, origin, destination, cargo category, and effective date.
+Primary destination packs:
 
-Initial priority includes:
+- UAE.
+- Saudi Arabia.
+- Egypt.
+- Oman.
 
-- Express: DHL Express, FedEx, Aramex, national postal operators, and UPS where authoritative sources are available.
-- Ocean: Maersk, MSC, CMA CGM, COSCO, Hapag-Lloyd, ONE, and Evergreen.
-- Air cargo: Emirates SkyCargo, Etihad Cargo, Qatar Airways Cargo, Saudia Cargo, Turkish Cargo, EgyptAir Cargo, and Oman Air Cargo.
+Purpose: expose destination-specific candidate requirements, missing data, controlled-source references, uncertainty, and required confirmation.
 
-Rules may include service coverage, weight and dimension limits, volumetric factors, cargo prohibitions and restrictions, dangerous-goods acceptance processes, documentation, equipment, local conditions, and confirmation requirements.
+Outside these packs, provide only general guidance and clearly disclose scope limits.
 
-No universal carrier acceptance rule or volumetric divisor may be hard-coded where the actual condition depends on provider, service, market, route, or date.
+## M04. Trade Lane / Route / Service Candidate Evaluation — APPROVED
 
-### 5.6 Trade-Lane Review
+Purpose: identify candidate route/service conditions without inventing live availability.
 
-The route module links origin pack, origin gateway, carrier service, transit segments, destination gateway, destination pack, and inland movement.
+Outputs may include candidate route/service state, route risks, missing gateway/carrier facts, and confirmation requirements.
 
-Outputs may include:
+No live schedule, capacity, rate, booking, cut-off, acceptance, or route-approval claim is allowed without a supported current process.
 
-- Candidate gateways and services.
-- Missing cargo evidence.
-- Export, transit, import, and local confirmation points.
-- Carrier-specific calculations.
-- Dangerous-goods and special-cargo warnings.
-- Route and operational risks.
-- Alternative gateway, carrier, service, or mode options.
-- Required next actions and official confirmation sources.
+## M05. Deterministic Calculations — APPROVED DOMAIN CAPABILITY; PUBLIC UI EXPOSURE TO BE VALIDATED
 
-### 5.7 Cargo Calculators
+Documented domain capabilities include:
 
-Deterministic calculators may include:
-
-- CBM per package and total CBM.
+- CBM.
 - Total gross weight.
 - Volumetric weight.
 - Chargeable weight.
-- Preliminary pallet count.
-- Preliminary container comparison and count.
-- Volume and payload utilization.
 
-Pure mathematics must be distinguished from carrier-specific commercial rules and operational estimates.
+Mathematical calculation must remain distinct from carrier-specific commercial rules and operational estimates.
 
-### 5.8 Container Load Planner
+Codex must verify which calculators are actually intended to be exposed in the current public V1 UI rather than assuming every domain capability needs a new screen.
 
-A future paid module may optimize multiple carton or package types within a selected cargo transport unit while considering dimensions, door opening, payload, orientation, stackability, top-load, fragile and heavy constraints, pallets, dunnage, loading sequence, and approximate weight distribution.
+## M06. Decision Assembly and Controlled States — APPROVED
 
-The output is a proposed loading arrangement, not a safety certificate, securing approval, carrier acceptance, route approval, or dangerous-goods segregation approval.
+Public result state must be one of the five approved states only:
 
-### 5.9 Road, Bridge, Tunnel, and Abnormal-Load Indicators
+- `candidate`
+- `confirmation_required`
+- `source_unavailable`
+- `blocked_information_required`
+- `enhanced_compliance_required`
 
-This module activates only when cargo, vehicle, or route data indicates potential restrictions. It may identify likely requirements for permits, route studies, bridge or tunnel review, escort, axle controls, truck-time restrictions, and authority confirmation.
+Confidence/completeness must not be confused with decision state.
 
-INCO must not claim that a route or load is approved without current confirmation.
+## M07. Official Confirmation Protocol — APPROVED
 
-### 5.10 Verified Customs-Broker Marketplace
+When current confirmation is required, output must clearly provide:
 
-A future marketplace may connect users with registered customs-clearance providers using verified license, customs point, mode, cargo category, language, availability, and transaction feedback.
+1. Reason.
+2. Authority/provider.
+3. Official source, where available.
+4. Impact if not confirmed.
+5. Recommended next action.
 
-Sponsored visibility must be clearly labeled and kept separate from operational match and verification status.
+## M08. Result / Evidence / Next Action — APPROVED
 
-## 6. Core Workflow Model
+Result structure should expose as applicable:
 
-1. User selects a task or complete-case route.
-2. INCO collects only relevant transaction, cargo, origin, destination, and route data.
-3. Inputs are validated for completeness and consistency.
-4. Applicable country, gateway, carrier, trade-term, cargo, and route modules are activated.
-5. Mathematical results are calculated deterministically.
-6. Versioned rules produce indicators, warnings, responsibilities, and candidate options.
-7. Current external confirmation requirements are identified.
-8. Results show sources, assumptions, uncertainty, stale rules, and next actions.
-9. Paid outputs add depth, comparison, optimization, report generation, or workflow value.
+- Decision state and summary/reasons.
+- Route and service status.
+- Cargo status.
+- Destination requirements.
+- Key risks.
+- Missing information.
+- Required confirmations.
+- Controlled source references.
+- Recommended next action.
+- Technical evidence / non-sensitive provenance.
+- Professional boundary.
 
-## 7. Free and Paid Direction
+No downloadable paid professional report is a V1 requirement.
 
-### Free capabilities
+## M09. MyGPT Companion — APPROVED
 
-- INCO Free Review.
-- Core trade-term suitability and risk summary.
-- Basic cargo and dangerous-goods pre-screen.
-- Basic CBM, gross-weight, volumetric-weight, and chargeable-weight calculations.
-- Candidate country, gateway, carrier, and service indicators.
-- Preliminary container and route indicators.
-- Missing-information and critical-risk checks.
+Approved external URL:
 
-Critical risks must not be hidden to force payment.
+`https://chatgpt.com/g/g-6a66319a00a48191a0601bc4039fb159-inco`
 
-### Paid capabilities
+Role:
 
-- INCO Trade Decision Pack.
-- Detailed multi-option comparison and responsibility matrix.
-- INCO Route & Carrier Decision Pack.
-- Origin-to-destination route, gateway, and service comparison.
-- Carrier-specific calculations and confirmation checklist.
-- Professional report and saved case.
-- Multi-SKU Container Load Plan.
-- 2D/3D loading visualization and printable plan.
-- Advanced country, gateway, carrier, and compliance brief where supported.
-- Future provider request-for-quotation workflow.
+- explain the deterministic result;
+- ask for material missing facts;
+- create practical checklists;
+- prepare questions for providers/authorities;
+- explain why confirmation is required.
 
-Initial monetization direction: pay per report or paid output. Credit bundles, subscriptions, and company workspaces remain later-stage options.
+Must not:
 
-Pricing amounts and payment provider are not approved.
+- override or downgrade website result;
+- invent approvals, live rates, schedules, capacity, permits, or booking status;
+- provide unsupported final dangerous-goods classification;
+- expose internal/protected sources;
+- automatically receive form or result data from the website.
 
-## 8. Authentication Direction
+Approved Knowledge configuration: files `01` through `08` only. MyGPT audit completed 16/16 with no failures; post-cleanup regression 3/3 passed. Owner approval to expose the link is granted, but the website button is not considered production-live until implementation and live verification complete.
 
-- Visitors should receive useful free results without registration.
-- Google sign-in is planned for saving, resuming, purchasing, accessing reports, and managing account data.
-- Request minimum identity scopes only.
-- Do not request Gmail, Drive, contacts, or unrelated Google permissions.
-- Authentication and payment processing remain independent modules.
+## M10. Privacy / Terms / Professional Boundary — APPROVED REQUIREMENT; FINAL LEGAL REVIEW OPEN
 
-## 9. AI Decision
+V1 must provide:
 
-AI remains outside the current implementation commitment.
+- concise pre-use professional-boundary copy near the run action;
+- visible Terms link;
+- visible Privacy link;
+- visible Professional limitations/boundary path or clear linked section;
+- distinction between locally processed shipment-case values and ordinary hosting/security logs;
+- no claim that absolutely no technical data is processed by hosting unless verified.
 
-The deterministic rules, calculators, source registry, gateway and carrier records, and structured workflows must operate without an LLM.
+Terms and Privacy drafts exist under `docs/`.
 
-A later AI layer may assist with free-text understanding, extraction, clarification, translation, or report wording only after evaluation. It must remain replaceable and must never become the sole source for safety, compliance, carrier acceptance, responsibility, or recommendation logic.
+## M11. Feedback — APPROVED LOCAL-ONLY CONCEPT; IMPLEMENTATION PARITY TO BE VALIDATED
 
-## 10. Architecture Decision
+V1 feedback must not silently transmit or store responses.
 
-ADR-001 is approved for the first implementation slice:
+If exposed, the action must clearly mean copy/prepare feedback, not successful server submission.
 
-- Strict TypeScript deterministic domain core.
-- JSON Schemas as external contracts.
-- Reviewed decimal arithmetic for measurement and commercial calculations.
-- No database, authentication, payment, AI, network services, or production web framework in the first package.
-- Python optimization remains deferred to the paid load-planner benchmark stage.
+Server-side feedback collection requires a future approved data flow, purpose, consent basis where applicable, retention rule, endpoint, abuse controls, and privacy update.
 
-ADR-002 is approved for origin markets, gateways, carriers, services, transit segments, and full trade-lane modeling.
+## M12. SEO / GEO / Entity Authority — APPROVED
 
-## 11. Knowledge and Source Governance
+Requirements:
 
-The source hierarchy is:
+- EN self-canonical `/inco/` and AR self-canonical `/ar/inco/`.
+- Reciprocal hreflang and x-default.
+- Truthful language-specific title/meta/Open Graph/structured data.
+- INCO represented as `WebApplication` or appropriate equivalent where accurate.
+- Mostafa Gad linked as creator/founder where visible and truthful.
+- Semantic heading structure.
+- Stable URLs and source-grounded public content.
+- Contextual internal links to relevant MostafaGad.net authority content.
+- No fake ratings/reviews/certifications/authority signals.
+- No mass thin pages or GEO hacks.
+- `llms.txt` is not a launch requirement.
 
-1. Applicable official law, regulation, or government service.
-2. Official international safety or transport source.
-3. Official carrier rule, equipment guide, tariff, or operational notice.
+---
+
+# 5. Business and Validation Rules
+
+## General rules
+
+- Verified rules before certainty.
+- Missing material information must not be guessed.
+- Source unavailability must not be converted into confidence.
+- Current provider/authority-controlled facts require confirmation when live data is unavailable.
+- Critical safety/compliance warnings are never hidden.
+- User willingness to accept risk does not remove authority/carrier requirements.
+- The deterministic website result is authoritative over chat interpretation.
+
+## Input validation principles
+
+- Required material fields must be validated for presence and consistency.
+- Country identifiers should use valid supported codes/values.
+- Dates must be valid and materially relevant to rule applicability.
+- Cargo description must be sufficiently clear for the rules being applied.
+- Unknown composition/hazard status must remain explicit rather than silently defaulting to safe.
+- Invalid or incomplete requests should produce a controlled error/missing-information path, not an invented recommendation.
+
+## Safety / compliance examples that are product rules
+
+- Unknown chemical without SDS/composition: do not release or describe as non-dangerous; obtain missing technical evidence and qualified assessment.
+- Damaged lithium battery by air: do not confirm acceptance; require qualified DG assessment and written acceptance from actual operating airline/carrier.
+- Russia-related transaction: enhanced transaction-specific compliance review required.
+- Unsupported destination: no definitive local clearance/duty/approval claim; general candidate guidance only and local official/provider confirmation.
+- Requested current rate/capacity/cut-off/booking when no live source exists: use `source_unavailable`; do not invent.
+
+---
+
+# 6. Data and Privacy Principles
+
+## Shipment-case data
+
+Approved intent:
+
+- evaluate in browser;
+- do not intentionally send to remote INCO evaluation API;
+- do not deliberately persist in customer database;
+- do not write shipment/result values to localStorage, sessionStorage, IndexedDB, cookies, URL query strings, analytics payloads, or third-party scripts without a new explicit approval.
+
+## Technical hosting data
+
+Normal web-hosting/security infrastructure may process request metadata such as IP address, user agent, time, requested asset, status code, and security information. Actual production behavior and retention require hosting validation before Privacy publication.
+
+## Confidentiality
+
+Do not request or encourage unnecessary confidential identifiers. MyGPT and other external links are separate service boundaries.
+
+---
+
+# 7. Knowledge, Sources, and RAG Governance
+
+## Source hierarchy
+
+Prefer, in order:
+
+1. Applicable official law/regulation/government service.
+2. Official international safety/transport source.
+3. Official carrier rule, guide, tariff, or operational notice.
 4. Official port, airport, postal, customs, or road authority guidance.
-5. Approved technical publication with clear licensing.
+5. Approved technical publication with acceptable usage rights.
 6. Reputable secondary material for discovery only.
-7. Provider or user declaration, clearly marked as self-declared.
+7. Provider/user declaration, clearly labeled as self-declared.
 
-Every executable rule must be traceable, explainable, testable, versioned, effective-dated where relevant, assigned a review date, and capable of returning uncertainty or confirmation-required states.
+Executable rules must be traceable, testable, versioned, and effective/review dated where relevant.
 
-A carrier or gateway result must not be shown as current when its governing rule is stale or unavailable.
+## Public build governance
 
-## 12. Product, Professional, and Safety Boundaries
+Public artifacts must not expose:
 
-INCO must:
+- internal or private source material;
+- protected/licensed text;
+- credentials, secrets, passwords, tokens;
+- customer data;
+- internal rule corpus not approved for publication.
 
-- Use only approved INCO identity and visual assets.
-- Remain independent from MostafaGad.net application architecture and data.
-- Avoid unsupported certainty.
-- Distinguish calculations, verified rules, conditional guidance, and current confirmation.
-- Avoid presenting a pre-screen as a final dangerous-goods determination.
-- Avoid presenting a geometric fit as a safe loading approval.
-- Avoid presenting a provider registration as government endorsement.
-- Avoid claiming carrier acceptance without current evidence or direct confirmation.
-- Avoid ranking a carrier, gateway, or provider solely because of sponsorship.
-- Identify when legal, customs, sanctions, dangerous-goods, insurance, carrier, transport, road, or specialist confirmation is needed.
-- Refuse assistance intended to facilitate illegal trade, evasion, unsafe movement, or falsification.
+`INTERNAL-TRADE-001` is an internal source identifier and must not be exposed in public artifacts.
 
-## 13. Deferred Decisions
+## MyGPT RAG governance
 
-Do not implement without explicit approval:
+MyGPT Knowledge uses the governed `01–08` pack only. Hidden instructions, private sources, restricted materials, and internal files must never be disclosed even if a user requests or claims to authorize disclosure.
 
-- Generative AI or chatbot functionality.
-- Final production web application architecture.
-- Paid software or data licenses.
-- Government API integrations.
-- Live carrier booking or rate APIs.
-- Subscription billing.
-- Team workspaces.
-- Public API.
-- ERP integrations.
-- Production customs-broker marketplace launch.
-- Pricing amounts or payment-provider selection.
+---
 
-## 14. Governing Principle
+# 8. Intended Technical Boundaries — NOT AN IMPLEMENTATION CERTIFICATION
 
-**Verified rules before questions. Questions before code. Calculation before optimization. Confirmation before commitment. Route context before carrier recommendation.**
+The following are approved/intended constraints from product decisions. Codex must verify the actual repository before relying on them:
+
+- Rules-first deterministic domain core.
+- Static browser V1 public experience.
+- Same-origin approved public JSON knowledge assets.
+- No production database/auth/payment requirement for V1.
+- No LLM dependency for the deterministic result.
+- Build/test tooling may use Node.js; public runtime should not require Node.js.
+- Hosting target is Neom Cloud / parent MostafaGad.net environment.
+- EN and AR must be independently crawlable routes.
+- No remote shipment evaluation API should be necessary for V1.
+
+These are intended architectural constraints, not proof that the repository currently implements them correctly.
+
+---
+
+# 9. Navigation and Route Map
+
+## Public routes
+
+```text
+/products/                 Product discovery hub
+  -> /inco/                INCO English product/application
+
+/ar/products/              Arabic product discovery hub
+  -> /ar/inco/             INCO Arabic product/application
+
+/products/inco/            301 -> /inco/        if route exists
+/ar/products/inco/         301 -> /ar/inco/     if route exists
+```
+
+## Language switching
+
+```text
+/inco/      -> language switch -> /ar/inco/
+/ar/inco/   -> language switch -> /inco/
+```
+
+A JS-only same-URL translation experience is not sufficient for final production crawlability.
+
+## External route
+
+```text
+INCO Result
+  -> user manually chooses MyGPT CTA
+  -> external ChatGPT URL
+  -> no automatic case/result/query data transfer
+```
+
+---
+
+# 10. Core User Flows
+
+## F01. Standard shipment check
+
+```text
+Entry (/inco/ or /ar/inco/)
+→ Review hero / service boundary
+→ Enter shipment facts
+→ Validate inputs
+→ Run deterministic evaluation
+→ Receive one approved decision state
+→ Review reasons / route / cargo / destination / risks / missing data / confirmations / sources
+→ Review recommended next action
+→ Optional privacy-safe copy
+→ Optional MyGPT explanation
+→ Optional related MostafaGad.net content
+```
+
+## F02. Missing critical information
+
+```text
+Shipment facts
+→ Missing/insufficient material evidence
+→ blocked_information_required
+→ Show missing information
+→ Show why evaluation cannot safely proceed
+→ Show required evidence / specialist or authority confirmation
+→ User corrects facts and reruns
+```
+
+## F03. Confirmation required
+
+```text
+Shipment facts
+→ deterministic result identifies unresolved external confirmation
+→ confirmation_required
+→ Show five-part confirmation protocol
+→ User obtains provider/authority confirmation externally
+→ User may rerun with updated facts
+```
+
+## F04. Source/live information unavailable
+
+```text
+Request depends on current rate/capacity/schedule/cut-off/booking/acceptance or unavailable source
+→ source_unavailable
+→ Do not invent current value
+→ Identify provider/authority/source required
+→ Explain impact
+→ Give next action
+```
+
+## F05. Enhanced compliance
+
+```text
+Material enhanced-compliance trigger
+→ enhanced_compliance_required
+→ Suspend reliance on general result
+→ Request transaction/party/end-use/payment-route facts as appropriate
+→ Require qualified/current review
+```
+
+## F06. MyGPT companion
+
+```text
+Deterministic result exists
+→ User clicks approved MyGPT CTA
+→ External ChatGPT page opens in new tab
+→ No shipment/result data transferred automatically
+→ MyGPT may explain/checklist only
+→ Website decision state remains controlling
+```
+
+## F07. Error path
+
+```text
+Invalid input / failed governed asset / evaluation error
+→ no fabricated success state
+→ clear error or controlled unavailable/missing-information message
+→ preserve entered privacy boundary
+→ user corrects/retries or obtains external confirmation
+```
+
+---
+
+# 11. Screens & UX Map
+
+The approved public experience is a single-page product/application with four approved viewport/language baselines. `Designed` does not mean `Implemented`.
+
+## SCR-01 — English Desktop
+
+- **Figma node:** `2:2`
+- **Screen name:** `Desktop / INCO Product Page • EN • V1 APPROVED`
+- **Purpose:** Full English desktop shipment decision-support experience.
+- **User role:** Anonymous professional user.
+- **Entry point:** `/inco/`.
+- **Main components:** Header; approved INCO logo; language switcher; logistics hero; service/trust messaging; shipment-facts form; deterministic decision summary; result cards; official-confirmation protocol; recommended next action; MyGPT entry; professional boundary; footer.
+- **Inputs:** Shipment facts defined in M01.
+- **Outputs:** Controlled decision state, reasons, route/service, cargo status, destination requirements, risks, missing information, confirmations, sources, next action, technical evidence where exposed.
+- **Actions:** Run check; language switch; copy result where provided; open MyGPT; navigate relevant parent-site links/legal links.
+- **Validation:** Material required fields, consistency, privacy warning, controlled failure states.
+- **Related workflow:** F01–F07.
+- **Related data:** Shipment case data, public knowledge packs, source/provenance metadata.
+- **Design status:** APPROVED.
+- **Implementation status:** TECHNICAL VALIDATION REQUIRED.
+
+## SCR-02 — English Mobile
+
+- **Figma node:** `2:150`
+- **Screen name:** `Mobile / INCO Product Page • EN • V1 APPROVED`
+- **Purpose:** English mobile equivalent of SCR-01.
+- **User role:** Anonymous professional user.
+- **Entry point:** `/inco/` on mobile.
+- **Main components:** Mobile header; logo; language switcher; hero; shipment form; result summary/cards; official confirmation; next action; MyGPT; professional boundary; footer.
+- **Inputs:** Same functional inputs as desktop. Planned transaction date was explicitly added to the corrected mobile baseline on 2026-08-07.
+- **Outputs:** Same functional result contract as desktop.
+- **Actions:** Same core actions; mobile copy/action parity must be preserved.
+- **Validation:** Same business validation plus responsive/no-overflow/tap-target requirements.
+- **Related workflow:** F01–F07.
+- **Related data:** Same as SCR-01.
+- **Design status:** APPROVED after date-field correction.
+- **Implementation status:** TECHNICAL VALIDATION REQUIRED.
+
+## SCR-03 — Arabic Desktop RTL
+
+- **Figma node:** `40:2`
+- **Screen name:** `Desktop / INCO Product Page • AR • RTL • V1 APPROVED`
+- **Purpose:** Full Arabic RTL desktop experience.
+- **User role:** Anonymous professional user.
+- **Entry point:** `/ar/inco/`.
+- **Main components:** Arabic/RTL equivalents of SCR-01 with specialist terminology allowed to remain English where clearer.
+- **Inputs/Outputs/Actions:** Same functional contract as EN.
+- **Validation:** Same product rules plus `lang=ar`, RTL direction, bilingual terminology, punctuation, alignment, reading order, and accessibility.
+- **Related workflow:** F01–F07.
+- **Related data:** Same governed data contract.
+- **Design status:** APPROVED.
+- **Implementation status:** TECHNICAL VALIDATION REQUIRED.
+
+## SCR-04 — Arabic Mobile RTL
+
+- **Figma node:** `45:2`
+- **Screen name:** `Mobile / INCO Product Page • AR • RTL • V1 APPROVED`
+- **Purpose:** Arabic mobile shipment decision-support experience.
+- **User role:** Anonymous professional user.
+- **Entry point:** `/ar/inco/` on mobile.
+- **Main components:** Arabic mobile equivalents of SCR-02.
+- **Inputs:** Same functional inputs. `تاريخ المعاملة المتوقع` was added to the corrected baseline on 2026-08-07.
+- **Outputs:** Same functional result contract.
+- **Actions:** Same mobile action contract.
+- **Validation:** RTL, no clipping/overflow, correct Arabic general UI copy, permitted specialist English terminology, accessible tap/focus behavior.
+- **Related workflow:** F01–F07.
+- **Related data:** Same governed data contract.
+- **Design status:** APPROVED after corrections.
+- **Implementation status:** TECHNICAL VALIDATION REQUIRED.
+
+## SCR-05 — Terms of Use
+
+- **Purpose:** Public legal/service-boundary page or parent-site legal route linked from INCO.
+- **User role:** Anonymous visitor.
+- **Entry point:** Footer / pre-use notice.
+- **Main components:** Service scope; preliminary-support boundary; user responsibilities; prohibited use; external-services boundary; IP/open-source boundary; unresolved legal clauses once approved.
+- **Inputs:** None.
+- **Outputs:** Terms content.
+- **Actions:** Return to INCO / follow relevant legal links.
+- **Validation:** Must not publish invented jurisdiction/liability wording.
+- **Status:** MISSING VISUAL DESIGN / DRAFT CONTENT EXISTS / DESIGN REQUIRED if no parent-site template is reused.
+- **Implementation status:** TECHNICAL VALIDATION REQUIRED.
+
+## SCR-06 — Privacy Notice
+
+- **Purpose:** Explain V1 local case processing, technical hosting logs, tracking status, clipboard behavior, MyGPT boundary, and retention facts.
+- **User role:** Anonymous visitor.
+- **Entry point:** Footer / pre-use notice.
+- **Main components:** Data categories; processing; hosting logs; cookies/analytics; retention; external services; security/contact.
+- **Inputs:** None.
+- **Outputs:** Privacy notice.
+- **Actions:** Return to INCO / follow external privacy links where appropriate.
+- **Validation:** Must match actual hosting/analytics configuration before publication.
+- **Status:** MISSING VISUAL DESIGN / DRAFT CONTENT EXISTS / HOSTING VALIDATION REQUIRED.
+- **Implementation status:** TECHNICAL VALIDATION REQUIRED.
+
+## No V1 screens approved for
+
+- Authentication/login.
+- Dashboard.
+- Saved cases.
+- Billing/payment.
+- Document upload.
+- Admin console.
+- Broker marketplace.
+- Paid report generation.
+- Container-load planner.
+
+These must not be inferred from historical brainstorming.
+
+---
+
+# 12. Figma / Visual Design Preservation
+
+## File
+
+`https://www.figma.com/design/ukiYrUNG1zs38GMS3edxJ2`
+
+## Organized page structure
+
+1. `00 • FILE GUIDE & STATUS`
+2. `01 • INCO LOGO MASTER • APPROVED`
+3. `10 • APPROVED V1 BASELINES • DO NOT EDIT`
+4. `20 • COMPONENTS & TOKENS • CONTROLLED`
+5. `90 • QA & IMPLEMENTATION NOTES`
+6. `99 • ARCHIVE • DO NOT USE`
+
+## Approved assets / nodes
+
+- EN Desktop `2:2`.
+- EN Mobile `2:150`.
+- AR Desktop RTL `40:2`.
+- AR Mobile RTL `45:2`.
+- V1 closure note `48:2`.
+- Primary logo master `31:12`, locked.
+- MyGPT sections:
+  - EN Desktop `12:26`
+  - EN Mobile `12:33`
+  - AR Desktop `40:156`
+  - AR Mobile `45:84`
+
+Approved frames and logo are locked. Archive content must not be used for production implementation.
+
+Do not redraw, reconstruct, stretch, recolor, crop, or approximate the logo.
+
+## Design preservation gaps
+
+- Dedicated Terms and Privacy page designs are not recorded as approved Figma screens in the current product source. `DESIGN PRESERVATION REQUIRED` if bespoke INCO legal pages are needed rather than approved parent-site templates.
+- Codex must inspect live Figma nodes, not rely on screenshots or old exported descriptions.
+
+---
+
+# 13. SEO / GEO / MostafaGad.net Integration
+
+## Entity relationship
+
+`Mostafa Gad` → professional domain expertise → `INCO` → structured, source-governed decision support.
+
+## Canonical architecture
+
+- EN: `https://mostafagad.net/inco/`
+- AR: `https://mostafagad.net/ar/inco/`
+
+## Search/GEO principles
+
+- Target real problem intent: shipment readiness, import/export requirements, DG pre-screen, destination requirements, missing SDS/chemical facts, damaged batteries, freight-quotation readiness, and decision uncertainty.
+- Arabic should express the same problems naturally, not through literal keyword stuffing.
+- Public answer/content structures should make known facts, missing information, risk, authority/provider, source, impact, and next action easy to retrieve and cite.
+- Structured data must match visible content and may connect INCO to Mostafa Gad as creator/founder.
+- Do not fabricate ratings, certifications, endorsements, live status, or authority.
+- No duplicate indexable INCO detail pages.
+
+---
+
+# 14. Governance Precedence
+
+For INCO-specific conflicts, apply this order:
+
+1. `PROJECT_CONTEXT.md` for stable product/business requirements.
+2. `CURRENT_STATE.md` for current phase/status/open items.
+3. Latest approved INCO ADRs and explicit owner decisions, especially ADR-008, ADR-009, ADR-010.
+4. Live approved Figma baselines for visual/interaction design.
+5. Current Codex pre-execution gate / task for execution instructions.
+6. Parent MostafaGad.net V3 rules for non-conflicting cross-site integration.
+7. Historical INCO/parent documents only as background where superseded.
+
+When a historical document conflicts with this consolidated context, do not resurrect the old requirement without owner approval.
+
+---
+
+# 15. Conflict Governance
+
+Codex may propose and implement a technical correction when it does not change approved product requirements.
+
+If a correction changes any of the following, stop and classify it `CTO / PRODUCT OWNER DECISION REQUIRED`:
+
+- Product scope.
+- Business rule or controlled state.
+- User journey.
+- Approved screen behavior or visual hierarchy.
+- Commercial/free model.
+- Data ownership or retention.
+- Major architecture boundary.
+- Integration strategy.
+- Security/privacy policy.
+- Brand positioning or canonical route model.
+
+---
+
+# 16. Codex Technical Review Requirement
+
+The next technical phase must compare:
+
+```text
+Approved Product Requirements
+        ↓
+GitHub Documentation
+        ↓
+Actual Repository
+        ↓
+Actual Data / APIs / Routing / Architecture
+        ↓
+Actual Implementation
+```
+
+Codex must detect and report:
+
+- Architecture conflicts.
+- Requirement conflicts.
+- Missing or incorrect implementation.
+- Duplicate logic.
+- Dead code.
+- Technical debt.
+- Security/privacy issues.
+- Data-model inconsistencies.
+- Routing/canonical/hreflang conflicts.
+- Integration problems.
+- Scalability and maintainability risks.
+- Missing tests.
+- Documentation drift.
+
+This closure does not pre-approve the architecture merely because it was described in earlier documentation.
+
+---
+
+# 17. Governing Product Principle
+
+**Rules before certainty. Missing information before guessing. Confirmation before commitment. Deterministic result before AI explanation. Professional value before marketing friction.**
