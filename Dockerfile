@@ -1,3 +1,7 @@
+# DEVELOPMENT / TEST TOOLING ONLY.
+# This container runs the Node-based UAT/development service and is not the approved INCO V1 public production runtime.
+# The approved V1 public runtime is the governed static browser build deployed under MostafaGad.net.
+
 FROM node:22.23.1-alpine3.22 AS build
 WORKDIR /app
 COPY packages/domain-core/package.json ./packages/domain-core/package.json
