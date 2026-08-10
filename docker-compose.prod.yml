@@ -1,3 +1,8 @@
+# DEVELOPMENT / TEST TOOLING ONLY.
+# Historical filename retained to avoid breaking repository references.
+# This compose file is not the approved INCO V1 public production deployment model.
+# Approved V1 production is the governed static browser build under MostafaGad.net.
+
 services:
   inco-app:
     build:
