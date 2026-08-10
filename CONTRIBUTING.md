@@ -52,6 +52,10 @@ A contribution must not:
 - Keep public sample data clearly separated from protected operational knowledge.
 - Ensure CI passes before requesting review.
 
-## Licensing Note
+## Licensing
 
-The repository is public, but the final open-source license decision remains pending owner approval. Contributions should not assume that public visibility alone grants unrestricted reuse rights.
+The public INCO core is licensed under the Apache License, Version 2.0, as recorded in `LICENSE` and `NOTICE`.
+
+That license does not grant rights to protected or licensed source material, customer data, credentials, private rule packs, confidential operational knowledge, or the INCO / Mostafa Gad visual identity and names beyond the rights expressly provided by the repository license and notices.
+
+Public visibility does not change the status of excluded private or protected assets.
