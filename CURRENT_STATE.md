@@ -141,3 +141,58 @@ Approved GitHub positioning:
 **Production-live classification:** `NOT DECLARED LIVE`.
 
 **Next profile action:** promote/pin INCO on the public GitHub profile where the available GitHub capability supports profile pin mutation; otherwise record the exact manual UI action still required.
+
+---
+
+# 10. MG Ecosystem Alignment — 2026-08-10
+
+The Owner approved a shared MostafaGad.net product-experience contract for CAP and INCO while preserving each product's independent visual identity. For parent-facing product experience and design status, INCO is treated as `AVAILABLE`; that Owner-facing label does not silently override the separate technical statement above that live Production deployment has not yet been verified by this repository.
+
+## Figma alignment references
+
+**Figma file:** `ukiYrUNG1zs38GMS3edxJ2`  
+**Dedicated page:** `01 • MG ECOSYSTEM ALIGNMENT`  
+**Page node:** `55:2`
+
+- `55:3` — `01.0 / INCO ECOSYSTEM CONTRACT`
+- `55:36` — `01.1 / INCO HEADER + ASSISTANT DISTINCTION`
+- `55:69` — `01.2 / INCO ASSURANCE + FOOTER`
+- `55:97` — `01.3 / ASK MG VISIBILITY MATRIX`
+
+These references are additive. They do **not** replace or modify the approved EN/AR desktop/mobile baselines or the approved logo master listed above.
+
+## Approved integration direction
+
+- INCO remains product-first and keeps its approved logo, colors, visual language and product navigation.
+- A thin neutral ecosystem utility layer carries `← MostafaGad.net`, `Search MostafaGad.net`, and the parent-facing `AVAILABLE` state without installing the full parent-site header over INCO.
+- Global Search is parent public-content discovery only. It must not search, index or transmit shipment facts, result state or private case information.
+- INCO assurance wording is `Professional Use & Source Governance`, covering rules-first output, source/confirmation discipline, professional limitations and privacy/data boundaries.
+- INCO uses the shared compact product-ecosystem footer information architecture while keeping INCO visual styling.
+- Final Terms, Privacy and hosting/logging facts remain governed by the legal/technical status in this file; the ecosystem alignment does not invent or close those items.
+
+## Ask MG vs INCO Assistant
+
+The design explicitly separates the two conversational layers:
+
+**Ask MG**
+- MostafaGad.net AI Knowledge Assistant.
+- Hosted/running through the approved Hostinger AI/services environment.
+- Connected to the Owner-governed public Ask MG Knowledge Base.
+- May use public page context only.
+- Must not receive shipment facts, result state or private INCO data.
+
+**INCO Assistant / MyGPT explanation layer**
+- Product-specific explanation of the INCO deterministic result.
+- May explain follow-up questions and practical next actions.
+- Cannot override or downgrade the deterministic result.
+- Shipment data must not be transferred automatically merely because the assistant is available.
+
+Visibility direction:
+
+- Public hero / About / Knowledge: Ask MG visible.
+- Shipment facts form: Ask MG suppressed.
+- Initial result / decision cards: Ask MG minimized.
+- INCO Assistant result-discussion block: Ask MG suppressed so the two assistants do not compete.
+- Post-task / public guidance: Ask MG may become visible again without receiving the completed task data.
+
+The two assistants must not both be presented generically as `AI Assistant`; labels and visual treatment must preserve the parent-knowledge versus product-result distinction.
