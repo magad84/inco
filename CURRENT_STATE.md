@@ -1,7 +1,7 @@
 # INCO Current State
 
-**Date:** 2026-08-10  
-**Phase:** PUBLIC REPOSITORY READINESS COMPLETE / PRODUCTION DEPLOYMENT STILL SEPARATE  
+**Date:** 2026-08-16  
+**Phase:** PUBLIC REPOSITORY READINESS COMPLETE / V1.1 DESIGN INTEGRATION POLISH OWNER APPROVED / PRODUCTION DEPLOYMENT STILL SEPARATE  
 **Product Owner:** Mostafa Gad  
 **Repository:** `magad84/inco`
 
@@ -32,20 +32,39 @@ This readiness classification applies to the public GitHub repository and profil
 - `APPROVED` EN route `/inco/` and AR route `/ar/inco/` with self-canonicals and reciprocal hreflang.
 - `APPROVED` `/products/inco/` and `/ar/products/inco/` are redirect-only if they exist; product hubs remain discovery pages.
 - `APPROVED` MyGPT operating boundary.
-- `NOT LIVE` Public production deployment is not declared complete by this repository-readiness review.
+- `OWNER APPROVED 2026-08-16` V1.1 integration polish described below.
+- `NOT LIVE` Public production deployment is not declared complete by this review.
 
 ## Figma
 
 File: `https://www.figma.com/design/ukiYrUNG1zs38GMS3edxJ2`
 
-Approved screens:
+Current Owner-approved screens:
 
-1. `APPROVED` EN Desktop, node `2:2`.
-2. `APPROVED` EN Mobile, node `2:150`.
-3. `APPROVED` AR Desktop RTL, node `40:2`.
-4. `APPROVED` AR Mobile RTL, node `45:2`.
+1. EN Desktop, node `2:2` — **V1.1 / parent return + footer navigation + no feedback**.
+2. EN Mobile, node `2:150` — **V1.1 / parent return + footer navigation + no feedback**.
+3. AR Desktop RTL, node `40:2` — **V1.1 / parent return + footer navigation + no feedback**.
+4. AR Mobile RTL, node `45:2` — **V1.1 / parent return + footer navigation + no feedback**.
 
 Approved logo master: node `31:12`.
+
+## V1.1 Owner-approved visual / UX changes
+
+1. **Parent ecosystem return**
+   - Add a clear footer route back to `MostafaGad.net / Products`.
+   - Preserve INCO's independent visual identity; do not replace the INCO header with the parent website header.
+
+2. **Footer navigation**
+   - Add visible labels for `Privacy`, `Terms`, `Sources`, and `Methodology` in EN and genuine Arabic counterparts in AR.
+   - Legal wording and final legal destinations remain governed by the later Legal pass; do not invent legal copy or wire dead/unapproved destinations.
+
+3. **Feedback block removed from V1**
+   - The earlier feedback UI with `Very useful` / `Needs development` is removed from the V1 visual baseline because V1 has no approved real feedback persistence mechanism.
+   - Codex must not render buttons that imply feedback was stored when it is not actually submitted/persisted.
+   - A future privacy-safe feedback mechanism may be added only through a later explicit product decision.
+
+4. **Approval annotations are not product UI**
+   - Figma approval-baseline badges were hidden from the actual product screens and must not be implemented in production UI.
 
 ---
 
@@ -54,6 +73,8 @@ Approved logo master: node `31:12`.
 ## Approved V1 public runtime
 
 The approved public deployment model is the governed static browser release under MostafaGad.net. Public runtime does not require Node.js, Docker, a database, Redis, Qdrant, or an AI provider.
+
+The browser UI must continue to respect the approved privacy boundary: no intentional shipment-case persistence or transmission merely to provide the deterministic result.
 
 ## Retained development/test tooling
 
@@ -68,13 +89,32 @@ Useful tooling was retained rather than deleted merely for presentation cleanup.
 
 ---
 
-# 4. Validation Evidence
+# 4. Codex implementation instructions from V1.1 approval
 
-The public-readiness change set is documentation and tooling-classification only. The configured `Domain Core` and `CodeQL` workflows use path filters and therefore do not run for README / CONTRIBUTING / Docker-comment / environment-comment-only changes unless their configured code/workflow paths are affected.
+When INCO reaches its authorized implementation/release position, Codex must:
 
-Verified repository evidence reviewed during the 2026-08-10 public-readiness pass:
+1. preserve canonical EN `/inco/` and AR `/ar/inco/` routes;
+2. implement the parent return link to `/products/`;
+3. preserve the INCO product header/identity rather than injecting the full parent-site header;
+4. omit the removed Feedback block in V1;
+5. not create fake/no-op feedback actions;
+6. add Footer navigation for Privacy / Terms / Sources / Methodology only with authoritative destinations or approved internal anchors; no dead links and no invented legal content;
+7. preserve self-canonical + reciprocal hreflang behavior for genuine EN/AR counterparts;
+8. preserve static browser/runtime privacy boundaries and deterministic rules-first result behavior;
+9. keep MyGPT conversational assistance subordinate to the deterministic result and never auto-transfer shipment data;
+10. run visual parity QA against all four V1.1 Figma frames before release.
 
-- `CodeQL` scheduled run on current pre-readiness `main` commit `a03700a4063a4405b11b597c2602e0300c64389a`: `SUCCESS` on 2026-08-10.
+These instructions do not authorize production deployment by themselves.
+
+---
+
+# 5. Validation Evidence
+
+The public-readiness change set and V1.1 design-state documentation do not by themselves claim a new build, test, or production deployment result.
+
+Previously verified repository evidence reviewed during the 2026-08-10 public-readiness pass:
+
+- `CodeQL` scheduled run on then-current pre-readiness `main` commit `a03700a4063a4405b11b597c2602e0300c64389a`: `SUCCESS` on 2026-08-10.
 - `Domain Core` workflow on Dependabot PR #20: `SUCCESS` on 2026-08-10.
 - The `Domain Core` workflow executes repository-defined `npm run check`, generates the static bundle, verifies required public artifact files, and scans the generated artifact for forbidden internal/private/licensed/credential markers.
 
@@ -82,7 +122,7 @@ No test, build, security, or deployment result is claimed for a run that did not
 
 ---
 
-# 5. Licensing
+# 6. Licensing
 
 - `APPROVED / CURRENT` Public core license: Apache License, Version 2.0.
 - `LICENSE`, `NOTICE`, `README.md`, and `CONTRIBUTING.md` are aligned to that state.
@@ -90,7 +130,7 @@ No test, build, security, or deployment result is claimed for a run that did not
 
 ---
 
-# 6. Legal and Privacy Status
+# 7. Legal and Privacy Status
 
 Current legal/privacy files remain launch-review drafts.
 
@@ -99,6 +139,7 @@ Current legal/privacy files remain launch-review drafts.
 - Governing law.
 - Jurisdiction and dispute wording.
 - Final limitation-of-liability language.
+- Final public destinations/wording for INCO Privacy and Terms links where not already conclusively governed.
 
 ## TECHNICAL / HOSTING VALIDATION REQUIRED
 
@@ -110,19 +151,19 @@ These items do not change the repository's suitability as a truthful public proo
 
 ---
 
-# 7. Production and Integration Items Still Separate
+# 8. Production and Integration Items Still Separate
 
 - Live deployment of `/inco/` and `/ar/inco/`.
 - Live route, canonical, redirect, hreflang, sitemap, and internal-link verification.
-- Final live Figma-to-code visual parity verification.
+- Final live Figma-to-code V1.1 visual parity verification.
 - Final hosting/logging/analytics facts.
 - Final public Terms and Privacy publication after required decisions.
 
-None of these are implied by GitHub profile promotion.
+None of these are implied by GitHub profile promotion or Figma approval.
 
 ---
 
-# 8. Public Profile Positioning
+# 9. Public Profile Positioning
 
 Approved GitHub positioning:
 
@@ -134,10 +175,12 @@ Approved GitHub positioning:
 
 ---
 
-# 9. Current Decision
+# 10. Current Decision
 
-**Repository public-readiness classification:** `READY FOR PUBLIC PROFILE PROMOTION` after readiness PR merge and final `main` verification.
+**Figma V1.1 integration polish:** `OWNER APPROVED`.
+
+**Repository public-readiness classification:** `READY FOR PUBLIC PROFILE PROMOTION` after applicable readiness conditions are satisfied.
 
 **Production-live classification:** `NOT DECLARED LIVE`.
 
-**Next profile action:** promote/pin INCO on the public GitHub profile where the available GitHub capability supports profile pin mutation; otherwise record the exact manual UI action still required.
+The next implementation/release action must follow the governing execution queue and release gates; this document does not bypass them.
