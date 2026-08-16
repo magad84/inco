@@ -1,27 +1,44 @@
 # INCO Owner Review Checkpoint — 2026-08-16
 
-Status: **OWNER REVIEW PENDING**
+Status: **SUPERSEDED — HISTORICAL REVIEW SNAPSHOT ONLY**
 
-This checkpoint preserves the current INCO English Desktop design exactly as of 2026-08-16 15:02 (+03:00) for later Owner review.
+This file preserves an earlier INCO English Desktop review checkpoint from 2026-08-16 15:02 (+03:00). It is retained for historical traceability only and is **not current design or implementation authority**.
 
-## Figma authority
+## Historical snapshot
 
-- File: `ukiYrUNG1zs38GMS3edxJ2`
-- Active EN Desktop root: `2:2`
-- Active frame name: `INCO / EN DESKTOP / OWNER REVIEW PENDING / CURRENT CHECKPOINT / 2026-08-16`
+- Figma file: `ukiYrUNG1zs38GMS3edxJ2`
+- Historical EN Desktop root: `2:2`
 - Frozen backup snapshot: `87:2`
-- Backup name: `BACKUP / INCO EN DESKTOP / CURRENT REVIEW CHECKPOINT / 2026-08-16 15:02`
+- Historical checkpoint commit: `7ae24a8dd4c8876a6ce983bcffbd83e97ab9b3d6`
 
-## Current preserved state
+At the time of this snapshot, the page was still marked `OWNER REVIEW PENDING` and preserved an earlier hero/logo treatment.
 
-- Parent-style V3 header direction has been introduced.
-- INCO product identity remains present inside the hero.
-- Owner-uploaded logistics hero image from node `74:2` is used as the hero background.
-- Current UX/SEO-GEO polish and visual hierarchy work are preserved.
-- The page is **not Owner Approved yet** and must not be treated as final visual authority until the Owner reopens the review and explicitly approves it.
+## Superseding Owner approval
 
-## Governance
+A later explicit Owner Decision on 2026-08-16 approved the final INCO English Desktop direction and subsequent EN/AR Desktop/Mobile parity closure.
 
-Do not perform further visual changes from this checkpoint unless explicitly requested by the Owner.
-Do not let Codex treat this page as final approved UI while status is OWNER REVIEW PENDING.
-When review resumes, start from active node `2:2` and compare against backup `87:2` if needed.
+Current Figma authority:
+
+- EN Desktop: `2:2` — **OWNER APPROVED / FINAL AUTHORITY**
+- EN Mobile: `2:150`
+- AR Desktop RTL: `40:2`
+- AR Mobile RTL: `45:2`
+
+Current governing record:
+
+`docs/governance/INCO_EN_AR_DESKTOP_MOBILE_FINAL_PARITY_2026-08-16.md`
+
+## Codex rule
+
+Do **not**:
+
+- downgrade INCO back to `OWNER REVIEW PENDING`;
+- restore the superseded earlier hero-logo treatment;
+- use this checkpoint as the current implementation source;
+- treat backup `87:2` as active authority.
+
+Use the final parity governance file above plus the current Figma nodes and latest Owner Decisions.
+
+## Production boundary
+
+This supersession record changes no INCO product scope and does not authorize Production deployment, DNS/cutover, destructive Production actions or Production-secret changes.
