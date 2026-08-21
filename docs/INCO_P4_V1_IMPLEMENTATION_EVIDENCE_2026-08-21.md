@@ -1,9 +1,9 @@
 # INCO P4 V1 Implementation Evidence
 
-**Date:** 2026-08-21  
-**Branch:** `codex/p4-inco-v1-2026-08-21`  
-**Base:** `4e0b50a`  
-**Environment:** Development / local Preview  
+**Date:** 2026-08-21
+**Branch:** `codex/p4-inco-v1-2026-08-21`
+**Base:** `4e0b50a`
+**Environment:** Development / local Preview
 **Production:** Not deployed or modified
 
 ## Outcome
