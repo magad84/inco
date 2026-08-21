@@ -1,11 +1,21 @@
 # INCO Current State
 
-**Date:** 2026-08-16  
-**Phase:** PUBLIC REPOSITORY READINESS COMPLETE / V1.1 DESIGN INTEGRATION POLISH OWNER APPROVED / PRODUCTION DEPLOYMENT STILL SEPARATE  
+**Date:** 2026-08-21
+**Phase:** V1 IMPLEMENTATION AND LOCAL PREVIEW VALIDATED / READY WITH CONDITIONS / PRODUCTION DEPLOYMENT STILL SEPARATE
 **Product Owner:** Mostafa Gad  
 **Repository:** `magad84/inco`
 
 This file records current status only. Stable product requirements live in `PROJECT_CONTEXT.md`.
+
+## 0. P4 implementation checkpoint — 2026-08-21
+
+- `DONE` Implemented independent static EN `/inco/` and AR RTL `/ar/inco/` documents from the four current approved Figma frames.
+- `DONE` Preserved the deterministic browser engine and local case-processing boundary.
+- `DONE` Added canonical/hreflang/structured-data, responsive/RTL/accessibility/motion, exact approved assets, safe MyGPT entry and current V1.1 footer/parent-return behavior.
+- `DONE` Removed superseded feedback, paid-model remnants, JS-only language switching and the dead `unsupported_scope` UI branch.
+- `PASS` TypeScript, 132/132 automated tests, governed static build, leakage checks and 14/14 bilingual responsive browser combinations.
+- `READY WITH CONDITIONS` for Owner pre-production review and non-Production integration. Final legal wording, real hosting/logging verification and explicit Production authorization remain separate gates.
+- Evidence: `docs/INCO_P4_V1_IMPLEMENTATION_EVIDENCE_2026-08-21.md`.
 
 ---
 

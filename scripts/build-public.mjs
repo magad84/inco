@@ -3,14 +3,21 @@ import { createRequire } from "node:module";
 import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
-const requireFromDomainCore = createRequire(resolve(root, "packages/domain-core/package.json"));
+const requireFromDomainCore = createRequire(
+  resolve(root, "packages/domain-core/package.json"),
+);
 const { build } = requireFromDomainCore("esbuild");
 const output = resolve(root, "dist-public");
 const ui = resolve(root, "packages/uat-ui");
-const knowledgeOutput = resolve(output, "knowledge");
+const englishOutput = resolve(output, "inco");
+const arabicOutput = resolve(output, "ar/inco");
+const knowledgeOutput = resolve(englishOutput, "knowledge");
 
 const publicKnowledgeFiles = [
-  ["knowledge/trade-lanes/launch-corridors.v0.1.json", "launch-corridors.v0.1.json"],
+  [
+    "knowledge/trade-lanes/launch-corridors.v0.1.json",
+    "launch-corridors.v0.1.json",
+  ],
   ["knowledge/country-rules/uae.v0.1.json", "uae.v0.1.json"],
   ["knowledge/country-rules/ksa.v0.1.json", "ksa.v0.1.json"],
   ["knowledge/country-rules/egypt.v0.1.json", "egypt.v0.1.json"],
@@ -34,7 +41,9 @@ async function copyGovernedKnowledge(sourceRelative, targetName) {
 
   for (const pattern of forbiddenPatterns) {
     if (pattern.test(content)) {
-      throw new Error(`Public bundle blocked: forbidden marker ${pattern} in ${sourceRelative}`);
+      throw new Error(
+        `Public bundle blocked: forbidden marker ${pattern} in ${sourceRelative}`,
+      );
     }
   }
 
@@ -43,10 +52,15 @@ async function copyGovernedKnowledge(sourceRelative, targetName) {
 
 await rm(output, { recursive: true, force: true });
 await mkdir(knowledgeOutput, { recursive: true });
+await mkdir(arabicOutput, { recursive: true });
 
-for (const file of ["index.html", "styles.css", "app.js"]) {
-  await cp(resolve(ui, file), resolve(output, file));
-}
+await cp(resolve(ui, "index.html"), resolve(englishOutput, "index.html"));
+await cp(resolve(ui, "ar.html"), resolve(arabicOutput, "index.html"));
+await cp(resolve(ui, "styles.css"), resolve(englishOutput, "styles.css"));
+await cp(resolve(ui, "app.js"), resolve(englishOutput, "app.js"));
+await cp(resolve(ui, "assets"), resolve(englishOutput, "assets"), {
+  recursive: true,
+});
 
 for (const [source, target] of publicKnowledgeFiles) {
   await copyGovernedKnowledge(source, target);
@@ -54,7 +68,7 @@ for (const [source, target] of publicKnowledgeFiles) {
 
 await build({
   entryPoints: [resolve(root, "packages/domain-core/src/browser-entry.ts")],
-  outfile: resolve(output, "engine.js"),
+  outfile: resolve(englishOutput, "engine.js"),
   bundle: true,
   format: "esm",
   platform: "browser",
@@ -64,10 +78,7 @@ await build({
   legalComments: "none",
 });
 
-await writeFile(
-  resolve(output, "release.json"),
-  `${JSON.stringify({ service: "INCO", deployment: "static-browser", generatedAt: new Date().toISOString() }, null, 2)}\n`,
-  "utf8",
-);
+const release = `${JSON.stringify({ service: "INCO", deployment: "static-browser", routes: ["/inco/", "/ar/inco/"], generatedAt: new Date().toISOString() }, null, 2)}\n`;
+await writeFile(resolve(englishOutput, "release.json"), release, "utf8");
 
 console.log(`Static public bundle created at ${output}`);

@@ -1,97 +1,424 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="INCO is a free bilingual decision-support service for international trade, shipping, and supply-chain professionals." />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://mostafagad.net/inco" />
-  <title>INCO | Free Trade and Logistics Decision Support</title>
-  <link rel="stylesheet" href="./styles.css" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"INCO","url":"https://mostafagad.net/inco","applicationCategory":"BusinessApplication","operatingSystem":"Web","isAccessibleForFree":true,"inLanguage":["en","ar"],"creator":{"@type":"Person","name":"Mostafa Gad","url":"https://mostafagad.net/"}}</script>
-</head>
-<body>
-  <a class="skip" href="#service">Skip to service</a>
-  <header class="topbar">
-    <a class="brand" href="https://mostafagad.net/" aria-label="MostafaGad.net home"><span>INCO</span><small>by Mostafa Gad</small></a>
-    <button id="language" class="secondary" type="button" aria-label="Switch language">العربية</button>
-  </header>
-
-  <main class="shell">
-    <section class="hero">
-      <p class="eyebrow" data-i18n="eyebrow">FREE PROFESSIONAL SERVICE</p>
-      <h1 data-i18n="title">Check a shipment before you rely on the plan</h1>
-      <p class="lead" data-i18n="lead">INCO helps professionals, entrepreneurs, and individual importers identify missing information, operational risks, required confirmations, and practical next steps.</p>
-      <div class="trust-row"><span data-i18n="trust1">No registration</span><span data-i18n="trust2">No saved cases</span><span data-i18n="trust3">Rules-first result</span></div>
-    </section>
-
-    <section id="service" class="panel" aria-labelledby="form-title">
-      <div class="section-head"><div><p class="step">01</p><h2 id="form-title" data-i18n="formTitle">Shipment facts</h2></div><p data-i18n="formHelp">Use two-letter country codes such as CN, AE, SA, EG, or OM.</p></div>
-      <div class="grid">
-        <label><span data-i18n="origin">Origin country</span><input id="origin" value="CN" maxlength="2" autocomplete="country" /></label>
-        <label><span data-i18n="destination">Destination country</span><input id="destination" value="AE" maxlength="2" autocomplete="country" /></label>
-        <label><span data-i18n="date">Planned transaction date</span><input id="transactionDate" type="date" /></label>
-        <label><span data-i18n="mode">Transport mode</span><select id="mode"><option value="ocean">Ocean</option><option value="air_cargo">Air cargo</option><option value="courier">Courier</option><option value="postal">Postal</option><option value="road">Road</option><option value="multimodal">Multimodal</option></select></label>
-        <label><span data-i18n="cargo">Cargo category</span><input id="cargo" value="general" placeholder="general, food, medicine, chemical, battery" /></label>
-        <label><span data-i18n="state">Physical state</span><select id="physicalState"><option value="solid">Solid</option><option value="liquid">Liquid</option><option value="gas">Gas</option><option value="aerosol">Aerosol</option><option value="powder">Powder</option><option value="paste">Paste</option><option value="gel">Gel</option><option value="article">Article</option><option value="unknown">Unknown</option></select></label>
-        <label class="wide"><span data-i18n="description">Describe the goods clearly</span><textarea id="description">Finished solid components without batteries, liquids, gases, fuel, or chemical mixtures.</textarea></label>
-        <label class="wide"><span data-i18n="hazards">Known hazard indicators, separated by commas</span><input id="hazards" placeholder="flammable_liquid, lithium_battery, damaged_battery, unknown_chemical_composition" /></label>
-        <label class="wide"><span data-i18n="special">Special handling indicators, separated by commas</span><input id="special" placeholder="temperature_controlled, oversized, project_cargo" /></label>
-        <label class="check"><input id="compositionKnown" type="checkbox" checked /><span data-i18n="known">Composition is known</span></label>
-        <label class="check"><input id="enhanced" type="checkbox" /><span data-i18n="compliance">Enhanced compliance review may apply</span></label>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Free, rules-first international trade and logistics decision support for shipment risks, missing information, confirmations, and next actions."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="INCO | Free International Trade & Logistics Decision Support | Mostafa Gad"
+    />
+    <meta
+      property="og:description"
+      content="Check a shipment plan for information gaps, operational risks, required confirmations, and practical next actions."
+    />
+    <meta property="og:url" content="https://mostafagad.net/inco/" />
+    <link rel="canonical" href="https://mostafagad.net/inco/" />
+    <link rel="alternate" hreflang="en" href="https://mostafagad.net/inco/" />
+    <link
+      rel="alternate"
+      hreflang="ar"
+      href="https://mostafagad.net/ar/inco/"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://mostafagad.net/inco/"
+    />
+    <title>
+      INCO | Free International Trade & Logistics Decision Support | Mostafa Gad
+    </title>
+    <link rel="icon" href="./assets/inco-logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "INCO",
+        "url": "https://mostafagad.net/inco/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "isAccessibleForFree": true,
+        "inLanguage": ["en", "ar"],
+        "description": "Free, rules-first international trade and logistics decision support.",
+        "creator": {
+          "@type": "Person",
+          "name": "Mostafa Gad",
+          "url": "https://mostafagad.net/about/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#service">Skip to shipment check</a>
+    <header class="topbar" aria-label="INCO navigation">
+      <div class="header-inner">
+        <a
+          class="brand"
+          href="https://mostafagad.net/inco/"
+          aria-label="INCO home"
+          ><img src="./assets/inco-logo.svg" alt="INCO" width="170" height="50"
+        /></a>
+        <nav class="desktop-nav" aria-label="MostafaGad.net">
+          <a href="https://mostafagad.net/">Home</a
+          ><a href="https://mostafagad.net/expertise/">Expertise</a
+          ><a href="https://mostafagad.net/the-idea-chain/">Knowledge</a
+          ><a class="active" href="https://mostafagad.net/products/">Products</a
+          ><a href="https://mostafagad.net/about/">About</a>
+        </nav>
+        <div class="header-actions">
+          <a
+            class="language"
+            href="https://mostafagad.net/ar/inco/"
+            lang="ar"
+            hreflang="ar"
+            >العربية</a
+          ><a class="contact" href="https://mostafagad.net/contact/">Contact</a>
+        </div>
       </div>
-      <button id="run" class="primary" type="button" data-i18n="run">Check this shipment</button>
-      <p class="privacy" data-i18n="privacy">This browser-based service does not require an account and does not intentionally save or transmit your shipment case. Do not enter names, invoice numbers, account details, or confidential commercial information.</p>
-    </section>
-
-    <section id="results" class="panel result-panel" aria-live="polite" aria-labelledby="result-title">
-      <div class="section-head result-head"><div><p class="step">02</p><h2 id="result-title" data-i18n="resultTitle">Initial decision-support result</h2></div><span id="state" class="badge">not_evaluated</span></div>
-      <p id="reason" class="summary" data-i18n="initial">Complete the shipment facts and run the free check.</p>
-      <div class="result-grid">
-        <article><h3 data-i18n="route">Route and service status</h3><p id="laneState">Not evaluated.</p></article>
-        <article><h3 data-i18n="cargoStatus">Cargo status</h3><p id="cargoState">Not evaluated.</p></article>
-        <article><h3 data-i18n="countryStatus">Destination requirements</h3><p id="countryState">Not evaluated.</p></article>
-        <article><h3 data-i18n="risk">Key risks</h3><p id="risks">None yet.</p></article>
-        <article><h3 data-i18n="missing">Missing information</h3><p id="missing">None yet.</p></article>
-        <article><h3 data-i18n="confirmations">Confirm before proceeding</h3><p id="confirmations">None yet.</p></article>
-        <article class="wide-card"><h3 data-i18n="sources">Controlled source references</h3><p id="sources">None yet.</p></article>
-        <article class="wide-card action-card"><h3 data-i18n="next">Recommended next step</h3><p id="nextStep">Run the check to receive a practical next action.</p></article>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div
+          class="hero-media"
+          role="img"
+          aria-label="Container vessel and truck at a logistics terminal"
+        ></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-inner">
+          <div class="hero-copy reveal">
+            <p class="pill free">Free professional service</p>
+            <h1 id="hero-title">
+              Check a shipment before you rely on the plan
+            </h1>
+            <p>
+              INCO is a free, rules-first international trade and logistics
+              decision-support service that helps identify missing information,
+              operational risks, required confirmations, and practical next
+              steps before execution.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#service">Start free check</a
+              ><a class="button secondary" href="#methodology"
+                >How INCO works</a
+              >
+            </div>
+            <div class="trust-row">
+              <span>No registration</span><span>No saved cases</span
+              ><span>Rules-first result</span>
+            </div>
+          </div>
+          <aside
+            class="snapshot reveal"
+            aria-label="Illustrative shipment readiness snapshot"
+          >
+            <h2>Shipment readiness snapshot</h2>
+            <p class="pill warning">Confirmation required</p>
+            <article>
+              <img src="./assets/risk.svg" alt="" />
+              <div>
+                <h3>Main risk</h3>
+                <p>
+                  Carrier acceptance and destination confirmation are still
+                  required.
+                </p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/next-action.svg" alt="" />
+              <div>
+                <h3>Next action</h3>
+                <p>
+                  Complete the missing route and cargo facts before execution.
+                </p>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+      <section id="service" class="section intake" aria-labelledby="form-title">
+        <div class="section-heading reveal">
+          <p class="step">01 &nbsp; Shipment facts</p>
+          <h2 id="form-title">
+            Tell INCO only what can materially change the result
+          </h2>
+          <p>
+            Use clear product and route facts. Do not enter names, invoice
+            numbers, account details, or confidential commercial information.
+          </p>
+        </div>
+        <form class="form-card reveal" id="shipment-form" novalidate>
+          <div class="form-grid">
+            <label
+              >Country of origin<select id="origin">
+                <option value="CN">China (CN)</option>
+                <option value="IN">India (IN)</option>
+                <option value="TR">Turkey (TR)</option>
+                <option value="IT">Italy (IT)</option>
+                <option value="US">United States (US)</option>
+                <option value="RU">Russia (RU)</option>
+                <option value="AU">Australia (AU)</option>
+              </select></label
+            >
+            <label
+              >Country of export / dispatch<select id="exportCountry">
+                <option value="CN">China (CN)</option>
+                <option value="IN">India (IN)</option>
+                <option value="TR">Turkey (TR)</option>
+                <option value="IT">Italy (IT)</option>
+                <option value="US">United States (US)</option>
+                <option value="RU">Russia (RU)</option>
+                <option value="AU">Australia (AU)</option>
+              </select></label
+            >
+            <label
+              >Country of import / destination<select id="destination">
+                <option value="AE">United Arab Emirates (AE)</option>
+                <option value="SA">Saudi Arabia (SA)</option>
+                <option value="EG">Egypt (EG)</option>
+                <option value="OM">Oman (OM)</option>
+                <option value="GB">Other / general guidance</option>
+              </select></label
+            >
+            <label
+              >Transport mode<select id="mode">
+                <option value="ocean">Ocean</option>
+                <option value="air_cargo">Air cargo</option>
+                <option value="courier">Courier</option>
+                <option value="postal">Postal</option>
+                <option value="road">Road</option>
+                <option value="multimodal">Multimodal</option>
+              </select></label
+            >
+            <label
+              >Cargo category<input
+                id="cargo"
+                value="general"
+                placeholder="General cargo" /></label
+            ><label
+              >Physical state<select id="physicalState">
+                <option value="solid">Solid</option>
+                <option value="liquid">Liquid</option>
+                <option value="gas">Gas</option>
+                <option value="aerosol">Aerosol</option>
+                <option value="powder">Powder</option>
+                <option value="paste">Paste</option>
+                <option value="gel">Gel</option>
+                <option value="article">Article</option>
+                <option value="unknown">Unknown</option>
+              </select></label
+            ><label
+              >Planned transaction date<input
+                id="transactionDate"
+                type="date"
+                required
+            /></label>
+            <label class="wide"
+              >Describe the goods clearly<textarea id="description" required>
+Finished industrial components, no batteries, liquids, gases, fuel, or chemical mixtures.</textarea></label
+            ><label class="wide"
+              >Known hazard indicators, separated by commas<input
+                id="hazards"
+                placeholder="flammable_liquid, lithium_battery, damaged_battery, unknown_chemical_composition" /></label
+            ><label class="wide"
+              >Special handling indicators, separated by commas<input
+                id="special"
+                placeholder="temperature_controlled, oversized, project_cargo"
+            /></label>
+          </div>
+          <div class="checks">
+            <label
+              ><input
+                id="compositionKnown"
+                type="checkbox"
+                checked
+              />Composition known</label
+            ><label
+              ><input id="enhanced" type="checkbox" />Enhanced compliance review
+              may apply</label
+            >
+          </div>
+          <div class="run-row">
+            <button id="run" class="button primary" type="submit">
+              Check this shipment
+            </button>
+            <p>
+              Browser-based service. No account required. Shipment case values
+              are evaluated locally and are not intentionally saved or
+              transmitted.
+            </p>
+          </div>
+          <p class="preuse" id="professional-boundary">
+            By running this check, you acknowledge that INCO provides
+            preliminary decision support and that current carrier, customs,
+            regulatory, and specialist confirmation may still be required.
+            <a href="https://mostafagad.net/terms/">Terms</a> ·
+            <a href="https://mostafagad.net/privacy/">Privacy</a>
+          </p>
+        </form>
+      </section>
+      <section
+        id="results"
+        class="results"
+        aria-live="polite"
+        aria-labelledby="result-title"
+      >
+        <div class="section section-heading reveal">
+          <p class="step">02 &nbsp; Initial result</p>
+          <h2 id="result-title">A practical result with clear uncertainty</h2>
+        </div>
+        <div class="section result-content">
+          <article class="decision-card reveal">
+            <div>
+              <p id="state" class="state" data-state="not_evaluated">
+                Not evaluated
+              </p>
+              <h3 id="reason">
+                Complete the shipment facts and run the free check.
+              </h3>
+            </div>
+            <button id="copyResult" class="button dark" type="button">
+              Copy result
+            </button>
+          </article>
+          <div class="priority-grid reveal">
+            <article class="result-card missing-card">
+              <img src="./assets/missing.svg" alt="" />
+              <h3>Missing information</h3>
+              <p id="missing">None yet.</p>
+            </article>
+            <article class="result-card action-card">
+              <img src="./assets/recommended.svg" alt="" />
+              <h3>Recommended next action</h3>
+              <p id="nextStep">
+                Run the check to receive a practical next action.
+              </p>
+            </article>
+          </div>
+          <div class="detail-grid reveal">
+            <article class="result-card">
+              <img src="./assets/route.svg" alt="" />
+              <h3>Route and service status</h3>
+              <p id="laneState">Not evaluated.</p>
+            </article>
+            <article class="result-card">
+              <img src="./assets/cargo.svg" alt="" />
+              <h3>Cargo status</h3>
+              <p id="cargoState">Not evaluated.</p>
+            </article>
+            <article class="result-card">
+              <img src="./assets/destination.svg" alt="" />
+              <h3>Destination requirements</h3>
+              <p id="countryState">Not evaluated.</p>
+            </article>
+          </div>
+          <article class="result-card protocol reveal">
+            <img src="./assets/confirmation.svg" alt="" />
+            <h3>Official confirmation protocol</h3>
+            <dl>
+              <div>
+                <dt>Reason</dt>
+                <dd id="confirmationReason">
+                  Current acceptance or destination requirements may change.
+                </dd>
+              </div>
+              <div>
+                <dt>Authority/provider</dt>
+                <dd id="confirmations">
+                  Carrier, customs, or relevant regulator.
+                </dd>
+              </div>
+              <div>
+                <dt>Official source</dt>
+                <dd id="sources">
+                  Applicable official portal or provider confirmation.
+                </dd>
+              </div>
+              <div>
+                <dt>Impact if not confirmed</dt>
+                <dd id="risks">
+                  Shipment may be rejected, delayed, or reworked.
+                </dd>
+              </div>
+              <div>
+                <dt>Recommended next action</dt>
+                <dd>Obtain written confirmation before execution.</dd>
+              </div>
+            </dl>
+          </article>
+          <section class="assistant reveal" aria-labelledby="assistant-title">
+            <div>
+              <p class="assistant-label">INCO conversational assistant</p>
+              <h3 id="assistant-title">
+                Discuss this result with INCO Assistant
+              </h3>
+              <p>
+                Use INCO Assistant for explanations, follow-up questions, and a
+                practical checklist. It cannot override the deterministic
+                result, and no shipment data is transferred automatically.
+              </p>
+              <small
+                >ChatGPT account may be required. Do not share confidential
+                information.</small
+              >
+            </div>
+            <a
+              id="gptLink"
+              class="button assistant-button"
+              href="https://chatgpt.com/g/g-6a66319a00a48191a0601bc4039fb159-inco"
+              target="_blank"
+              rel="noopener noreferrer external"
+              >Open INCO Assistant on ChatGPT</a
+            >
+          </section>
+          <details id="sources-panel" class="evidence">
+            <summary>
+              Technical evidence and controlled source references
+            </summary>
+            <pre id="raw"></pre>
+          </details>
+          <p id="copyStatus" class="status" aria-live="polite"></p>
+        </div>
+      </section>
+      <section id="methodology" class="section about reveal">
+        <img src="./assets/inco-logo.svg" alt="INCO" width="178" height="53" />
+        <div>
+          <p class="step">Founder & domain governance</p>
+          <h2>Built from management and supply-chain expertise</h2>
+          <p>
+            Founded by Mostafa Gad, Business & Operations Leader with deep
+            supply-chain expertise. INCO combines governed sources, business
+            rules, and professional experience to support practical
+            international-trade and logistics decisions across the UAE, Saudi
+            Arabia, Egypt, and Oman.
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <p>INCO © 2026 Mostafa Gad</p>
+          <nav aria-label="Legal and methodology">
+            <a href="https://mostafagad.net/privacy/">Privacy</a
+            ><a href="https://mostafagad.net/terms/">Terms</a
+            ><a href="#sources-panel">Sources</a
+            ><a href="#methodology">Methodology</a>
+          </nav>
+        </div>
+        <div class="footer-end">
+          <p>Free professional decision-support service</p>
+          <a href="https://mostafagad.net/products/"
+            >← MostafaGad.net / Products</a
+          >
+        </div>
       </div>
-      <div class="companion">
-        <div><h3 data-i18n="assistantTitle">INCO conversational assistant</h3><p data-i18n="assistantText">The ChatGPT companion remains under final alignment. No shipment data is sent automatically.</p></div>
-        <div class="button-row"><button id="copyResult" class="secondary-dark" type="button" data-i18n="copyResult">Copy result summary</button><span id="gptLink" class="primary-link" aria-disabled="true" data-i18n="openAssistant">Assistant pending final review</span></div>
-        <p id="copyStatus" class="status" aria-live="polite"></p>
-      </div>
-      <details><summary data-i18n="technical">Technical evidence</summary><pre id="raw"></pre></details>
-      <p class="boundary" data-i18n="boundary">INCO provides preliminary professional decision support. It does not replace current carrier acceptance, customs or authority approval, final dangerous-goods classification, sanctions or legal review, insurance advice, permits, or qualified operational verification.</p>
-    </section>
-
-    <section class="panel feedback" aria-labelledby="feedback-title">
-      <p class="step">03</p><h2 id="feedback-title" data-i18n="feedbackTitle">Help shape the next version</h2>
-      <fieldset><legend data-i18n="feedbackQ1">How useful was the free INCO service?</legend>
-        <label class="choice"><input type="radio" name="usefulness" value="very_useful" /><span data-i18n="veryUseful">Very useful</span></label>
-        <label class="choice"><input type="radio" name="usefulness" value="useful_needs_development" /><span data-i18n="needsDevelopment">Useful, but it needs development</span></label>
-        <label class="choice"><input type="radio" name="usefulness" value="not_enough" /><span data-i18n="notEnough">It did not help enough</span></label>
-        <label class="choice"><input type="radio" name="usefulness" value="unclear" /><span data-i18n="unclear">I did not understand the result</span></label>
-      </fieldset>
-      <label class="feedback-note"><span data-i18n="featureLabel">Which improvement would help you most?</span><select id="feature"><option value="simpler_explanation">Simpler explanation</option><option value="wider_import_analysis">Wider import-requirement analysis</option><option value="shipping_comparison">Shipping-option comparison</option><option value="trade_terms_review">Trade-term review</option><option value="more_calculations">More shipping calculations</option><option value="ai_document_analysis">AI-assisted document analysis</option><option value="downloadable_report">Downloadable professional report</option><option value="other">Other</option></select></label>
-      <fieldset><legend data-i18n="feedbackQ2">Would you consider an optional advanced service for a small fee while the basic check remains free?</legend>
-        <label class="choice"><input type="radio" name="advanced" value="yes" /><span data-i18n="yes">Yes</span></label>
-        <label class="choice"><input type="radio" name="advanced" value="maybe" /><span data-i18n="maybe">Maybe, depending on features and price</span></label>
-        <label class="choice"><input type="radio" name="advanced" value="free_only" /><span data-i18n="freeOnly">I prefer all services to remain free</span></label>
-        <label class="choice"><input type="radio" name="advanced" value="no_need" /><span data-i18n="noNeed">I do not need an advanced version</span></label>
-      </fieldset>
-      <button id="copyFeedback" class="primary" type="button" data-i18n="copyFeedback">Copy feedback</button>
-      <p id="feedbackStatus" class="status" aria-live="polite" data-i18n="feedbackPrivacy">This pre-launch survey does not transmit or store your response. It prepares a summary you can share voluntarily.</p>
-    </section>
-
-    <section class="about panel">
-      <p class="step">04</p><h2 data-i18n="aboutTitle">Built from management and supply-chain expertise</h2>
-      <p data-i18n="aboutText">INCO was founded by Mostafa Gad, a Business and Operations Leader with deep supply-chain expertise. The service translates professional experience, controlled sources, and business rules into practical checks.</p>
-      <nav class="links" aria-label="Related resources"><a href="https://mostafagad.net/" data-i18n="website">Visit MostafaGad.net</a><a href="https://github.com/magad84/inco" data-i18n="github">View the open-source project</a></nav>
-    </section>
-  </main>
-  <footer><span>INCO © 2026 Mostafa Gad</span><span data-i18n="free">Free limited professional service</span></footer>
-  <script src="./app.js"></script>
-</body>
+    </footer>
+    <script type="module" src="./app.js"></script>
+  </body>
 </html>
