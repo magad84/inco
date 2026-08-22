@@ -14,6 +14,7 @@ FROM nginx:1.29-alpine
 COPY infrastructure/staging/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist-public /usr/share/nginx/html
 
+USER nginx
 EXPOSE 8080
 HEALTHCHECK --interval=15s --timeout=5s --retries=5 \
   CMD wget -qO- http://127.0.0.1:8080/inco/ >/dev/null || exit 1
