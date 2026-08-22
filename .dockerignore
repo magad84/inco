@@ -1,0 +1,7 @@
+.git
+.gitignore
+dist
+dist-public
+node_modules
+packages/domain-core/dist
+packages/domain-core/node_modules
