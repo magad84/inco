@@ -194,3 +194,16 @@ Approved GitHub positioning:
 **Production-live classification:** `NOT DECLARED LIVE`.
 
 The next implementation/release action must follow the governing execution queue and release gates; this document does not bypass them.
+
+---
+
+# 11. Knowledge asset reconciliation checkpoint — 2026-08-22
+
+- Existing knowledge was inventoried and reused; no replacement research was
+  conducted.
+- `knowledge/asset-manifest.v1.0.json` classifies the public runtime inputs,
+  reference-source data, research evidence and archived research seeds.
+- A domain-core contract test now keeps the public build allowlist aligned with
+  the five governed launch datasets and verifies that archived seeds remain out.
+- Full details are recorded in
+  `docs/INCO_KNOWLEDGE_ASSET_RECONCILIATION_2026-08-22.md`.
