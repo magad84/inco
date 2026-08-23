@@ -63,3 +63,18 @@ test("recommended next steps preserve deterministic safety states", () => {
     assert.match(app, new RegExp(state));
   assert.doesNotMatch(app, /unsupported_scope/);
 });
+
+test("public result presentation localizes governed engine output", () => {
+  assert.match(app, /function localizeMissing/);
+  assert.match(app, /function cargoSummary/);
+  assert.match(app, /function destinationSummary/);
+  assert.match(app, /function confirmationAuthorities/);
+  assert.match(app, /المسار قابل للتنفيذ مبدئيًا/);
+  assert.match(app, /تم تحديد مسار مبدئي/);
+  assert.match(app, /لم تظهر مؤشرات على بضائع خطرة/);
+  assert.doesNotMatch(app, /\$\("reason"\)\.textContent = list\(result\.reasons\)/);
+  assert.doesNotMatch(
+    app,
+    /\$\("confirmations"\)\.textContent = list\(result\.requiredConfirmations\)/,
+  );
+});

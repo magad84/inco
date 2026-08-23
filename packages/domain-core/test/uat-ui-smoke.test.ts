@@ -49,8 +49,10 @@ test("public service UI evaluates through the browser engine and renders module 
   assert.match(js, /result\.lane\.decisionState/);
   assert.match(js, /result\.cargo\.statuses/);
   assert.match(js, /result\.destination\.status/);
-  assert.match(js, /result\.criticalRisks/);
-  assert.match(js, /result\.sources/);
+  assert.match(js, /result\.cargo\.confirmations/);
+  assert.match(js, /result\.destination\.findings/);
+  assert.match(js, /confirmationImpact\(result\)/);
+  assert.match(js, /ui\.confirmationSource/);
   assert.match(browserEntry, /evaluateUatRequest/);
   assert.match(browserEntry, /knowledge\/launch-corridors\.v0\.1\.json/);
   for (const country of ["AE", "SA", "EG", "OM"])

@@ -1,6 +1,6 @@
 # INCO Current State
 
-**Date:** 2026-08-21
+**Date:** 2026-08-23
 **Phase:** V1 IMPLEMENTATION AND LOCAL PREVIEW VALIDATED / READY WITH CONDITIONS / PRODUCTION DEPLOYMENT STILL SEPARATE
 **Product Owner:** Mostafa Gad  
 **Repository:** `magad84/inco`
@@ -207,3 +207,22 @@ The next implementation/release action must follow the governing execution queue
   the five governed launch datasets and verifies that archived seeds remain out.
 - Full details are recorded in
   `docs/INCO_KNOWLEDGE_ASSET_RECONCILIATION_2026-08-22.md`.
+
+---
+
+# 12. Arabic result-parity recovery — 2026-08-23
+
+- `FIXED` The Arabic deterministic result no longer exposes English engine
+  reasons, raw decision/status codes, internal confirmation identifiers, or
+  untranslated missing-information keys in the primary result UI.
+- `FIXED` Public result cards and the five-part Official Confirmation Protocol
+  now resolve from governed bilingual country/cargo findings plus controlled
+  EN/AR presentation copy.
+- `FIXED` The UAT adapter now passes shipment facts already collected by the
+  public form into destination-rule evaluation, so known facts are not
+  incorrectly reported as missing.
+- `PASS` TypeScript, 136/136 automated tests, and governed public build.
+- `PASS` Real-browser EN 1440px and AR RTL 390px shipment checks: localized
+  result flow, no horizontal overflow, and no console warnings/errors.
+- No Production deployment, DNS, live cutover, secret, or product-scope change
+  occurred.
