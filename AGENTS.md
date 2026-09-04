@@ -1,291 +1,143 @@
-# AGENTS.md
+# INCO Agent Instructions
 
-This file governs Codex and other engineering agents working in `magad84/inco`.
+**Purpose:** Keep Codex execution focused, evidence-based, and efficient while preserving INCO V1 product, safety, privacy, and source-governance rules.
 
-## 1. Mandatory Read Order
+## 1. Authority
 
-Before making any implementation change, read in this order:
+Resolve real conflicts in this order:
 
-1. `PROJECT_CONTEXT.md` — stable Product / Business Source of Truth.
-2. `CURRENT_STATE.md` — current phase, open items, risks, and next priorities.
-3. `AGENTS.md` — execution and change-control rules.
-4. Latest approved INCO ADRs and closure documents relevant to the task.
-5. `docs/CODEX_PREEXECUTION_GATE_v1.0.md`.
-6. Live approved Figma nodes when UI/UX is involved.
-7. The actual repository implementation, tests, build, routing, and data before editing.
+1. Latest explicit Owner decision.
+2. `CURRENT_STATE.md`.
+3. Relevant sections of `PROJECT_CONTEXT.md`.
+4. Relevant current ADR / approved Figma / task-specific governing document.
+5. Current implementation and tests.
+6. Historical documents, parent-site descriptions, old branches, and superseded material.
 
-If old documentation conflicts with `PROJECT_CONTEXT.md` or newer explicit owner approvals, treat the old material as historical/superseded unless a current ADR explicitly revives it.
+Do not reopen approved decisions without material new evidence.
 
-## 2. Roles
+## 2. Default execution model
 
-- **Mostafa Gad:** Product Owner and final product decision maker.
-- **CTO / Strategic Technical Lead:** validates architecture, technical direction, implementation quality, security, deployment, and escalations.
-- **Codex:** technical inspection, implementation, testing, correction, and technical documentation.
+Use:
 
-Codex implements approved scope. It must not invent product strategy, business rules, commercial model, legal position, visual identity, data ownership, security/privacy policy, or future integrations.
+**Understand → inspect relevant scope → implement → targeted test → concise report**
 
-## 3. Product Source of Truth Rule
+For routine work:
 
-`PROJECT_CONTEXT.md` is the consolidated product/business knowledge source.
+- Read `CURRENT_STATE.md` first.
+- Read only the relevant section(s) of `PROJECT_CONTEXT.md`; do not consume the full document unless the task is genuinely cross-cutting.
+- Inspect affected code, routes, data, knowledge files, and tests.
+- Open ADRs, Figma nodes, legal drafts, SEO/GEO, source/RAG, or other documents only when the task touches those areas.
 
-It defines:
+Do **not** perform a repository-wide gap analysis, architecture audit, technical-debt review, or documentation-drift review before every task.
 
-- product identity and positioning;
-- target users and roles;
-- V1 scope and deferred scope;
-- modules and functional boundaries;
-- business and validation rules;
-- controlled decision states;
-- data/privacy principles;
-- MyGPT behavior;
-- screen/UX map;
-- Figma references;
-- route/canonical/SEO/GEO requirements;
-- source/RAG governance;
-- change-control boundaries.
+`docs/CODEX_PREEXECUTION_GATE_v1.0.md` is a **release/cross-cutting validation gate**, not a mandatory prerequisite for routine implementation.
 
-Do not infer a requirement from old code or brainstorming when it is absent from the current Product Context.
+## 3. Core V1 boundaries
 
-## 4. Current Execution Rule
+Preserve the current approved product rules in `PROJECT_CONTEXT.md`, including:
 
-The next phase is **technical validation and implementation alignment**, not new feature development.
+- INCO V1 remains free unless a newer Owner decision changes the model;
+- no registration/account requirement for V1;
+- no saved cases or intentional persistent customer-case database;
+- no document upload in V1;
+- deterministic/rules-first result remains controlling;
+- MyGPT may explain/checklist but must not override the deterministic result;
+- no unsupported live provider, rate, capacity, booking, acceptance, clearance, or authority claims;
+- approved EN/AR canonical route model must be preserved;
+- no protected, internal, licensed, credential, secret, or customer-data leakage.
 
-Before editing, Codex must establish the actual repository baseline and compare:
+Do not duplicate these rules into new governance files unless necessary.
 
-```text
-Approved Product Requirements
-        ↓
-GitHub Documentation
-        ↓
-Actual Repository
-        ↓
-Actual Data / APIs / Routing / Architecture
-        ↓
-Actual Implementation
-```
+## 4. Codex autonomy
 
-Codex must identify:
+Codex may proceed without Owner approval for normal technical work that preserves approved product behavior, such as:
 
-- architecture conflicts;
-- requirement conflicts;
-- missing implementation;
-- incorrect implementation;
-- duplicate logic;
-- dead code;
-- technical debt;
-- security/privacy issues;
-- data-model inconsistencies;
-- routing/canonical/hreflang conflicts;
-- integration problems;
-- scalability/maintainability risks;
-- missing tests;
-- documentation drift.
+- bug fixes;
+- small refactoring;
+- removing dead/duplicate code;
+- accessibility and RTL corrections;
+- test fixes/additions;
+- implementation alignment to approved routes/Figma;
+- maintainability improvements;
+- privacy/security defect fixes that preserve the approved model.
 
-Do not assume the architecture is correct because an older document says it is.
+Minor technical uncertainty should be resolved using reasonable engineering judgment.
 
-## 5. Change Authority
+## 5. Escalation gates
 
-Codex may propose and implement a technical correction when it does **not** change an approved product requirement.
+Stop for Owner decision only if a change materially affects:
 
-Examples:
-
-- refactoring duplicate implementation;
-- fixing broken routing while preserving the approved route model;
-- correcting accessibility defects;
-- correcting a test or build defect;
-- removing dead code that has no product effect;
-- fixing a privacy leak while preserving the approved privacy model;
-- aligning code to an approved Figma state;
-- strengthening maintainability without changing behavior.
-
-Codex must stop and classify `CTO / PRODUCT OWNER DECISION REQUIRED` if a proposed fix changes any of:
-
-- product scope;
-- business rule or controlled decision state;
-- user journey;
-- approved screen behavior or major visual hierarchy;
+- product scope or controlled decision states;
+- business or safety rules;
 - commercial/free model;
-- data ownership or retention;
-- major architecture boundary;
-- integration strategy;
-- security/privacy policy;
-- brand positioning;
-- canonical/language route model;
-- legal obligations or public claims.
+- public claims or brand positioning;
+- privacy, retention, tracking, analytics, or data ownership;
+- authentication or persistent user/account architecture;
+- payment architecture;
+- major route/canonical/language strategy;
+- repository/deployment architecture;
+- destructive data changes;
+- cross-product runtime integration;
+- significant legal position;
+- Production deployment/cutover.
 
-## 6. Approved V1 Non-Negotiables
+## 6. Sources, safety, and RAG
 
-- INCO V1 is free.
-- No V1 payment, pricing, subscription, paid tier, freemium upgrade, or paid-report upsell.
-- No registration/account requirement.
-- No saved cases or persistent customer database.
-- No document upload.
-- Deterministic/rules-first result is controlling.
-- Public controlled states are exactly:
-  - `candidate`
-  - `confirmation_required`
-  - `source_unavailable`
-  - `blocked_information_required`
-  - `enhanced_compliance_required`
-- MyGPT may explain/checklist only and may not override the deterministic result.
-- No automatic shipment/result data transfer to MyGPT.
-- No unsupported live rate/capacity/schedule/cut-off/booking/acceptance/clearance/permit claims.
-- Primary V1 destination packs: UAE, Saudi Arabia, Egypt, Oman.
-- EN route: `https://mostafagad.net/inco/`.
-- AR route: `https://mostafagad.net/ar/inco/`.
-- Each route self-canonicalizes and uses reciprocal hreflang plus `x-default` to EN.
-- Legacy product-detail routes are redirect-only if present.
-- Figma approved nodes remain visual authority.
-- No protected/internal/licensed source leakage.
-- Specialist professional terminology may remain English in Arabic where clearer; do not force awkward translation.
+Use official/primary sources where executable or safety-sensitive rules depend on current authority.
 
-## 7. Figma Rules
+Do not guess missing material facts. Preserve the approved controlled-state logic when confirmation is required or a live provider source is unavailable.
 
-Live Figma file:
+MyGPT and public artifacts must not expose protected/internal source material or receive shipment/result/personal/confidential data automatically.
 
-`https://www.figma.com/design/ukiYrUNG1zs38GMS3edxJ2`
+Read detailed source/RAG or safety documents only for tasks that affect those rules.
 
-Approved frames:
+## 7. UI, bilingual, SEO/GEO
 
-- EN Desktop `2:2`.
-- EN Mobile `2:150`.
-- AR Desktop RTL `40:2`.
-- AR Mobile RTL `45:2`.
+For UI tasks, inspect only the relevant approved Figma node(s) and affected implementation.
 
-Approved logo master: `31:12`.
+For route/SEO/GEO/bilingual tasks, validate the affected EN/AR canonical, hreflang, language/dir, metadata, structured data, and redirects as applicable.
 
-MyGPT sections:
+A full bilingual/SEO matrix is required for release-wide validation, not for unrelated routine tasks.
 
-- EN Desktop `12:26`.
-- EN Mobile `12:33`.
-- AR Desktop `40:156`.
-- AR Mobile `45:84`.
+## 8. Testing
 
-Rules:
+Prefer targeted tests during implementation.
 
-- inspect live nodes before visual work;
-- do not use archive material as production source;
-- do not redraw or approximate the logo;
-- do not redesign locked baselines without owner approval;
-- distinguish `Designed` from `Implemented` in every QA report;
-- dedicated Terms/Privacy page design is not currently an approved bespoke Figma screen unless a parent-site legal template is reused.
+Run broader validation when changes affect:
 
-## 8. Data / Privacy Rules
+- deterministic decision logic;
+- shared routing/canonical behavior;
+- privacy/data persistence;
+- source/RAG execution;
+- security boundaries;
+- bilingual/RTL infrastructure;
+- deployment or release readiness.
 
-Approved V1 intent:
+Do not run unrelated test suites solely for ceremony.
 
-- shipment-case processing in browser;
-- no intentional remote INCO case-evaluation API transmission;
-- no deliberate persistent case storage;
-- no shipment/result values in localStorage, sessionStorage, IndexedDB, cookies, URL query strings, analytics payloads, or third-party scripts without a new approval;
-- ordinary hosting/security logs are a separate technical-data category and must be validated in production;
-- no analytics/tracking may be added merely for convenience without owner/privacy approval.
+## 9. Documentation
 
-Codex must verify actual implementation rather than assuming these boundaries are already met.
+Update `CURRENT_STATE.md` only when project state, blockers, approved behavior, or next actions materially change.
 
-## 9. Safety / Decision Rules
+Do not regenerate unchanged documents.
+Do not create a new governance report for a routine fix.
 
-- Missing material facts must not be guessed.
-- Unknown chemical composition/SDS gaps must not be treated as non-dangerous evidence.
-- Damaged lithium batteries must not be represented as accepted for air transport without qualified assessment and actual-carrier confirmation.
-- Russia-related transactions require enhanced transaction-specific compliance screening.
-- Unsupported destination coverage must remain general/candidate guidance only; do not invent local certainty.
-- When live/current provider-controlled data is unavailable, use the approved controlled-state logic rather than inventing values.
-- User risk acceptance cannot remove carrier/authority/specialist requirements.
+Follow DRY, YAGNI, and KISS.
 
-## 10. Official Confirmation Protocol
+## 10. Completion standard
 
-When official/provider confirmation is required, preserve all five elements:
+A normal task is complete when:
 
-1. Reason.
-2. Authority/provider.
-3. Official source, where available.
-4. Impact if not confirmed.
-5. Recommended next action.
+- requested behavior is implemented;
+- relevant tests/validation pass;
+- approved product/safety/privacy boundaries remain intact;
+- no material blocker remains in the affected scope.
 
-## 11. MyGPT Rules
+Normal report:
 
-Approved external URL:
+- what changed;
+- files materially affected;
+- tests/results;
+- any real blocker or Owner decision required.
 
-`https://chatgpt.com/g/g-6a66319a00a48191a0601bc4039fb159-inco`
-
-Requirements:
-
-- open manually by user action;
-- new tab with safe link behavior;
-- no appended shipment/result/personal/confidential data;
-- website deterministic result remains controlling;
-- ChatGPT is a separate external service boundary;
-- do not claim that MyGPT has current live provider data unless a supported process exists;
-- do not expose protected/internal sources.
-
-## 12. Source / RAG Governance
-
-Prefer official government, international safety/transport, carrier, port/airport/postal/customs/road authority sources.
-
-Secondary material may support discovery but must not silently become executable authority.
-
-Executable rules should be traceable, versioned, testable, and effective/review dated where relevant.
-
-Public artifacts must exclude internal/private/licensed/protected source content, credentials, secrets, and customer data.
-
-MyGPT Knowledge is governed separately and uses the approved `01–08` pack only.
-
-## 13. SEO / GEO Rules
-
-- SEO and GEO are one coordinated discoverability strategy.
-- Keep EN and AR independently crawlable.
-- Use correct self-canonicals, hreflang, language-aware metadata, structured data, sitemap entries, and internal links.
-- Preserve truthful Mostafa Gad creator/founder/entity relationship where visible and supported.
-- Use semantic headings and source-grounded content.
-- Do not add fake ratings, certifications, endorsements, reviews, live claims, mass thin pages, doorway pages, keyword permutations, or GEO hacks.
-- `llms.txt` is not a launch requirement.
-
-## 14. Deferred Features
-
-Do not build unless separately approved:
-
-- authentication;
-- saved cases;
-- persistent reports;
-- document uploads;
-- payment/pricing/subscriptions/freemium;
-- live carrier or government integrations;
-- public API;
-- ERP integration;
-- team workspaces;
-- broker marketplace;
-- paid report generation;
-- public container-load planner;
-- embedded generative chat;
-- additional country expansion beyond approved work package.
-
-## 15. Legal / Hosting Open Items
-
-Do not invent:
-
-- governing law;
-- jurisdiction/dispute wording;
-- final limitation-of-liability language;
-- hosting-log retention facts;
-- inherited analytics/tracking behavior.
-
-Use the existing Terms/Privacy drafts as product-boundary drafts only. Final publication must reflect verified hosting facts and approved legal wording.
-
-## 16. Testing and Completion Standard
-
-For any technical task, run the relevant existing tests and add tests only when needed to verify approved behavior.
-
-A task is not complete until:
-
-- implementation has been compared to approved requirements;
-- affected tests pass;
-- no product rule was silently changed;
-- privacy/security boundaries are preserved;
-- bilingual/RTL behavior is tested when relevant;
-- canonical/routing/SEO rules are tested when relevant;
-- Figma parity is checked when relevant;
-- known unresolved items are documented;
-- `CURRENT_STATE.md` is updated after material changes.
-
-Do not declare production `READY` or `LIVE` without the required technical, security, artifact, deployment, and live verification evidence.
+Do not declare Production `LIVE` or perform Production deployment without the applicable release authority.
