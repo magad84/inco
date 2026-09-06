@@ -13,6 +13,7 @@ venv/
 # Build and cache
 .next/
 dist/
+/dist-public/
 build/
 coverage/
 .cache/

@@ -1,11 +1,21 @@
 # INCO Current State
 
-**Date:** 2026-08-16  
-**Phase:** PUBLIC REPOSITORY READINESS COMPLETE / V1.1 DESIGN INTEGRATION POLISH OWNER APPROVED / PRODUCTION DEPLOYMENT STILL SEPARATE  
+**Date:** 2026-08-23
+**Phase:** V1 IMPLEMENTATION AND LOCAL PREVIEW VALIDATED / READY WITH CONDITIONS / PRODUCTION DEPLOYMENT STILL SEPARATE
 **Product Owner:** Mostafa Gad  
 **Repository:** `magad84/inco`
 
 This file records current status only. Stable product requirements live in `PROJECT_CONTEXT.md`.
+
+## 0. P4 implementation checkpoint — 2026-08-21
+
+- `DONE` Implemented independent static EN `/inco/` and AR RTL `/ar/inco/` documents from the four current approved Figma frames.
+- `DONE` Preserved the deterministic browser engine and local case-processing boundary.
+- `DONE` Added canonical/hreflang/structured-data, responsive/RTL/accessibility/motion, exact approved assets, safe MyGPT entry and current V1.1 footer/parent-return behavior.
+- `DONE` Removed superseded feedback, paid-model remnants, JS-only language switching and the dead `unsupported_scope` UI branch.
+- `PASS` TypeScript, 132/132 automated tests, governed static build, leakage checks and 14/14 bilingual responsive browser combinations.
+- `READY WITH CONDITIONS` for Owner pre-production review and non-Production integration. Final legal wording, real hosting/logging verification and explicit Production authorization remain separate gates.
+- Evidence: `docs/INCO_P4_V1_IMPLEMENTATION_EVIDENCE_2026-08-21.md`.
 
 ---
 
@@ -184,3 +194,35 @@ Approved GitHub positioning:
 **Production-live classification:** `NOT DECLARED LIVE`.
 
 The next implementation/release action must follow the governing execution queue and release gates; this document does not bypass them.
+
+---
+
+# 11. Knowledge asset reconciliation checkpoint — 2026-08-22
+
+- Existing knowledge was inventoried and reused; no replacement research was
+  conducted.
+- `knowledge/asset-manifest.v1.0.json` classifies the public runtime inputs,
+  reference-source data, research evidence and archived research seeds.
+- A domain-core contract test now keeps the public build allowlist aligned with
+  the five governed launch datasets and verifies that archived seeds remain out.
+- Full details are recorded in
+  `docs/INCO_KNOWLEDGE_ASSET_RECONCILIATION_2026-08-22.md`.
+
+---
+
+# 12. Arabic result-parity recovery — 2026-08-23
+
+- `FIXED` The Arabic deterministic result no longer exposes English engine
+  reasons, raw decision/status codes, internal confirmation identifiers, or
+  untranslated missing-information keys in the primary result UI.
+- `FIXED` Public result cards and the five-part Official Confirmation Protocol
+  now resolve from governed bilingual country/cargo findings plus controlled
+  EN/AR presentation copy.
+- `FIXED` The UAT adapter now passes shipment facts already collected by the
+  public form into destination-rule evaluation, so known facts are not
+  incorrectly reported as missing.
+- `PASS` TypeScript, 136/136 automated tests, and governed public build.
+- `PASS` Real-browser EN 1440px and AR RTL 390px shipment checks: localized
+  result flow, no horizontal overflow, and no console warnings/errors.
+- No Production deployment, DNS, live cutover, secret, or product-scope change
+  occurred.

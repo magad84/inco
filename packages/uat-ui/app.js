@@ -1,112 +1,358 @@
 const $ = (id) => document.getElementById(id);
-let locale = "en";
+const locale = document.documentElement.lang === "ar" ? "ar" : "en";
 let enginePromise;
 let lastResult;
 
-const copy = {
+const text = {
   en: {
-    eyebrow:"FREE PROFESSIONAL SERVICE", title:"Check a shipment before you rely on the plan", lead:"INCO helps professionals, entrepreneurs, and individual importers identify missing information, operational risks, required confirmations, and practical next steps.",
-    trust1:"No registration", trust2:"No saved cases", trust3:"Rules-first result", formTitle:"Shipment facts", formHelp:"Use two-letter country codes such as CN, AE, SA, EG, or OM.", origin:"Origin country", destination:"Destination country", date:"Planned transaction date", mode:"Transport mode", cargo:"Cargo category", state:"Physical state", description:"Describe the goods clearly", hazards:"Known hazard indicators, separated by commas", special:"Special handling indicators, separated by commas", known:"Composition is known", compliance:"Enhanced compliance review may apply", run:"Check this shipment", privacy:"This browser-based service does not require an account and does not intentionally save or transmit your shipment case. Do not enter names, invoice numbers, account details, or confidential commercial information.",
-    resultTitle:"Initial decision-support result", initial:"Complete the shipment facts and run the free check.", route:"Route and service status", cargoStatus:"Cargo status", countryStatus:"Destination requirements", risk:"Key risks", missing:"Missing information", confirmations:"Confirm before proceeding", sources:"Controlled source references", next:"Recommended next step", technical:"Technical evidence", boundary:"INCO provides preliminary professional decision support. It does not replace current carrier acceptance, customs or authority approval, final dangerous-goods classification, sanctions or legal review, insurance advice, permits, or qualified operational verification.",
-    assistantTitle:"INCO conversational assistant", assistantText:"The ChatGPT companion remains under final alignment. No shipment data is sent automatically.", copyResult:"Copy result summary", openAssistant:"Assistant pending final review", copied:"Copied.", copyFailed:"Copy was not available. Select and copy the technical evidence manually.", noResult:"Run a shipment check first.",
-    feedbackTitle:"Help shape the next version", feedbackQ1:"How useful was the free INCO service?", veryUseful:"Very useful", needsDevelopment:"Useful, but it needs development", notEnough:"It did not help enough", unclear:"I did not understand the result", feedbackQ2:"Would you consider an optional advanced service for a small fee while the basic check remains free?", yes:"Yes", maybe:"Maybe, depending on features and price", freeOnly:"I prefer all services to remain free", noNeed:"I do not need an advanced version", featureLabel:"Which improvement would help you most?", copyFeedback:"Copy feedback", feedbackPrivacy:"This pre-launch survey does not transmit or store your response. It prepares a summary you can share voluntarily.", feedbackMissing:"Choose the applicable feedback options first.",
-    aboutTitle:"Built from management and supply-chain expertise", aboutText:"INCO was founded by Mostafa Gad, a Business and Operations Leader with deep supply-chain expertise. The service translates professional experience, controlled sources, and business rules into practical checks.", website:"Visit MostafaGad.net", github:"View the open-source project", free:"Free limited professional service", none:"None identified.", working:"Checking the shipment inside your browser...", error:"The request could not be evaluated.", correct:"Review the information and try again.", notEvaluated:"Not evaluated.", runNext:"Run the check to receive a practical next action."
+    none: "None identified.",
+    working: "Checking the shipment inside your browser...",
+    error: "The request could not be evaluated.",
+    correct: "Review the information and try again.",
+    copied: "Copied.",
+    copyFailed:
+      "Copy was not available. Select and copy the technical evidence manually.",
+    noResult: "Run a shipment check first.",
+    states: {
+      candidate: "Candidate",
+      confirmation_required: "Confirmation required",
+      source_unavailable: "Source unavailable",
+      blocked_information_required: "Information required",
+      enhanced_compliance_required: "Enhanced compliance required",
+    },
+    summaries: {
+      candidate:
+        "A structured candidate result is available. Live booking and authority commitments remain outside this check.",
+      confirmation_required:
+        "The route is plausible, but carrier acceptance and destination requirements still need confirmation.",
+      source_unavailable:
+        "A required route or destination source is not available for this check.",
+      blocked_information_required:
+        "Cargo information or specialist evidence is required before a route recommendation can be relied upon.",
+      enhanced_compliance_required:
+        "Transaction-specific enhanced compliance screening is required before route reliance.",
+    },
+    lane: {
+      candidate:
+        "A candidate route is available. Live schedule, capacity, price, cut-off, and acceptance are not confirmed.",
+      confirmation_required:
+        "A candidate route was identified. Current carrier and gateway confirmation is required.",
+      source_unavailable:
+        "No complete governed route source is available for the current facts.",
+      enhanced_compliance_required:
+        "Route reliance is paused pending transaction-specific compliance screening.",
+    },
+    destination: {
+      requirements_found:
+        "Destination requirements were identified from the governed country pack.",
+      confirmation_required:
+        "Destination requirements remain subject to current competent-authority confirmation.",
+      source_unavailable:
+        "A current destination source is unavailable; obtain official local confirmation.",
+      no_applicable_rules:
+        "No destination-specific rule applies to the current facts.",
+    },
+    cargo: {
+      NO_INDICATOR_FOUND:
+        "No dangerous-goods indicator was detected from the current facts. This is not a final classification.",
+      POSSIBLE_DANGEROUS_GOODS:
+        "Possible dangerous-goods indicators require qualified classification review.",
+      DANGEROUS_GOODS_DATA_REQUIRED:
+        "Dangerous-goods technical data is required before the shipment can be assessed safely.",
+      SPECIAL_CARGO_DATA_REQUIRED:
+        "Special-cargo handling information is required before route reliance.",
+      CARRIER_ACCEPTANCE_REQUIRED:
+        "Written acceptance from the actual operating carrier is required.",
+      AUTHORITY_CONFIRMATION_REQUIRED:
+        "Confirmation from the relevant authority is required.",
+      SPECIALIST_CONFIRMATION_REQUIRED:
+        "Qualified specialist confirmation is required.",
+      INSUFFICIENT_INFORMATION:
+        "The current cargo facts are insufficient for a reliable result.",
+    },
+    confirmationSource:
+      "Use the applicable official authority portal or obtain written provider confirmation.",
+    confirmationImpact:
+      "Without confirmation, the shipment may be rejected, delayed, or require rework.",
+    genericAuthority: "Relevant carrier, customs authority, regulator, or qualified specialist.",
+    additionalInformation: "Additional operational information",
+    next: {
+      blocked_information_required:
+        "Complete the missing facts or specialist evidence before selecting or relying on a route.",
+      enhanced_compliance_required:
+        "Do not rely on the general result until transaction-specific party, destination, and compliance screening is completed.",
+      source_unavailable:
+        "Obtain a current source or confirmation from the identified authority or provider before proceeding.",
+      confirmation_required:
+        "Obtain the listed carrier or authority confirmations, then reassess the shipment.",
+      candidate:
+        "Use the result as an initial candidate and obtain current confirmations before booking or execution.",
+    },
   },
   ar: {
-    eyebrow:"خدمة مهنية مجانية", title:"افحص الشحنة قبل الاعتماد على خطة التنفيذ", lead:"يساعدك INCO على تحديد المعلومات الناقصة والمخاطر التشغيلية والتأكيدات المطلوبة والخطوات التالية قبل تنفيذ الشحنة.",
-    trust1:"بدون تسجيل", trust2:"بدون حفظ الحالات", trust3:"نتيجة مبنية على قواعد", formTitle:"بيانات الشحنة", formHelp:"استخدم رمز الدولة من حرفين مثل CN أو AE أو SA أو EG أو OM.", origin:"دولة المنشأ", destination:"دولة الوصول", date:"تاريخ المعاملة المتوقع", mode:"وسيلة النقل", cargo:"فئة البضاعة", state:"الحالة الفيزيائية", description:"صف البضاعة بوضوح", hazards:"مؤشرات الخطورة المعروفة، مفصولة بفواصل", special:"مؤشرات المناولة الخاصة، مفصولة بفواصل", known:"تركيب البضاعة معروف", compliance:"قد يلزم فحص امتثال إضافي", run:"افحص هذه الشحنة", privacy:"تعمل الخدمة داخل متصفحك دون حساب، ولا تهدف إلى حفظ أو إرسال حالة الشحنة. لا تدخل أسماء أو أرقام فواتير أو حسابات أو معلومات تجارية سرية.",
-    resultTitle:"نتيجة أولية لدعم القرار", initial:"أكمل بيانات الشحنة ثم شغّل الفحص المجاني.", route:"حالة المسار والخدمة", cargoStatus:"حالة البضاعة", countryStatus:"متطلبات دولة الوصول", risk:"المخاطر الرئيسية", missing:"المعلومات الناقصة", confirmations:"تأكيدات مطلوبة قبل التنفيذ", sources:"مراجع المصادر المضبوطة", next:"الخطوة التالية المقترحة", technical:"الأدلة الفنية", boundary:"يقدم INCO دعم قرار مهنيًا أوليًا، ولا يحل محل قبول الناقل الحالي أو موافقة الجمارك أو الجهات المختصة أو التصنيف النهائي للبضائع الخطرة أو مراجعة العقوبات والقانون أو التأمين أو التصاريح أو التحقق التشغيلي المتخصص.",
-    assistantTitle:"المساعد الحواري لـINCO", assistantText:"المساعد على ChatGPT ما زال تحت المواءمة النهائية، ولا تُرسل إليه بيانات الشحنة تلقائيًا.", copyResult:"نسخ ملخص النتيجة", openAssistant:"المساعد قيد المراجعة النهائية", copied:"تم النسخ.", copyFailed:"تعذر النسخ تلقائيًا. انسخ الأدلة الفنية يدويًا.", noResult:"شغّل فحص الشحنة أولًا.",
-    feedbackTitle:"ساعد في تطوير النسخة التالية", feedbackQ1:"ما مدى فائدة خدمة INCO المجانية؟", veryUseful:"مفيدة جدًا", needsDevelopment:"مفيدة ولكن تحتاج تطويرًا", notEnough:"لم تساعدني بالشكل الكافي", unclear:"لم أفهم النتيجة", feedbackQ2:"هل قد تستخدم مستقبلًا خدمة متقدمة اختيارية بقيمة رمزية، مع استمرار الفحص الأساسي مجانًا؟", yes:"نعم", maybe:"ربما حسب الوظائف والسعر", freeOnly:"أفضل أن تظل جميع الخدمات مجانية", noNeed:"لا أحتاج نسخة متقدمة", featureLabel:"ما التطوير الأكثر فائدة لك؟", copyFeedback:"نسخ التقييم", feedbackPrivacy:"هذا الاستبيان التجريبي لا يرسل أو يحفظ إجابتك، بل يجهز ملخصًا يمكنك مشاركته طوعًا.", feedbackMissing:"اختر خيارات التقييم المناسبة أولًا.",
-    aboutTitle:"مبني على خبرة الإدارة وسلاسل الإمداد", aboutText:"أسس مصطفى جاد INCO بصفته قائدًا في الإدارة والعمليات ذا خبرة عميقة في سلاسل الإمداد. تحول الخدمة الخبرة المهنية والمصادر المضبوطة وقواعد الأعمال إلى فحوص عملية.", website:"زيارة MostafaGad.net", github:"عرض المشروع مفتوح المصدر", free:"خدمة مهنية مجانية محدودة", none:"لم يتم تحديد شيء.", working:"جارٍ فحص الشحنة داخل متصفحك...", error:"تعذر تقييم الطلب.", correct:"راجع البيانات وحاول مرة أخرى.", notEvaluated:"لم يتم التقييم.", runNext:"شغّل الفحص للحصول على خطوة تالية عملية."
-  }
+    none: "لم يتم تحديد شيء.",
+    working: "جارٍ فحص الشحنة داخل متصفحك...",
+    error: "تعذر تقييم الطلب.",
+    correct: "راجع البيانات وحاول مرة أخرى.",
+    copied: "تم النسخ.",
+    copyFailed: "تعذر النسخ تلقائيًا. انسخ الأدلة الفنية يدويًا.",
+    noResult: "شغّل فحص الشحنة أولًا.",
+    states: {
+      candidate: "مرشح أولي",
+      confirmation_required: "يلزم التأكيد",
+      source_unavailable: "المصدر غير متاح",
+      blocked_information_required: "معلومات مطلوبة",
+      enhanced_compliance_required: "يلزم فحص امتثال معزز",
+    },
+    summaries: {
+      candidate:
+        "تتوفر نتيجة مبدئية منظمة، بينما تظل التزامات الحجز والجهات المختصة خارج نطاق هذا الفحص.",
+      confirmation_required:
+        "المسار قابل للتنفيذ مبدئيًا، لكن قبول الناقل ومتطلبات جهة الوصول ما زالا بحاجة إلى تأكيد.",
+      source_unavailable:
+        "لا يتوفر مصدر مطلوب للمسار أو جهة الوصول ضمن هذا الفحص.",
+      blocked_information_required:
+        "يلزم استكمال بيانات البضاعة أو الأدلة المتخصصة قبل الاعتماد على أي توصية للمسار.",
+      enhanced_compliance_required:
+        "يلزم استكمال فحص امتثال معزز خاص بالمعاملة قبل الاعتماد على المسار.",
+    },
+    lane: {
+      candidate:
+        "يتوفر مسار مبدئي. لم يتم تأكيد الجدول الفعلي أو السعة أو السعر أو موعد الإغلاق أو القبول.",
+      confirmation_required:
+        "تم تحديد مسار مبدئي، ويلزم تأكيد حالي من الناقل والبوابة التشغيلية.",
+      source_unavailable:
+        "لا يتوفر مصدر محكوم ومكتمل للمسار وفق البيانات الحالية.",
+      enhanced_compliance_required:
+        "تم تعليق الاعتماد على المسار لحين استكمال فحص الامتثال الخاص بالمعاملة.",
+    },
+    destination: {
+      requirements_found:
+        "تم تحديد متطلبات جهة الوصول من حزمة الدولة المحكومة.",
+      confirmation_required:
+        "تظل متطلبات جهة الوصول خاضعة لتأكيد حالي من الجهة المختصة.",
+      source_unavailable:
+        "لا يتوفر مصدر حالي لجهة الوصول؛ احصل على تأكيد رسمي محلي.",
+      no_applicable_rules:
+        "لا تنطبق قاعدة خاصة بجهة الوصول على البيانات الحالية.",
+    },
+    cargo: {
+      NO_INDICATOR_FOUND:
+        "لم تظهر مؤشرات على بضائع خطرة وفق البيانات الحالية. وهذا لا يُعد تصنيفًا نهائيًا.",
+      POSSIBLE_DANGEROUS_GOODS:
+        "تستلزم مؤشرات البضائع الخطرة المحتملة مراجعة تصنيف مؤهلة.",
+      DANGEROUS_GOODS_DATA_REQUIRED:
+        "يلزم توفير البيانات الفنية للبضائع الخطرة قبل تقييم الشحنة بأمان.",
+      SPECIAL_CARGO_DATA_REQUIRED:
+        "يلزم توفير بيانات مناولة البضاعة الخاصة قبل الاعتماد على المسار.",
+      CARRIER_ACCEPTANCE_REQUIRED:
+        "يلزم قبول كتابي من الناقل الفعلي المشغّل.",
+      AUTHORITY_CONFIRMATION_REQUIRED:
+        "يلزم تأكيد من الجهة المختصة.",
+      SPECIALIST_CONFIRMATION_REQUIRED:
+        "يلزم تأكيد من مختص مؤهل.",
+      INSUFFICIENT_INFORMATION:
+        "البيانات الحالية عن البضاعة غير كافية للوصول إلى نتيجة موثوقة.",
+    },
+    confirmationSource:
+      "استخدم البوابة الرسمية المطبقة أو احصل على تأكيد كتابي من مقدم الخدمة.",
+    confirmationImpact:
+      "من دون التأكيد قد تُرفض الشحنة أو تتأخر أو تحتاج إلى إعادة تجهيز.",
+    genericAuthority: "الناقل أو الجمارك أو الجهة التنظيمية أو المختص المؤهل بحسب الحالة.",
+    additionalInformation: "بيانات تشغيلية إضافية",
+    next: {
+      blocked_information_required:
+        "استكمل المعلومات الناقصة أو الأدلة الفنية قبل اختيار المسار أو الاعتماد عليه.",
+      enhanced_compliance_required:
+        "لا تعتمد على النتيجة العامة قبل استكمال فحص الأطراف والوجهة والامتثال الخاص بالمعاملة.",
+      source_unavailable:
+        "احصل على مصدر حالي أو تأكيد من الجهة أو مقدم الخدمة المحدد قبل التنفيذ.",
+      confirmation_required:
+        "احصل على التأكيدات الموضحة من الناقل أو الجهة المختصة، ثم أعد تقييم الشحنة.",
+      candidate:
+        "استخدم النتيجة كمرشح أولي واحصل على التأكيدات الحالية قبل الحجز أو التنفيذ.",
+    },
+  },
 };
 
-function t(key){ return copy[locale][key] || key; }
-function list(values){ return values && values.length ? values.join(locale === "ar" ? "، " : ", ") : t("none"); }
-function getEngine(){ enginePromise ??= import("./engine.js"); return enginePromise; }
+const ui = text[locale];
+const list = (values) =>
+  values?.length ? values.join(locale === "ar" ? "، " : ", ") : ui.none;
+const sentenceList = (values) =>
+  values?.length ? values.join(" ") : ui.none;
+const getEngine = () => (enginePromise ??= import("./engine.js"));
 
-function applyLanguage(){
-  document.documentElement.lang = locale;
-  document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
-  document.querySelectorAll("[data-i18n]").forEach((node) => { node.textContent = t(node.dataset.i18n); });
-  $("language").textContent = locale === "ar" ? "English" : "العربية";
+const missingLabels = {
+  composition: ["Composition", "تركيب البضاعة"],
+  dangerous_goods_indicators: ["Dangerous-goods indicators", "مؤشرات البضائع الخطرة"],
+  destination: ["Destination", "جهة الوصول"],
+  destination_country: ["Destination country", "دولة الوصول"],
+  emirate: ["Emirate", "الإمارة"],
+  gateway_or_city: ["Gateway or city", "البوابة أو المدينة"],
+  loaded_gross_weight: ["Loaded gross weight", "الوزن الإجمالي بعد التحميل"],
+  movement_time: ["Planned movement time", "موعد الحركة المخطط"],
+  origin: ["Origin", "جهة المنشأ"],
+  origin_country: ["Origin country", "دولة المنشأ"],
+  overall_height: ["Overall height", "الارتفاع الإجمالي"],
+  overall_length: ["Overall length", "الطول الإجمالي"],
+  overall_width: ["Overall width", "العرض الإجمالي"],
+  package_details: ["Package details", "بيانات الطرود"],
+  product_description: ["Product description", "وصف المنتج"],
+  route: ["Planned route", "المسار المخطط"],
+  service: ["Carrier service", "خدمة الناقل"],
+  vehicle_and_trailer_type: ["Vehicle and trailer type", "نوع المركبة والمقطورة"],
+};
+
+function localizeMissing(values) {
+  if (!values?.length) return ui.none;
+  const localized = values.map((value) => missingLabels[value]?.[locale === "ar" ? 1 : 0]);
+  const visible = [...new Set(localized.filter(Boolean))];
+  if (visible.length !== values.length) visible.push(ui.additionalInformation);
+  return list(visible);
 }
 
-function nextStep(result){
-  if (result.decisionState === "blocked_information_required") return locale === "ar" ? "استكمل المعلومات الناقصة أو الأدلة الفنية قبل اختيار المسار أو الاعتماد عليه." : "Complete the missing facts or specialist evidence before selecting or relying on a route.";
-  if (result.decisionState === "enhanced_compliance_required") return locale === "ar" ? "أوقف الاعتماد على النتيجة العامة ونفّذ فحص امتثال خاص بالمعاملة والأطراف والوجهة." : "Do not rely on the general result until transaction-specific party, destination, and compliance screening is completed.";
-  if (result.decisionState === "source_unavailable") return locale === "ar" ? "ارجع إلى الجهة أو مقدم الخدمة المحدد للحصول على مصدر حالي قبل التنفيذ." : "Obtain a current source or confirmation from the identified authority or provider before proceeding.";
-  if (result.decisionState === "unsupported_scope") return locale === "ar" ? "استخدم الإرشاد العام فقط واطلب تحققًا رسميًا خاصًا بالدولة قبل التنفيذ." : "Use general guidance only and obtain country-specific official verification before proceeding.";
-  if (result.decisionState === "confirmation_required") return locale === "ar" ? "احصل على التأكيدات الموضحة من الناقل أو الجهة المختصة، ثم أعد تقييم الشحنة." : "Obtain the listed carrier or authority confirmations, then reassess the shipment.";
-  return locale === "ar" ? "استخدم النتيجة كمرشح أولي واطلب التأكيدات الحية قبل الحجز أو التنفيذ." : "Use the result as an initial candidate and obtain live confirmations before booking or execution.";
+function localizedValue(value) {
+  return value?.[locale] ?? value?.en;
 }
 
-function requestPayload(){
+function cargoSummary(result) {
+  const indicatorCopy = result.cargo.indicators
+    .map((indicator) => localizedValue(indicator.whyItMatters))
+    .filter(Boolean);
+  if (indicatorCopy.length) return sentenceList([...new Set(indicatorCopy)]);
+  return list(result.cargo.statuses.map((status) => ui.cargo[status]).filter(Boolean));
+}
+
+function destinationSummary(result) {
+  const findingCopy = result.destination.findings
+    .map((finding) => localizedValue(finding.message))
+    .filter(Boolean);
+  return findingCopy.length
+    ? sentenceList([...new Set(findingCopy)])
+    : ui.destination[result.destination.status];
+}
+
+function confirmationAuthorities(result) {
+  const authorities = result.destination.findings
+    .filter((finding) => finding.confirmationRequired)
+    .map((finding) => localizedValue(finding.authorityOrProvider))
+    .filter(Boolean);
+  return authorities.length ? list([...new Set(authorities)]) : ui.genericAuthority;
+}
+
+function confirmationImpact(result) {
+  const impacts = [
+    ...result.cargo.confirmations.map((item) => localizedValue(item.impactIfNotConfirmed)),
+    ...result.destination.findings.map((finding) => localizedValue(finding.impactIfNotConfirmed)),
+  ].filter(Boolean);
+  return impacts.length
+    ? sentenceList([...new Set(impacts)])
+    : ui.confirmationImpact;
+}
+
+function requestPayload() {
+  const origin = $("origin").value.trim().toUpperCase();
+  const exportCountry = $("exportCountry").value.trim().toUpperCase();
   return {
-    originCountry: $("origin").value.trim().toUpperCase(), destinationCountry: $("destination").value.trim().toUpperCase(), mode: $("mode").value,
-    cargoCategory: $("cargo").value.trim(), technicalDescription: $("description").value.trim(), physicalState: $("physicalState").value,
-    compositionKnown: $("compositionKnown").checked, hazardIndicators: $("hazards").value.split(",").map(v=>v.trim()).filter(Boolean),
-    specialCargoIndicators: $("special").value.split(",").map(v=>v.trim()).filter(Boolean), enhancedComplianceTrigger: $("enhanced").checked,
-    transactionDate: $("transactionDate").value
+    originCountry: origin,
+    exportCountry,
+    destinationCountry: $("destination").value.trim().toUpperCase(),
+    mode: $("mode").value,
+    cargoCategory: $("cargo").value.trim(),
+    technicalDescription: $("description").value.trim(),
+    physicalState: $("physicalState").value,
+    compositionKnown: $("compositionKnown").checked,
+    hazardIndicators: $("hazards")
+      .value.split(",")
+      .map((value) => value.trim())
+      .filter(Boolean),
+    specialCargoIndicators: $("special")
+      .value.split(",")
+      .map((value) => value.trim())
+      .filter(Boolean),
+    enhancedComplianceTrigger:
+      $("enhanced").checked || origin === "RU" || exportCountry === "RU",
+    transactionDate: $("transactionDate").value,
   };
 }
 
-function privacySafeResult(result){
+function privacySafeResult(result) {
   return [
-    `INCO decision state: ${result.decisionState}`,
-    `Route state: ${result.lane.decisionState}`,
-    `Cargo status: ${list(result.cargo.statuses)}`,
-    `Destination status: ${result.destination.status}`,
-    `Reasons: ${list(result.reasons)}`,
-    `Missing information: ${list(result.missingInformation)}`,
-    `Required confirmations: ${list(result.requiredConfirmations)}`,
-    `Critical risks: ${list(result.criticalRisks)}`,
-    `Controlled sources: ${list(result.sources)}`,
-    `Next action: ${nextStep(result)}`,
-    "This is preliminary decision support and does not confirm customs, authority, or carrier acceptance."
+    `${locale === "ar" ? "حالة القرار" : "INCO decision state"}: ${ui.states[result.decisionState]}`,
+    `${locale === "ar" ? "حالة المسار" : "Route status"}: ${ui.lane[result.lane.decisionState]}`,
+    `${locale === "ar" ? "حالة البضاعة" : "Cargo status"}: ${cargoSummary(result)}`,
+    `${locale === "ar" ? "متطلبات جهة الوصول" : "Destination requirements"}: ${destinationSummary(result)}`,
+    `${locale === "ar" ? "المعلومات الناقصة" : "Missing information"}: ${localizeMissing(result.missingInformation)}`,
+    `${locale === "ar" ? "الجهة أو مقدم الخدمة" : "Authority/provider"}: ${confirmationAuthorities(result)}`,
+    `${locale === "ar" ? "الإجراء التالي" : "Next action"}: ${ui.next[result.decisionState]}`,
+    locale === "ar"
+      ? "هذه نتيجة أولية لدعم القرار، ولا تؤكد قبول الجمارك أو الجهة المختصة أو الناقل."
+      : "This is preliminary decision support and does not confirm customs, authority, or carrier acceptance.",
   ].join("\n");
 }
 
-async function copyText(text, statusElement){
-  try { await navigator.clipboard.writeText(text); statusElement.textContent = t("copied"); }
-  catch { statusElement.textContent = t("copyFailed"); }
+async function copyText(value, statusElement) {
+  try {
+    await navigator.clipboard.writeText(value);
+    statusElement.textContent = ui.copied;
+  } catch {
+    statusElement.textContent = ui.copyFailed;
+  }
 }
 
-async function evaluateScenario(){
+function renderResult(result) {
+  const state = result.decisionState;
+  $("state").textContent = ui.states[state] ?? state;
+  $("state").dataset.state = state;
+  $("reason").textContent = ui.summaries[state];
+  $("confirmationReason").textContent = ui.summaries[state];
+  $("confirmations").textContent = confirmationAuthorities(result);
+  $("missing").textContent = localizeMissing(result.missingInformation);
+  $("risks").textContent = confirmationImpact(result);
+  $("sources").textContent = ui.confirmationSource;
+  $("laneState").textContent = ui.lane[result.lane.decisionState] ?? ui.lane.source_unavailable;
+  $("cargoState").textContent = cargoSummary(result);
+  $("countryState").textContent = destinationSummary(result);
+  $("nextStep").textContent = ui.next[state];
+  $("raw").textContent = JSON.stringify(result, null, 2);
+}
+
+async function evaluateScenario(event) {
+  event.preventDefault();
   $("run").disabled = true;
-  $("reason").textContent = t("working");
+  $("reason").textContent = ui.working;
   try {
     const { evaluatePublicRequest } = await getEngine();
-    const result = await evaluatePublicRequest(requestPayload());
-    lastResult = result;
-    $("state").textContent = result.decisionState; $("state").dataset.state = result.decisionState;
-    $("reason").textContent = list(result.reasons); $("confirmations").textContent = list(result.requiredConfirmations);
-    $("missing").textContent = list(result.missingInformation); $("risks").textContent = list(result.criticalRisks);
-    $("sources").textContent = list(result.sources); $("laneState").textContent = result.lane.decisionState;
-    $("cargoState").textContent = list(result.cargo.statuses); $("countryState").textContent = result.destination.status;
-    $("nextStep").textContent = nextStep(result); $("raw").textContent = JSON.stringify(result, null, 2);
-    $("results").scrollIntoView({behavior:"smooth", block:"start"});
+    lastResult = await evaluatePublicRequest(requestPayload());
+    renderResult(lastResult);
+    $("results").scrollIntoView({
+      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "start",
+    });
   } catch (error) {
     lastResult = undefined;
-    $("state").textContent = "request_error"; $("state").dataset.state = "request_error";
-    $("reason").textContent = error instanceof Error ? error.message : t("error"); $("confirmations").textContent = t("none");
-    $("missing").textContent = t("correct"); $("risks").textContent = t("error"); $("sources").textContent = t("none");
-    $("nextStep").textContent = t("correct"); $("raw").textContent = "";
-  } finally { $("run").disabled = false; }
+    $("state").textContent = ui.error;
+    $("state").dataset.state = "request_error";
+    $("reason").textContent = error instanceof Error ? error.message : ui.error;
+    $("confirmations").textContent = ui.none;
+    $("missing").textContent = ui.correct;
+    $("risks").textContent = ui.error;
+    $("sources").textContent = ui.none;
+    $("nextStep").textContent = ui.correct;
+    $("raw").textContent = "";
+  } finally {
+    $("run").disabled = false;
+  }
 }
 
-function feedbackSummary(){
-  const usefulness = document.querySelector('input[name="usefulness"]:checked')?.value;
-  const advanced = document.querySelector('input[name="advanced"]:checked')?.value;
-  const feature = $("feature").value;
-  if (!usefulness || !advanced) return undefined;
-  return `INCO pre-launch feedback\nUsefulness: ${usefulness}\nMost useful improvement: ${feature}\nOptional advanced service: ${advanced}`;
-}
+$("transactionDate").value = new Date().toISOString().slice(0, 10);
+$("shipment-form").addEventListener("submit", evaluateScenario);
+$("copyResult").addEventListener("click", () =>
+  lastResult
+    ? copyText(privacySafeResult(lastResult), $("copyStatus"))
+    : ($("copyStatus").textContent = ui.noResult),
+);
 
-$("transactionDate").value = new Date().toISOString().slice(0,10);
-$("run").addEventListener("click", evaluateScenario);
-$("language").addEventListener("click", () => { locale = locale === "en" ? "ar" : "en"; applyLanguage(); });
-$("copyResult")?.addEventListener("click", () => lastResult ? copyText(privacySafeResult(lastResult), $("copyStatus")) : $("copyStatus").textContent = t("noResult"));
-$("copyFeedback")?.addEventListener("click", () => { const summary = feedbackSummary(); summary ? copyText(summary, $("feedbackStatus")) : $("feedbackStatus").textContent = t("feedbackMissing"); });
-applyLanguage();
+document.documentElement.classList.add("js");

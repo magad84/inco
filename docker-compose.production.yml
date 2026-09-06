@@ -1,0 +1,23 @@
+name: inco-production
+
+services:
+  gateway:
+    image: inco-production-static:${INCO_RELEASE_SHA:?Immutable INCO release SHA is required}
+    build:
+      context: .
+      dockerfile: infrastructure/production/Dockerfile
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:uid=101,gid=101,mode=1770
+      - /var/run:uid=101,gid=101,mode=0755
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    networks:
+      production-edge:
+        aliases: [inco-production-gateway]
+
+networks:
+  production-edge:
+    external: true
+    name: mg-production-edge

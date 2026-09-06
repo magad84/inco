@@ -1,0 +1,24 @@
+name: inco-staging
+
+services:
+  gateway:
+    image: inco-staging-static:${INCO_RELEASE_SHA:?Immutable INCO release SHA is required}
+    build:
+      context: .
+      dockerfile: infrastructure/staging/Dockerfile
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:uid=101,gid=101,mode=1770
+      - /var/run:uid=101,gid=101,mode=0755
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    networks:
+      staging-edge:
+        aliases: [inco-staging-gateway]
+
+networks:
+  staging-edge:
+    external: true
+    name: via-staging-edge

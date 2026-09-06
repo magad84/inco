@@ -58,10 +58,11 @@ jobs:
       - name: Verify static artifact
         working-directory: .
         run: |
-          test -f dist-public/index.html
-          test -f dist-public/app.js
-          test -f dist-public/engine.js
-          test -f dist-public/knowledge/launch-corridors.v0.1.json
+          test -f dist-public/inco/index.html
+          test -f dist-public/ar/inco/index.html
+          test -f dist-public/inco/app.js
+          test -f dist-public/inco/engine.js
+          test -f dist-public/inco/knowledge/launch-corridors.v0.1.json
           ! grep -R -i -E "INTERNAL-TRADE-001|internal[_ -]?only|private[_ -]?source|licensed[_ -]?text|api[_ -]?key|password" dist-public
 
       - name: Upload static deployment artifact

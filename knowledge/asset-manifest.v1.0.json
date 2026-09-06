@@ -1,0 +1,60 @@
+{
+  "version": "1.0",
+  "date": "2026-08-22",
+  "policy": "DISCOVER_INVENTORY_CLASSIFY_RECONCILE_REUSE_THEN_IMPLEMENT",
+  "groups": [
+    {
+      "classification": "PRODUCTION_KNOWLEDGE",
+      "decision": "REUSE",
+      "paths": [
+        "knowledge/trade-lanes/launch-corridors.v0.1.json",
+        "knowledge/country-rules/uae.v0.1.json",
+        "knowledge/country-rules/ksa.v0.1.json",
+        "knowledge/country-rules/egypt.v0.1.json",
+        "knowledge/country-rules/oman.v0.1.json"
+      ],
+      "runtimeUse": "Exact governed inputs copied into the anonymous static browser release",
+      "control": "Record-level status, review dates and confirmation-required fallbacks remain authoritative"
+    },
+    {
+      "classification": "REFERENCE_SOURCE_DATA",
+      "decision": "REUSE",
+      "paths": [
+        "knowledge/carrier-services",
+        "knowledge/gateways",
+        "knowledge/product-rules",
+        "knowledge/source-records",
+        "knowledge/trade-lanes/gcc-road-multimodal.v0.1.json",
+        "knowledge/trade-terms.v0.1.json",
+        "knowledge/trade-terms.verification.v1.0.json",
+        "knowledge/source-normalization.v1.0.json"
+      ],
+      "runtimeUse": "Domain evaluation, integrity tests and controlled future expansion",
+      "control": "Not added to the public bundle unless the build allowlist and release tests explicitly change"
+    },
+    {
+      "classification": "RESEARCH_EVIDENCE",
+      "decision": "REUSE",
+      "paths": [
+        "docs/SOURCE_REGISTRY.md",
+        "docs/country",
+        "docs/origin",
+        "docs/QUESTION_RULE_TRACEABILITY.md",
+        "docs/TRADE_LANE_QUESTION_TRACEABILITY.md",
+        "docs/TRADE_TERM_RULE_MATRIX.md"
+      ],
+      "runtimeUse": "Source provenance and review evidence only",
+      "control": "Documentation is not executable truth"
+    },
+    {
+      "classification": "ARCHIVE_SUPERSEDED",
+      "decision": "ARCHIVE_IN_PLACE",
+      "paths": [
+        "knowledge/carriers.v0.1.json",
+        "knowledge/gateways.v0.1.json"
+      ],
+      "runtimeUse": "None",
+      "control": "Initial research-seed registries remain recoverable but are excluded from runtime and release tests"
+    }
+  ]
+}

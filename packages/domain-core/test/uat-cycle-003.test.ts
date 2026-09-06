@@ -60,6 +60,28 @@ for (const scenario of cases) {
   });
 }
 
+test("UAT adapter does not report facts already supplied by the public form as missing", () => {
+  const request = cases[0]!.request;
+  const result = evaluateUatRequest(
+    request,
+    { corridors, destinationRules: rules("AE") },
+    "2026-08-05T18:50:00Z",
+  );
+
+  for (const knownFact of [
+    "composition",
+    "dangerous_goods_indicators",
+    "destination",
+    "destination_country",
+    "movement_time",
+    "origin",
+    "origin_country",
+    "product_description",
+  ]) {
+    assert.ok(!result.missingInformation.includes(knownFact), knownFact);
+  }
+});
+
 test("UAT-CYCLE-003 rejects invalid country input", () => {
   assert.throws(
     () => evaluateUatRequest({ originCountry: "CHN", destinationCountry: "AE", mode: "ocean", cargoCategory: "general", technicalDescription: "test", transactionDate: "2026-08-05" }, { corridors, destinationRules: rules("AE") }),
