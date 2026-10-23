@@ -144,7 +144,7 @@ Do not declare Production `LIVE` or perform Production deployment without the ap
 
 ## Cross-project Owner-approved conditional delivery policy — 22 October 2026
 
-Adopt the [universal delivery policy](https://github.com/magad84/magad84/blob/codex/global-conditional-delivery-policy-20261022/docs/GLOBAL_AUTONOMOUS_DELIVERY_POLICY.md) as a general execution default. The latest explicit task-specific Owner decision, this project's existing business/security/privacy instructions, any implementation HOLD, and protected-data or release controls take precedence.
+Adopt the [universal delivery policy](https://github.com/magad84/magad84/blob/main/docs/GLOBAL_AUTONOMOUS_DELIVERY_POLICY.md) as a general execution default. The latest explicit task-specific Owner decision, this project's existing business/security/privacy instructions, any implementation HOLD, and protected-data or release controls take precedence.
 
 - Work one bounded, scoped delivery package end-to-end; autonomously diagnose, implement, correct routine test failures, run affected tests and final release gates, review, build and deliver one concise evidence receipt. Reuse exact-source successful evidence; avoid repeatedly redoing complete work.
 - **One prior explicit, project/task-specific Owner authorization may cover merge AND conditional Production deployment.** If it expressly includes both, do not demand another approval for each routine step when CI, review, branch protection, security, rollback, preflight and post-deploy verification gates all pass.
@@ -154,3 +154,6 @@ Adopt the [universal delivery policy](https://github.com/magad84/magad84/blob/co
 - Report distinct states: IMPLEMENTED, TESTED, RELEASE-READY, DEPLOYED, PRODUCTION-VERIFIED/ACCEPTED. Avoid fabricated evidence or third-party indexing guarantees.
 
 Existing INCO controlled-state, safety, privacy, data and product-specific release gates remain in force.
+
+
+**Merge-order dependency:** Merge the canonical policy PR in `magad84/magad84` to `main` before merging this project policy, so the shared policy link resolves on the target branch. This note is not permission to merge or deploy.
