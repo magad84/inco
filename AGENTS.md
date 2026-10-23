@@ -141,3 +141,19 @@ Normal report:
 - any real blocker or Owner decision required.
 
 Do not declare Production `LIVE` or perform Production deployment without the applicable release authority.
+
+## Cross-project Owner-approved conditional delivery policy — 22 October 2026
+
+Adopt the [universal delivery policy](https://github.com/magad84/magad84/blob/main/docs/GLOBAL_AUTONOMOUS_DELIVERY_POLICY.md) as a general execution default. The latest explicit task-specific Owner decision, this project's existing business/security/privacy instructions, any implementation HOLD, and protected-data or release controls take precedence.
+
+- Work one bounded, scoped delivery package end-to-end; autonomously diagnose, implement, correct routine test failures, run affected tests and final release gates, review, build and deliver one concise evidence receipt. Reuse exact-source successful evidence; avoid repeatedly redoing complete work.
+- **One prior explicit, project/task-specific Owner authorization may cover merge AND conditional Production deployment.** If it expressly includes both, do not demand another approval for each routine step when CI, review, branch protection, security, rollback, preflight and post-deploy verification gates all pass.
+- **No generic automatic deployment authority:** if the package did not expressly authorize merge/deploy/maintenance, finish reviewed release-ready PR/artifacts and request one consolidated release decision. Green tests alone are not release permission.
+- Apply **STOP / NO-GO** on failed gates, missing authority, unsafe or irreversible state, unknown data/queue drift, unavailable rollback, secrets/security risks or scope expansion. Never bypass publishing/tool security denials.
+- Higher-risk Production, private/customer/financial data, provider messages/spending, legal terms, migrations, credentials and infrastructure changes retain their separate applicable approvals. Existing project freezes and HOLDS remain fully active.
+- Report distinct states: IMPLEMENTED, TESTED, RELEASE-READY, DEPLOYED, PRODUCTION-VERIFIED/ACCEPTED. Avoid fabricated evidence or third-party indexing guarantees.
+
+Existing INCO controlled-state, safety, privacy, data and product-specific release gates remain in force.
+
+
+**Merge-order dependency:** Merge the canonical policy PR in `magad84/magad84` to `main` before merging this project policy, so the shared policy link resolves on the target branch. This note is not permission to merge or deploy.
